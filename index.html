@@ -590,7 +590,7 @@
         const sampleMotionPrompts = [
             {
                 id: 'mot-1',
-                title: 'CĐ Chuyển Động Chi Tiết 10 Giây',
+                title: 'Chuyển Động tại chỗ 01',
                 category: 'taicho',
                 categoryLabel: 'Tại chỗ',
                 tool: 'Kling AI',
@@ -611,19 +611,29 @@ Khẽ nghiêng đầu, liếc xuống đất rồi nhìn lên phía xa bên trá
 Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một chút, ánh mắt vẫn né camera và nhìn chếch sang bên phải. Gió mạnh tiếp tục làm tóc bay tự nhiên. Cuối cảnh đứng yên, hơi nghiêng người, giữ vẻ bối rối đáng yêu như đang chờ ai đó đi tới, không nhìn vào máy quay cho đến khi video kết thúc. Camera giữ ổn định, chuyển động nhân vật mượt mà, chân thực, không cường điệu, không diễn xuất ẻo lả.`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
                 gradient: 'from-indigo-600 via-purple-600 to-pink-600',
-                description: 'Kịch bản chuyển động diễn xuất 10 giây chi tiết cho nhân vật nữ.',
+                description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
             {
                 id: 'mot-2',
-                title: 'Particle Dissolve & Khói Bay 9:16',
+                title: 'Chuyển Động tại chỗ 02',
                 category: 'trinhdien',
-                categoryLabel: 'Trình diễn',
-                tool: 'Luma Dream Machine',
-                prompt: `Vertical portrait 9:16, character body gradually dissolving into glowing golden dust particles and ethereal smoke floating upward gently in wind drift, high frame rate slow motion`,
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-fireworks-illuminating-the-sky-41561-large.mp4',
+                categoryLabel: 'trinhdien',
+                tool: '',
+                prompt: `  Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.
+  0.0 – 1.0 giây:Nhân vật đứng yên, hai tay thả lỏng tự nhiên. Vừa nhận ra máy quay liền hơi khựng lại, ánh mắt lập tức né sang bên trái thay vì nhìn vào camera. Môi khép nhẹ, biểu cảm ngây ngô, hơi lúng túng. Gió mạnh làm tóc và các nếp vải chuyển động rõ rệt.
+  1.0 – 2.0 giây:Nhân vật cúi mắt nhìn xuống mặt đất vài nhịp, sau đó ngẩng đầu rất nhẹ nhưng vẫn tránh giao tiếp mắt với camera. Tay phải đưa lên vuốt nhẹ những lọn tóc bị gió thổi trước mặt rồi hạ xuống tự nhiên. Gương mặt vẫn bình tĩnh, không cười.
+  2.0 – 3.0 giây:Ánh mắt chuyển sang quan sát phía bên phải như đang ngóng người đi đường. Đầu nghiêng nhẹ theo hướng nhìn, vai xoay rất ít. Một tay khẽ vuốt lại phần trước của trang phục để chỉnh phẳng tự nhiên rồi buông tay xuống.
+  3.0 – 4.0 giây:Nhân vật tiếp tục đảo mắt nhìn xung quanh, rồi cúi đầu rất nhẹ như ngại bị quay. Hai tay khẽ chạm vào phần trang phục phía trước, vuốt lại một lần nữa như vô thức. Gió mạnh khiến tóc liên tục bay, nhân vật phải khẽ giữ tóc.
+  4.0 – 5.0 giây:Nhân vật bước dứt khoát một bước nhỏ sang trái (hoặc sang phải), trọng tâm cơ thể chuyển theo rất tự nhiên. Sau khi bước xong lập tức đứng lại, vẫn không nhìn vào máy quay, ánh mắt hướng về phía xa như tìm kiếm ai đó.
+  5.0 – 6.0 giây:Đứng ổn định tại vị trí mới. Tay trái vuốt nhẹ tóc ra sau tai vì gió thổi mạnh. Sau đó tay khẽ vuốt phần thân trang phục để giới thiệu bộ đồ bằng hành động tự nhiên, không phô trương. Ánh mắt vẫn né camera.
+  6.0 – 7.0 giây:Nhân vật ngó sang trái rồi sang phải với vẻ ngây ngô, như đang chờ ai xuất hiện. Khuôn mặt hơi giãn ra, bất chợt bật một nụ cười rất nhẹ trong chưa đến một giây rồi nhanh chóng trở lại vẻ ngượng ngùng.
+  7.0 – 8.0 giây: Nhân vật cúi mắt nhìn xuống đất lần nữa, dùng hai tay chỉnh nhẹ các nếp trang phục rồi buông tay. Cơ thể lắc rất nhẹ theo phản xạ vì gió mạnh, tóc bay tự nhiên.
+  8.0 – 9.0 giây: Đầu xoay nhẹ sang một bên, ánh mắt nhìn xa ngoài khung hình. Tay vô thức vuốt tóc thêm một lần rồi khẽ phủi nhẹ trang phục như kiểm tra lại tổng thể. Không nhìn trực diện vào camera.
+  9.0 – 10.0 giây:Nhân vật đứng yên, hơi nghiêng đầu, ánh mắt nhìn lệch xuống phía trước chứ không nhìn vào ống kính. Môi cong thành nụ cười ngượng rất nhẹ rồi nhanh chóng trở lại biểu cảm tự nhiên. Gió vẫn thổi mạnh làm tóc và trang phục chuyển động liên tục. Video kết thúc với cảm giác chân thật, ngây ngô, tự nhiên, dứt khoát, không ẻo lả, không tạo dáng quá mức, review bộ trang phục hoàn toàn bằng các cử chỉ chỉnh tóc, vuốt trang phục, bước một bước và quan sát xung quanh. `,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
                 gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Hiệu ứng hạt ma thuật tan biến khổ đứng 9:16 đầy ảo diệu.',
+                description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
             }
         ];
