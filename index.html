@@ -809,16 +809,24 @@
         // HELPER: Dynamic Video / YouTube / Vimeo Embed Renderer
         function renderMediaContainer(item) {
             if (item.video) {
+                // Generate a unique ID for each media player instance
+                const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
+
                 // YouTube (Shorts, Watch, Embed, behave)
                 const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                 if (ytMatch && ytMatch[1]) {
                     const videoId = ytMatch[1];
                     return `
-                        <div class="relative w-full h-full overflow-hidden rounded-xl">
-                            <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
+                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
                                 class="w-full h-full object-cover scale-[1.35] pointer-events-none border-0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
+                            
+                            <!-- Sound Toggle Button Overlay -->
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
                         </div>
                     `;
                 }
@@ -828,17 +836,29 @@
                 if (vimeoMatch && vimeoMatch[1]) {
                     const vimeoId = vimeoMatch[1];
                     return `
-                        <div class="relative w-full h-full overflow-hidden rounded-xl">
-                            <iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1" 
+                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
+                            <iframe id="${uniqueId}" src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1" 
                                 class="w-full h-full object-cover scale-[1.2] pointer-events-none border-0" 
                                 allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            
+                            <!-- Sound Toggle Button Overlay -->
+                            <button onclick="toggleAudio('${uniqueId}', 'vimeo', this, event)" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
                         </div>
                     `;
                 }
 
                 // Direct HTML5 MP4 / WebM Video
                 return `
-                    <video src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></video>
+                    <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
+                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></video>
+                        
+                        <!-- Sound Toggle Button Overlay -->
+                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                            <i class="fa-solid fa-volume-xmark"></i>
+                        </button>
+                    </div>
                 `;
             } else if (item.image) {
                 return `
@@ -1050,7 +1070,8 @@
                             <i class="fa-solid fa-play text-[9px]"></i> Video 9:16
                         </span>
 
-                        <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white/90 text-[11px] pointer-events-none">
+                        <!-- Time & FPS info overlay positioned on left to avoid sound button -->
+                        <div class="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 text-white/90 text-[11px] pointer-events-none">
                             <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-clock mr-1"></i>${item.duration || '5s'}</span>
                             <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-film mr-1"></i>${item.fps || '60 FPS'}</span>
                         </div>
@@ -1253,6 +1274,63 @@
             document.body.removeChild(dummy);
 
             showToast("Đã sao chép prompt vào bộ nhớ tạm!");
+        }
+
+        // AUDIO TOGGLE LOGIC FOR YOUTUBE, VIMEO AND HTML5 VIDEO
+        function toggleAudio(elementId, type, btn, event) {
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            
+            const icon = btn.querySelector('i');
+            let isMuted = true;
+            
+            if (type === 'html5') {
+                const video = document.getElementById(elementId);
+                if (video) {
+                    video.muted = !video.muted;
+                    isMuted = video.muted;
+                }
+            } else if (type === 'yt') {
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    isMuted = btn.getAttribute('data-muted') !== 'false';
+                    if (isMuted) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                        isMuted = false;
+                    } else {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        isMuted = true;
+                    }
+                    btn.setAttribute('data-muted', isMuted ? 'true' : 'false');
+                }
+            } else if (type === 'vimeo') {
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    isMuted = btn.getAttribute('data-muted') !== 'false';
+                    if (isMuted) {
+                        iframe.contentWindow.postMessage('{"method":"setVolume","value":1}', '*');
+                        isMuted = false;
+                    } else {
+                        iframe.contentWindow.postMessage('{"method":"setVolume","value":0}', '*');
+                        isMuted = true;
+                    }
+                    btn.setAttribute('data-muted', isMuted ? 'true' : 'false');
+                }
+            }
+
+            // Update icon and button style
+            if (isMuted) {
+                icon.className = 'fa-solid fa-volume-xmark';
+                btn.classList.remove('bg-rose-600', 'scale-110');
+                btn.classList.add('bg-black/60');
+            } else {
+                icon.className = 'fa-solid fa-volume-high';
+                btn.classList.remove('bg-black/60');
+                btn.classList.add('bg-rose-600', 'scale-110');
+            }
         }
 
         function showToast(msg) {
