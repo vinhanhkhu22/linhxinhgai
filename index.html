@@ -713,11 +713,11 @@
                 title: 'Trộm Đồ Manocanh - TikTok Shorts',
                 category: 'thoitrangnu',
                 categoryLabel: 'Thời Trang Nữ',
-                tool: '',
+                tool: 'Grok / YouTube',
                 prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus',
                 video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 duration: '30 giây',
-                fps: '',
+                fps: '30 FPS',
                 description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
             },
             {
@@ -817,8 +817,8 @@
                 if (ytMatch && ytMatch[1]) {
                     const videoId = ytMatch[1];
                     return `
-                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
-                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
+                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid media-auto-container">
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=0&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
                                 class="w-full h-full object-cover scale-[1.35] pointer-events-none border-0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
@@ -836,8 +836,8 @@
                 if (vimeoMatch && vimeoMatch[1]) {
                     const vimeoId = vimeoMatch[1];
                     return `
-                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
-                            <iframe id="${uniqueId}" src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1" 
+                        <div class="relative w-full h-full overflow-hidden rounded-xl group/vid media-auto-container">
+                            <iframe id="${uniqueId}" src="https://player.vimeo.com/video/${vimeoId}?autoplay=0&loop=1&muted=1&autopause=0&background=1" 
                                 class="w-full h-full object-cover scale-[1.2] pointer-events-none border-0" 
                                 allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
                             
@@ -851,8 +851,8 @@
 
                 // Direct HTML5 MP4 / WebM Video
                 return `
-                    <div class="relative w-full h-full overflow-hidden rounded-xl group/vid">
-                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></video>
+                    <div class="relative w-full h-full overflow-hidden rounded-xl group/vid media-auto-container">
+                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></video>
                         
                         <!-- Sound Toggle Button Overlay -->
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
@@ -899,9 +899,6 @@
                             <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
                                 ${item.tool}
                             </span>
-                            <span class="absolute top-3 right-3 bg-rose-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
-                                <i class="fa-solid fa-play text-[9px]"></i> 9:16
-                            </span>
                         </div>
                         <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
                             <div>
@@ -925,9 +922,6 @@
                             <div class="flex items-center justify-between">
                                 <span class="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
                                     ${item.tool}
-                                </span>
-                                <span class="bg-black/40 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-md">
-                                    9:16
                                 </span>
                             </div>
                             <div class="space-y-1">
@@ -956,6 +950,8 @@
                     </div>`;
                 }
             }).join('');
+
+            setupAutoPlayObservers();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
@@ -973,9 +969,6 @@
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <span class="absolute top-3 left-3 bg-slate-900/75 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
                             ${item.tool}
-                        </span>
-                        <span class="absolute top-3 right-3 bg-primary-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider">
-                            9:16
                         </span>
                     </div>
 
@@ -1000,6 +993,8 @@
                     </div>
                 </div>
             `).join('');
+
+            setupAutoPlayObservers();
         }
 
         function renderMotionPrompts(list = sampleMotionPrompts) {
@@ -1018,10 +1013,6 @@
                         
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
                             ${item.tool}
-                        </span>
-                        
-                        <span class="absolute top-3 right-3 bg-accent-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1 pointer-events-none z-10">
-                            <i class="fa-solid fa-film text-[9px]"></i> 9:16
                         </span>
                     </div>
 
@@ -1046,6 +1037,8 @@
                     </div>
                 </div>
             `).join('');
+
+            setupAutoPlayObservers();
         }
 
         function renderVideoPrompts(list = sampleVideoPrompts) {
@@ -1065,16 +1058,6 @@
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none">
                             ${item.tool}
                         </span>
-                        
-                        <span class="absolute top-3 right-3 bg-rose-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1 pointer-events-none">
-                            <i class="fa-solid fa-play text-[9px]"></i> Video 9:16
-                        </span>
-
-                        <!-- Time & FPS info overlay positioned on left to avoid sound button -->
-                        <div class="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 text-white/90 text-[11px] pointer-events-none">
-                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-clock mr-1"></i>${item.duration || '5s'}</span>
-                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-film mr-1"></i>${item.fps || '60 FPS'}</span>
-                        </div>
                     </div>
 
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
@@ -1098,321 +1081,8 @@
                     </div>
                 </div>
             `).join('');
-        }
 
-        // TAB SWITCHING LOGIC
-        function switchTab(tabId) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(el => el.classList.add('hidden'));
-
-            const activeTab = document.getElementById(`tab-${tabId}`);
-            if (activeTab) activeTab.classList.remove('hidden');
-
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(btn => {
-                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
-            });
-
-            const currentNavBtn = document.getElementById(`nav-${tabId}`);
-            if (currentNavBtn) {
-                currentNavBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 font-semibold";
-            }
-
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenu.classList.toggle('hidden');
-        }
-
-        // DARK MODE CONTROLLER
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const darkIcon = document.getElementById('theme-toggle-dark-icon');
-            const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-                darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
-            }
-        }
-
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
-                document.getElementById('theme-toggle-light-icon').classList.add('hidden');
-            } else {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
-                document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
-            }
-        }
-
-        // SEARCH & FILTERS LOGIC
-        function handleHomeSearch(e) {
-            if (e.key === 'Enter') {
-                executeHomeSearch();
-            }
-        }
-
-        function executeHomeSearch() {
-            const query = document.getElementById('home-search-input').value.toLowerCase().trim();
-            if (!query) return;
-
-            if (query.includes('video') || query.includes('dolly') || query.includes('drone') || query.includes('slow')) {
-                switchTab('video');
-                document.getElementById('video-search').value = query;
-                filterVideo();
-            } else if (query.includes('motion') || query.includes('chuyển động') || query.includes('camera') || query.includes('particle')) {
-                switchTab('motion');
-                document.getElementById('motion-search').value = query;
-                filterMotion();
-            } else {
-                switchTab('image');
-                document.getElementById('image-search').value = query;
-                filterImages();
-            }
-        }
-
-        function filterImages() {
-            const query = document.getElementById('image-search').value.toLowerCase();
-            const filtered = sampleImagePrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
-            renderImagePrompts(filtered);
-        }
-
-        function filterImageCategory(cat, btnElement) {
-            const buttons = document.querySelectorAll('.img-cat-btn');
-            buttons.forEach(b => {
-                b.className = "img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 font-medium transition-colors";
-            });
-            btnElement.className = "img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm transition-colors";
-
-            if (cat === 'all') {
-                renderImagePrompts(sampleImagePrompts);
-            } else {
-                const filtered = sampleImagePrompts.filter(item => item.category === cat);
-                renderImagePrompts(filtered);
-            }
-        }
-
-        function filterMotion() {
-            const query = document.getElementById('motion-search').value.toLowerCase();
-            const filtered = sampleMotionPrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
-            renderMotionPrompts(filtered);
-        }
-
-        function filterMotionCategory(cat, btnElement) {
-            const buttons = document.querySelectorAll('.motion-cat-btn');
-            buttons.forEach(b => {
-                b.className = "motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-colors";
-            });
-            btnElement.className = "motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm transition-colors";
-
-            if (cat === 'all') {
-                renderMotionPrompts(sampleMotionPrompts);
-            } else {
-                const filtered = sampleMotionPrompts.filter(item => item.category === cat);
-                renderMotionPrompts(filtered);
-            }
-        }
-
-        function filterVideo() {
-            const query = document.getElementById('video-search').value.toLowerCase();
-            const filtered = sampleVideoPrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
-            );
-            renderVideoPrompts(filtered);
-        }
-
-        function filterVideoCategory(cat, btnElement) {
-            const buttons = document.querySelectorAll('.video-cat-btn');
-            buttons.forEach(b => {
-                b.className = "video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-colors";
-            });
-            btnElement.className = "video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm transition-colors";
-
-            if (cat === 'all') {
-                renderVideoPrompts(sampleVideoPrompts);
-            } else {
-                const filtered = sampleVideoPrompts.filter(item => item.category === cat);
-                renderVideoPrompts(filtered);
-            }
-        }
-
-        // COPY TO CLIPBOARD + TOAST
-        function copyToClipboard(text) {
-            const dummy = document.createElement('textarea');
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-
-            showToast("Đã sao chép prompt vào bộ nhớ tạm!");
-        }
-
-        // AUDIO TOGGLE LOGIC FOR YOUTUBE, VIMEO AND HTML5 VIDEO
-        function toggleAudio(elementId, type, btn, event) {
-            if (event) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-            
-            const icon = btn.querySelector('i');
-            let isMuted = true;
-            
-            if (type === 'html5') {
-                const video = document.getElementById(elementId);
-                if (video) {
-                    video.muted = !video.muted;
-                    isMuted = video.muted;
-                }
-            } else if (type === 'yt') {
-                const iframe = document.getElementById(elementId);
-                if (iframe && iframe.contentWindow) {
-                    isMuted = btn.getAttribute('data-muted') !== 'false';
-                    if (isMuted) {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-                        iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
-                        isMuted = false;
-                    } else {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                        isMuted = true;
-                    }
-                    btn.setAttribute('data-muted', isMuted ? 'true' : 'false');
-                }
-            } else if (type === 'vimeo') {
-                const iframe = document.getElementById(elementId);
-                if (iframe && iframe.contentWindow) {
-                    isMuted = btn.getAttribute('data-muted') !== 'false';
-                    if (isMuted) {
-                        iframe.contentWindow.postMessage('{"method":"setVolume","value":1}', '*');
-                        isMuted = false;
-                    } else {
-                        iframe.contentWindow.postMessage('{"method":"setVolume","value":0}', '*');
-                        isMuted = true;
-                    }
-                    btn.setAttribute('data-muted', isMuted ? 'true' : 'false');
-                }
-            }
-
-            // Update icon and button style
-            if (isMuted) {
-                icon.className = 'fa-solid fa-volume-xmark';
-                btn.classList.remove('bg-rose-600', 'scale-110');
-                btn.classList.add('bg-black/60');
-            } else {
-                icon.className = 'fa-solid fa-volume-high';
-                btn.classList.remove('bg-black/60');
-                btn.classList.add('bg-rose-600', 'scale-110');
-            }
-        }
-
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = msg;
-
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
-        }
-
-        // MODAL VIEW LOGIC
-        function openModal(itemId) {
-            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts];
-            const item = allItems.find(x => x.id === itemId);
-            if (!item) return;
-
-            const modal = document.getElementById('detail-modal');
-            const content = document.getElementById('modal-content');
-
-            content.innerHTML = `
-                <div class="space-y-4">
-                    <div class="flex items-center space-x-2">
-                        <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">
-                            ${item.tool}
-                        </span>
-                        <span class="text-xs text-slate-400">• Tỉ lệ Khung Dọc 9:16</span>
-                    </div>
-
-                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-
-                    <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[60vh] aspect-[9/16] mx-auto overflow-hidden">
-                        ${renderMediaContainer(item)}
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Hướng Dẫn</label>
-                        <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || 'Không có mô tả chi tiết.'}</p>
-                        ${item.technique ? `<p class="text-xs text-accent-500 font-medium mt-1">💡 Mẹo kỹ thuật: ${item.technique}</p>` : ''}
-                    </div>
-
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Đầy Đủ (Command)</label>
-                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
-                                <i class="fa-solid fa-copy mr-1"></i> Sao chép
-                            </button>
-                        </div>
-                        <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed">
-                            ${item.prompt}
-                        </div>
-                    </div>
-
-                    <div class="pt-4 flex justify-end">
-                        <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300">
-                            Đóng cửa sổ
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
-        }
-
-        function escapeQuotes(str) {
-            return str ? str.replace(/'/g, "\\'").replace(/"/g, '\\"') : '';
-        }
-
-        // FORM SUBMIT HANDLER
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            showToast("Gửi tin nhắn thành công! Đội ngũ AI Hub sẽ phản hồi sớm.");
-            e.target.reset();
+            setupAutoPlayObservers();
         }
 
         // RENDER FUNCTION FOR TOOL PRODUCTS
@@ -1470,108 +1140,83 @@
                     </div>
                 </div>
             `).join('');
+
+            setupAutoPlayObservers();
         }
 
-        // TOOL FILTERS LOGIC
-        function filterTools() {
-            const query = document.getElementById('tool-search').value.toLowerCase();
-            const filtered = sampleToolProducts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.description.toLowerCase().includes(query)
-            );
-            renderToolProducts(filtered);
-        }
+        // SCROLL & VISIBILITY AUTO PLAY / PAUSE CONTROLLER
+        let mediaObserver = null;
 
-        function filterToolCategory(cat, btnElement) {
-            const buttons = document.querySelectorAll('.tool-cat-btn');
-            buttons.forEach(b => {
-                b.className = "tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition-colors";
-            });
-            btnElement.className = "tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm transition-colors";
+        function pauseContainerMedia(container) {
+            const video = container.querySelector('video');
+            const iframe = container.querySelector('iframe');
 
-            if (cat === 'all') {
-                renderToolProducts(sampleToolProducts);
-            } else {
-                const filtered = sampleToolProducts.filter(item => item.category === cat);
-                renderToolProducts(filtered);
+            if (video) {
+                video.pause();
+            } else if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } else if (src.includes('vimeo')) {
+                    iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+                }
             }
         }
 
-        // QR PAYMENT MODAL LOGIC
-        function openQRModal(toolId) {
-            const tool = sampleToolProducts.find(x => x.id === toolId);
-            if (!tool) return;
+        function playContainerMedia(container) {
+            const video = container.querySelector('video');
+            const iframe = container.querySelector('iframe');
 
-            const modal = document.getElementById('qr-modal');
-            const content = document.getElementById('qr-modal-content');
-
-            // Generate VietQR URL
-            const cleanAmount = tool.price.replace(/[^0-9]/g, '');
-            const qrUrl = `https://img.vietqr.io/image/MB-${tool.accountNo}-compact2.png?amount=${cleanAmount}&addInfo=${encodeURIComponent(tool.note)}&accountName=${encodeURIComponent(tool.accountName)}`;
-
-            content.innerHTML = `
-                <div class="space-y-3">
-                    <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>Thanh Toán An Toàn Qua QR</span>
-                    </div>
-
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
-                    
-                    <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto">
-                        <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
-                    </div>
-
-                    <div class="space-y-2 text-left bg-slate-100 dark:bg-slate-900/60 p-3.5 rounded-xl text-xs">
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Số tiền:</span>
-                            <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">${tool.price}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Ngân hàng:</span>
-                            <span class="font-bold text-slate-800 dark:text-slate-200">${tool.bankName}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Số tài khoản:</span>
-                            <div class="flex items-center space-x-1">
-                                <span class="font-mono font-bold text-slate-800 dark:text-slate-200">${tool.accountNo}</span>
-                                <button onclick="copyToClipboard('${tool.accountNo}')" class="text-primary-600 hover:underline text-[11px]"><i class="fa-solid fa-copy"></i></button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-slate-400">Chủ tài khoản:</span>
-                            <span class="font-bold text-slate-800 dark:text-slate-200 uppercase">${tool.accountName}</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-1 border-t border-slate-200 dark:border-slate-800">
-                            <span class="text-slate-400">Nội dung CK:</span>
-                            <div class="flex items-center space-x-1">
-                                <span class="font-mono font-bold text-rose-500">${tool.note}</span>
-                                <button onclick="copyToClipboard('${tool.note}')" class="text-rose-600 hover:underline text-[11px]"><i class="fa-solid fa-copy"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-2 flex items-center justify-between gap-3">
-                        <a href="${tool.zaloLink}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow">
-                            <i class="fa-solid fa-headset"></i>
-                            <span>Xác Nhận Qua Zalo</span>
-                        </a>
-                        <button onclick="closeQRModal()" class="py-2.5 px-4 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs">
-                            Đóng
-                        </button>
-                    </div>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
+            if (video) {
+                video.play().catch(() => {});
+            } else if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                } else if (src.includes('vimeo')) {
+                    iframe.contentWindow.postMessage('{"method":"play"}', '*');
+                }
+            }
         }
 
-        function closeQRModal() {
-            document.getElementById('qr-modal').classList.add('hidden');
+        function pauseAllVideos() {
+            const containers = document.querySelectorAll('.media-auto-container');
+            containers.forEach(c => pauseContainerMedia(c));
         }
 
-        // TAB SWITCHING LOGIC
+        function setupAutoPlayObservers() {
+            if (mediaObserver) {
+                mediaObserver.disconnect();
+            }
+
+            mediaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const container = entry.target;
+                    const parentTab = container.closest('.tab-content');
+                    const isTabVisible = parentTab && !parentTab.classList.contains('hidden');
+                    const isModal = container.closest('#detail-modal');
+
+                    // Play only if item is intersecting AND tab is visible (or inside active modal)
+                    if (entry.isIntersecting && (isTabVisible || (isModal && !document.getElementById('detail-modal').classList.contains('hidden')))) {
+                        playContainerMedia(container);
+                    } else {
+                        pauseContainerMedia(container);
+                    }
+                });
+            }, {
+                threshold: 0.25 // Require 25% visibility on screen to start playing
+            });
+
+            // Observe all media containers
+            const containers = document.querySelectorAll('.media-auto-container');
+            containers.forEach(c => mediaObserver.observe(c));
+        }
+
+        // TAB SWITCHING LOGIC WITH PAUSE/RESUME CONTROLLER
         function switchTab(tabId) {
+            // Immediately pause all playing videos on tab switch
+            pauseAllVideos();
+
             // Hide all tab contents
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(el => el.classList.add('hidden'));
@@ -1597,12 +1242,19 @@
                 mobileMenu.classList.add('hidden');
             }
 
-            // Scroll to top smooth
+            // Scroll to top smooth and re-trigger observer check
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            setTimeout(() => {
+                setupAutoPlayObservers();
+            }, 100);
         }
 
-        // MODAL VIEW LOGIC
+        // MODAL VIEW LOGIC WITH PAUSE/RESUME CONTROLLER
         function openModal(itemId) {
+            // Pause background videos when modal opens
+            pauseAllVideos();
+
             const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
             const item = allItems.find(x => x.id === itemId);
             if (!item) return;
@@ -1659,7 +1311,6 @@
                             <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">
                                 ${item.tool}
                             </span>
-                            <span class="text-xs text-slate-400">• Tỉ lệ Khung Dọc 9:16</span>
                         </div>
 
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
@@ -1696,6 +1347,13 @@
             }
 
             modal.classList.remove('hidden');
+            setupAutoPlayObservers();
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+            pauseAllVideos();
+            setupAutoPlayObservers();
         }
 
         // INITIALIZATION
@@ -1706,6 +1364,9 @@
             renderMotionPrompts();
             renderVideoPrompts();
             renderToolProducts();
+            
+            // Re-setup observer on window scroll or resize
+            window.addEventListener('scroll', setupAutoPlayObservers, { passive: true });
         };
     </script>
 </body>
