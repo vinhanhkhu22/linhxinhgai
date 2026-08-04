@@ -1223,7 +1223,13 @@
         }
 
         // TAB SWITCHING LOGIC
-        function switchTab(tabId) {
+        function switchTab(tabId, skipScroll = false) {
+            // Lưu tab hiện tại vào localStorage và cập nhật URL hash
+            localStorage.setItem('activeTab', tabId);
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, '#' + tabId);
+            }
+
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(el => el.classList.add('hidden'));
 
@@ -1262,7 +1268,9 @@
                 }
             }, 100);
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!skipScroll) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
 
         // BROWSER VISIBILITY CHANGE HANDLER
@@ -1728,6 +1736,15 @@
             renderVideoPrompts();
             renderToolProducts();
             setupAutoPlayObserver();
+
+            // Khôi phục tab đã lưu từ URL hash hoặc localStorage khi reload trang
+            const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
+            const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
+            const validTabs = ['home', 'image', 'motion', 'video', 'tool', 'contact'];
+            
+            if (validTabs.includes(savedTab)) {
+                switchTab(savedTab, true);
+            }
         };
     </script>
 </body>
