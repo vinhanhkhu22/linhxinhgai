@@ -184,7 +184,7 @@
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-grow">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="home-search-input" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm prompt (vd: cyber, cyberpunk, chân dung, cinematic, camera motion...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
+                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, cà phê, dolly, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
                         <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
                             <span>Khám Phá Ngay</span>
@@ -266,9 +266,13 @@
             <div>
                 <div class="flex items-center justify-between mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Mẫu Prompt Xu Hướng (Khung Dọc 9:16)</h2>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Các prompt chuẩn tỉ lệ dọc 9:16 tối ưu cho TikTok, Reels & Shorts</p>
+                        <h2 id="home-grid-title" class="text-2xl font-bold text-slate-900 dark:text-white">Mẫu Prompt Xu Hướng</h2>
+                        <p id="home-grid-subtitle" class="text-sm text-slate-500 dark:text-slate-400">Các prompt chuẩn tỉ lệ tối ưu cho TikTok, Reels & Shorts</p>
                     </div>
+                    <button id="clear-home-search-btn" onclick="clearHomeSearch()" class="hidden px-3.5 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                        <i class="fa-solid fa-xmark"></i>
+                        <span>Xóa tìm kiếm</span>
+                    </button>
                 </div>
 
                 <div id="home-featured-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -879,73 +883,105 @@
         }
 
         // RENDER FUNCTIONS
+        function renderHomeGridItem(item) {
+            if (item.price) {
+                return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
+                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
+                        </span>
+                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-md pointer-events-none z-10">
+                            ${item.price}
+                        </span>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+                        <div>
+                            <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
+                                <i class="fa-solid fa-eye mr-1"></i> Chi tiết
+                            </button>
+                            <button onclick="openQRModal('${item.id}')" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
+                                <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            if (item.video || item.image) {
+                return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none"></div>
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+                            ${item.tool}
+                        </span>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
+                                <i class="fa-solid fa-eye mr-1"></i> Xem
+                            </button>
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
+                                <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            } else {
+                return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] bg-gradient-to-tr ${item.gradient || 'from-indigo-600 to-purple-600'} p-5 flex flex-col justify-between text-white motion-card-preview">
+                        <div class="flex items-center justify-between">
+                            <span class="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+                                ${item.tool}
+                            </span>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="flex items-center space-x-1 mb-2">
+                                <span class="wave-bar w-1 bg-white rounded-full"></span>
+                                <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.2s"></span>
+                                <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.4s"></span>
+                            </div>
+                            <p class="text-[11px] text-white/80 uppercase font-semibold tracking-wider">Vertical Motion</p>
+                            <p class="text-base font-extrabold leading-snug">${item.title}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+                        <div>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-accent-500 flex items-center">
+                                <i class="fa-solid fa-eye mr-1"></i> Xem
+                            </button>
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-xs font-semibold hover:bg-accent-100 transition-colors flex items-center">
+                                <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+        }
+
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
 
             const featured = [sampleVideoPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[1], sampleMotionPrompts[0]];
 
-            container.innerHTML = featured.map(item => {
-                if (item.video || item.image) {
-                    return `
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                        <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                            ${renderMediaContainer(item)}
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none"></div>
-                            <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                                ${item.tool}
-                            </span>
-                        </div>
-                        <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
-                            <div>
-                                <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
-                            </div>
-                            <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                                <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
-                                    <i class="fa-solid fa-eye mr-1"></i> Xem
-                                </button>
-                                <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
-                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép
-                                </button>
-                            </div>
-                        </div>
-                    </div>`;
-                } else {
-                    return `
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                        <div class="relative aspect-[9/16] bg-gradient-to-tr ${item.gradient} p-5 flex flex-col justify-between text-white motion-card-preview">
-                            <div class="flex items-center justify-between">
-                                <span class="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                                    ${item.tool}
-                                </span>
-                            </div>
-                            <div class="space-y-1">
-                                <div class="flex items-center space-x-1 mb-2">
-                                    <span class="wave-bar w-1 bg-white rounded-full"></span>
-                                    <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.2s"></span>
-                                    <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.4s"></span>
-                                </div>
-                                <p class="text-[11px] text-white/80 uppercase font-semibold tracking-wider">Vertical Motion</p>
-                                <p class="text-base font-extrabold leading-snug">${item.title}</p>
-                            </div>
-                        </div>
-                        <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
-                            <div>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${item.description}</p>
-                            </div>
-                            <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                                <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-accent-500 flex items-center">
-                                    <i class="fa-solid fa-eye mr-1"></i> Xem
-                                </button>
-                                <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-xs font-semibold hover:bg-accent-100 transition-colors flex items-center">
-                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép
-                                </button>
-                            </div>
-                        </div>
-                    </div>`;
-                }
-            }).join('');
+            container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
             setupAutoPlayObserver();
         }
 
@@ -1312,37 +1348,95 @@
         }
 
         // SEARCH & FILTERS LOGIC
+        function removeVietnameseTones(str) {
+            if (!str) return '';
+            return str
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/đ/g, 'd')
+                .replace(/Đ/g, 'D')
+                .toLowerCase();
+        }
+
         function handleHomeSearch(e) {
             if (e.key === 'Enter') {
                 executeHomeSearch();
             }
         }
 
-        function executeHomeSearch() {
-            const query = document.getElementById('home-search-input').value.toLowerCase().trim();
-            if (!query) return;
-
-            if (query.includes('video') || query.includes('dolly') || query.includes('drone') || query.includes('slow')) {
-                switchTab('video');
-                document.getElementById('video-search').value = query;
-                filterVideo();
-            } else if (query.includes('motion') || query.includes('chuyển động') || query.includes('camera') || query.includes('particle')) {
-                switchTab('motion');
-                document.getElementById('motion-search').value = query;
-                filterMotion();
-            } else {
-                switchTab('image');
-                document.getElementById('image-search').value = query;
-                filterImages();
+        function handleHomeSearchInput() {
+            const query = document.getElementById('home-search-input').value.trim();
+            if (!query) {
+                clearHomeSearch();
             }
         }
 
+        function executeHomeSearch() {
+            const input = document.getElementById('home-search-input');
+            const rawQuery = input ? input.value.trim() : '';
+            const query = removeVietnameseTones(rawQuery);
+            const container = document.getElementById('home-featured-grid');
+            const titleEl = document.getElementById('home-grid-title');
+            const subtitleEl = document.getElementById('home-grid-subtitle');
+            const clearBtn = document.getElementById('clear-home-search-btn');
+
+            switchTab('home', true);
+
+            if (!rawQuery) {
+                clearHomeSearch();
+                return;
+            }
+
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
+
+            const filtered = allItems.filter(item => {
+                const title = removeVietnameseTones(item.title);
+                const prompt = removeVietnameseTones(item.prompt);
+                const desc = removeVietnameseTones(item.description);
+                const tool = removeVietnameseTones(item.tool);
+                const cat = removeVietnameseTones(item.categoryLabel || item.category);
+                return title.includes(query) || prompt.includes(query) || desc.includes(query) || tool.includes(query) || cat.includes(query);
+            });
+
+            if (titleEl) titleEl.innerText = `Kết Quả Tìm Kiếm Toàn Bộ Website ("${rawQuery}")`;
+            if (subtitleEl) subtitleEl.innerText = `Tìm thấy ${filtered.length} mẫu phù hợp trong tất cả danh mục`;
+            if (clearBtn) clearBtn.classList.remove('hidden');
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p><p class="text-xs text-slate-500 mt-1">Thử tìm kiếm lại với từ khóa khác (ví dụ: chan dung, ca phe, dolly, auto, midjourney...)</p></div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => renderHomeGridItem(item)).join('');
+            setupAutoPlayObserver();
+
+            const featuredGrid = document.getElementById('home-featured-grid');
+            if (featuredGrid) {
+                featuredGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function clearHomeSearch() {
+            const input = document.getElementById('home-search-input');
+            if (input) input.value = '';
+
+            const titleEl = document.getElementById('home-grid-title');
+            const subtitleEl = document.getElementById('home-grid-subtitle');
+            const clearBtn = document.getElementById('clear-home-search-btn');
+
+            if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
+            if (subtitleEl) subtitleEl.innerText = 'Các prompt chuẩn tỉ lệ tối ưu cho TikTok, Reels & Shorts';
+            if (clearBtn) clearBtn.classList.add('hidden');
+
+            renderFeaturedHomePrompts();
+        }
+
         function filterImages() {
-            const query = document.getElementById('image-search').value.toLowerCase();
+            const query = removeVietnameseTones(document.getElementById('image-search').value);
             const filtered = sampleImagePrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
+                removeVietnameseTones(item.title).includes(query) || 
+                removeVietnameseTones(item.prompt).includes(query) ||
+                removeVietnameseTones(item.description).includes(query)
             );
             renderImagePrompts(filtered);
         }
@@ -1363,11 +1457,11 @@
         }
 
         function filterMotion() {
-            const query = document.getElementById('motion-search').value.toLowerCase();
+            const query = removeVietnameseTones(document.getElementById('motion-search').value);
             const filtered = sampleMotionPrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
+                removeVietnameseTones(item.title).includes(query) || 
+                removeVietnameseTones(item.prompt).includes(query) ||
+                removeVietnameseTones(item.description).includes(query)
             );
             renderMotionPrompts(filtered);
         }
@@ -1388,11 +1482,11 @@
         }
 
         function filterVideo() {
-            const query = document.getElementById('video-search').value.toLowerCase();
+            const query = removeVietnameseTones(document.getElementById('video-search').value);
             const filtered = sampleVideoPrompts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.prompt.toLowerCase().includes(query) ||
-                item.description.toLowerCase().includes(query)
+                removeVietnameseTones(item.title).includes(query) || 
+                removeVietnameseTones(item.prompt).includes(query) ||
+                removeVietnameseTones(item.description).includes(query)
             );
             renderVideoPrompts(filtered);
         }
@@ -1413,10 +1507,10 @@
         }
 
         function filterTools() {
-            const query = document.getElementById('tool-search').value.toLowerCase();
+            const query = removeVietnameseTones(document.getElementById('tool-search').value);
             const filtered = sampleToolProducts.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                item.description.toLowerCase().includes(query)
+                removeVietnameseTones(item.title).includes(query) || 
+                removeVietnameseTones(item.description).includes(query)
             );
             renderToolProducts(filtered);
         }
