@@ -814,10 +814,12 @@
                 if (ytMatch && ytMatch[1]) {
                     const videoId = ytMatch[1];
                     return `
-                        <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=1&modestbranding=1" 
-                            class="w-full h-full object-cover rounded-xl border-0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen></iframe>
+                        <div class="relative w-full h-full overflow-hidden rounded-xl">
+                            <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
+                                class="w-full h-full object-cover scale-[1.35] pointer-events-none border-0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                        </div>
                     `;
                 }
 
@@ -826,9 +828,11 @@
                 if (vimeoMatch && vimeoMatch[1]) {
                     const vimeoId = vimeoMatch[1];
                     return `
-                        <iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0" 
-                            class="w-full h-full object-cover rounded-xl border-0" 
-                            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        <div class="relative w-full h-full overflow-hidden rounded-xl">
+                            <iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1" 
+                                class="w-full h-full object-cover scale-[1.2] pointer-events-none border-0" 
+                                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                     `;
                 }
 
