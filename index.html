@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,9 +31,7 @@
             }
         }
     </script>
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -561,7 +558,7 @@
     </footer>
 
     <!-- PROMPT DETAIL MODAL -->
-    <div id="detail-modal" onclick="handleBackdropClick(event, 'detail-modal')" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full z-10 bg-black/40 w-8 h-8 flex items-center justify-center text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -574,7 +571,7 @@
     </div>
 
     <!-- QR PAYMENT MODAL -->
-    <div id="qr-modal" onclick="handleBackdropClick(event, 'qr-modal')" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeQRModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-base"></i>
@@ -665,42 +662,16 @@
 
         const sampleMotionPrompts = [
             {
-                id: 'mot-youtube',
-                title: 'Mẫu Video YouTube Shorts AI',
-                category: 'trinhdien',
-                categoryLabel: 'Trình diễn',
-                tool: 'YouTube / Runway Gen-3',
-                prompt: 'Cinematic 9:16 vertical video from YouTube Shorts, high-speed camera motion, dramatic sunset lighting --ar 9:16',
-                video: 'https://www.youtube.com/shorts/5qap5aO4i9A',
-                description: 'Tự động phát video trực tiếp từ đường link YouTube hoặc YouTube Shorts.',
-                technique: 'Hỗ trợ tự động chạy và bật/tắt tiếng với link YouTube.'
-            }
-        ];
-
-        const sampleVideoPrompts = [
-            {
-                id: 'vid-1',
-                title: 'Trộm Đồ Manocanh - TikTok Shorts',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Runway Gen-3',
-                prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus',
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-posing-in-a-studio-41553-large.mp4',
-                duration: '30 giây',
-                fps: '60 FPS',
-                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát video ngắn 9:16).'
-            },
-            {
-                id: 'vid-gdrive',
-                title: 'Mẫu Video Google Drive Cloud',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Google Drive Stream',
-                prompt: 'Vertical 9:16 high quality video hosted directly on Google Drive cloud storage --ar 9:16',
-                video: 'https://drive.google.com/file/d/1B2C3D4E5F6G7H8I9J0K/view',
-                duration: '10 giây',
-                fps: '60 FPS',
-                description: 'Tự động nhận diện và phát video nhúng từ link chia sẻ Google Drive.'
+                id: 'mot-1',
+                title: 'CĐ Tại chỗ 01',
+                category: 'taicho',
+                categoryLabel: 'taicho',
+                tool: '',
+                prompt: 'không diễn xuất ẻo lả.',
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
+                gradient: 'from-indigo-600 via-purple-600 to-pink-600',
+                description: 'Prompt chuyển động tại chỗ dễ thương 01.',
+                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác giật mình bối rối.'
             },
             {
                 id: 'mot-2',
@@ -740,6 +711,48 @@
             }
         ];
 
+        const sampleVideoPrompts = [
+            {
+                id: 'vid-1',
+                title: 'Trộm Đồ Manocanh - TikTok Shorts',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Runway Gen-3',
+                prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
+            },
+            {
+                id: 'vid-2',
+                title: 'Quảng Cáo Cà Phê Rót Chậm - Reels',
+                category: 'doanuong',
+                categoryLabel: 'Đồ Ăn - Uống',
+                tool: 'Sora / Luma AI',
+                prompt: 'Vertical 9:16 macro slow motion shot of rich dark espresso pouring gracefully into glass cup, steam rising smoothly, warm studio lighting, depth of field blur background --ar 9:16',
+                video: 'https://assets.mixkit.co/videos/preview/mixkit-coffee-pouring-into-a-glass-cup-42898-large.mp4',
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=720&h=1280&q=80',
+                duration: '8 giây',
+                fps: '120 FPS Slow-mo',
+                description: 'Video rót cà phê siêu chậm khổ đứng 9:16 dành cho video thương mại Reels.'
+            },
+            {
+                id: 'vid-3',
+                title: 'Rừng Rêu Sương Mù Bắt Sáng - B-Roll',
+                category: 'dogiadung',
+                categoryLabel: 'Đồ Gia Dụng',
+                tool: 'Kling AI 1.5',
+                prompt: 'Vertical 9:16 forward slow dolly camera walking through ancient mossy forest in early morning, sunbeams filtering through dense trees, gentle mist floating, nature documentary look --ar 9:16',
+                video: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
+                image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=720&h=1280&q=80',
+                duration: '6 giây',
+                fps: '24 FPS Cinematic',
+                description: 'Góc nhìn tiến thẳng qua rừng sương mù khung dọc 9:16 thư giãn.'
+            }
+        ];
+
+        // DATA SOURCE FOR TOOL TỰ ĐỘNG
         const sampleToolProducts = [
             {
                 id: 'tool-1',
@@ -749,7 +762,7 @@
                 tool: 'Windows / Mac Tool',
                 price: '490.000đ',
                 originalPrice: '990.000đ',
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-hands-typing-on-a-computer-keyboard-41555-large.mp4',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=720&h=1280&q=80',
                 description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
                 guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).\n• Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.',
@@ -797,73 +810,47 @@
             }
         ];
 
-        // HELPER: Escape HTML to safely display special chars in text boxes without breaking markup
-        function escapeHtml(str) {
-            if (str === null || str === undefined) return '';
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        function getYouTubeId(url) {
-            if (!url) return null;
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-            const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
-        }
-
-        function getGoogleDriveId(url) {
-            if (!url) return null;
-            const regExp = /\/file\/d\/([^\/]+)|\?id=([^\&]+)/;
-            const match = url.match(regExp);
-            return match ? (match[1] || match[2]) : null;
-        }
-
-        // HELPER: Lookup and safely copy prompt by ID from memory (100% immune to syntax breaks)
-        function copyPromptById(id) {
-            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
-            const item = allItems.find(x => x.id === id);
-            if (item && item.prompt) {
-                copyToClipboard(item.prompt);
-            }
-        }
-
+        // HELPER: Dynamic Video / YouTube / Vimeo Embed Renderer
         function renderMediaContainer(item) {
             if (item.video) {
-                const uniqueId = 'media-' + Math.random().toString(36).substr(2, 9);
-                const ytId = getYouTubeId(item.video);
-                const driveId = getGoogleDriveId(item.video);
+                const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
 
-                if (ytId) {
+                // YouTube
+                const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+                if (ytMatch && ytMatch[1]) {
+                    const videoId = ytMatch[1];
                     return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
-                            <iframe id="${uniqueId}" 
-                                    src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=0&playsinline=1&enablejsapi=1&rel=0" 
-                                    class="w-full h-full object-cover scale-125 border-0 pointer-events-none" 
-                                    allow="autoplay; encrypted-media" 
-                                    allowfullscreen></iframe>
-                            <button onclick="toggleAudio('${uniqueId}', 'youtube', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid">
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1" 
+                                class="w-full h-full object-cover scale-[1.35] pointer-events-none border-0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                            
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
                         </div>
                     `;
                 }
 
-                if (driveId) {
-                    const streamUrl = `https://lh3.googleusercontent.com/d/${driveId}`;
+                // Vimeo
+                const vimeoMatch = item.video.match(/vimeo\.com\/(?:video\/)?([0-9]+)/);
+                if (vimeoMatch && vimeoMatch[1]) {
+                    const vimeoId = vimeoMatch[1];
                     return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
-                            <video id="${uniqueId}" src="${streamUrl}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://drive.google.com/uc?export=download&id=${driveId}'"></video>
-                            <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid">
+                            <iframe id="${uniqueId}" src="https://player.vimeo.com/video/${vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1" 
+                                class="w-full h-full object-cover scale-[1.2] pointer-events-none border-0" 
+                                allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                            
+                            <button onclick="toggleAudio('${uniqueId}', 'vimeo', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
                         </div>
                     `;
                 }
 
+                // Direct HTML5 MP4
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid">
                         <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"></video>
@@ -875,7 +862,7 @@
                 `;
             } else if (item.image) {
                 return `
-                    <img src="${item.image}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                 `;
             } else if (item.gradient) {
                 return `
@@ -887,7 +874,7 @@
                                 <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.4s"></span>
                             </div>
                             <p class="text-[11px] text-white/80 uppercase font-semibold tracking-wider">Motion Preview</p>
-                            <p class="text-base font-extrabold leading-snug">${escapeHtml(item.title)}</p>
+                            <p class="text-base font-extrabold leading-snug">${item.title}</p>
                         </div>
                     </div>
                 `;
@@ -903,17 +890,17 @@
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
-                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${escapeHtml(item.tool)}
+                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
                         </span>
                         <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-md pointer-events-none z-10">
-                            ${escapeHtml(item.price)}
+                            ${item.price}
                         </span>
                     </div>
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
                         <div>
-                            <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${escapeHtml(item.categoryLabel || 'Tool AI')}</span>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${escapeHtml(item.description)}</p>
+                            <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
@@ -934,19 +921,19 @@
                         ${renderMediaContainer(item)}
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20 pointer-events-none"></div>
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                            ${escapeHtml(item.tool)}
+                            ${item.tool}
                         </span>
                     </div>
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${escapeHtml(item.description || item.prompt)}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
                                 <i class="fa-solid fa-eye mr-1"></i> Xem
                             </button>
-                            <button onclick="copyPromptById('${item.id}')" class="px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
                                 <i class="fa-solid fa-copy mr-1"></i> Sao chép
                             </button>
                         </div>
@@ -958,7 +945,7 @@
                     <div class="relative aspect-[9/16] bg-gradient-to-tr ${item.gradient || 'from-indigo-600 to-purple-600'} p-5 flex flex-col justify-between text-white motion-card-preview">
                         <div class="flex items-center justify-between">
                             <span class="bg-black/40 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                                ${escapeHtml(item.tool)}
+                                ${item.tool}
                             </span>
                         </div>
                         <div class="space-y-1">
@@ -968,18 +955,18 @@
                                 <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.4s"></span>
                             </div>
                             <p class="text-[11px] text-white/80 uppercase font-semibold tracking-wider">Vertical Motion</p>
-                            <p class="text-base font-extrabold leading-snug">${escapeHtml(item.title)}</p>
+                            <p class="text-base font-extrabold leading-snug">${item.title}</p>
                         </div>
                     </div>
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
                         <div>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${escapeHtml(item.description)}</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${item.description}</p>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-accent-500 flex items-center">
                                 <i class="fa-solid fa-eye mr-1"></i> Xem
                             </button>
-                            <button onclick="copyPromptById('${item.id}')" class="px-2.5 py-1 rounded-lg bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-xs font-semibold hover:bg-accent-100 transition-colors flex items-center">
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-2.5 py-1 rounded-lg bg-accent-50 dark:bg-accent-900/30 text-accent-600 dark:text-accent-400 text-xs font-semibold hover:bg-accent-100 transition-colors flex items-center">
                                 <i class="fa-solid fa-copy mr-1"></i> Sao chép
                             </button>
                         </div>
@@ -1010,18 +997,18 @@
             container.innerHTML = list.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-100 dark:bg-slate-900">
-                        <img src="${item.image}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                         <span class="absolute top-3 left-3 bg-slate-900/75 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
-                            ${escapeHtml(item.tool)}
+                            ${item.tool}
                         </span>
                     </div>
 
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-primary-600 transition-colors line-clamp-1">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${escapeHtml(item.description)}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
                             <div class="mt-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 text-[11px] font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
-                                "${escapeHtml(item.prompt)}"
+                                "${item.prompt}"
                             </div>
                         </div>
 
@@ -1029,7 +1016,7 @@
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
                                 <i class="fa-solid fa-expand mr-1"></i> Chi tiết
                             </button>
-                            <button onclick="copyPromptById('${item.id}')" class="px-3 py-1.5 rounded-xl bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1">
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-3 py-1.5 rounded-xl bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -1055,16 +1042,16 @@
                         ${renderMediaContainer(item)}
                         
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
-                            ${escapeHtml(item.tool)}
+                            ${item.tool}
                         </span>
                     </div>
 
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-accent-500 transition-colors line-clamp-1">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${escapeHtml(item.description)}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-accent-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
                             <div class="mt-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 text-[11px] font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
-                                "${escapeHtml(item.prompt)}"
+                                "${item.prompt}"
                             </div>
                         </div>
 
@@ -1072,7 +1059,7 @@
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-accent-500 flex items-center">
                                 <i class="fa-solid fa-expand mr-1"></i> Chi tiết
                             </button>
-                            <button onclick="copyPromptById('${item.id}')" class="px-3 py-1.5 rounded-xl bg-accent-600 text-white text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1">
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-3 py-1.5 rounded-xl bg-accent-600 text-white text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -1098,21 +1085,21 @@
                         ${renderMediaContainer(item)}
                         
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none">
-                            ${escapeHtml(item.tool)}
+                            ${item.tool}
                         </span>
 
                         <div class="absolute bottom-3 left-3 z-20 flex items-center gap-1.5 text-white/90 text-[11px] pointer-events-none">
-                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-clock mr-1"></i>${escapeHtml(item.duration || '5s')}</span>
-                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-film mr-1"></i>${escapeHtml(item.fps || '60 FPS')}</span>
+                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-clock mr-1"></i>${item.duration || '5s'}</span>
+                            <span class="bg-black/60 backdrop-blur-sm px-2 py-0.5 rounded"><i class="fa-solid fa-film mr-1"></i>${item.fps || '60 FPS'}</span>
                         </div>
                     </div>
 
                     <div class="p-4 flex-grow flex flex-col justify-between space-y-3">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-rose-500 transition-colors line-clamp-1">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${escapeHtml(item.description)}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-rose-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
                             <div class="mt-2.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 text-[11px] font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
-                                "${escapeHtml(item.prompt)}"
+                                "${item.prompt}"
                             </div>
                         </div>
 
@@ -1120,7 +1107,7 @@
                             <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-rose-500 flex items-center">
                                 <i class="fa-solid fa-expand mr-1"></i> Chi tiết
                             </button>
-                            <button onclick="copyPromptById('${item.id}')" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1">
+                            <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="px-3 py-1.5 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -1146,22 +1133,22 @@
                         ${renderMediaContainer(item)}
                         
                         <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
-                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${escapeHtml(item.tool)}
+                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
                         </span>
                         
                         <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-md pointer-events-none z-10">
-                            ${escapeHtml(item.price)}
+                            ${item.price}
                         </span>
                     </div>
 
                     <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
                         <div>
                             <div class="flex items-center justify-between mb-1">
-                                <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${escapeHtml(item.categoryLabel)}</span>
-                                <span class="text-xs text-slate-400 line-through">${escapeHtml(item.originalPrice)}</span>
+                                <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel}</span>
+                                <span class="text-xs text-slate-400 line-through">${item.originalPrice}</span>
                             </div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${escapeHtml(item.title)}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">${escapeHtml(item.description)}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">${item.description}</p>
                         </div>
 
                         <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
@@ -1195,10 +1182,16 @@
             const video = container.querySelector('video');
             if (video) {
                 video.play().catch(() => {});
+                return;
             }
             const iframe = container.querySelector('iframe');
             if (iframe && iframe.contentWindow) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                } else if (src.includes('vimeo.com')) {
+                    iframe.contentWindow.postMessage('{"method":"play"}', '*');
+                }
             }
         }
 
@@ -1206,10 +1199,16 @@
             const video = container.querySelector('video');
             if (video) {
                 video.pause();
+                return;
             }
             const iframe = container.querySelector('iframe');
             if (iframe && iframe.contentWindow) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } else if (src.includes('vimeo.com')) {
+                    iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+                }
             }
         }
 
@@ -1244,6 +1243,7 @@
 
         // TAB SWITCHING LOGIC
         function switchTab(tabId, skipScroll = false) {
+            // Lưu tab hiện tại vào localStorage và cập nhật URL hash
             localStorage.setItem('activeTab', tabId);
             if (window.history && window.history.replaceState) {
                 window.history.replaceState(null, null, '#' + tabId);
@@ -1267,9 +1267,10 @@
 
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                toggleMobileMenu();
+                mobileMenu.classList.add('hidden');
             }
 
+            // Pause all running videos and trigger visibility check for active tab
             pauseAllMedia();
             setTimeout(() => {
                 if (mediaObserver) {
@@ -1311,15 +1312,7 @@
 
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('mobile-menu-icon');
             mobileMenu.classList.toggle('hidden');
-            if (icon) {
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.className = 'fa-solid fa-bars text-xl';
-                } else {
-                    icon.className = 'fa-solid fa-xmark text-xl';
-                }
-            }
         }
 
         // DARK MODE CONTROLLER
@@ -1357,7 +1350,7 @@
         // SEARCH & FILTERS LOGIC
         function removeVietnameseTones(str) {
             if (!str) return '';
-            return String(str)
+            return str
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '')
                 .replace(/đ/g, 'd')
@@ -1410,7 +1403,7 @@
             if (clearBtn) clearBtn.classList.remove('hidden');
 
             if (filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${escapeHtml(rawQuery)}"</p><p class="text-xs text-slate-500 mt-1">Thử tìm kiếm lại với từ khóa khác (ví dụ: chan dung, ca phe, dolly, auto, midjourney...)</p></div>`;
+                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p><p class="text-xs text-slate-500 mt-1">Thử tìm kiếm lại với từ khóa khác (ví dụ: chan dung, ca phe, dolly, auto, midjourney...)</p></div>`;
                 return;
             }
 
@@ -1566,16 +1559,24 @@
                 const iframe = container.querySelector('iframe');
                 const btn = container.querySelector('button[onclick*="toggleAudio"]');
 
-                if (video) {
-                    if (!exceptElementId || video.id !== exceptElementId) {
-                        video.muted = true;
-                    }
+                let containerElementId = null;
+                if (video) containerElementId = video.id;
+                if (iframe) containerElementId = iframe.id;
+
+                if (exceptElementId && containerElementId === exceptElementId) {
+                    return;
                 }
-                if (iframe) {
-                    if (!exceptElementId || iframe.id !== exceptElementId) {
-                        if (iframe.contentWindow) {
-                            iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                        }
+
+                if (video) {
+                    video.muted = true;
+                }
+
+                if (iframe && iframe.contentWindow) {
+                    const src = iframe.src || '';
+                    if (src.includes('youtube.com')) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    } else if (src.includes('vimeo.com')) {
+                        iframe.contentWindow.postMessage('{"method":"setVolume","value":0}', '*');
                     }
                 }
 
@@ -1597,15 +1598,25 @@
             
             const icon = btn.querySelector('i');
             const isMuted = btn.getAttribute('data-muted') !== 'false';
-            const mediaEl = document.getElementById(elementId);
             
             if (isMuted) {
+                // Mute all other playing videos before unmuting this video
                 muteAllAudio(elementId);
 
-                if (type === 'html5' && mediaEl) {
-                    mediaEl.muted = false;
-                } else if (type === 'youtube' && mediaEl && mediaEl.contentWindow) {
-                    mediaEl.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                if (type === 'html5') {
+                    const video = document.getElementById(elementId);
+                    if (video) video.muted = false;
+                } else if (type === 'yt') {
+                    const iframe = document.getElementById(elementId);
+                    if (iframe && iframe.contentWindow) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                    }
+                } else if (type === 'vimeo') {
+                    const iframe = document.getElementById(elementId);
+                    if (iframe && iframe.contentWindow) {
+                        iframe.contentWindow.postMessage('{"method":"setVolume","value":1}', '*');
+                    }
                 }
 
                 btn.setAttribute('data-muted', 'false');
@@ -1613,10 +1624,19 @@
                 btn.classList.remove('bg-black/60');
                 btn.classList.add('bg-rose-600', 'scale-110');
             } else {
-                if (type === 'html5' && mediaEl) {
-                    mediaEl.muted = true;
-                } else if (type === 'youtube' && mediaEl && mediaEl.contentWindow) {
-                    mediaEl.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                if (type === 'html5') {
+                    const video = document.getElementById(elementId);
+                    if (video) video.muted = true;
+                } else if (type === 'yt') {
+                    const iframe = document.getElementById(elementId);
+                    if (iframe && iframe.contentWindow) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    }
+                } else if (type === 'vimeo') {
+                    const iframe = document.getElementById(elementId);
+                    if (iframe && iframe.contentWindow) {
+                        iframe.contentWindow.postMessage('{"method":"setVolume","value":0}', '*');
+                    }
                 }
 
                 btn.setAttribute('data-muted', 'true');
@@ -1645,6 +1665,7 @@
             const item = allItems.find(x => x.id === itemId);
             if (!item) return;
 
+            // Pause all background grid videos
             pauseAllMedia();
 
             const modal = document.getElementById('detail-modal');
@@ -1655,12 +1676,12 @@
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
                             <span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">
-                                ${escapeHtml(item.tool)}
+                                ${item.tool}
                             </span>
-                            <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${escapeHtml(item.price)} <span class="text-xs text-slate-400 line-through font-normal">${escapeHtml(item.originalPrice)}</span></span>
+                            <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${item.price} <span class="text-xs text-slate-400 line-through font-normal">${item.originalPrice}</span></span>
                         </div>
 
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h2>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
 
                         <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
@@ -1668,13 +1689,13 @@
 
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Sản Phẩm</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${escapeHtml(item.description)}</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Hướng Dẫn Sử Dụng & Setup</label>
                             <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 whitespace-pre-line leading-relaxed">
-                                ${escapeHtml(item.guide)}
+                                ${item.guide}
                             </div>
                         </div>
 
@@ -1695,11 +1716,11 @@
                     <div class="space-y-4">
                         <div class="flex items-center space-x-2">
                             <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">
-                                ${escapeHtml(item.tool)}
+                                ${item.tool}
                             </span>
                         </div>
 
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${escapeHtml(item.title)}</h2>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
 
                         <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[60vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
@@ -1707,18 +1728,20 @@
 
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Hướng Dẫn</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300">${escapeHtml(item.description) || 'Không có mô tả chi tiết.'}</p>
-                            ${item.technique ? `<p class="text-xs text-accent-500 font-medium mt-1">💡 Mẹo kỹ thuật: ${escapeHtml(item.technique)}</p>` : ''}
+                            <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || 'Không có mô tả chi tiết.'}</p>
+                            ${item.technique ? `<p class="text-xs text-accent-500 font-medium mt-1">💡 Mẹo kỹ thuật: ${item.technique}</p>` : ''}
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Đầy Đủ (Command)</label>
-                                <button onclick="copyPromptById('${item.id}')" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                                <button onclick="copyToClipboard(\`${escapeQuotes(item.prompt)}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                                     <i class="fa-solid fa-copy mr-1"></i> Sao chép
                                 </button>
                             </div>
-                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed whitespace-pre-wrap">${escapeHtml(item.prompt)}</div>
+                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed">
+                                ${item.prompt}
+                            </div>
                         </div>
 
                         <div class="pt-4 flex justify-end">
@@ -1732,6 +1755,7 @@
 
             modal.classList.remove('hidden');
 
+            // Automatically start playing video inside the modal
             setTimeout(() => {
                 playMedia(content);
             }, 100);
@@ -1743,6 +1767,7 @@
             muteAllAudio();
             modal.classList.add('hidden');
 
+            // Resume grid media in visible tab
             setTimeout(() => {
                 if (mediaObserver) {
                     document.querySelectorAll('.media-container').forEach(el => {
@@ -1774,7 +1799,7 @@
                         <span>Thanh Toán An Toàn Qua QR</span>
                     </div>
 
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${escapeHtml(tool.title)}</h3>
+                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
                     
                     <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto">
                         <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
@@ -1783,27 +1808,27 @@
                     <div class="space-y-2 text-left bg-slate-100 dark:bg-slate-900/60 p-3.5 rounded-xl text-xs">
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Số tiền:</span>
-                            <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">${escapeHtml(tool.price)}</span>
+                            <span class="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">${tool.price}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Ngân hàng:</span>
-                            <span class="font-bold text-slate-800 dark:text-slate-200">${escapeHtml(tool.bankName)}</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-200">${tool.bankName}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Số tài khoản:</span>
                             <div class="flex items-center space-x-1">
-                                <span class="font-mono font-bold text-slate-800 dark:text-slate-200">${escapeHtml(tool.accountNo)}</span>
+                                <span class="font-mono font-bold text-slate-800 dark:text-slate-200">${tool.accountNo}</span>
                                 <button onclick="copyToClipboard('${tool.accountNo}')" class="text-primary-600 hover:underline text-[11px]"><i class="fa-solid fa-copy"></i></button>
                             </div>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-slate-400">Chủ tài khoản:</span>
-                            <span class="font-bold text-slate-800 dark:text-slate-200 uppercase">${escapeHtml(tool.accountName)}</span>
+                            <span class="font-bold text-slate-800 dark:text-slate-200 uppercase">${tool.accountName}</span>
                         </div>
                         <div class="flex justify-between items-center pt-1 border-t border-slate-200 dark:border-slate-800">
                             <span class="text-slate-400">Nội dung CK:</span>
                             <div class="flex items-center space-x-1">
-                                <span class="font-mono font-bold text-rose-500">${escapeHtml(tool.note)}</span>
+                                <span class="font-mono font-bold text-rose-500">${tool.note}</span>
                                 <button onclick="copyToClipboard('${tool.note}')" class="text-rose-600 hover:underline text-[11px]"><i class="fa-solid fa-copy"></i></button>
                             </div>
                         </div>
@@ -1828,20 +1853,9 @@
             document.getElementById('qr-modal').classList.add('hidden');
         }
 
-        function handleBackdropClick(e, modalId) {
-            if (e.target.id === modalId) {
-                if (modalId === 'detail-modal') closeModal();
-                if (modalId === 'qr-modal') closeQRModal();
-            }
+        function escapeQuotes(str) {
+            return str ? str.replace(/'/g, "\\'").replace(/"/g, '\\"') : '';
         }
-
-        // KEYBOARD EVENT LISTENERS (ESC TO CLOSE MODALS)
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeQRModal();
-            }
-        });
 
         // FORM SUBMIT HANDLER
         function handleFormSubmit(e) {
@@ -1860,6 +1874,7 @@
             renderToolProducts();
             setupAutoPlayObserver();
 
+            // Khôi phục tab đã lưu từ URL hash hoặc localStorage khi reload trang
             const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
             const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
             const validTabs = ['home', 'image', 'motion', 'video', 'tool', 'contact'];
