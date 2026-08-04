@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,7 +32,9 @@
             }
         }
     </script>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -558,7 +561,7 @@
     </footer>
 
     <!-- PROMPT DETAIL MODAL -->
-    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="detail-modal" onclick="handleBackdropClick(event, 'detail-modal')" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full z-10 bg-black/40 w-8 h-8 flex items-center justify-center text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
@@ -571,7 +574,7 @@
     </div>
 
     <!-- QR PAYMENT MODAL -->
-    <div id="qr-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="qr-modal" onclick="handleBackdropClick(event, 'qr-modal')" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeQRModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-base"></i>
@@ -662,29 +665,42 @@
 
         const sampleMotionPrompts = [
             {
-                id: 'mot-1',
-                title: 'CĐ Tại chỗ 01',
-                category: 'taicho',
-                categoryLabel: 'taicho',
-                tool: 'Kling AI',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.0.0 – 1.0 giây:
-Nhân vật hơi giật mình khi nhận ra đang bị quay, khẽ mím môi cười ngại, ánh mắt lập tức lảng sang bên trái thay vì nhìn camera. Hai tay buông tự nhiên, các ngón tay vô thức cử động nhẹ. Gió mạnh làm tóc và vài lọn tóc trước trán bay liên tục.
-1.0 – 2.5 giây:
-Nhân vật lùi dứt khoát 2 bước nhỏ ra xa máy quay để toàn thân, kể cả bàn chân, đều xuất hiện trong khung hình. Trong lúc bước lùi vẫn không nhìn camera, chỉ liếc xuống mặt đất rồi nhìn chếch sang một bên. Kết thúc bước lùi đứng vững, trọng tâm cơ thể ổn định.
-2.5 – 4.0 giây:
-Đứng yên vài nhịp, ngước đầu nhìn sang trái như đang ngóng người đi đường, sau đó quay sang phải rất tự nhiên. Miệng khẽ cười mỉm ngượng ngùng. Ánh mắt liên tục đảo quanh nhưng tránh tiếp xúc trực tiếp với camera. Gió làm tóc và tóc mai bay mạnh.
-4.0 – 5.5 giây:
-Cúi mắt xuống đất vài giây như đang tìm gì đó, dùng mũi chân chạm nhẹ xuống mặt đất rồi dậm chân một cái rất nhẹ. Hai tay vô thức khua nhẹ vài động tác ngẫu nhiên, không tạo dáng, giống phản xạ tự nhiên khi ngại.
-5.5 – 7.0 giây:
-Bước 1 bước sang phải hoặc sang trái thật tự nhiên, không tạo cảm giác trình diễn. Sau khi bước xong lại đứng lại, xoay đầu nhìn ra xa như đang quan sát người đi ngang. Biểu cảm vẫn ngây ngô, cười mỉm rất nhẹ, mắt tuyệt đối không nhìn thẳng vào ống kính.
-7.0 – 8.5 giây:
-Khẽ nghiêng đầu, liếc xuống đất rồi nhìn lên phía xa bên trái. Một bàn chân đá vu vơ rất nhẹ về phía trước như thói quen vô thức. Hai tay tiếp tục cử động ngẫu nhiên, các ngón tay mở rồi khép nhẹ, vai thả lỏng.
-8.5 – 10.0 giây:
-Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một chút, ánh mắt vẫn né camera và nhìn chếch sang bên phải. Gió mạnh tiếp tục làm tóc bay tự nhiên. Cuối cảnh đứng yên, hơi nghiêng người, giữ vẻ bối rối đáng yêu như đang chờ ai đó đi tới, không nhìn vào máy quay cho đến khi video kết thúc. Camera giữ ổn định, chuyển động nhân vật mượt mà, chân thực, không cường điệu, không diễn xuất ẻo lả.`,
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-girl-in-a-field-of-flowers-41549-large.mp4',
-                gradient: 'from-indigo-600 via-purple-600 to-pink-600',
-                description: 'Prompt chuyển động tại chỗ dễ thương 01.',
-                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác giật mình bối rối.'
+                id: 'mot-youtube',
+                title: 'Mẫu Video YouTube Shorts AI',
+                category: 'trinhdien',
+                categoryLabel: 'Trình diễn',
+                tool: 'YouTube / Runway Gen-3',
+                prompt: 'Cinematic 9:16 vertical video from YouTube Shorts, high-speed camera motion, dramatic sunset lighting --ar 9:16',
+                video: 'https://www.youtube.com/shorts/5qap5aO4i9A',
+                description: 'Tự động phát video trực tiếp từ đường link YouTube hoặc YouTube Shorts.',
+                technique: 'Hỗ trợ tự động chạy và bật/tắt tiếng với link YouTube.'
+            }
+        ];
+
+        const sampleVideoPrompts = [
+            {
+                id: 'vid-1',
+                title: 'Trộm Đồ Manocanh - TikTok Shorts',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Runway Gen-3',
+                prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus',
+                video: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-posing-in-a-studio-41553-large.mp4',
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát video ngắn 9:16).'
+            },
+            {
+                id: 'vid-gdrive',
+                title: 'Mẫu Video Google Drive Cloud',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Google Drive Stream',
+                prompt: 'Vertical 9:16 high quality video hosted directly on Google Drive cloud storage --ar 9:16',
+                video: 'https://drive.google.com/file/d/1B2C3D4E5F6G7H8I9J0K/view',
+                duration: '10 giây',
+                fps: '60 FPS',
+                description: 'Tự động nhận diện và phát video nhúng từ link chia sẻ Google Drive.'
             },
             {
                 id: 'mot-2',
@@ -724,48 +740,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             }
         ];
 
-        const sampleVideoPrompts = [
-            {
-                id: 'vid-1',
-                title: 'Trộm Đồ Manocanh - TikTok Shorts',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Runway Gen-3',
-                prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus',
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-fashion-model-posing-in-a-studio-41553-large.mp4',
-                duration: '30 giây',
-                fps: '60 FPS',
-                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát video ngắn 9:16).'
-            },
-            {
-                id: 'vid-2',
-                title: 'Quảng Cáo Cà Phê Rót Chậm - Reels',
-                category: 'doanuong',
-                categoryLabel: 'Đồ Ăn - Uống',
-                tool: 'Sora / Luma AI',
-                prompt: 'Vertical 9:16 macro slow motion shot of rich dark espresso pouring gracefully into glass cup, steam rising smoothly, warm studio lighting, depth of field blur background --ar 9:16',
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-coffee-pouring-into-a-glass-cup-42898-large.mp4',
-                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=720&h=1280&q=80',
-                duration: '8 giây',
-                fps: '120 FPS Slow-mo',
-                description: 'Video rót cà phê siêu chậm khổ đứng 9:16 dành cho video thương mại Reels.'
-            },
-            {
-                id: 'vid-3',
-                title: 'Rừng Rêu Sương Mù Bắt Sáng - B-Roll',
-                category: 'dogiadung',
-                categoryLabel: 'Đồ Gia Dụng',
-                tool: 'Kling AI 1.5',
-                prompt: 'Vertical 9:16 forward slow dolly camera walking through ancient mossy forest in early morning, sunbeams filtering through dense trees, gentle mist floating, nature documentary look --ar 9:16',
-                video: 'https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4',
-                image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=720&h=1280&q=80',
-                duration: '6 giây',
-                fps: '24 FPS Cinematic',
-                description: 'Góc nhìn tiến thẳng qua rừng sương mù khung dọc 9:16 thư giãn.'
-            }
-        ];
-
-        // DATA SOURCE FOR TOOL TỰ ĐỘNG
         const sampleToolProducts = [
             {
                 id: 'tool-1',
@@ -834,6 +808,20 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 .replace(/'/g, '&#039;');
         }
 
+        function getYouTubeId(url) {
+            if (!url) return null;
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function getGoogleDriveId(url) {
+            if (!url) return null;
+            const regExp = /\/file\/d\/([^\/]+)|\?id=([^\&]+)/;
+            const match = url.match(regExp);
+            return match ? (match[1] || match[2]) : null;
+        }
+
         // HELPER: Lookup and safely copy prompt by ID from memory (100% immune to syntax breaks)
         function copyPromptById(id) {
             const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
@@ -843,10 +831,38 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             }
         }
 
-        // HELPER: Dynamic Video Container Renderer
         function renderMediaContainer(item) {
             if (item.video) {
-                const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
+                const uniqueId = 'media-' + Math.random().toString(36).substr(2, 9);
+                const ytId = getYouTubeId(item.video);
+                const driveId = getGoogleDriveId(item.video);
+
+                if (ytId) {
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                            <iframe id="${uniqueId}" 
+                                    src="https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&loop=1&playlist=${ytId}&controls=0&playsinline=1&enablejsapi=1&rel=0" 
+                                    class="w-full h-full object-cover scale-125 border-0 pointer-events-none" 
+                                    allow="autoplay; encrypted-media" 
+                                    allowfullscreen></iframe>
+                            <button onclick="toggleAudio('${uniqueId}', 'youtube', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+
+                if (driveId) {
+                    const streamUrl = `https://lh3.googleusercontent.com/d/${driveId}`;
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                            <video id="${uniqueId}" src="${streamUrl}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://drive.google.com/uc?export=download&id=${driveId}'"></video>
+                            <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-rose-600 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-lg border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                }
 
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid">
@@ -1180,12 +1196,20 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             if (video) {
                 video.play().catch(() => {});
             }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
         }
 
         function pauseMedia(container) {
             const video = container.querySelector('video');
             if (video) {
                 video.pause();
+            }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
             }
         }
 
@@ -1243,7 +1267,7 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
 
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
+                toggleMobileMenu();
             }
 
             pauseAllMedia();
@@ -1287,7 +1311,15 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
 
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
             mobileMenu.classList.toggle('hidden');
+            if (icon) {
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.className = 'fa-solid fa-bars text-xl';
+                } else {
+                    icon.className = 'fa-solid fa-xmark text-xl';
+                }
+            }
         }
 
         // DARK MODE CONTROLLER
@@ -1531,11 +1563,19 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
         function muteAllAudio(exceptElementId = null) {
             document.querySelectorAll('.media-container').forEach(container => {
                 const video = container.querySelector('video');
+                const iframe = container.querySelector('iframe');
                 const btn = container.querySelector('button[onclick*="toggleAudio"]');
 
                 if (video) {
                     if (!exceptElementId || video.id !== exceptElementId) {
                         video.muted = true;
+                    }
+                }
+                if (iframe) {
+                    if (!exceptElementId || iframe.id !== exceptElementId) {
+                        if (iframe.contentWindow) {
+                            iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                        }
                     }
                 }
 
@@ -1557,13 +1597,15 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             
             const icon = btn.querySelector('i');
             const isMuted = btn.getAttribute('data-muted') !== 'false';
+            const mediaEl = document.getElementById(elementId);
             
             if (isMuted) {
                 muteAllAudio(elementId);
 
-                if (type === 'html5') {
-                    const video = document.getElementById(elementId);
-                    if (video) video.muted = false;
+                if (type === 'html5' && mediaEl) {
+                    mediaEl.muted = false;
+                } else if (type === 'youtube' && mediaEl && mediaEl.contentWindow) {
+                    mediaEl.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
                 }
 
                 btn.setAttribute('data-muted', 'false');
@@ -1571,9 +1613,10 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 btn.classList.remove('bg-black/60');
                 btn.classList.add('bg-rose-600', 'scale-110');
             } else {
-                if (type === 'html5') {
-                    const video = document.getElementById(elementId);
-                    if (video) video.muted = true;
+                if (type === 'html5' && mediaEl) {
+                    mediaEl.muted = true;
+                } else if (type === 'youtube' && mediaEl && mediaEl.contentWindow) {
+                    mediaEl.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
                 }
 
                 btn.setAttribute('data-muted', 'true');
@@ -1784,6 +1827,21 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
         function closeQRModal() {
             document.getElementById('qr-modal').classList.add('hidden');
         }
+
+        function handleBackdropClick(e, modalId) {
+            if (e.target.id === modalId) {
+                if (modalId === 'detail-modal') closeModal();
+                if (modalId === 'qr-modal') closeQRModal();
+            }
+        }
+
+        // KEYBOARD EVENT LISTENERS (ESC TO CLOSE MODALS)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeQRModal();
+            }
+        });
 
         // FORM SUBMIT HANDLER
         function handleFormSubmit(e) {
