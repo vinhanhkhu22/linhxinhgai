@@ -84,6 +84,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
+    <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -115,8 +116,8 @@
                     <button onclick="switchTab('tool')" id="nav-tool" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-robot mr-1.5"></i> Tool Tự Động
                     </button>
-                    <button onclick="switchTab('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
-                        <i class="fa-solid fa-envelope mr-1.5"></i> Liên Hệ
+                    <button onclick="switchTab('dance')" id="nav-dance" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
+                        <i class="fa-solid fa-person-dancing mr-1.5 text-purple-500"></i> Nhảy Dance
                     </button>
                 </nav>
 
@@ -152,8 +153,8 @@
             <button onclick="switchTab('tool')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-robot w-5 text-center"></i> <span>Tool Tự Động</span>
             </button>
-            <button onclick="switchTab('contact')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                <i class="fa-solid fa-envelope w-5 text-center"></i> <span>Liên Hệ</span>
+            <button onclick="switchTab('dance')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                <i class="fa-solid fa-person-dancing w-5 text-center text-purple-500"></i> <span>Nhảy Dance</span>
             </button>
         </div>
     </header>
@@ -183,7 +184,7 @@
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-grow">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, cà phê, dolly, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
+                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, cà phê, dance, kpop, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
                         <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
                             <span>Khám Phá Ngay</span>
@@ -210,9 +211,23 @@
                             <p class="text-xs text-slate-400">Lượt Sao Chép</p>
                         </div>
                     </div>
-                
+                </div>
+            </div>
 
-            
+            <!-- Featured Prompts Section -->
+            <div class="space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+                    <h2 id="home-grid-title" class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-fire text-amber-500 mr-2.5"></i> Mẫu Prompt Xu Hướng
+                    </h2>
+                    <button id="clear-home-search-btn" onclick="clearHomeSearch()" class="hidden text-xs font-semibold text-primary-600 dark:text-primary-400 hover:underline flex items-center">
+                        <i class="fa-solid fa-xmark mr-1"></i> Xóa tìm kiếm
+                    </button>
+                </div>
+
+                <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- JS populated -->
+                </div>
             </div>
         </section>
 
@@ -332,104 +347,32 @@
             </div>
         </section>
 
-        <!-- 6. TAB: LIÊN HỆ -->
-        <section id="tab-contact" class="tab-content hidden space-y-12">
-            <div class="text-center max-w-2xl mx-auto space-y-3">
-                <span class="px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-300 text-xs font-semibold uppercase tracking-wider">Hỗ Trợ & Hợp Tác</span>
-                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Liên Hệ Với Chúng Tôi</h1>
-                <p class="text-slate-500 dark:text-slate-400 text-sm">Bạn có câu hỏi, đề xuất đóng góp prompt hoặc muốn hợp tác truyền thông AI? Hãy gửi thông tin cho đội ngũ hỗ trợ.</p>
+        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
+        <section id="tab-dance" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Left: Info Cards -->
-                <div class="space-y-6">
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-400 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white">Địa Chỉ</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Hà Nội, Việt Nam</p>
-                        </div>
-                    </div>
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
+                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
+                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
+                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
+            </div>
 
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white">Email Liên Hệ</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">vinhpham181290@gmail.com</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white">Hotline Hỗ Trợ</h3>
-                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Zalo Linh Xinh Gái</p>
-                            <p class="text-xs text-slate-400">Thứ 2 - Thứ 7 (8:00 - 18:00)</p>
-                        </div>
-                    </div>
-
-                    <!-- Social Networks -->
-                    <div class="bg-gradient-to-br from-primary-600 to-indigo-700 rounded-2xl p-6 text-white space-y-3">
-                        <h3 class="font-bold text-lg">Cộng Đồng AI Creator</h3>
-                        <p class="text-xs text-primary-100">Gia nhập nhóm Zalo & Discord với hơn 1.000+ nhà sáng tạo hình ảnh & video AI tại Việt Nam.</p>
-                        <div class="flex space-x-3 pt-2">
-                            <a href="#" class="w-9 h-9 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="w-9 h-9 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                            <a href="#" class="w-9 h-9 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-discord"></i></a>
-                            <a href="#" class="w-9 h-9 rounded-lg bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors"><i class="fa-brands fa-tiktok"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Contact Form -->
-                <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-md">
-                    <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Gửi Tin Nhắn Cho Chúng Tôi</h2>
-                    
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Họ và Tên *</label>
-                                <input type="text" required placeholder="Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Địa chỉ Email *</label>
-                                <input type="email" required placeholder="nguyenvana@gmail.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Số Điện Thoại</label>
-                                <input type="tel" placeholder="0912 345 678" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Chủ Đề Cần Hỗ Trợ</label>
-                                <select class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 text-slate-700 dark:text-slate-300">
-                                    <option value="prompt">Đóng góp Mẫu Prompt Mới</option>
-                                    <option value="guide">Yêu cầu Hướng Dẫn Kỹ Thuật AI</option>
-                                    <option value="business">Hợp Tác Quảng Cáo / Truyền Thông</option>
-                                    <option value="other">Thắc Mắc Khác</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Nội Dung Tin Nhắn *</label>
-                            <textarea rows="5" required placeholder="Nhập chi tiết yêu cầu hoặc phản hồi của bạn..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full sm:w-auto px-8 py-3 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-semibold text-sm shadow-md transition-all flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            <span>Gửi Tin Nhắn</span>
-                        </button>
-                    </form>
-                </div>
+            <div id="dance-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS populated -->
             </div>
         </section>
 
@@ -455,15 +398,15 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm font-bold">AI</div>
-                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI PromptHub. Tất cả quyền được bảo lưu.</span>
+                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI PromptHub - Linh Xinh Gái. Tất cả quyền được bảo lưu.</span>
             </div>
-            <div class="flex space-x-6 text-sm text-slate-500 dark:text-slate-400">
+            <div class="flex flex-wrap justify-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
                 <button onclick="switchTab('home')" class="hover:text-primary-600">Trang chủ</button>
                 <button onclick="switchTab('image')" class="hover:text-primary-600">Hình ảnh</button>
                 <button onclick="switchTab('motion')" class="hover:text-primary-600">Chuyển động</button>
                 <button onclick="switchTab('video')" class="hover:text-primary-600">Video</button>
                 <button onclick="switchTab('tool')" class="hover:text-primary-600">Tool tự động</button>
-                <button onclick="switchTab('contact')" class="hover:text-primary-600">Liên hệ</button>
+                <button onclick="switchTab('dance')" class="hover:text-purple-600 font-semibold">Nhảy Dance</button>
             </div>
         </div>
     </footer>
@@ -501,14 +444,13 @@
     </div>
 
     <script>
-        // DATA SOURCES (Multi-line secure prompt rendering)
         const sampleImagePrompts = [
             {
                 id: 'img-1',
                 title: 'Ảnh Linh Xinh Gái',
                 category: 'thoitrangnu',
                 categoryLabel: 'Thời Trang Nữ',
-                tool: '',
+                tool: 'Midjourney',
                 prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
                 image: 'https://i.postimg.cc/Kzxckj5F/1784807411595.jpg',
                 description: 'Tạo hình Linh xinh gái tỷ lệ khung dọc 9:16 tối ưu cho TikTok & Instagram Reels.',
@@ -519,201 +461,8 @@
                 title: 'Ngồi trên ghế cạnh đường phố',
                 category: 'thoitrangnu',
                 categoryLabel: 'Thời Trang Nữ',
-                tool: '',
-                prompt: `
-Sử dụng chính xác khuôn mặt, kiểu tóc, màu da, vóc dáng, tỷ lệ cơ thể, chiều cao, biểu cảm và toàn bộ đặc điểm nhận dạng của người mẫu từ ảnh tham chiếu. Giữ nguyên hoàn toàn ngoại hình của người mẫu, không thay đổi khuôn mặt, kiểu tóc, màu tóc, vóc dáng, tỷ lệ cơ thể hoặc bất kỳ đặc điểm nhận dạng nào.
-
-Sử dụng chính xác bộ trang phục từ ảnh tham chiếu, bao gồm thiết kế, kiểu dáng, màu sắc, họa tiết, chất liệu, đường may, độ rủ của vải, các lớp phối đồ, logo (nếu có), phụ kiện đi kèm và toàn bộ chi tiết thiết kế. Không được tự ý thay đổi, thêm hoặc lược bỏ bất kỳ chi tiết nào của bộ trang phục.
-
-Nếu ảnh tham chiếu có phụ kiện như túi xách, kính, đồng hồ, vòng cổ, mũ hoặc các phụ kiện khác thì phải giữ nguyên đúng thiết kế, màu sắc và vị trí.
-
-Hình ảnh mang phong cách Premium Lifestyle Street Fashion, hiện đại, trẻ trung, thanh lịch và sang trọng, tập trung hoàn toàn vào người mẫu và bộ trang phục.
-
----
-
-## TƯ THẾ
-
-Người mẫu ngồi thư giãn trên ghế sofa ngoài trời hoặc ghế lounge hiện đại.
-
-Cơ thể hướng gần như chính diện về phía máy ảnh, chỉ xoay nhẹ khoảng 10–15度 để tạo chiều sâu tự nhiên nhưng vẫn hiển thị rõ toàn bộ mặt trước của bộ trang phục.
-
-Lưng giữ thẳng nhưng hơi ngả nhẹ ra sau tạo cảm giác thư giãn.
-
-Vai thả lỏng.
-
-Hai chân bắt chéo tự nhiên.
-
-Một tay đặt nhẹ trên đầu gối hoặc đùi.
-
-Tay còn lại đặt trên thành ghế hoặc tay vịn.
-
-Nếu ảnh tham chiếu có túi xách hoặc phụ kiện cầm tay thì giữ nguyên đúng vị trí.
-
-Đầu hơi nghiêng nhẹ.
-
-Ánh mắt nhìn trực tiếp vào máy ảnh hoặc nhìn lệch nhẹ ra ngoài khung hình theo đúng ảnh tham chiếu.
-
-Biểu cảm tự nhiên, nhẹ nhàng, tự tin và cuốn hút.
-
-Nếu có gió nhẹ, tóc và trang phục chuyển động mềm mại theo chiều gió.
-
----
-
-## GÓC MÁY
-
-- Khung hình dọc.
-
-- Tỷ lệ **9:16**.
-
-- Chụp từ đầu gối trở lên hoặc gần toàn thân.
-
-- Góc máy hơi cao hơn tầm mắt một chút.
-
-- Người mẫu nằm chính giữa khung hình.
-
-- Phối cảnh tự nhiên.
-
-- Không méo hình.
-
-- Phong cách Lookbook thời trang cao cấp.
-
----
-
-## CHẤT LƯỢNG & PHONG CÁCH
-
-- Siêu chân thực.
-
-- Siêu chi tiết.
-
-- Độ phân giải 8K.
-
-- HDR.
-
-- Hyper Realistic.
-
-- Premium Lifestyle Photography.
-
-- Fashion Editorial.
-
-- Commercial Lookbook.
-
-- Influencer.
-
-- Luxury Streetwear.
-
-- Da tự nhiên.
-
-- Không làm mịn da quá mức.
-
-- Hiển thị rõ từng sợi tóc.
-
-- Hiển thị rõ từng sợi vải.
-
-- Đường may sắc nét.
-
-- Chất liệu vải chân thực.
-
-- Chất liệu ghế mây hoặc sofa ngoài trời cực kỳ chi tiết.
-
-- Độ nét cực cao.
-
-- Hiệu ứng điện ảnh cao cấp.
-
----
-
-## BỐI CẢNH
-
-Khu sân hiên hoặc quán cà phê ngoài trời hiện đại.
-
-Sàn lát đá hình học màu xám sáng.
-
-Ghế sofa hoặc ghế lounge ngoài trời bằng mây đan hoặc khung kim loại hiện đại.
-
-Bàn cà phê nhỏ đặt phía trước hoặc bên cạnh.
-
-Nếu ảnh tham chiếu có túi xách thì đặt cạnh ghế đúng vị trí.
-
-Phía sau là đường phố hiện đại với cây xanh và kiến trúc tối giản.
-
-Hậu cảnh được làm mờ bằng hiệu ứng bokeh điện ảnh.
-
-Không có người khác xuất hiện.
-
-Không có vật thể gây rối mắt.
-
----
-
-## ÁNH SÁNG
-
-Ánh sáng tự nhiên ban ngày.
-
-Ánh sáng khuếch tán mềm.
-
-Da sáng tự nhiên.
-
-Làm nổi bật chất liệu vải, mái tóc và làn da.
-
-Bóng đổ mềm.
-
-Độ tương phản vừa phải.
-
-Không cháy sáng.
-
-Không mất chi tiết vùng tối.
-
----
-
-## BỐ CỤC
-
-- Tỷ lệ khung hình **9:16**.
-
-- Người mẫu nằm chính giữa khung hình.
-
-- Toàn bộ phần thân và bộ trang phục hiển thị rõ.
-
-- Ghế, bàn và sàn đá tạo chiều sâu tự nhiên.
-
-- Một phụ kiện (ví dụ túi xách hoặc ly cà phê nếu có trong ảnh tham chiếu) đặt cạnh ghế để tăng tính đời thường.
-
-- Hậu cảnh mờ nhẹ với hiệu ứng bokeh điện ảnh.
-
-- Độ sâu trường ảnh nông.
-
-- Người mẫu và bộ trang phục cực kỳ sắc nét.
-
-- Bố cục cân đối, hiện đại và mang phong cách quảng cáo thời trang cao cấp.
-
-**Không thêm chữ, logo, slogan, icon hoặc bất kỳ đồ họa quảng cáo nào lên ảnh.**
-
----
-
-## BẢNG MÀU
-
-- Trắng.
-
-- Be.
-
-- Xám.
-
-- Nâu gỗ.
-
-- Xanh lá của cây.
-
-- Tông màu trung tính hiện đại.
-
-Toàn bộ màu sắc của bộ trang phục và phụ kiện phải giữ nguyên chính xác theo ảnh tham chiếu.
-
----
-
-## NHƯỢC ĐIỂM (NEGATIVE PROMPT)
-
-Độ phân giải thấp, ảnh mờ, mất nét, nhiễu, giải phẫu sai, tỷ lệ cơ thể méo, khuôn mặt khác ảnh tham chiếu, kiểu tóc khác ảnh tham chiếu, vóc dáng khác ảnh tham chiếu, trang phục sai thiết kế, sai màu sắc, sai họa tiết, sai chất liệu, phụ kiện không đúng ảnh tham chiếu, tự ý thêm hoặc bỏ phụ kiện, quần áo bị biến dạng, thừa tay, thừa chân, thừa ngón tay, thiếu ngón tay, bàn tay biến dạng, tư thế ngồi cứng, nghiêng người quá nhiều, xoay lưng, quay ngang, nền lộn xộn, nhiều người xuất hiện, watermark, logo, chữ, slogan, icon, phối cảnh méo, màu quá rực, ảnh bị cắt mất cơ thể, kết cấu vải thiếu chi tiết, da giả, vật thể bị lặp, ánh sáng nhân tạo gắt, cháy sáng, bóng đổ sai hướng.
-
----
-
-## TỶ LỆ KHUNG HÌNH
-
-**9:16**`,
+                tool: 'Stable Diffusion',
+                prompt: `Sử dụng chính xác khuôn mặt, kiểu tóc, màu da, vóc dáng, tỷ lệ cơ thể, chiều cao, biểu cảm và toàn bộ đặc điểm nhận dạng của người mẫu từ ảnh tham chiếu. Giữ nguyên hoàn toàn ngoại hình của người mẫu, không thay đổi khuôn mặt, kiểu tóc, màu tóc, vóc dáng, tỷ lệ cơ thể hoặc bất kỳ đặc điểm nhận dạng nào.\n\nSử dụng chính xác bộ trang phục từ ảnh tham chiếu, bao gồm thiết kế, kiểu dáng, màu sắc, họa tiết, chất liệu, đường may, độ rủ của vải, các lớp phối đồ, logo (nếu có), phụ kiện đi kèm và toàn bộ chi tiết thiết kế. Không được tự ý thay đổi, thêm hoặc lược bỏ bất kỳ chi tiết nào của bộ trang phục.\n\nPhù hợp chụp Lookbook Premium Lifestyle Street Fashion. Khung hình dọc tỷ lệ 9:16.`,
                 image: 'https://i.postimg.cc/kgsQ7K1B/1-ngoi-tren-ghe-gan-duong.jpg',
                 description: 'Ảnh thời trang nữ với phong cách ấn tượng.',
                 author: 'Elena Art'
@@ -737,22 +486,8 @@ Toàn bộ màu sắc của bộ trang phục và phụ kiện phải giữ nguy
                 title: 'Chuyển Động tại chỗ 01',
                 category: 'taicho',
                 categoryLabel: 'Tại chỗ',
-                tool: '',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.
-0.0 – 1.0 giây:
-Nhân vật hơi giật mình khi nhận ra đang bị quay, khẽ mím môi cười ngại, ánh mắt lập tức lảng sang bên trái thay vì nhìn camera. Hai tay buông tự nhiên, các ngón tay vô thức cử động nhẹ. Gió mạnh làm tóc và vài lọn tóc trước trán bay liên tục.
-1.0 – 2.5 giây:
-Nhân vật lùi dứt khoát 2 bước nhỏ ra xa máy quay để toàn thân, kể cả bàn chân, đều xuất hiện trong khung hình. Trong lúc bước lùi vẫn không nhìn camera, chỉ liếc xuống mặt đất rồi nhìn chếch sang một bên. Kết thúc bước lùi đứng vững, trọng tâm cơ thể ổn định.
-2.5 – 4.0 giây:
-Đứng yên vài nhịp, ngước đầu nhìn sang trái như đang ngóng người đi đường, sau đó quay sang phải rất tự nhiên. Miệng khẽ cười mỉm ngượng ngùng. Ánh mắt liên tục đảo quanh nhưng tránh tiếp xúc trực tiếp với camera. Gió làm tóc và tóc mai bay mạnh.
-4.0 – 5.5 giây:
-Cúi mắt xuống đất vài giây như đang tìm gì đó, dùng mũi chân chạm nhẹ xuống mặt đất rồi dậm chân một cái rất nhẹ. Hai tay vô thức khua nhẹ vài động tác ngẫu nhiên, không tạo dáng, giống phản xạ tự nhiên khi ngại.
-5.5 – 7.0 giây:
-Bước 1 bước sang phải hoặc sang trái thật tự nhiên, không tạo cảm giác trình diễn. Sau khi bước xong lại đứng lại, xoay đầu nhìn ra xa như đang quan sát người đi ngang. Biểu cảm vẫn ngây ngô, cười mỉm rất nhẹ, mắt tuyệt đối không nhìn thẳng vào ống kính.
-7.0 – 8.5 giây:
-Khẽ nghiêng đầu, liếc xuống đất rồi nhìn lên phía xa bên trái. Một bàn chân đá vu vơ rất nhẹ về phía trước như thói quen vô thức. Hai tay tiếp tục cử động ngẫu nhiên, các ngón tay mở rồi khép nhẹ, vai thả lỏng.
-8.5 – 10.0 giây:
-Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một chút, ánh mắt vẫn né camera và nhìn chếch sang bên phải. Gió mạnh tiếp tục làm tóc bay tự nhiên. Cuối cảnh đứng yên, hơi nghiêng người, giữ vẻ bối rối đáng yêu như đang chờ ai đó đi tới, không nhìn vào máy quay cho đến khi video kết thúc. Camera giữ ổn định, chuyển động nhân vật mượt mà, chân thực, không cường điệu, không diễn xuất ẻo lả.`,
+                tool: 'Luma Dream Machine',
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
                 gradient: 'from-indigo-600 via-purple-600 to-pink-600',
                 description: 'Ứng dụng vào dạng video thời trang.',
@@ -762,176 +497,10 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 id: 'mot-2',
                 title: 'Chuyển Động tại chỗ 02',
                 category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.
- 0.0 – 1.0 giây:Nhân vật đứng yên, hai tay thả lỏng tự nhiên. Vừa nhận ra máy quay liền hơi khựng lại, ánh mắt lập tức né sang bên trái thay vì nhìn vào camera. Môi khép nhẹ, biểu cảm ngây ngô, hơi lúng túng. Gió mạnh làm tóc và các nếp vải chuyển động rõ rệt.
- 1.0 – 2.0 giây:Nhân vật cúi mắt nhìn xuống mặt đất vài nhịp, sau đó ngẩng đầu rất nhẹ nhưng vẫn tránh giao tiếp mắt với camera. Tay phải đưa lên vuốt nhẹ những lọn tóc bị gió thổi trước mặt rồi hạ xuống tự nhiên. Gương mặt vẫn bình tĩnh, không cười.
- 2.0 – 3.0 giây:Ánh mắt chuyển sang quan sát phía bên phía phải như đang ngóng người đi đường. Đầu nghiêng nhẹ theo hướng nhìn, vai xoay rất ít. Một tay khẽ vuốt lại phần trước của trang phục để chỉnh phẳng tự nhiên rồi buông tay xuống.
- 3.0 – 4.0 giây:Nhân vật tiếp tục đảo mắt nhìn xung quanh, rồi cúi đầu rất nhẹ như ngại bị quay. Hai tay khẽ chạm vào phần trang phục phía trước, vuốt lại một lần nữa như vô thức. Gió mạnh khiến tóc liên tục bay, nhân vật phải khẽ giữ tóc.
- 4.0 – 5.0 giây:Nhân vật bước dứt khoát một bước nhỏ sang trái (hoặc sang phải), trọng tâm cơ thể chuyển theo rất tự nhiên. Sau khi bước xong lập tức đứng lại, vẫn không nhìn vào máy quay, ánh mắt hướng về phía xa như tìm kiếm ai đó.
- 5.0 – 6.0 giây:Đứng ổn định tại vị trí mới. Tay trái vuốt nhẹ tóc ra sau tai vì gió thổi mạnh. Sau đó tay khẽ vuốt phần thân trang phục để giới thiệu bộ đồ bằng hành động tự nhiên, không phô trương. Ánh mắt vẫn né camera.
- 6.0 – 7.0 giây:Nhân vật ngó sang trái rồi sang phải với vẻ ngây ngô, như đang chờ ai xuất hiện. Khuôn mặt hơi giãn ra, bất chợt bật một nụ cười rất nhẹ trong chưa đến một giây rồi nhanh chóng trở lại vẻ ngượng ngùng.
- 7.0 – 8.0 giây: Nhân vật cúi mắt nhìn xuống đất lần nữa, dùng hai tay chỉnh nhẹ các nếp trang phục rồi buông tay. Cơ thể lắc rất nhẹ theo phản xạ vì gió mạnh, tóc bay tự nhiên.
- 8.0 – 9.0 giây: Đầu xoay nhẹ sang một bên, ánh mắt nhìn xa ngoài khung hình. Tay vô thức vuốt tóc thêm một lần rồi khẽ phủi nhẹ trang phục như kiểm tra lại tổng thể. Không nhìn trực diện vào camera.
- 9.0 – 10.0 giây:Nhân vật đứng yên, hơi nghiêng đầu, ánh mắt nhìn lệch xuống phía trước chứ không nhìn vào ống kính. Môi cong thành nụ cười ngượng rất nhẹ rồi nhanh chóng trở lại biểu cảm tự nhiên. Gió vẫn thổi mạnh làm tóc và trang phục chuyển động liên tục. Video kết thúc với cảm giác chân thật, ngây ngô, tự nhiên, dứt khoát, không ẻo lả, không tạo dáng quá mức, review bộ trang phục hoàn toàn bằng các cử chỉ chỉnh tóc, vuốt trang phục, bước một bước và quan sát xung quanh. `,
+                categoryLabel: 'Trình diễn',
+                tool: 'Kling AI',
+                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.`,
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-3',
-                title: 'Chuyển Động tại chỗ 03',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, tỷ lệ cơ thể, bố cục khung hình và toàn bộ không gian như ảnh gốc. Camera quay liên tục, chuyển động điện ảnh mượt mà, không cắt cảnh. Nhân vật có cảm giác hơi ngượng ngùng khi đứng trước máy quay, biểu cảm ngây ngô tự nhiên, môi khép nhẹ, không cười, tuyệt đối không tạo dáng gợi cảm hay ẻo lả. Ánh mắt luôn né tránh camera, gần như không nhìn trực diện vào ống kính. Gió mạnh liên tục thổi làm tóc và mọi chi tiết trên người chuyển động tự nhiên.
- 0.0 – 1.0 giây: Nhân vật đứng hơi khựng lại như vừa phát hiện có người quay. Hai vai hơi thu nhẹ, hít một hơi ngắn, ánh mắt lập tức lệch sang bên trái thay vì nhìn máy quay. Chớp mắt một lần rất tự nhiên, đầu hơi cúi xuống vài độ. Gió mạnh làm tóc bay liên tục, vài lọn tóc tạt ngang mặt.
- 1.0 – 2.0 giây: Nhân vật bắt đầu lùi về phía sau bằng hai bước ngắn nhưng dứt khoát, giữ tư thế tự nhiên. Trong lúc lùi, mắt vẫn nhìn xuống nền đất rồi liếc nhanh sang bên phải, hoàn toàn tránh giao tiếp bằng mắt với camera. Hai tay thả lỏng theo quán tính cơ thể.
- 2.0 – 3.0 giây:nhân vật khẽ xoay người khoảng 20–30 độ, đưa một tay lên cho vào miệng cắn móng tay rồi hạ tay xuống tự nhiên. Gương mặt vẫn hơi ngượng, không cười.
- 3.0 – 4.0 giây: Nhân vật cúi mắt nhìn xuống đất vài giây như đang suy nghĩ. Một tay khẽ chỉnh lại phần trang phục trước người bằng động tác rất nhẹ và tự nhiên, vuốt phẳng vài nếp gấp rồi buông tay. Đầu hơi nghiêng sang trái, ánh mắt vẫn tránh camera.
- 4.0 – 5.0 giây:Nhân vật bước ngang sang phải khoảng hai bước nhỏ với nhịp đi chắc chắn. Trong lúc di chuyển, mắt nhìn về phía xa bên phải rồi nhanh chóng liếc xuống đất. Gió mạnh làm tóc bay liên tục, nhân vật phải hơi nghiêng đầu để tránh tóc che mắt.
- 5.0 – 6.0 giây:Dừng lại, xoay người nhẹ để giới thiệu góc nghiêng của bộ trang phục bằng hành động tự nhiên. Một tay vuốt nhẹ phần thân trước, tay còn lại khẽ kéo chỉnh mép trang phục cho ngay ngắn rồi buông xuống. Không nhìn vào máy quay.
- 6.0 – 7.0 giây:Nhân vật quay trở lại gần hướng chính diện nhưng ánh mắt vẫn nhìn lệch sang trái. Khẽ cắn môi rất nhẹ trong tích tắc như hơi ngại. Sau đó đưa tay vắt ra phía sau lưng, gió tiếp tục thổi mạnh, vài sợi tóc bay trước mặt.
- 7.0 – 8.0 giây: xoay nhẹ người để tiếp tục review bộ trang phục bằng chuyển động cơ thể. Tay khẽ vuốt dọc thân trang phục rồi chỉnh lại một chi tiết nhỏ, tất cả đều dứt khoát, không tạo dáng mềm yếu.
- 8.0 – 9.0 giây:Nhân vật nhìn ngó xung quanh rất tự nhiên, liếc trái, liếc phải rồi cúi xuống nền đất trong chốc lát như đang hơi bối rối vì có người quay. Hai tay thả lỏng, cơ thể giữ thăng bằng trước gió lớn. Biểu cảm ngây ngô, bình tĩnh, không cười.
- 9.0 – 10.0 giây:Nhân vật đứng yên, chỉnh lại tóc lần cuối, vuốt nhẹ lại trang phục như hoàn thiện phần giới thiệu. Ánh mắt vẫn nhìn lệch khỏi camera, đầu hơi cúi, sau đó khẽ xoay người khoảng 15 độ và giữ nguyên tư thế kết thúc. Gió mạnh vẫn liên tục làm tóc và các chi tiết trên người chuyển động tự nhiên, tạo cảm giác chân thực và sống động. `,
-                video: 'https://www.youtube.com/shorts/4EktxxHrKyc?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-4',
-                title: 'Chuyển Động tại chỗ 04',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Tạo video 10 giây, giữ nguyên nhân vật từ ảnh gốc. Không thay đổi khuôn mặt, kiểu tóc, vóc dáng hay trang phục. Phong cách quay chân thực như người thật, chất lượng 4K, 25fps. Ánh sáng trắng trung tính 4000K, có ánh đèn flash của camera chiếu trực diện tạo điểm sáng nhẹ trên da và quần áo, độ tương phản tự nhiên. Camera cố định hoàn toàn, không rung, không zoom, không lia, không đổi góc. Góc máy chính diện, khung hình toàn thân nhìn rõ từ đầu đến hết bàn chân, nhân vật luôn nằm trọn trong khung hình.
- Nhân vật review bộ trang phục hoàn toàn bằng hành động, không lời thoại, không chữ, không nhạc. Biểu cảm xuyên suốt lạnh lùng, tự nhiên, không cười, chỉ sử dụng ngẫu nhiên các biểu cảm nhẹ như cắn môi, nháy mắt một lần, bĩu môi nhẹ. Động tác dứt khoát, gọn gàng, mạnh mẽ, không ẻo lả, không tạo dáng quá thời trang. Chỉ review mặt trước và hai bên của trang phục, tuyệt đối không quay lưng, không xoay 180 độ.
- 00.0–01.0s: Đứng thẳng chính diện nhìn vào camera. Hai tay buông tự nhiên. Sau khoảng 0,5 giây hơi nghiêng người sang trái khoảng 10 độ rồi trở lại giữa. Cắn môi rất nhẹ trong chốc lát, ánh mắt giữ bình tĩnh.
- 01.0–02.0s:Lùi liên tiếp 2 bước nhỏ để khán giả nhìn tổng thể bộ đồ. Khi đứng ổn định, hai tay kéo nhẹ hai vạt áo sang hai bên rồi thả tự nhiên để mô tả form dáng. Động tác dứt khoát.
- 02.0–03.0s:Dùng hai bàn tay vuốt dọc mặt trước áo từ vai xuống gần gấu áo, sau đó vuốt nhẹ phần quần. Đầu hơi nghiêng sang phải khoảng 10 độ. Bĩu môi rất nhẹ rồi trở về biểu cảm lạnh.
- 03.0–04.0s:Một tay nắm nhẹ phần vải trước ngực, tay còn lại giữ mép áo. Dứt khoát kéo căng phần vải rồi thả ra để kiểm tra độ co giãn. Vải dao động tự nhiên sau khi thả. Ánh mắt luôn nhìn camera.
- 04.0–05.0s:Hai tay xoa nhẹ lên mặt vải theo chiều từ trên xuống dưới để thể hiện cảm giác chất liệu. Sau đó dùng đầu ngón tay miết nhẹ một đoạn rồi buông. Nghiêng người sang trái khoảng 20 độ để lộ rõ một bên thân áo, không xoay lưng.
- 05.0–06.0s:Chống tay trái vào eo. Vai phải hơi đưa về phía camera để review góc nghiêng bên phải khoảng 35–45 độ. Giữ 1 giây rồi nháy mắt một lần rất tự nhiên.
- 06.0–07.0s:Đổi sang nghiêng người về bên trái khoảng 35–45 độ. Một tay vuốt nhẹ từ vai xuống hông, tay còn lại kéo nhẹ gấu áo rồi thả. Động tác rõ ràng, mạnh mẽ.
- 07.0–08.0s:Quay trở lại chính diện. Lấy hai tay phủi nhẹ toàn bộ mặt trước trang phục, sau đó kéo nhẹ hai bên thân áo ra ngoài rồi thả để làm nổi bật form tổng thể. Không cười.
- 08.0–09.0s:Tiến lên đúng 1 bước về phía camera. Một tay chống eo, tay còn lại vuốt nhẹ phần áo một lần cuối rồi buông xuống. Hơi nghiêng người sang phải khoảng 10 độ.
- 09.0–10.0s:Đứng chính diện ổn định. Hai tay buông tự nhiên. Quan sát camera với gương mặt lạnh, bĩu môi rất nhẹ trong khoảnh khắc cuối rồi giữ nguyên tư thế kết thúc. Không xoay người, không quay lưng, toàn bộ trang phục vẫn nhìn rõ từ phía trước. `,
-                video: 'https://www.youtube.com/shorts/yIg1OMOc4D8?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-5',
-                title: 'Chuyển Động tại chỗ 05',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: ` Viết frompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật đứng tại chỗ, rồi nhân vật nhìn ngó xung quanh như ngóng người đi đường các cử chỉ ngây ngô tự nhiên, biểu cảm ngây ngô nhẹ không cười, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có lấy tay vuốt tóc, review bộ trang phục bằng hành động, có bước đi tầm 1 bước sang trái hoặc phải rồi lại đứng ngó nghiêng bật cười nhẹ, có vuốt áo hoặc tác động vào quần áo, ánh mắt né tránh camera, không gian có gió mạnh. Thời gian tầm 4h chiều. `,
-                video: 'https://www.youtube.com/shorts/1VnxE4MI0O8?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-6',
-                title: 'Chuyển Động tại chỗ 06',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Giữ nguyên tuyệt đối nhân vật và toàn bộ không gian như ảnh gốc, không thay đổi quần áo, khuôn mặt, vóc dáng, kiểu tóc, phụ kiện, bố cục hay bối cảnh. Chỉ tạo chuyển động tự nhiên của nhân vật. Ánh sáng khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và các chi tiết trên người rung nhẹ liên tục. Phong cách diễn xuất ngây ngô, chân thật, dứt khoát, không làm điệu quá mức. Nhân vật luôn có cảm giác ngại máy quay, không nhìn thẳng vào ống kính, ánh mắt liên tục né tránh.
- 0.0–1.5s: Nhân vật hơi giật mình khi nhận ra có máy quay, khẽ mím môi, ánh mắt lập tức lệch sang bên trái rồi nhìn xuống đất. Vai hơi co lại, hai tay buông lỏng tự nhiên. Gió mạnh làm tóc và vài lọn tóc trước trán bay nhẹ. Sau đó bước nhanh 2–3 bước tiến sát về phía camera với vẻ tò mò nhưng vẫn ngại ngùng.
- 1.5–3.0s: Khuôn mặt tiến đến rất gần ống kính, chỉ cách camera một khoảng rất ngắn. Nhân vật nghiêng đầu nhẹ để quan sát nhưng tuyệt đối không nhìn thẳng vào camera, ánh mắt lướt sang trái rồi sang phải, môi khẽ cong thành nụ cười rất nhẹ kiểu ngượng ngùng. Ngay sau đó bất ngờ bật nhảy lùi một bước lớn ra sau đầy tự nhiên như vừa nhận ra mình đứng quá gần.
- 3.0–5.0s: Sau khi nhảy lùi, nhân vật nhanh chóng quay đầu nhìn sang trái rồi sang phải như đang ngóng người đi đường. Động tác dứt khoát nhưng hồn nhiên. Hai tay dang rộng tự nhiên rồi buông thả, vung nhẹ theo quán tính cơ thể. Vai thả lỏng, đầu liên tục xoay quan sát hai bên. Ánh mắt vẫn luôn tránh camera.
- 5.0–7.0s: Nhân vật cúi đầu nhìn xuống mặt đất vài giây như tìm kiếm điều gì đó, sau đó ngẩng lên và tiếp tục ngó nghiêng sang hai bên. Hai chân mở rộng vừa phải, đổi trọng tâm từ chân này sang chân kia rất tự nhiên. Thân người lắc nhẹ, uyển chuyển vừa đủ, không phô trương. Hai tay tiếp tục đung đưa thoải mái theo chuyển động cơ thể.
- 7.0–8.5s: Nhân vật hơi nghiêng người sang trái rồi sang phải, khẽ xoay vai và hông một cách mềm mại, giữ cảm giác ngây ngô đáng yêu. Gió mạnh làm tóc bay rõ hơn, vài sợi tóc lòa xòa trước mặt. Nhân vật mỉm cười nhẹ, cắn môi thoáng qua vì ngại, ánh mắt luôn nhìn xuống hoặc nhìn chéo sang hai bên.
- 8.5–10.0s: Nhân vật lùi thêm nửa bước, hai tay dang nhẹ rồi buông xuống tự nhiên. Đầu cúi nhẹ, sau đó nghiêng sang một bên, ánh mắt nhìn xuống đất rồi liếc nhanh sang bên trái như tránh ánh nhìn của máy quay. Kết thúc bằng một nụ cười rất nhẹ, ngượng ngùng, gió vẫn thổi mạnh làm tóc và chuyển động cơ thể trông tự nhiên, không nhìn thẳng vào camera ở bất kỳ thời điểm nào. `,
-                video: 'https://www.youtube.com/shorts/icKchwsROCU?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-7',
-                title: 'Chuyển Động tại chỗ 07',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Giữ nguyên tuyệt đối nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời gian khoảng 4 giờ chiều, ánh sáng tự nhiên dịu nhẹ. Có gió mạnh liên tục làm tóc và các chi tiết trên người chuyển động rõ rệt. Nhân vật luôn giữ vẻ ngượng ngùng trước máy quay, tuyệt đối không nhìn thẳng vào ống kính quá một thoáng, ánh mắt liên tục né tránh camera, chỉ liếc rất nhanh rồi quay đi. Hai tay luôn vắt ra phía sau lưng trong suốt quá trình di chuyển. Chuyển động dứt khoát, tự nhiên, không diễn quá, không ẻo lả.
-     0.0–1.0s: Nhân vật đứng thả lỏng với hai chân dang rộng tự nhiên, hai tay đưa ra sau lưng và đan nhẹ vào nhau. Hơi cúi đầu nhìn xuống mặt đất, hít nhẹ một hơi, gương mặt ngây ngô, môi mỉm cười rất nhẹ kiểu ngại ngùng. Gió mạnh làm tóc bay liên tục, vài lọn tóc trước mặt rung theo gió. 
-     1.0–2.0s: Nhân vật nghiêng đầu rất nhẹ sang một bên, vẫn không nhìn camera, ánh mắt nhìn xuống nền đất rồi đảo sang bên trái. Giữ hai tay phía sau, vai hơi co lại vì ngại. Bắt đầu bước sang trái bằng bước đầu tiên, chuyển trọng tâm dứt khoát. 
-     2.0–3.5s: Tiếp tục bước sang trái thêm hai bước nữa, tổng cộng ba bước với nhịp đều, tự nhiên. Khi đi, thân người uốn nhẹ theo quán tính, đầu hơi cúi, thỉnh thoảng ngó nghiêng xung quanh như ngại có người nhìn. Hai tay vẫn giữ phía sau lưng, hai chân luôn đặt chắc chắn, khoảng cách chân tự nhiên.
-     3.5–5.0s: Dừng lại sau bước thứ ba, hơi xoay người nhẹ, cúi nhìn xuống đất vài khoảnh khắc rồi liếc sang bên phải nhưng vẫn tránh nhìn vào camera. Mỉm cười rất nhẹ, biểu cảm ngây ngô, bối rối. Gió mạnh tiếp tục làm tóc bay rõ rệt.
-     5.0–6.5s: Bắt đầu quay trở lại vị trí cũ bằng bước đầu tiên. Hai tay vẫn giữ sau lưng. Bước đi dứt khoát nhưng nhẹ nhàng. Đầu hơi nghiêng, ánh mắt nhìn xuống đất rồi lướt sang một bên, tuyệt đối không nhìn thẳng máy quay.
-     6.5–8.0s: Đi thêm hai bước để hoàn thành ba bước quay lại vị trí ban đầu. Trong lúc đi, cơ thể uốn nhẹ theo chuyển động tự nhiên, vai hơi rụt, biểu cảm vẫn ngại ngùng. Gió thổi mạnh khiến tóc và các chi tiết nhỏ liên tục chuyển động.
-     8.0–9.0s: Đứng lại đúng vị trí ban đầu, hai chân dang rộng tự nhiên, hai tay vẫn để phía sau lưng. Hơi cúi người nhìn xuống đất rồi ngó sang trái, sau đó sang phải như bối rối. Nụ cười nhẹ xuất hiện rồi nhanh chóng dịu xuống.
- 9.0–10.0s: Nhân vật hơi nghiêng đầu, mím môi cười ngại, ánh mắt vẫn tránh hoàn toàn camera. Giữ tư thế thư giãn với hai tay phía sau, gió mạnh tiếp tục thổi làm tóc bay tự nhiên. Kết thúc bằng trạng thái đứng yên, ngây ngô, e thẹn, không nhìn thẳng vào máy quay. `,
-                video: 'https://www.youtube.com/shorts/boMXtndiakM?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-8',
-                title: 'Chuyển Động tại chỗ 08',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Viết frompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật đứng tại chỗ, rồi nhân vật nhìn ngó xung quanh như ngóng người đi đường các cử chỉ ngây ngô tự nhiên, biểu cảm ngây ngô nhẹ không cười, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có lấy tay vuốt tóc, review bộ trang phục bằng hành động, có bước đi tầm 2 bước sang trái hoặc phải rồi lại đứng ngó nghiêng bật cười nhẹ, có vuốt áo hoặc tác động vào quần áo, ánh mắt né tránh camera, không gian có gió mạnh. Thời gian tầm 4h chiều. `,
-                video: 'https://www.youtube.com/shorts/bzJqmtu461A?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-9',
-                title: 'Chuyển Động tại chỗ 09',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Viết câu lệnh prompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật bước lùi xa camera 2 bước để thấy cả chân, rồi nhân vật nhìn ngó như ngóng người đi đường các cử chỉ ngây ngô tự nhiên hai tay dang rộng và vung tự nhiên, biểu cảm ngây ngô cười mỉm nhẹ, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có bước đi tầm 2 bước sang trái rồi lại đứng, chân dạng rộng rồi lấy tay gãi nhẹ lên hông, ánh mắt né tránh camera cười nhẹ kiểu ngại ngùng, không gian có gió mạnh. Thời gian tầm 4h chiều. `,
-                video: 'https://www.youtube.com/shorts/H35fhhiBZuc?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-10',
-                title: 'Chuyển Động tại chỗ 10',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Viết frompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật đứng tại chỗ, rồi nhân vật nhìn ngó xung quanh như ngóng người đi đường các cử chỉ ngây ngô tự nhiên, biểu cảm ngây ngô nhẹ không cười, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có lấy tay vuốt tóc, review bộ trang phục bằng hành động, có bước đi tầm 1 bước sang trái hoặc phải rồi lại đứng ngó nghiêng bật cười nhẹ, có vuốt áo hoặc tác động vào quần áo, ánh mắt né tránh camera, không gian có gió mạnh. Thời gian tầm 4h chiều. `,
-                video: 'https://www.youtube.com/shorts/JBLNS_1wHjw?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-11',
-                title: 'Chuyển Động tại chỗ 11',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Viết câu lệnh prompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật bước lùi xa camera 2 bước để thấy cả chân, rồi nhân vật nhìn ngó như ngóng người đi đường các cử chỉ ngây ngô tự nhiên hai tay dang rộng và vung tự nhiên, biểu cảm ngây ngô cười mỉm nhẹ, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có bước đi tầm 2 bước sang trái rồi lại đứng, chân dạng rộng rồi lấy tay gãi nhẹ lên hông, ánh mắt né tránh camera cười nhẹ kiểu ngại ngùng, không gian có gió mạnh. Thời gian tầm 4h chiều.    `,
-                video: 'https://www.youtube.com/shorts/B6ix6oXmUz8?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
-                description: 'Ứng dụng vào dạng video thời trang.',
-                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
-            },
-            {
-                id: 'mot-12',
-                title: 'Chuyển Động tại chỗ 12',
-                category: 'taicho',
-                categoryLabel: 'trinhdien',
-                tool: '',
-                prompt: `Viết frompt dài 10s không cần mô tả quần áo hay không gian, chỉ mô tả giữ nguyên nhân vật và không gian như ảnh, chỉ mô tả chuyển động của nhân vật, thật chi tiết từng giây, dứt khoát không ẻo lả, cảm giác nhân vật ngượng ngùng trước máy quay, luôn né tránh không nhìn thẳng vào máy quay, cho nhân vật bước lùi xa camera vài bước để thấy cả chân, rồi nhân vật nhìn ngó xung quanh các cử chỉ tự nhiên, biểu cảm ngây ngô nhẹ không cười, thỉnh thoảng cúi xuống đất hoặc ngó nghiêng, có cắn móng tay, review bộ trang phục bằng hành động, có bước đi vài bước sang trái hoặc phải, có đưa tay ra sau lưng, có vuốt áo hoặc tác động vào quần áo, ánh mắt né tránh camera, không gian có gió mạnh
-    `,
-                video: 'https://www.youtube.com/shorts/eg3lv1-3tSw?feature=share',
                 gradient: 'from-amber-500 via-rose-600 to-purple-800',
                 description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
@@ -959,12 +528,12 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
                 category: 'autovideo',
                 categoryLabel: 'Tự Động Tạo Video',
-                tool: 'Auto',
+                tool: 'Auto Software',
                 price: '290.000đ',
                 originalPrice: '590.000đ',
                 video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
-                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg', // Có thể thay bằng link ảnh QR của bạn
+                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
                 description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
                 guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).\n• Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.',
                 zaloLink: 'https://zalo.me/0984348734',
@@ -972,6 +541,66 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 accountNo: '103868751388',
                 accountName: 'PHAM TUAN VINH',
                 note: 'Tool 01'
+            }
+        ];
+
+        // NEW DATA: DANCE TEMPLATES (MẪU NHẢY DANCE)
+        const sampleDancePrompts = [
+            {
+                id: 'dance-1',
+                title: 'K-Pop Hit Trend Dance Cover (9:16)',
+                category: 'kpop',
+                categoryLabel: 'K-Pop Trend',
+                tool: 'Viggle AI Dance',
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn (VD: Linh xinh gái) để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
+                redirectUrl: 'https://viggle.ai/',
+                redirectLabel: 'Đến Viggle AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+            },
+            {
+                id: 'dance-2',
+                title: 'TikTok Viral Dance Challenge 2026',
+                category: 'tiktok',
+                categoryLabel: 'TikTok Challenge',
+                tool: 'Kling Motion Swap',
+                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
+                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
+                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc TikTok hot trend bạt ngàn lượt view.',
+                redirectUrl: 'https://klingai.com/',
+                redirectLabel: 'Mở Kling AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
+            },
+            {
+                id: 'dance-3',
+                title: 'HipHop Street Dance Energy 9:16',
+                category: 'hiphop',
+                categoryLabel: 'HipHop Street',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 street dance hiphop choreography, street fashion outfit, urban background, dynamic camera pan, 4k resolution`,
+                video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
+                description: 'Vũ đạo đường phố HipHop mạnh mẽ, dứt khoát dành cho video ngắn.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" để tải bản vũ đạo HipHop 60FPS.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI để gắn chuyển động vào trang phục đường phố AI.\n• Bước 3: Bật hiệu ứng lắc camera điện ảnh khi nhân vật thực hiện các cú giật nẩy tay.',
+                redirectUrl: 'https://runwayml.com/',
+                redirectLabel: 'Mở Runway ML',
+                downloadUrl: 'https://www.youtube.com/shorts/4EktxxHrKyc'
+            },
+            {
+                id: 'dance-4',
+                title: 'Múa Đương Đại Uyển Chuyển Gió Nhẹ',
+                category: 'modern',
+                categoryLabel: 'Múa Đương Đại',
+                tool: 'Luma Dance AI',
+                prompt: `9:16 aspect ratio, modern dance performance in peaceful studio, silk dress flowing with movement, soft volumetric lighting, elegant camera motion`,
+                video: 'https://www.youtube.com/shorts/icKchwsROCU',
+                description: 'Điệu múa đương đại uyển chuyển kết hợp hiệu ứng tà áo và gió thổi tự nhiên.',
+                guide: '• Bước 1: Tải video múa mẫu bằng nút bên dưới.\n• Bước 2: Dùng Luma Dream Machine hoặc Kling AI với prompt mô tả chất liệu vải mềm mại.\n• Bước 3: Kết hợp nhạc nền acoustic chill để thu hút người xem trên YouTube Shorts.',
+                redirectUrl: 'https://lumalabs.ai/dream-machine',
+                redirectLabel: 'Mở Luma Dream Machine',
+                downloadUrl: 'https://www.youtube.com/shorts/icKchwsROCU'
             }
         ];
 
@@ -983,7 +612,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                     const videoId = ytMatch[1];
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
-                            <!-- Transparent pointer-events barrier to completely block interaction with YouTube native UI and layers -->
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
                             
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
@@ -991,7 +619,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
                             
-                            <!-- Minimalist Speaker Mute/Unmute Control Only -->
                             <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
@@ -1002,7 +629,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                         <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
                         
-                        <!-- Minimalist Speaker Mute/Unmute Control Only -->
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
@@ -1010,20 +636,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 `;
             } else if (item.image) {
                 return `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
-            } else if (item.gradient) {
-                return `
-                    <div class="w-full h-full bg-gradient-to-tr ${item.gradient} p-5 flex flex-col justify-between text-white motion-card-preview">
-                        <div class="space-y-1">
-                            <div class="flex items-center space-x-1 mb-2">
-                                <span class="wave-bar w-1 bg-white rounded-full"></span>
-                                <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.2s"></span>
-                                <span class="wave-bar w-1 bg-white rounded-full" style="animation-delay: 0.4s"></span>
-                            </div>
-                            <p class="text-[11px] text-white/80 uppercase font-semibold tracking-wider">Motion Preview</p>
-                            <p class="text-base font-extrabold leading-snug">${item.title}</p>
-                        </div>
-                    </div>
-                `;
             }
             return '';
         }
@@ -1087,7 +699,7 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
-            const featured = [sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0], sampleImagePrompts[1]];
+            const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
             container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
             setupAutoPlayObserver();
         }
@@ -1232,6 +844,47 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             setupAutoPlayObserver();
         }
 
+        function renderDancePrompts(list = sampleDancePrompts) {
+            const container = document.getElementById('dance-templates-grid');
+            if (!container) return;
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10 flex items-center gap-1.5">
+                            <i class="fa-solid fa-person-dancing text-purple-400"></i> ${item.tool}
+                        </span>
+                        <span class="absolute top-3 right-3 bg-purple-600/90 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-lg pointer-events-none z-10">
+                            ${item.categoryLabel}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-purple-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-2">
+                                <button onclick="openModal('${item.id}')" class="flex-1 py-2 px-3 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors flex items-center justify-center space-x-1">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>Xem Hướng Dẫn</span>
+                                </button>
+                                <a href="${item.redirectUrl}" target="_blank" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1" title="Chuyển đến web AI">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Tạo AI</span>
+                                </a>
+                            </div>
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md shadow-purple-500/20 transition-all flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>TẢI VIDEO MẪU (NHẢY)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
+        }
+
         let mediaObserver = null;
 
         function playMedia(container) {
@@ -1350,21 +1003,22 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             const container = document.getElementById('home-featured-grid');
             switchTab('home', true);
             
-            // Hiện nút Xóa tìm kiếm nếu có từ khóa
             const clearBtn = document.getElementById('clear-home-search-btn');
             if (rawQuery) {
-                clearBtn.classList.remove('hidden');
-                document.getElementById('home-grid-title').innerText = `Kết Quả Tìm Kiếm Cho: "${rawQuery}"`;
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = `Kết Quả Tìm Kiếm Cho: "${rawQuery}"`;
             } else {
-                clearBtn.classList.add('hidden');
-                document.getElementById('home-grid-title').innerText = 'Mẫu Prompt Xu Hướng';
+                if (clearBtn) clearBtn.classList.add('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
                 renderFeaturedHomePrompts();
                 return;
             }
 
-            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
             const filtered = allItems.filter(item => {
-                return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query) || removeVietnameseTones(item.description).includes(query);
+                return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
             });
 
             if (filtered.length === 0) {
@@ -1375,7 +1029,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             
             setupAutoPlayObserver();
 
-            // Tự động cuộn mượt mà xuống phần lưới kết quả bên dưới
             const gridSection = document.getElementById('home-grid-title');
             if (gridSection) {
                 gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1383,9 +1036,12 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
         }
 
         function clearHomeSearch() {
-            document.getElementById('home-search-input').value = '';
-            document.getElementById('clear-home-search-btn').classList.add('hidden');
-            document.getElementById('home-grid-title').innerText = 'Mẫu Prompt Xu Hướng';
+            const searchInput = document.getElementById('home-search-input');
+            if (searchInput) searchInput.value = '';
+            const clearBtn = document.getElementById('clear-home-search-btn');
+            if (clearBtn) clearBtn.classList.add('hidden');
+            const titleEl = document.getElementById('home-grid-title');
+            if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
             renderFeaturedHomePrompts();
         }
 
@@ -1431,6 +1087,17 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             document.querySelectorAll('.tool-cat-btn').forEach(b => b.className = "tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
             btnElement.className = "tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm";
             renderToolProducts(cat === 'all' ? sampleToolProducts : sampleToolProducts.filter(item => item.category === cat));
+        }
+
+        function filterDance() {
+            const query = removeVietnameseTones(document.getElementById('dance-search').value);
+            renderDancePrompts(sampleDancePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.description).includes(query)));
+        }
+
+        function filterDanceCategory(cat, btnElement) {
+            document.querySelectorAll('.dance-cat-btn').forEach(b => b.className = "dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm";
+            renderDancePrompts(cat === 'all' ? sampleDancePrompts : sampleDancePrompts.filter(item => item.category === cat));
         }
 
         function copyPromptObject(btn, encodedText) {
@@ -1496,7 +1163,7 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 btn.setAttribute('data-muted', 'false');
                 icon.className = 'fa-solid fa-volume-high';
                 btn.classList.remove('bg-black/40');
-                btn.classList.add('bg-rose-600', 'scale-110');
+                btn.classList.add('bg-purple-600', 'scale-110');
             } else {
                 const iframe = document.getElementById(elementId);
                 if (iframe && iframe.contentWindow) {
@@ -1508,20 +1175,50 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                 }
                 btn.setAttribute('data-muted', 'true');
                 icon.className = 'fa-solid fa-volume-xmark';
-                btn.classList.remove('bg-rose-600', 'scale-110');
+                btn.classList.remove('bg-purple-600', 'scale-110');
                 btn.classList.add('bg-black/40');
             }
         }
 
         function openModal(itemId) {
-            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts];
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
             const item = allItems.find(x => x.id === itemId);
             if (!item) return;
             pauseAllMedia();
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
 
-            if (item.price) {
+            if (item.downloadUrl) {
+                // Dance item modal format
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-bold uppercase"><i class="fa-solid fa-person-dancing mr-1"></i>${item.tool}</span>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Vũ Đạo</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-purple-500 mb-1">Hướng Dẫn Tạo Dance AI Chi Tiết</label>
+                            <div class="p-3.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-xs text-slate-800 dark:text-slate-200 border border-purple-200 dark:border-purple-800/50 whitespace-pre-line leading-relaxed">${item.guide}</div>
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                            <a href="${item.redirectUrl}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${item.redirectLabel}</span>
+                            </a>
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-download"></i> <span>TẢI VIDEO MẪU</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else if (item.price) {
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -1599,7 +1296,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             const modal = document.getElementById('qr-modal');
             const content = document.getElementById('qr-modal-content');
             
-            // Sử dụng ảnh QR cá nhân của bạn nếu có (customQrImage), nếu không dùng VietQR tự động
             const qrUrl = tool.customQrImage || `https://img.vietqr.io/image/MB-${tool.accountNo}-compact2.png?amount=${tool.price.replace(/[^0-9]/g, '')}&addInfo=${encodeURIComponent(tool.note)}&accountName=${encodeURIComponent(tool.accountName)}`;
 
             content.innerHTML = `
@@ -1621,11 +1317,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
                         <div class="flex justify-between items-center"><span class="text-slate-400">Nội dung CK:</span><span class="font-mono font-bold text-rose-500">${tool.note}</span></div>
                     </div>
 
-                    <!-- Tùy chọn đổi ảnh QR trực tiếp tại giao diện nếu muốn -->
-                    <div class="text-[11px] text-slate-400">
-                        Hoặc dán link ảnh QR của bạn vào thuộc tính <code class="text-primary-500 font-mono">customQrImage</code> trong mã nguồn bất cứ lúc nào.
-                    </div>
-
                     <div class="pt-2 flex items-center justify-between gap-3">
                         <a href="${tool.zaloLink}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow">
                             <i class="fa-solid fa-headset"></i> <span>Xác Nhận Qua Zalo</span>
@@ -1638,7 +1329,6 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
         }
 
         function closeQRModal() { document.getElementById('qr-modal').classList.add('hidden'); }
-        function handleFormSubmit(e) { e.preventDefault(); showToast("Gửi tin nhắn thành công!"); e.target.reset(); }
 
         // Scroll to Top Logic
         window.addEventListener('scroll', () => {
@@ -1663,11 +1353,12 @@ Nhân vật hít nhẹ một hơi, mỉm cười ngượng ngùng hơn một ch�
             renderMotionPrompts();
             renderVideoPrompts();
             renderToolProducts();
+            renderDancePrompts();
             setupAutoPlayObserver();
 
             const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
             const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
-            if (['home', 'image', 'motion', 'video', 'tool', 'contact'].includes(savedTab)) {
+            if (['home', 'image', 'motion', 'video', 'tool', 'dance'].includes(savedTab)) {
                 switchTab(savedTab, true);
             }
         };
