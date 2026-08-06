@@ -34,7 +34,6 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Custom Animations & Scrollbar CSS -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -60,14 +59,6 @@
             100% { background-position: 100% 100%; }
         }
 
-        .wave-bar {
-            animation: wave 1.2s infinite ease-in-out alternate;
-        }
-        @keyframes wave {
-            0% { height: 15%; }
-            100% { height: 100%; }
-        }
-
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -86,7 +77,6 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
-    <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -123,11 +113,10 @@
                     </button>
                 </nav>
 
-                <!-- Actions: Theme Switcher & Mobile Menu Toggle -->
+                <!-- Actions: Auth Status, Theme Switcher & Mobile Toggle -->
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <!-- Auth User Bar -->
                     <div id="auth-user-widget" class="flex items-center space-x-2">
-                        <!-- JS populated login button or user profile dropdown -->
+                        <!-- JS Populated Auth Widget -->
                     </div>
 
                     <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
@@ -135,7 +124,6 @@
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
                     </button>
 
-                    <!-- Mobile Menu Button -->
                     <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
                         <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
@@ -197,6 +185,15 @@
                             <span>Khám Phá Ngay</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
+                    </div>
+
+                    <!-- Restricted Access Banner for Guest Users -->
+                    <div id="guest-restriction-banner" class="hidden bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-amber-200">
+                        <div class="flex items-center space-x-3">
+                            <i class="fa-solid fa-lock text-amber-400 text-xl shrink-0"></i>
+                            <p class="text-xs sm:text-sm">Bạn đang duyệt ở chế độ Khách (Xem tối đa 2 mẫu mỗi mục). Đăng nhập tài khoản học viên để xem toàn bộ 1,500+ mẫu Prompt.</p>
+                        </div>
+                        <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs shrink-0 transition-colors shadow">Đăng Nhập Ngay</button>
                     </div>
 
                     <!-- Quick Stats -->
@@ -401,7 +398,6 @@
         </button>
     </div>
 
-    <!-- FOOTER -->
     <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-12 py-8 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
@@ -478,7 +474,7 @@
                         </div>
                     </div>
 
-                    <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold bg-rose-50 dark:bg-rose-950/40 p-2.5 rounded-lg border border-rose-200 dark:border-rose-800 text-center"></div>
+                    <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold bg-rose-50 dark:bg-rose-950/40 p-3 rounded-xl border border-rose-200 dark:border-rose-800/60 text-center leading-relaxed"></div>
 
                     <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg shadow-primary-500/25 transition-all flex items-center justify-center space-x-2">
                         <span>Đăng Nhập Ngay</span>
@@ -487,10 +483,10 @@
                 </form>
 
                 <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60 text-center space-y-3">
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Chưa có tài khoản học viên hoặc đã hết hạn?</p>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Chưa có tài khoản học viên hoặc tài khoản bị khóa?</p>
                     <a href="https://zalo.me/0984348734" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 font-bold text-xs transition-colors flex items-center justify-center space-x-2 border border-blue-200 dark:border-blue-800/40">
                         <i class="fa-solid fa-comment-dots text-sm"></i>
-                        <span>Nhận & Kích Hoạt Tài Khoản Qua Zalo</span>
+                        <span>Nhận & Gia Hạn Tài Khoản Qua Zalo</span>
                     </a>
                 </div>
             </div>
@@ -512,7 +508,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Bảng Quản Trị Hệ Thống (Admin Panel)</h2>
-                        <p class="text-xs text-slate-500 dark:text-slate-400">Tạo tài khoản học viên, gia hạn số ngày sử dụng & quản lý quyền cấp phép</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Cấp tài khoản học viên, cài đặt ngày tự động khóa & quản lý quyền truy cập</p>
                     </div>
                 </div>
 
@@ -531,8 +527,8 @@
                             <input type="text" id="admin-new-password" required placeholder="vd: 123456" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Số ngày kích hoạt (Ngày)</label>
-                            <input type="number" id="admin-new-days" required min="1" max="3650" value="30" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Tự động khóa vào ngày (Expiry Date)</label>
+                            <input type="date" id="admin-new-date" required class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div class="sm:col-span-3 flex justify-end pt-1">
                             <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5">
@@ -558,10 +554,9 @@
                                 <tr>
                                     <th class="p-3">Tài Khoản</th>
                                     <th class="p-3">Mật Khẩu</th>
-                                    <th class="p-3">Vai Trò</th>
-                                    <th class="p-3">Hạn Sử Dụng</th>
+                                    <th class="p-3">Ngày Khóa</th>
                                     <th class="p-3">Trạng Thái</th>
-                                    <th class="p-3 text-right">Thao Tác</th>
+                                    <th class="p-3 text-right">Thao Tác Quản Lý</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-user-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-800">
@@ -581,7 +576,7 @@
     </div>
 
     <script>
-        // Default Admin Account Credentials: admin / Pv181290@1
+        // Default Admin Account: admin / Pv181290@1
         const DEFAULT_ADMIN = {
             username: 'admin',
             password: 'Pv181290@1',
@@ -595,24 +590,27 @@
                 password: '123456',
                 role: 'member',
                 expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                isLocked: false,
                 createdAt: new Date().toISOString()
             };
-			
+
         const DEFAULT_MEMBERS = [
             {
                 username: 'hocvien2',
                 password: '123456',
                 role: 'member',
                 expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                isLocked: false,
                 createdAt: new Date().toISOString()
             };
-			
+
         const DEFAULT_MEMBERS = [
             {
                 username: 'hocvien3',
                 password: '123456',
                 role: 'member',
                 expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                isLocked: false,
                 createdAt: new Date().toISOString()
             }
         ];
@@ -622,31 +620,35 @@
                 id: 'img-1',
                 title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
                 category: 'taonhanvat',
-                categoryLabel: 'taonhanvat',
+                categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
-`,
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
                 image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
                 description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
                 author: 'Grok'
             },
-			{
+            {
                 id: 'img-2',
                 title: 'Kiểu Tóc 1',
                 category: 'taonhanvat',
-                categoryLabel: 'taonhanvat',
+                categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
-
-Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown), màu nhuộm đồng đều từ chân tóc đến ngọn tóc, dưới ánh sáng tự nhiên tóc phản chiếu nhẹ tạo cảm giác mềm mại và mượt mà, chân tóc không quá tối, phần rẽ ngôi hơi đậm hơn một chút do mật độ tóc và bóng đổ. Kiểu tóc: Tóc dài được buộc thấp gọn gàng phía sau gáy, kiểu buộc không quá chặt nên phần đỉnh đầu vẫn giữ được độ phồng tự nhiên, hai bên có vài lọn tóc mảnh buông xuống tạo cảm giác mềm mại và tự nhiên, toàn bộ phần đuôi tóc được thả hoàn toàn phía sau lưng nhân vật, không có bất kỳ lọn tóc hay đuôi tóc nào rơi hoặc vắt ra phía trước vai hay trước ngực. Ngôi tóc: Rẽ ngôi giữa gần như cân đối, đường ngôi thẳng, rõ ràng và tự nhiên. Độ dày: Tóc có mật độ từ trung bình đến khá dày, phần da đầu chỉ lộ nhẹ ở đường ngôi, hai bên đầu có độ phủ tóc tốt. Kết cấu tóc: Chất tóc thẳng tự nhiên, sợi tóc nhỏ đến trung bình, bề mặt tóc mượt, ít tóc con dựng lên, không có dấu hiệu xơ hay chẻ ngọn. Độ bóng: Tóc có độ bóng nhẹ tự nhiên, ánh sáng phản chiếu đều trên bề mặt tạo cảm giác tóc khỏe mạnh và được chăm sóc tốt, không có hiện tượng bóng dầu rõ rệt. Đường chân tóc: Đường chân tóc đều và mềm mại, phần trán lộ hoàn toàn nhờ kiểu rẽ ngôi giữa, không có tóc mái che trán. Tóc mai: Hai bên có các lọn tóc mai mảnh buông tự nhiên, ôm sát gò má và quai hàm giúp gương mặt trông thanh thoát hơn, các lọn tóc không được uốn rõ mà chỉ cong nhẹ theo trọng lực. Độ hoàn thiện: Tổng thể mái tóc mang phong cách tối giản, sạch sẽ, thanh lịch và hiện đại, không sử dụng kiểu uốn xoăn hay tạo kiểu cầu kỳ, phù hợp với phong cách tự nhiên, nhẹ nhàng, tinh tế, toàn bộ mái tóc được sắp xếp gọn gàng với toàn bộ đuôi tóc nằm phía sau lưng, không che vai, không che ngực và không xuất hiện bất kỳ phần tóc nào ở phía trước cơ thể. 
-`,
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu. Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown).`,
                 image: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
                 description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
                 author: 'Grok'
             },
-			
-
-
+            {
+                id: 'img-3',
+                title: 'Thời Trang Nữ - Váy Trắng Công Chúa 9:16',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Midjourney v6',
+                prompt: `Full height 9:16 portrait of a Vietnamese beauty model wearing an elegant silk white dress, standing in a sunlit European courtyard, hyper-realistic detail, soft bokeh, 8k resolution, photorealistic lighting`,
+                image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&auto=format&fit=crop&q=80',
+                description: 'Mẫu prompt chụp ảnh thời trang váy công Chúa trắng sang trọng chuẩn 9:16.',
+                author: 'Linh Xinh Gái'
+            }
         ];
 
         const sampleMotionPrompts = [
@@ -671,6 +673,17 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
                 description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
+            },
+            {
+                id: 'mot-3',
+                title: 'Góc Quay Cinematic Dolly Zoom 9:16',
+                category: 'trinhdien',
+                categoryLabel: 'Trình diễn',
+                tool: 'Runway Gen-3',
+                prompt: `Cinematic vertiginous dolly zoom camera move backward while model steps forward gracefully, keeping sharp eye focus, moody golden hour light`,
+                video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
+                description: 'Kỹ thuật zoom tiến lùi kết hợp bước chân thời trang tạo hiệu ứng ấn tượng.',
+                technique: 'Áp dụng cho các cảnh slow motion giới thiệu bộ sưu tập.'
             }
         ];
 
@@ -686,6 +699,18 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 duration: '30 giây',
                 fps: '60 FPS',
                 description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
+            },
+            {
+                id: 'vid-2',
+                title: 'Review Đồ Ăn Đường Phố Đêm 9:16',
+                category: 'doanuong',
+                categoryLabel: 'Đồ Ăn - Uống',
+                tool: 'Kling AI',
+                prompt: `Vertical 9:16 close up video of steaming hot ramen bowl being served in busy night market, appetizing textures, bokeh neon background`,
+                video: 'https://www.youtube.com/shorts/icKchwsROCU',
+                duration: '15 giây',
+                fps: '60 FPS',
+                description: 'Prompt tạo video review đồ ăn siêu nét thu hút hàng triệu view.'
             }
         ];
 
@@ -807,31 +832,6 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             if (menu) menu.classList.toggle('hidden');
         }
 
-        function switchTab(tabId, skipScroll = false) {
-            localStorage.setItem('activeTab', tabId);
-            if (window.history && window.history.replaceState) {
-                window.history.replaceState(null, null, '#' + tabId);
-            }
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            const activeTab = document.getElementById(`tab-${tabId}`);
-            if (activeTab) activeTab.classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
-            });
-            const currentNavBtn = document.getElementById(`nav-${tabId}`);
-            if (currentNavBtn) {
-                currentNavBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
-            }
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-            pauseAllMedia();
-            setTimeout(() => { setupAutoPlayObserver(); }, 100);
-            if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
         function getUsersFromStorage() {
             const data = localStorage.getItem('lxg_users');
             if (!data) {
@@ -869,19 +869,26 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
         function checkAuthStatus() {
             const user = getCurrentUser();
             if (!user) return { isAuthenticated: false, isAdmin: false, isExpired: false, daysLeft: 0, user: null };
+            
             if (user.role === 'admin') {
                 return { isAuthenticated: true, isAdmin: true, isExpired: false, daysLeft: 9999, user };
             }
             
+            if (user.isLocked) {
+                return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user, isLocked: true };
+            }
+
             if (!user.expiresAt) return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user };
             
             const now = Date.now();
             const expTime = new Date(user.expiresAt).getTime();
+            if (isNaN(expTime)) return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user };
+
             const diffMs = expTime - now;
             const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
 
             if (diffMs <= 0) {
-                return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user };
+                return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user, isAutoExpired: true };
             }
 
             return { isAuthenticated: true, isAdmin: false, isExpired: false, daysLeft, user };
@@ -889,9 +896,16 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
 
         function renderAuthWidget() {
             const widget = document.getElementById('auth-user-widget');
+            const restrictionBanner = document.getElementById('guest-restriction-banner');
             if (!widget) return;
 
             const auth = checkAuthStatus();
+
+            if (!auth.isAuthenticated || auth.isExpired) {
+                if (restrictionBanner) restrictionBanner.classList.remove('hidden');
+            } else {
+                if (restrictionBanner) restrictionBanner.classList.add('hidden');
+            }
 
             if (!auth.isAuthenticated) {
                 widget.innerHTML = `
@@ -914,12 +928,12 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 `;
             } else {
                 const badgeColor = auth.isExpired ? 'bg-rose-500 text-white' : 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30';
-                const statusText = auth.isExpired ? 'Hết Hạn' : `Còn ${auth.daysLeft} ngày`;
+                const statusText = auth.isExpired ? (auth.user && auth.user.isLocked ? 'Đã Khóa' : 'Hết Hạn') : `Còn ${auth.daysLeft} ngày`;
 
                 widget.innerHTML = `
                     <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 p-1 sm:p-1.5 pl-2.5 rounded-2xl border border-slate-200 dark:border-slate-700">
                         <div class="flex flex-col">
-                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-100 max-w-[80px] sm:max-w-[120px] truncate">${auth.user.username}</span>
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-100 max-w-[80px] sm:max-w-[120px] truncate">${auth.user ? auth.user.username : ''}</span>
                             <span class="text-[9px] font-semibold ${badgeColor} px-1.5 py-0.2 rounded-md inline-block w-fit">${statusText}</span>
                         </div>
                         <button onclick="handleLogout()" class="p-1.5 rounded-xl text-slate-400 hover:text-rose-500 transition-colors" title="Đăng xuất">
@@ -957,11 +971,27 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 return;
             }
 
+            if (match.role !== 'admin') {
+                const isManualLocked = match.isLocked === true;
+                const expMs = match.expiresAt ? new Date(match.expiresAt).getTime() : 0;
+                const isAutoExpired = expMs <= Date.now();
+
+                if (isManualLocked || isAutoExpired) {
+                    if (errorEl) {
+                        const dateFormatted = match.expiresAt ? match.expiresAt.split('T')[0] : 'Không xác định';
+                        const causeText = isManualLocked ? 'Tài khoản của bạn đã bị khóa bởi Quản trị viên.' : `Tài khoản đã tự động khóa do hết hạn ngày ${dateFormatted}.`;
+                        errorEl.innerHTML = `${causeText}<br><a href="https://zalo.me/0984348734" target="_blank" class="underline font-bold text-blue-500">Liên hệ Zalo 0984348734 để gia hạn</a>`;
+                        errorEl.classList.remove('hidden');
+                    }
+                    return;
+                }
+            }
+
             localStorage.setItem('lxg_current_user', match.username);
             closeLoginModal();
             renderAuthWidget();
             refreshAllGrids();
-            showToast(`Đã đăng nhập thành công (${match.username})`);
+            showToast(`Đăng nhập thành công (${match.username})`);
         }
 
         function handleLogout() {
@@ -976,6 +1006,10 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             if (!auth.isAdmin) {
                 showToast('Bạn không có quyền truy cập trang quản trị!');
                 return;
+            }
+            const dateInput = document.getElementById('admin-new-date');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date(Date.now() + 30 * 86400000).toISOString().split('T')[0];
             }
             renderAdminUserTable();
             document.getElementById('admin-modal').classList.remove('hidden');
@@ -995,22 +1029,20 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
 
             tbody.innerHTML = users.map(u => {
                 let statusBadge = '<span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold text-[10px]">Quản trị viên</span>';
-                let daysLeftText = 'Vĩnh viễn';
+                let expDateDisplay = '<span class="text-slate-400 font-semibold">Vĩnh viễn</span>';
 
                 if (u.role !== 'admin') {
-                    if (!u.expiresAt) {
-                        statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
-                        daysLeftText = '0 ngày';
+                    const rawDateStr = u.expiresAt ? u.expiresAt.split('T')[0] : '';
+                    expDateDisplay = `<input type="date" value="${rawDateStr}" onchange="updateUserExpiryDate('${u.username}', this.value)" class="px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs font-semibold text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer shadow-sm">`;
+
+                    const isExpired = u.expiresAt && new Date(u.expiresAt).getTime() <= Date.now();
+
+                    if (u.isLocked && !isExpired) {
+                        statusBadge = '<span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-700 font-bold text-[10px]"><i class="fa-solid fa-lock mr-1"></i>Đã Khóa</span>';
+                    } else if (isExpired) {
+                        statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]"><i class="fa-solid fa-clock text-rose-500 mr-1"></i>Hết Hạn (Tự Khóa)</span>';
                     } else {
-                        const ms = new Date(u.expiresAt).getTime() - Date.now();
-                        const days = Math.ceil(ms / (1000 * 60 * 60 * 24));
-                        if (days <= 0) {
-                            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
-                            daysLeftText = '0 ngày';
-                        } else {
-                            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Đang Kích Hoạt</span>`;
-                            daysLeftText = `${days} ngày`;
-                        }
+                        statusBadge = '<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]"><i class="fa-solid fa-circle-check mr-1"></i>Hoạt Động</span>';
                     }
                 }
 
@@ -1018,13 +1050,15 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
                         <td class="p-3 font-bold text-slate-800 dark:text-slate-100">${u.username}</td>
                         <td class="p-3 font-mono text-slate-500">${u.password}</td>
-                        <td class="p-3 uppercase font-semibold text-[10px]">${u.role}</td>
-                        <td class="p-3 font-semibold text-slate-700 dark:text-slate-300">${daysLeftText}</td>
+                        <td class="p-3">${expDateDisplay}</td>
                         <td class="p-3">${statusBadge}</td>
                         <td class="p-3 text-right space-x-1">
                             ${u.role !== 'admin' ? `
-                                <button onclick="extendUserDays('${u.username}', 30)" class="px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 font-semibold hover:bg-emerald-100 text-[10px]" title="+30 Ngày">
+                                <button onclick="extendUserDays('${u.username}', 30)" class="px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 font-semibold hover:bg-emerald-100 text-[10px]" title="+30 Ngày gia hạn">
                                     <i class="fa-solid fa-calendar-plus mr-1"></i>+30 ngày
+                                </button>
+                                <button onclick="toggleUserLock('${u.username}')" class="px-2 py-1 rounded ${u.isLocked ? 'bg-amber-50 text-amber-600 hover:bg-amber-100' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'} font-semibold text-[10px]" title="${u.isLocked ? 'Mở khóa' : 'Khóa ngay'}">
+                                    <i class="fa-solid ${u.isLocked ? 'fa-lock-open' : 'fa-lock'} mr-1"></i>${u.isLocked ? 'Mở' : 'Khóa'}
                                 </button>
                                 <button onclick="deleteUser('${u.username}')" class="px-2 py-1 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-600 font-semibold hover:bg-rose-100 text-[10px]" title="Xóa tài khoản">
                                     <i class="fa-solid fa-trash"></i>
@@ -1036,34 +1070,73 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             }).join('');
         }
 
+        function updateUserExpiryDate(username, newDateStr) {
+            if (!newDateStr) return;
+            const users = getUsersFromStorage();
+            const user = users.find(u => u.username === username);
+            if (!user) return;
+
+            user.expiresAt = new Date(newDateStr + 'T23:59:59').toISOString();
+            const isExpired = new Date(user.expiresAt).getTime() <= Date.now();
+            if (isExpired) {
+                user.isLocked = true;
+            } else {
+                user.isLocked = false;
+            }
+
+            saveUsersToStorage(users);
+            renderAdminUserTable();
+            renderAuthWidget();
+            refreshAllGrids();
+            showToast(`Đã đổi ngày khóa cho ${username}: ${newDateStr}`);
+        }
+
         function handleCreateUserSubmit(e) {
             e.preventDefault();
             const username = document.getElementById('admin-new-username').value.trim();
             const password = document.getElementById('admin-new-password').value.trim();
-            const days = parseInt(document.getElementById('admin-new-days').value) || 30;
+            const expiryDateStr = document.getElementById('admin-new-date').value;
 
-            if (!username || !password) return;
-
-            const users = getUsersFromStorage();
-            if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-                showToast('Tài khoản đã tồn tại trên hệ thống!');
+            if (!username || !password || !expiryDateStr) {
+                showToast('Vui lòng điền đầy đủ thông tin!');
                 return;
             }
 
-            const expiresAt = new Date(Date.now() + days * 86400000).toISOString();
-            users.push({
+            const users = getUsersFromStorage();
+            if (users.some(u => u.username === username)) {
+                showToast('Tên tài khoản này đã tồn tại!');
+                return;
+            }
+
+            const newUser = {
                 username,
                 password,
                 role: 'member',
-                expiresAt,
+                expiresAt: new Date(expiryDateStr + 'T23:59:59').toISOString(),
+                isLocked: false,
                 createdAt: new Date().toISOString()
-            });
+            };
 
+            users.push(newUser);
             saveUsersToStorage(users);
             renderAdminUserTable();
+            showToast(`Đã cấp tài khoản thành công cho ${username}`);
+
             document.getElementById('admin-new-username').value = '';
             document.getElementById('admin-new-password').value = '';
-            showToast(`Đã tạo tài khoản ${username} (${days} ngày kích hoạt)`);
+        }
+
+        function toggleUserLock(username) {
+            const users = getUsersFromStorage();
+            const user = users.find(u => u.username === username);
+            if (!user) return;
+
+            user.isLocked = !user.isLocked;
+            saveUsersToStorage(users);
+            renderAdminUserTable();
+            renderAuthWidget();
+            refreshAllGrids();
+            showToast(`Đã ${user.isLocked ? 'khóa' : 'mở khóa'} tài khoản ${username}`);
         }
 
         function extendUserDays(username, days) {
@@ -1071,54 +1144,51 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             const user = users.find(u => u.username === username);
             if (!user) return;
 
-            let currentExp = user.expiresAt ? new Date(user.expiresAt).getTime() : Date.now();
-            if (currentExp < Date.now()) currentExp = Date.now();
+            const baseTime = (user.expiresAt && new Date(user.expiresAt).getTime() > Date.now()) 
+                ? new Date(user.expiresAt).getTime() 
+                : Date.now();
 
-            user.expiresAt = new Date(currentExp + days * 86400000).toISOString();
+            user.expiresAt = new Date(baseTime + days * 86400000).toISOString();
+            user.isLocked = false;
+
             saveUsersToStorage(users);
             renderAdminUserTable();
             renderAuthWidget();
             refreshAllGrids();
-            showToast(`Đã gia hạn thêm ${days} ngày cho ${username}`);
+            showToast(`Đã gia hạn +${days} ngày cho ${username}`);
         }
 
         function deleteUser(username) {
             let users = getUsersFromStorage();
             users = users.filter(u => u.username !== username);
             saveUsersToStorage(users);
+
+            if (localStorage.getItem('lxg_current_user') === username) {
+                localStorage.removeItem('lxg_current_user');
+            }
+
             renderAdminUserTable();
+            renderAuthWidget();
+            refreshAllGrids();
             showToast(`Đã xóa tài khoản ${username}`);
         }
 
-        function renderLockedCard(remainingCount, typeName = 'mẫu Prompt') {
-            return `
-            <div class="col-span-1 sm:col-span-2 lg:col-span-1 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-indigo-950/95 rounded-2xl p-6 border-2 border-dashed border-primary-500/40 text-white flex flex-col justify-between text-center shadow-xl backdrop-blur-md relative overflow-hidden group min-h-[350px]">
-                <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
-                <div class="my-auto space-y-4 relative z-10">
-                    <div class="w-14 h-14 mx-auto rounded-2xl bg-primary-500/20 border border-primary-500/40 flex items-center justify-center text-primary-400 text-2xl shadow-inner">
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-extrabold text-base sm:text-lg text-white">Nội Dung Dành Cho Học Viên</h3>
-                        <p class="text-xs text-slate-300 mt-1 max-w-xs mx-auto leading-relaxed">
-                            Đăng nhập tài khoản kích hoạt để xem thêm <span class="text-primary-400 font-bold text-sm">${remainingCount}+</span> ${typeName} & sao chép prompt đầy đủ.
-                        </p>
-                    </div>
-                    <div class="space-y-2 pt-2">
-                        <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            <span>Đăng Nhập Ngay</span>
-                        </button>
-                        <a href="https://zalo.me/0984348734" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 text-xs font-semibold transition-all flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-comment-dots"></i>
-                            <span>Nhận Tài Khoản Qua Zalo</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="text-[10px] text-slate-400 border-t border-slate-700/50 pt-3 relative z-10">
-                    <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> Hỗ trợ kích hoạt 24/7 qua Zalo 0984348734
-                </div>
-            </div>`;
+        function refreshAllGrids() {
+            renderFeaturedHomePrompts();
+            renderImagePrompts();
+            renderMotionPrompts();
+            renderVideoPrompts();
+            renderToolProducts();
+            renderDancePrompts();
+        }
+
+        function getVisibleList(fullList) {
+            const auth = checkAuthStatus();
+            // Restrict guests/expired users to 2 items max
+            if (!auth.isAuthenticated || auth.isExpired) {
+                return fullList.slice(0, 2);
+            }
+            return fullList;
         }
 
         function renderMediaContainer(item) {
@@ -1130,12 +1200,10 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
                                 class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
-                            
                             <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
@@ -1145,7 +1213,6 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                         <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
-                        
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
@@ -1213,44 +1280,20 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             </div>`;
         }
 
-        function refreshAllGrids() {
-            renderFeaturedHomePrompts();
-            renderImagePrompts();
-            renderMotionPrompts();
-            renderVideoPrompts();
-            renderToolProducts();
-            renderDancePrompts();
-        }
-
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
             const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
-            
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            if (isAuthorized) {
-                container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
-            } else {
-                const visibleItems = featured.slice(0, 2);
-                const lockedHtml = renderLockedCard(featured.length - 2, 'mẫu Prompt xu hướng');
-                container.innerHTML = visibleItems.map(item => renderHomeGridItem(item)).join('') + lockedHtml;
-            }
-
+            const list = getVisibleList(featured);
+            container.innerHTML = list.map(item => renderHomeGridItem(item)).join('');
             setupAutoPlayObserver();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
             const container = document.getElementById('image-templates-grid');
             if (!container) return;
-
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            const renderList = isAuthorized ? list : list.slice(0, 2);
-
-            let html = renderList.map(item => `
+            const visibleList = getVisibleList(list);
+            container.innerHTML = visibleList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
@@ -1278,25 +1321,14 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     </div>
                 </div>
             `).join('');
-
-            if (!isAuthorized && list.length > 2) {
-                html += renderLockedCard(list.length - 2, 'mẫu hình ảnh');
-            }
-
-            container.innerHTML = html;
             setupAutoPlayObserver();
         }
 
         function renderMotionPrompts(list = sampleMotionPrompts) {
             const container = document.getElementById('motion-templates-grid');
             if (!container) return;
-
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            const renderList = isAuthorized ? list : list.slice(0, 2);
-
-            let html = renderList.map(item => `
+            const visibleList = getVisibleList(list);
+            container.innerHTML = visibleList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1324,25 +1356,14 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     </div>
                 </div>
             `).join('');
-
-            if (!isAuthorized && list.length > 2) {
-                html += renderLockedCard(list.length - 2, 'mẫu chuyển động');
-            }
-
-            container.innerHTML = html;
             setupAutoPlayObserver();
         }
 
         function renderVideoPrompts(list = sampleVideoPrompts) {
             const container = document.getElementById('video-templates-grid');
             if (!container) return;
-
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            const renderList = isAuthorized ? list : list.slice(0, 2);
-
-            let html = renderList.map(item => `
+            const visibleList = getVisibleList(list);
+            container.innerHTML = visibleList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1370,25 +1391,14 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     </div>
                 </div>
             `).join('');
-
-            if (!isAuthorized && list.length > 2) {
-                html += renderLockedCard(list.length - 2, 'mẫu video');
-            }
-
-            container.innerHTML = html;
             setupAutoPlayObserver();
         }
 
         function renderToolProducts(list = sampleToolProducts) {
             const container = document.getElementById('tool-templates-grid');
             if (!container) return;
-
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            const renderList = isAuthorized ? list : list.slice(0, 2);
-
-            let html = renderList.map(item => `
+            const visibleList = getVisibleList(list);
+            container.innerHTML = visibleList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1423,25 +1433,14 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     </div>
                 </div>
             `).join('');
-
-            if (!isAuthorized && list.length > 2) {
-                html += renderLockedCard(list.length - 2, 'tool tự động');
-            }
-
-            container.innerHTML = html;
             setupAutoPlayObserver();
         }
 
         function renderDancePrompts(list = sampleDancePrompts) {
             const container = document.getElementById('dance-templates-grid');
             if (!container) return;
-
-            const auth = checkAuthStatus();
-            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
-
-            const renderList = isAuthorized ? list : list.slice(0, 2);
-
-            let html = renderList.map(item => `
+            const visibleList = getVisibleList(list);
+            container.innerHTML = visibleList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1476,13 +1475,77 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     </div>
                 </div>
             `).join('');
-
-            if (!isAuthorized && list.length > 2) {
-                html += renderLockedCard(list.length - 2, 'mẫu vũ đạo Dance');
-            }
-
-            container.innerHTML = html;
             setupAutoPlayObserver();
+        }
+
+        let mediaObserver = null;
+
+        function playMedia(container) {
+            const video = container.querySelector('video');
+            if (video) { video.play().catch(() => {}); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
+            }
+        }
+
+        function pauseMedia(container) {
+            const video = container.querySelector('video');
+            if (video) { video.pause(); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
+        }
+
+        function pauseAllMedia() {
+            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
+        }
+
+        function setupAutoPlayObserver() {
+            if (mediaObserver) mediaObserver.disconnect();
+            mediaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const isTabVisible = !entry.target.closest('.tab-content.hidden');
+                    if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
+                        playMedia(entry.target);
+                    } else {
+                        pauseMedia(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
+        }
+
+        function switchTab(tabId, skipScroll = false) {
+            localStorage.setItem('activeTab', tabId);
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, '#' + tabId);
+            }
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) activeTab.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
+            });
+            const currentNavBtn = document.getElementById(`nav-${tabId}`);
+            if (currentNavBtn) {
+                currentNavBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
+            }
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            pauseAllMedia();
+            setTimeout(() => { setupAutoPlayObserver(); }, 100);
+            if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function removeVietnameseTones(str) {
@@ -1517,10 +1580,12 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                 return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
             });
 
-            if (filtered.length === 0) {
+            const visibleFiltered = getVisibleList(filtered);
+
+            if (visibleFiltered.length === 0) {
                 container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
             } else {
-                container.innerHTML = filtered.map(item => renderHomeGridItem(item)).join('');
+                container.innerHTML = visibleFiltered.map(item => renderHomeGridItem(item)).join('');
             }
             
             setupAutoPlayObserver();
@@ -1623,9 +1688,7 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
 
         function showToast(msg) {
             const toast = document.getElementById('toast');
-            if (!toast) return;
-            const messageEl = document.getElementById('toast-message');
-            if (messageEl) messageEl.innerText = msg;
+            document.getElementById('toast-message').innerText = msg;
             toast.classList.remove('translate-y-20', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
             setTimeout(() => {
@@ -1634,54 +1697,7 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             }, 2500);
         }
 
-        let mediaObserver = null;
-
-        function playMedia(container) {
-            if (!container) return;
-            const video = container.querySelector('video');
-            if (video) { video.play().catch(() => {}); return; }
-            const iframe = container.querySelector('iframe');
-            if (iframe && iframe.contentWindow) {
-                const src = iframe.src || '';
-                if (src.includes('youtube.com')) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                }
-            }
-        }
-
-        function pauseMedia(container) {
-            if (!container) return;
-            const video = container.querySelector('video');
-            if (video) { video.pause(); return; }
-            const iframe = container.querySelector('iframe');
-            if (iframe && iframe.contentWindow) {
-                const src = iframe.src || '';
-                if (src.includes('youtube.com')) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                }
-            }
-        }
-
-        function pauseAllMedia() {
-            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
-        }
-
-        function setupAutoPlayObserver() {
-            if (mediaObserver) mediaObserver.disconnect();
-            mediaObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const isTabVisible = !entry.target.closest('.tab-content.hidden');
-                    if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
-                        playMedia(entry.target);
-                    } else {
-                        pauseMedia(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-            document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
-        }
-
-        function muteAllAudio(exceptId = null) {
+        function muteAllAudio() {
             document.querySelectorAll('.media-container').forEach(container => {
                 const iframe = container.querySelector('iframe');
                 if (iframe && iframe.contentWindow) {
@@ -1695,7 +1711,7 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
             const icon = btn.querySelector('i');
             const isMuted = btn.getAttribute('data-muted') !== 'false';
             if (isMuted) {
-                muteAllAudio(elementId);
+                muteAllAudio();
                 const iframe = document.getElementById(elementId);
                 if (iframe && iframe.contentWindow) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
@@ -1706,7 +1722,7 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     videoEl.muted = false;
                 }
                 btn.setAttribute('data-muted', 'false');
-                if (icon) icon.className = 'fa-solid fa-volume-high';
+                icon.className = 'fa-solid fa-volume-high';
                 btn.classList.remove('bg-black/40');
                 btn.classList.add('bg-purple-600', 'scale-110');
             } else {
@@ -1719,7 +1735,7 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
                     videoEl.muted = true;
                 }
                 btn.setAttribute('data-muted', 'true');
-                if (icon) icon.className = 'fa-solid fa-volume-xmark';
+                icon.className = 'fa-solid fa-volume-xmark';
                 btn.classList.remove('bg-purple-600', 'scale-110');
                 btn.classList.add('bg-black/40');
             }
@@ -1876,13 +1892,14 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
 
         window.addEventListener('scroll', () => {
             const scrollBtn = document.getElementById('scroll-top-btn');
-            if (!scrollBtn) return;
-            if (window.scrollY > 300) {
-                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
-            } else {
-                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            if (scrollBtn) {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+                    scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+                }
             }
         });
 
@@ -1892,7 +1909,6 @@ Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/hon
 
         window.onload = function() {
             initTheme();
-            getUsersFromStorage();
             renderAuthWidget();
             refreshAllGrids();
 
