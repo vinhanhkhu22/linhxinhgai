@@ -225,7 +225,7 @@
                     </button>
                 </div>
 
-                <div id="home-featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div id="home-featured-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
                     <!-- JS populated -->
                 </div>
             </div>
@@ -256,7 +256,122 @@
                 <button onclick="filterImageCategory('giaydep', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Giày Dép</button>
             </div>
 
-            <div id="image-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="image-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 3. TAB: MẪU CHUYỂN ĐỘNG -->
+        <section id="tab-motion" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterMotionCategory('all', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterMotionCategory('taicho', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tại chỗ</button>
+                <button onclick="filterMotionCategory('trinhdien', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trình diễn</button>
+                <button onclick="filterMotionCategory('noireview', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nói Review</button>
+            </div>
+
+            <div id="motion-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 4. TAB: MẪU VIDEO -->
+        <section id="tab-video" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & prompt tạo video Reels/TikTok chân thực với AI</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="video-search" oninput="filterVideo()" placeholder="Lọc prompt video..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
+                <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
+                <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
+                <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
+                <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
+            </div>
+
+            <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 5. TAB: TOOL TỰ ĐỘNG -->
+        <section id="tab-tool" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động đăng bài và nuôi tài khoản tự động hóa</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="tool-search" oninput="filterTools()" placeholder="Lọc phần mềm & tool..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
+                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Đăng Bài & Reels</button>
+                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Lồng Tiếng & Vietsub</button>
+            </div>
+
+            <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
+        <section id="tab-dance" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
+                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
+                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
+                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
+            </div>
+
+            <div id="dance-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 <!-- JS populated -->
             </div>
         </section>
@@ -544,7 +659,6 @@
             }
         ];
 
-        // NEW DATA: DANCE TEMPLATES (MẪU NHẢY DANCE)
         const sampleDancePrompts = [
             {
                 id: 'dance-1',
@@ -646,24 +760,24 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
                             <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
                         </span>
-                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-md pointer-events-none z-10">
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">
                             ${item.price}
                         </span>
                     </div>
-                    <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+                    <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
                         <div>
-                            <span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
+                            <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
                                 <i class="fa-solid fa-eye mr-1"></i> Chi tiết
                             </button>
-                            <button onclick="openQRModal('${item.id}')" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
+                            <button onclick="openQRModal('${item.id}')" class="px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
                                 <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
                             </button>
                         </div>
@@ -675,20 +789,20 @@
             <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                     ${renderMediaContainer(item)}
-                    <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">
+                    <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">
                         ${item.tool}
                     </span>
                 </div>
-                <div class="p-4 flex-grow flex flex-col justify-between space-y-2">
+                <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
                     <div>
-                        <h3 class="font-bold text-slate-900 dark:text-white text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
-                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
                     </div>
                     <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                        <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
+                        <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
                             <i class="fa-solid fa-eye mr-1"></i> Xem
                         </button>
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] sm:text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
                             <i class="fa-solid fa-copy mr-1"></i> Sao chép
                         </button>
                     </div>
@@ -711,22 +825,23 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <span class="absolute top-3 left-3 bg-slate-900/75 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg">${item.tool}</span>
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/75 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">${item.tool}</span>
                     </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
                                 "${item.prompt}"
                             </div>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
                                 <i class="fa-solid fa-expand"></i>
-                                <span>Chi tiết</span>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
                             </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-2 px-4 rounded-xl bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1.5">
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-primary-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -744,22 +859,23 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10">${item.tool}</span>
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">${item.tool}</span>
                     </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-accent-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-accent-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
                                 "${item.prompt}"
                             </div>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
                                 <i class="fa-solid fa-expand"></i>
-                                <span>Chi tiết</span>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
                             </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-2 px-4 rounded-xl bg-accent-600 text-white text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1.5">
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-accent-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -777,22 +893,23 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none">${item.tool}</span>
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none">${item.tool}</span>
                     </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-rose-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-rose-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
                                 "${item.prompt}"
                             </div>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
                                 <i class="fa-solid fa-expand"></i>
-                                <span>Chi tiết</span>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
                             </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-2 px-4 rounded-xl bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1.5">
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-rose-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i>
                                 <span>Sao chép</span>
                             </button>
@@ -810,32 +927,32 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10"><i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}</span>
-                        <span class="absolute top-3 right-3 bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10"><i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}</span>
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>
                     </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
                             <div class="flex items-center justify-between mb-1">
-                                <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel}</span>
-                                <span class="text-xs text-slate-400 line-through">${item.originalPrice}</span>
+                                <span class="text-[9px] sm:text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel}</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 line-through">${item.originalPrice}</span>
                             </div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">${item.description}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1 sm:mt-2 line-clamp-2 sm:line-clamp-3">${item.description}</p>
                         </div>
-                        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
-                            <div class="flex items-center gap-2">
-                                <button onclick="openModal('${item.id}')" class="flex-1 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1">
+                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1">
                                     <i class="fa-solid fa-circle-info"></i>
-                                    <span>Chi Tiết & HD</span>
+                                    <span>HD</span>
                                 </button>
-                                <a href="${item.zaloLink}" target="_blank" class="py-2 px-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-semibold hover:bg-blue-100 transition-colors flex items-center justify-center space-x-1">
+                                <a href="${item.zaloLink}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] sm:text-xs font-semibold hover:bg-blue-100 transition-colors flex items-center justify-center space-x-1">
                                     <i class="fa-solid fa-comment-dots"></i>
                                     <span>Zalo</span>
                                 </a>
                             </div>
-                            <button onclick="openQRModal('${item.id}')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-xs shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2">
-                                <i class="fa-solid fa-qrcode text-sm"></i>
-                                <span>MUA NGAY (QUÉT MÃ QR)</span>
+                            <button onclick="openQRModal('${item.id}')" class="w-full py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
+                                <i class="fa-solid fa-qrcode text-xs sm:text-sm"></i>
+                                <span>MUA (QR)</span>
                             </button>
                         </div>
                     </div>
@@ -851,32 +968,32 @@
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg pointer-events-none z-10 flex items-center gap-1.5">
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10 flex items-center gap-1">
                             <i class="fa-solid fa-person-dancing text-purple-400"></i> ${item.tool}
                         </span>
-                        <span class="absolute top-3 right-3 bg-purple-600/90 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-lg pointer-events-none z-10">
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-purple-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
                             ${item.categoryLabel}
                         </span>
                     </div>
-                    <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-purple-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-purple-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
                         </div>
-                        <div class="space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
-                            <div class="flex items-center gap-2">
-                                <button onclick="openModal('${item.id}')" class="flex-1 py-2 px-3 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors flex items-center justify-center space-x-1">
+                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-[10px] sm:text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors flex items-center justify-center space-x-1">
                                     <i class="fa-solid fa-book-open"></i>
-                                    <span>Xem Hướng Dẫn</span>
+                                    <span>Hướng Dẫn</span>
                                 </button>
-                                <a href="${item.redirectUrl}" target="_blank" class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1" title="Chuyển đến web AI">
+                                <a href="${item.redirectUrl}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1" title="Chuyển đến web AI">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                     <span>Tạo AI</span>
                                 </a>
                             </div>
-                            <a href="${item.downloadUrl}" target="_blank" download class="w-full py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md shadow-purple-500/20 transition-all flex items-center justify-center space-x-2">
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-purple-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
                                 <i class="fa-solid fa-download"></i>
-                                <span>TẢI VIDEO MẪU (NHẢY)</span>
+                                <span>TẢI VIDEO MẪU</span>
                             </a>
                         </div>
                     </div>
@@ -1330,7 +1447,6 @@
 
         function closeQRModal() { document.getElementById('qr-modal').classList.add('hidden'); }
 
-        // Scroll to Top Logic
         window.addEventListener('scroll', () => {
             const scrollBtn = document.getElementById('scroll-top-btn');
             if (window.scrollY > 300) {
