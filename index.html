@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -33,6 +34,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Animations & Scrollbar CSS -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -46,6 +48,24 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        .motion-card-preview {
+            background-size: 200% 200%;
+            animation: gradientShift 4s infinite ease-in-out alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .wave-bar {
+            animation: wave 1.2s infinite ease-in-out alternate;
+        }
+        @keyframes wave {
+            0% { height: 15%; }
+            100% { height: 100%; }
         }
 
         ::-webkit-scrollbar {
@@ -103,17 +123,11 @@
                     </button>
                 </nav>
 
-                <!-- Actions: Auth, Theme Switcher & Mobile Menu Toggle -->
+                <!-- Actions: Theme Switcher & Mobile Menu Toggle -->
                 <div class="flex items-center space-x-2 sm:space-x-3">
-                    <!-- Admin Control Button (Visible only to Admin) -->
-                    <button id="admin-panel-btn" onclick="openAdminModal()" class="hidden px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-600 text-slate-900 shadow-sm transition-all flex items-center space-x-1">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <span class="hidden sm:inline">Quản Trị Admin</span>
-                    </button>
-
-                    <!-- User Status / Login Button -->
-                    <div id="auth-header-container">
-                        <!-- Populated dynamically by JS -->
+                    <!-- Auth User Bar -->
+                    <div id="auth-user-widget" class="flex items-center space-x-2">
+                        <!-- JS populated login button or user profile dropdown -->
                     </div>
 
                     <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
@@ -405,138 +419,6 @@
         </div>
     </footer>
 
-    <!-- LOGIN MODAL -->
-    <div id="login-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
-                <i class="fa-solid fa-xmark text-base"></i>
-            </button>
-
-            <div class="text-center space-y-3 mb-6">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-primary-600 to-accent-600 flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-lg shadow-primary-500/30">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Thành Viên</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Đăng nhập tài khoản để xem trọn bộ 1,500+ Prompt AI chất lượng cao</p>
-            </div>
-
-            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">Tên Đăng Nhập</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="text" id="login-username" required placeholder="Nhập tên tài khoản..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 mb-1">Mật Khẩu</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="password" id="login-password" required placeholder="Nhập mật khẩu..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                    </div>
-                </div>
-
-                <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold text-center bg-rose-50 dark:bg-rose-950/40 p-2.5 rounded-xl border border-rose-200 dark:border-rose-900/50">
-                    Tên đăng nhập hoặc mật khẩu không chính xác!
-                </div>
-
-                <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg shadow-primary-500/25 transition-all">
-                    Đăng Nhập Ngay
-                </button>
-            </form>
-
-            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/60 text-center">
-                <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Chưa có tài khoản hoặc tài khoản hết hạn?</p>
-                <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold hover:bg-blue-100 transition-colors">
-                    <i class="fa-solid fa-comment-dots text-sm"></i>
-                    <span>Đăng Ký & Nhận Tài Khoản Qua Zalo</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ADMIN MANAGEMENT MODAL -->
-    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
-            <!-- Modal Header -->
-            <div class="p-5 sm:p-6 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-xl font-black">
-                        <i class="fa-solid fa-user-gear"></i>
-                    </div>
-                    <div>
-                        <h2 class="text-lg font-bold">Bảng Quản Trị Hệ Thống Admin</h2>
-                        <p class="text-xs text-slate-400">Tạo & Cấp phép tài khoản thành viên theo ngày sử dụng</p>
-                    </div>
-                </div>
-                <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white p-2 rounded-xl">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <!-- Modal Content & Forms -->
-            <div class="p-5 sm:p-6 overflow-y-auto space-y-6 flex-grow">
-                <!-- Form: Create New Account -->
-                <div class="bg-slate-50 dark:bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 space-y-4">
-                    <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-2">
-                        <i class="fa-solid fa-user-plus text-primary-500"></i>
-                        <span>Cấp Tài Khoản Mới Cho Học Viên</span>
-                    </h3>
-
-                    <form onsubmit="handleCreateUserSubmit(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Tên Đăng Nhập</label>
-                            <input type="text" id="new-username" required placeholder="vd: user123" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-primary-500">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Mật Khẩu</label>
-                            <input type="text" id="new-password" required placeholder="vd: 123456" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-primary-500">
-                        </div>
-                        <div>
-                            <label class="block text-[11px] font-bold text-slate-500 uppercase mb-1">Số Ngày Kích Hoạt</label>
-                            <input type="number" id="new-days" min="1" max="3650" value="30" required class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-primary-500">
-                        </div>
-                        <div class="sm:col-span-3 pt-1 flex justify-end">
-                            <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5">
-                                <i class="fa-solid fa-check"></i>
-                                <span>Tạo Tài Khoản & Cấp Phép</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Users List Table -->
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center space-x-2">
-                            <i class="fa-solid fa-users text-purple-500"></i>
-                            <span>Danh Sách Tài Khoản Đã Cấp</span>
-                        </h3>
-                        <span id="admin-user-count" class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">0 Tài Khoản</span>
-                    </div>
-
-                    <div class="overflow-x-auto border border-slate-200 dark:border-slate-700 rounded-2xl">
-                        <table class="w-full text-left text-xs text-slate-600 dark:text-slate-300">
-                            <thead class="bg-slate-100 dark:bg-slate-900 uppercase font-bold text-[10px] text-slate-500 border-b border-slate-200 dark:border-slate-700">
-                                <tr>
-                                    <th class="px-4 py-3">Tài Khoản</th>
-                                    <th class="px-4 py-3">Mật Khẩu</th>
-                                    <th class="px-4 py-3">Vai Trò</th>
-                                    <th class="px-4 py-3">Trạng Thái / Còn Lại</th>
-                                    <th class="px-4 py-3 text-right">Thao Tác</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-users-tbody" class="divide-y divide-slate-100 dark:divide-slate-700/60 bg-white dark:bg-slate-800">
-                                <!-- Populated by JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- PROMPT DETAIL MODAL -->
     <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
@@ -563,6 +445,135 @@
         </div>
     </div>
 
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="w-12 h-12 rounded-2xl bg-primary-100 dark:bg-primary-900/40 text-primary-600 dark:text-primary-400 flex items-center justify-center text-xl mx-auto font-bold shadow-inner">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Tài Khoản</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Đăng nhập tài khoản học viên để mở khóa toàn bộ Prompt & Tool</p>
+                </div>
+
+                <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tên đăng nhập / Account</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="text" id="login-username" required placeholder="Nhập tên tài khoản..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Mật khẩu / Password</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                            <input type="password" id="login-password" required placeholder="Nhập mật khẩu..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                    </div>
+
+                    <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold bg-rose-50 dark:bg-rose-950/40 p-2.5 rounded-lg border border-rose-200 dark:border-rose-800 text-center"></div>
+
+                    <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg shadow-primary-500/25 transition-all flex items-center justify-center space-x-2">
+                        <span>Đăng Nhập Ngay</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </form>
+
+                <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60 text-center space-y-3">
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Chưa có tài khoản học viên hoặc đã hết hạn?</p>
+                    <a href="https://zalo.me/0984348734" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 font-bold text-xs transition-colors flex items-center justify-center space-x-2 border border-blue-200 dark:border-blue-800/40">
+                        <i class="fa-solid fa-comment-dots text-sm"></i>
+                        <span>Nhận & Kích Hoạt Tài Khoản Qua Zalo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN DASHBOARD MODAL -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="space-y-6">
+                <!-- Admin Header -->
+                <div class="flex items-center space-x-3 border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Bảng Quản Trị Hệ Thống (Admin Panel)</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Tạo tài khoản học viên, gia hạn số ngày sử dụng & quản lý quyền cấp phép</p>
+                    </div>
+                </div>
+
+                <!-- Create User Form -->
+                <div class="bg-slate-50 dark:bg-slate-900/80 p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center">
+                        <i class="fa-solid fa-user-plus text-emerald-500 mr-2"></i> Cấp Tài Khoản Mới Cho Học Viên
+                    </h3>
+                    <form onsubmit="handleCreateUserSubmit(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Tên tài khoản (Username)</label>
+                            <input type="text" id="admin-new-username" required placeholder="vd: hocvien2026" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Mật khẩu (Password)</label>
+                            <input type="text" id="admin-new-password" required placeholder="vd: 123456" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Số ngày kích hoạt (Ngày)</label>
+                            <input type="number" id="admin-new-days" required min="1" max="3650" value="30" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div class="sm:col-span-3 flex justify-end pt-1">
+                            <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Tạo & Kích Hoạt Tài Khoản</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- User List Table -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center">
+                            <i class="fa-solid fa-users text-purple-500 mr-2"></i> Danh Sách Tài Khoản Học Viên
+                        </h3>
+                        <span id="user-count-badge" class="px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-bold">0 thành viên</span>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <table class="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+                            <thead class="bg-slate-100 dark:bg-slate-900/90 text-slate-700 dark:text-slate-200 font-bold uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="p-3">Tài Khoản</th>
+                                    <th class="p-3">Mật Khẩu</th>
+                                    <th class="p-3">Vai Trò</th>
+                                    <th class="p-3">Hạn Sử Dụng</th>
+                                    <th class="p-3">Trạng Thái</th>
+                                    <th class="p-3 text-right">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-user-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-800">
+                                <!-- JS populated -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3.5 rounded-xl shadow-xl flex items-center space-x-3 pointer-events-none">
         <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
@@ -570,112 +581,334 @@
     </div>
 
     <script>
-        // DEFAULT INITIAL USER SEED DATA (Stored in localStorage)
-        const DEFAULT_USERS = [
+        // Default Admin Account Credentials: admin / Pv181290@1
+        const DEFAULT_ADMIN = {
+            username: 'admin',
+            password: 'Pv181290@1',
+            role: 'admin',
+            createdAt: new Date().toISOString()
+        };
+
+        const DEFAULT_MEMBERS = [
             {
-                id: 'usr-admin',
-                username: 'admin',
-                password: 'admin123',
-                role: 'admin',
-                expireAt: null, // Unlimited
-                createdAt: Date.now()
-            },
-            {
-                id: 'usr-demo',
-                username: 'hocvien',
+                username: 'hocvien1',
                 password: '123456',
                 role: 'member',
-                expireAt: Date.now() + (30 * 24 * 60 * 60 * 1000), // 30 days
-                createdAt: Date.now()
+                expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                createdAt: new Date().toISOString()
             }
         ];
 
-        function getUsersFromStorage() {
-            const data = localStorage.getItem('app_users');
-            if (!data) {
-                localStorage.setItem('app_users', JSON.stringify(DEFAULT_USERS));
-                return DEFAULT_USERS;
+        const sampleImagePrompts = [
+            {
+                id: 'img-1',
+                title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
+                category: 'taonhanvat',
+                categoryLabel: 'taonhanvat',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
+                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
+                author: 'Grok'
+            },
+            {
+                id: 'img-2',
+                title: 'Kiểu Tóc 1',
+                category: 'taonhanvat',
+                categoryLabel: 'taonhanvat',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu. Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown).`,
+                image: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
+                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
+                author: 'Grok'
             }
-            try { return JSON.parse(data); } catch (e) { return DEFAULT_USERS; }
+        ];
+
+        const sampleMotionPrompts = [
+            {
+                id: 'mot-1',
+                title: 'Chuyển Động tại chỗ 01',
+                category: 'taicho',
+                categoryLabel: 'Tại chỗ',
+                tool: 'Luma Dream Machine',
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
+            },
+            {
+                id: 'mot-2',
+                title: 'Chuyển Động tại chỗ 02',
+                category: 'taicho',
+                categoryLabel: 'Trình diễn',
+                tool: 'Kling AI',
+                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.`,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
+            }
+        ];
+
+        const sampleVideoPrompts = [
+            {
+                id: 'vid-1',
+                title: 'Trộm Đồ Manocanh - TikTok Shorts',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus`,
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
+            }
+        ];
+
+        const sampleToolProducts = [
+            {
+                id: 'tool-1',
+                title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
+                category: 'autovideo',
+                categoryLabel: 'Tự Động Tạo Video',
+                tool: 'Auto Software',
+                price: '290.000đ',
+                originalPrice: '590.000đ',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
+                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
+                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
+                guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).\n• Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.',
+                zaloLink: 'https://zalo.me/0984348734',
+                bankName: 'Vietinbank',
+                accountNo: '103868751388',
+                accountName: 'PHAM TUAN VINH',
+                note: 'Tool 01'
+            }
+        ];
+
+        const sampleDancePrompts = [
+            {
+                id: 'dance-1',
+                title: 'K-Pop Hit Trend Dance Cover (9:16)',
+                category: 'kpop',
+                categoryLabel: 'K-Pop Trend',
+                tool: 'Viggle AI Dance',
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn (VD: Linh xinh gái) để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
+                redirectUrl: 'https://viggle.ai/',
+                redirectLabel: 'Đến Viggle AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+            },
+            {
+                id: 'dance-2',
+                title: 'TikTok Viral Dance Challenge 2026',
+                category: 'tiktok',
+                categoryLabel: 'TikTok Challenge',
+                tool: 'Kling Motion Swap',
+                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
+                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
+                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc TikTok hot trend bạt ngàn lượt view.',
+                redirectUrl: 'https://klingai.com/',
+                redirectLabel: 'Mở Kling AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
+            },
+            {
+                id: 'dance-3',
+                title: 'HipHop Street Dance Energy 9:16',
+                category: 'hiphop',
+                categoryLabel: 'HipHop Street',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 street dance hiphop choreography, street fashion outfit, urban background, dynamic camera pan, 4k resolution`,
+                video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
+                description: 'Vũ đạo đường phố HipHop mạnh mẽ, dứt khoát dành cho video ngắn.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" để tải bản vũ đạo HipHop 60FPS.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI để gắn chuyển động vào trang phục đường phố AI.\n• Bước 3: Bật hiệu ứng lắc camera điện ảnh khi nhân vật thực hiện các cú giật nẩy tay.',
+                redirectUrl: 'https://runwayml.com/',
+                redirectLabel: 'Mở Runway ML',
+                downloadUrl: 'https://www.youtube.com/shorts/4EktxxHrKyc'
+            },
+            {
+                id: 'dance-4',
+                title: 'Múa Đương Đại Uyển Chuyển Gió Nhẹ',
+                category: 'modern',
+                categoryLabel: 'Múa Đương Đại',
+                tool: 'Luma Dance AI',
+                prompt: `9:16 aspect ratio, modern dance performance in peaceful studio, silk dress flowing with movement, soft volumetric lighting, elegant camera motion`,
+                video: 'https://www.youtube.com/shorts/icKchwsROCU',
+                description: 'Điệu múa đương đại uyển chuyển kết hợp hiệu ứng tà áo và gió thổi tự nhiên.',
+                guide: '• Bước 1: Tải video múa mẫu bằng nút bên dưới.\n• Bước 2: Dùng Luma Dream Machine hoặc Kling AI với prompt mô tả chất liệu vải mềm mại.\n• Bước 3: Kết hợp nhạc nền acoustic chill để thu hút người xem trên YouTube Shorts.',
+                redirectUrl: 'https://lumalabs.ai/dream-machine',
+                redirectLabel: 'Mở Luma Dream Machine',
+                downloadUrl: 'https://www.youtube.com/shorts/icKchwsROCU'
+            }
+        ];
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                if (darkIcon) darkIcon.classList.remove('hidden');
+                if (lightIcon) lightIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                if (lightIcon) lightIcon.classList.remove('hidden');
+                if (darkIcon) darkIcon.classList.add('hidden');
+            }
+        }
+
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                if (darkIcon) darkIcon.classList.add('hidden');
+                if (lightIcon) lightIcon.classList.remove('hidden');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                if (lightIcon) lightIcon.classList.add('hidden');
+                if (darkIcon) darkIcon.classList.remove('hidden');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        function switchTab(tabId, skipScroll = false) {
+            localStorage.setItem('activeTab', tabId);
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, '#' + tabId);
+            }
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            if (activeTab) activeTab.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
+            });
+            const currentNavBtn = document.getElementById(`nav-${tabId}`);
+            if (currentNavBtn) {
+                currentNavBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
+            }
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            pauseAllMedia();
+            setTimeout(() => { setupAutoPlayObserver(); }, 100);
+            if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function getUsersFromStorage() {
+            const data = localStorage.getItem('lxg_users');
+            if (!data) {
+                const initUsers = [DEFAULT_ADMIN, ...DEFAULT_MEMBERS];
+                localStorage.setItem('lxg_users', JSON.stringify(initUsers));
+                return initUsers;
+            }
+            try {
+                const users = JSON.parse(data);
+                const adminIdx = users.findIndex(u => u.username === 'admin');
+                if (adminIdx === -1) {
+                    users.unshift(DEFAULT_ADMIN);
+                } else {
+                    users[adminIdx].password = 'Pv181290@1';
+                    users[adminIdx].role = 'admin';
+                }
+                localStorage.setItem('lxg_users', JSON.stringify(users));
+                return users;
+            } catch (e) {
+                return [DEFAULT_ADMIN, ...DEFAULT_MEMBERS];
+            }
         }
 
         function saveUsersToStorage(users) {
-            localStorage.setItem('app_users', JSON.stringify(users));
+            localStorage.setItem('lxg_users', JSON.stringify(users));
         }
 
         function getCurrentUser() {
-            const data = localStorage.getItem('app_current_user');
-            if (!data) return null;
-            try { return JSON.parse(data); } catch (e) { return null; }
+            const username = localStorage.getItem('lxg_current_user');
+            if (!username) return null;
+            const users = getUsersFromStorage();
+            return users.find(u => u.username === username) || null;
         }
 
-        function setCurrentUser(user) {
-            if (user) {
-                localStorage.setItem('app_current_user', JSON.stringify(user));
-            } else {
-                localStorage.removeItem('app_current_user');
+        function checkAuthStatus() {
+            const user = getCurrentUser();
+            if (!user) return { isAuthenticated: false, isAdmin: false, isExpired: false, daysLeft: 0, user: null };
+            if (user.role === 'admin') {
+                return { isAuthenticated: true, isAdmin: true, isExpired: false, daysLeft: 9999, user };
             }
-            updateAuthHeader();
+            
+            if (!user.expiresAt) return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user };
+            
+            const now = Date.now();
+            const expTime = new Date(user.expiresAt).getTime();
+            const diffMs = expTime - now;
+            const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+
+            if (diffMs <= 0) {
+                return { isAuthenticated: true, isAdmin: false, isExpired: true, daysLeft: 0, user };
+            }
+
+            return { isAuthenticated: true, isAdmin: false, isExpired: false, daysLeft, user };
         }
 
-        function getUserRemainingDays(user) {
-            if (!user) return 0;
-            if (user.role === 'admin' || !user.expireAt) return 9999;
-            const remainingMs = user.expireAt - Date.now();
-            if (remainingMs <= 0) return 0;
-            return Math.ceil(remainingMs / (1000 * 60 * 60 * 24));
-        }
+        function renderAuthWidget() {
+            const widget = document.getElementById('auth-user-widget');
+            if (!widget) return;
 
-        function isUserValid(user = getCurrentUser()) {
-            if (!user) return false;
-            if (user.role === 'admin') return true;
-            return getUserRemainingDays(user) > 0;
-        }
+            const auth = checkAuthStatus();
 
-        function updateAuthHeader() {
-            const container = document.getElementById('auth-header-container');
-            const adminBtn = document.getElementById('admin-panel-btn');
-            const currentUser = getCurrentUser();
-
-            if (currentUser && isUserValid(currentUser)) {
-                const remaining = getUserRemainingDays(currentUser);
-                const daysBadge = currentUser.role === 'admin' 
-                    ? '<span class="text-[10px] bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-300 px-2 py-0.5 rounded-md font-bold">Admin</span>'
-                    : `<span class="text-[10px] bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 px-2 py-0.5 rounded-md font-bold">Còn ${remaining} ngày</span>`;
-
-                if (container) {
-                    container.innerHTML = `
-                        <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 pl-2.5 pr-1.5 py-1 rounded-xl">
-                            <i class="fa-solid fa-circle-user text-primary-500 text-sm"></i>
-                            <span class="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-1 max-w-[90px]">${currentUser.username}</span>
-                            ${daysBadge}
-                            <button onclick="handleLogout()" class="p-1 text-slate-400 hover:text-rose-500 text-xs ml-1" title="Đăng Xuất">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                            </button>
-                        </div>
-                    `;
-                }
-
-                if (adminBtn) {
-                    if (currentUser.role === 'admin') adminBtn.classList.remove('hidden');
-                    else adminBtn.classList.add('hidden');
-                }
-            } else {
-                if (container) {
-                    container.innerHTML = `
-                        <button onclick="openLoginModal()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-md transition-all flex items-center space-x-1.5">
-                            <i class="fa-solid fa-right-to-bracket"></i>
-                            <span>Đăng Nhập</span>
+            if (!auth.isAuthenticated) {
+                widget.innerHTML = `
+                    <button onclick="openLoginModal()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 text-white font-bold text-xs shadow-md shadow-primary-500/20 hover:scale-105 transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Đăng Nhập</span>
+                    </button>
+                `;
+            } else if (auth.isAdmin) {
+                widget.innerHTML = `
+                    <div class="flex items-center space-x-1.5">
+                        <button onclick="openAdminModal()" class="px-3 py-1.5 rounded-xl bg-purple-600 text-white font-bold text-xs shadow-md hover:bg-purple-700 transition-all flex items-center space-x-1">
+                            <i class="fa-solid fa-user-shield"></i>
+                            <span>Admin Panel</span>
                         </button>
-                    `;
-                }
-                if (adminBtn) adminBtn.classList.add('hidden');
+                        <button onclick="handleLogout()" class="p-2 rounded-xl text-slate-500 hover:text-rose-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Đăng xuất">
+                            <i class="fa-solid fa-right-from-bracket text-base"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                const badgeColor = auth.isExpired ? 'bg-rose-500 text-white' : 'bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30';
+                const statusText = auth.isExpired ? 'Hết Hạn' : `Còn ${auth.daysLeft} ngày`;
+
+                widget.innerHTML = `
+                    <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 p-1 sm:p-1.5 pl-2.5 rounded-2xl border border-slate-200 dark:border-slate-700">
+                        <div class="flex flex-col">
+                            <span class="text-[11px] font-bold text-slate-800 dark:text-slate-100 max-w-[80px] sm:max-w-[120px] truncate">${auth.user.username}</span>
+                            <span class="text-[9px] font-semibold ${badgeColor} px-1.5 py-0.2 rounded-md inline-block w-fit">${statusText}</span>
+                        </div>
+                        <button onclick="handleLogout()" class="p-1.5 rounded-xl text-slate-400 hover:text-rose-500 transition-colors" title="Đăng xuất">
+                            <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                        </button>
+                    </div>
+                `;
             }
         }
 
         function openLoginModal() {
             document.getElementById('login-modal').classList.remove('hidden');
-            document.getElementById('login-error-msg').classList.add('hidden');
+            const err = document.getElementById('login-error-msg');
+            if (err) err.classList.add('hidden');
         }
 
         function closeLoginModal() {
@@ -684,36 +917,42 @@
 
         function handleLoginSubmit(e) {
             e.preventDefault();
-            const usernameInput = document.getElementById('login-username').value.trim();
-            const passwordInput = document.getElementById('login-password').value.trim();
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value.trim();
+            const errorEl = document.getElementById('login-error-msg');
+
             const users = getUsersFromStorage();
+            const match = users.find(x => x.username === u && x.password === p);
 
-            const foundUser = users.find(u => u.username.toLowerCase() === usernameInput.toLowerCase() && u.password === passwordInput);
-
-            if (foundUser) {
-                if (foundUser.role !== 'admin' && getUserRemainingDays(foundUser) <= 0) {
-                    alert("Tài khoản của bạn đã HẾT HẠN KÍCH HOẠT! Vui lòng liên hệ Admin qua Zalo để gia hạn.");
-                    return;
+            if (!match) {
+                if (errorEl) {
+                    errorEl.innerText = 'Sai tên đăng nhập hoặc mật khẩu!';
+                    errorEl.classList.remove('hidden');
                 }
-                setCurrentUser(foundUser);
-                closeLoginModal();
-                showToast(`Chào mừng ${foundUser.username} đã đăng nhập thành công!`);
-                refreshAllGrids();
-            } else {
-                document.getElementById('login-error-msg').classList.remove('hidden');
+                return;
             }
+
+            localStorage.setItem('lxg_current_user', match.username);
+            closeLoginModal();
+            renderAuthWidget();
+            refreshAllGrids();
+            showToast(`Đã đăng nhập thành công (${match.username})`);
         }
 
         function handleLogout() {
-            setCurrentUser(null);
-            showToast("Đã đăng xuất tài khoản!");
+            localStorage.removeItem('lxg_current_user');
+            renderAuthWidget();
             refreshAllGrids();
+            showToast('Đã đăng xuất tài khoản!');
         }
 
         function openAdminModal() {
-            const user = getCurrentUser();
-            if (!user || user.role !== 'admin') return;
-            renderAdminUsersTable();
+            const auth = checkAuthStatus();
+            if (!auth.isAdmin) {
+                showToast('Bạn không có quyền truy cập trang quản trị!');
+                return;
+            }
+            renderAdminUserTable();
             document.getElementById('admin-modal').classList.remove('hidden');
         }
 
@@ -721,137 +960,232 @@
             document.getElementById('admin-modal').classList.add('hidden');
         }
 
-        function handleCreateUserSubmit(e) {
-            e.preventDefault();
-            const username = document.getElementById('new-username').value.trim();
-            const password = document.getElementById('new-password').value.trim();
-            const days = parseInt(document.getElementById('new-days').value) || 30;
-
-            if (!username || !password) return;
-
-            const users = getUsersFromStorage();
-            if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-                alert("Tên tài khoản này đã tồn tại trên hệ thống!");
-                return;
-            }
-
-            const newUser = {
-                id: 'usr-' + Math.random().toString(36).substr(2, 9),
-                username: username,
-                password: password,
-                role: 'member',
-                expireAt: Date.now() + (days * 24 * 60 * 60 * 1000),
-                createdAt: Date.now()
-            };
-
-            users.push(newUser);
-            saveUsersToStorage(users);
-
-            document.getElementById('new-username').value = '';
-            document.getElementById('new-password').value = '';
-            renderAdminUsersTable();
-            showToast(`Đã cấp thành công tài khoản "${username}" (${days} ngày)!`);
-        }
-
-        function extendUserAccount(userId, addDays) {
-            const users = getUsersFromStorage();
-            const user = users.find(u => u.id === userId);
-            if (!user) return;
-
-            const currentExpire = (user.expireAt && user.expireAt > Date.now()) ? user.expireAt : Date.now();
-            user.expireAt = currentExpire + (addDays * 24 * 60 * 60 * 1000);
-
-            saveUsersToStorage(users);
-            renderAdminUsersTable();
-            showToast(`Đã gia hạn thêm ${addDays} ngày cho tài khoản ${user.username}!`);
-        }
-
-        function deleteUserAccount(userId) {
-            if (!confirm("Bạn có chắc chắn muốn xóa tài khoản này khỏi hệ thống?")) return;
-            let users = getUsersFromStorage();
-            users = users.filter(u => u.id !== userId);
-            saveUsersToStorage(users);
-            renderAdminUsersTable();
-            showToast("Đã xóa tài khoản thành công!");
-        }
-
-        function copyUserZaloInfo(username, password, days) {
-            const msg = `[THÔNG TIN TÀI KHOẢN LINH XINH GÁI PROMPT HUB]\n• Tài khoản: ${username}\n• Mật khẩu: ${password}\n• Thời hạn sử dụng: ${days} ngày\n• Link đăng nhập: ${window.location.origin}${window.location.pathname}`;
-            copyToClipboard(msg);
-        }
-
-        function renderAdminUsersTable() {
-            const users = getUsersFromStorage();
-            const tbody = document.getElementById('admin-users-tbody');
-            const countEl = document.getElementById('admin-user-count');
-            if (countEl) countEl.innerText = `${users.length} Tài Khoản`;
-
+        function renderAdminUserTable() {
+            const tbody = document.getElementById('admin-user-table-body');
+            const countBadge = document.getElementById('user-count-badge');
             if (!tbody) return;
 
+            const users = getUsersFromStorage();
+            if (countBadge) countBadge.innerText = `${users.length} tài khoản`;
+
             tbody.innerHTML = users.map(u => {
-                const remaining = getUserRemainingDays(u);
-                const isExpired = remaining <= 0 && u.role !== 'admin';
-                const statusBadge = u.role === 'admin' 
-                    ? `<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 font-bold text-[10px]">Permanent Admin</span>`
-                    : isExpired 
-                        ? `<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>`
-                        : `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Còn ${remaining} ngày</span>`;
+                let statusBadge = '<span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold text-[10px]">Quản trị viên</span>';
+                let daysLeftText = 'Vĩnh viễn';
+
+                if (u.role !== 'admin') {
+                    if (!u.expiresAt) {
+                        statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
+                        daysLeftText = '0 ngày';
+                    } else {
+                        const ms = new Date(u.expiresAt).getTime() - Date.now();
+                        const days = Math.ceil(ms / (1000 * 60 * 60 * 24));
+                        if (days <= 0) {
+                            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
+                            daysLeftText = '0 ngày';
+                        } else {
+                            statusBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Đang Kích Hoạt</span>`;
+                            daysLeftText = `${days} ngày`;
+                        }
+                    }
+                }
 
                 return `
-                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30 transition-colors">
-                        <td class="px-4 py-3 font-bold text-slate-900 dark:text-white flex items-center space-x-1.5">
-                            <i class="fa-solid fa-user text-slate-400"></i>
-                            <span>${u.username}</span>
-                        </td>
-                        <td class="px-4 py-3 font-mono text-slate-600 dark:text-slate-300">${u.password}</td>
-                        <td class="px-4 py-3 uppercase font-semibold text-[10px]">${u.role}</td>
-                        <td class="px-4 py-3">${statusBadge}</td>
-                        <td class="px-4 py-3 text-right space-x-1">
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                        <td class="p-3 font-bold text-slate-800 dark:text-slate-100">${u.username}</td>
+                        <td class="p-3 font-mono text-slate-500">${u.password}</td>
+                        <td class="p-3 uppercase font-semibold text-[10px]">${u.role}</td>
+                        <td class="p-3 font-semibold text-slate-700 dark:text-slate-300">${daysLeftText}</td>
+                        <td class="p-3">${statusBadge}</td>
+                        <td class="p-3 text-right space-x-1">
                             ${u.role !== 'admin' ? `
-                                <button onclick="extendUserAccount('${u.id}', 30)" class="px-2 py-1 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-bold text-[10px] hover:bg-blue-100" title="+30 Ngày">
-                                    +30d
+                                <button onclick="extendUserDays('${u.username}', 30)" class="px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 font-semibold hover:bg-emerald-100 text-[10px]" title="+30 Ngày">
+                                    <i class="fa-solid fa-calendar-plus mr-1"></i>+30 ngày
                                 </button>
-                                <button onclick="copyUserZaloInfo('${u.username}', '${u.password}', ${remaining})" class="px-2 py-1 rounded-lg bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 font-bold text-[10px] hover:bg-purple-100" title="Copy gửi Zalo">
-                                    <i class="fa-solid fa-copy"></i> Zalo
-                                </button>
-                                <button onclick="deleteUserAccount('${u.id}')" class="px-2 py-1 rounded-lg bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-300 font-bold text-[10px] hover:bg-rose-100" title="Xóa">
+                                <button onclick="deleteUser('${u.username}')" class="px-2 py-1 rounded bg-rose-50 dark:bg-rose-900/30 text-rose-600 font-semibold hover:bg-rose-100 text-[10px]" title="Xóa tài khoản">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                            ` : '<span class="text-slate-400 font-mono text-[10px]">-</span>'}
+                            ` : '<span class="text-slate-400 text-[10px]">Mặc định</span>'}
                         </td>
                     </tr>
                 `;
             }).join('');
         }
 
-        // UNLOCKED RESTRICTION HELPER - Slice list to 2 items for unauthenticated users & add locked call-to-action
-        function getAccessFilteredList(list) {
-            if (isUserValid()) return { items: list, restricted: false };
-            return { items: list.slice(0, 2), restricted: true, total: list.length };
+        function handleCreateUserSubmit(e) {
+            e.preventDefault();
+            const username = document.getElementById('admin-new-username').value.trim();
+            const password = document.getElementById('admin-new-password').value.trim();
+            const days = parseInt(document.getElementById('admin-new-days').value) || 30;
+
+            if (!username || !password) return;
+
+            const users = getUsersFromStorage();
+            if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+                showToast('Tài khoản đã tồn tại trên hệ thống!');
+                return;
+            }
+
+            const expiresAt = new Date(Date.now() + days * 86400000).toISOString();
+            users.push({
+                username,
+                password,
+                role: 'member',
+                expiresAt,
+                createdAt: new Date().toISOString()
+            });
+
+            saveUsersToStorage(users);
+            renderAdminUserTable();
+            document.getElementById('admin-new-username').value = '';
+            document.getElementById('admin-new-password').value = '';
+            showToast(`Đã tạo tài khoản ${username} (${days} ngày kích hoạt)`);
         }
 
-        function renderLockedCardBanner(totalCount = 1500) {
+        function extendUserDays(username, days) {
+            const users = getUsersFromStorage();
+            const user = users.find(u => u.username === username);
+            if (!user) return;
+
+            let currentExp = user.expiresAt ? new Date(user.expiresAt).getTime() : Date.now();
+            if (currentExp < Date.now()) currentExp = Date.now();
+
+            user.expiresAt = new Date(currentExp + days * 86400000).toISOString();
+            saveUsersToStorage(users);
+            renderAdminUserTable();
+            renderAuthWidget();
+            refreshAllGrids();
+            showToast(`Đã gia hạn thêm ${days} ngày cho ${username}`);
+        }
+
+        function deleteUser(username) {
+            let users = getUsersFromStorage();
+            users = users.filter(u => u.username !== username);
+            saveUsersToStorage(users);
+            renderAdminUserTable();
+            showToast(`Đã xóa tài khoản ${username}`);
+        }
+
+        function renderLockedCard(remainingCount, typeName = 'mẫu Prompt') {
             return `
-                <div class="col-span-full mt-4 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 text-white text-center border border-indigo-500/30 shadow-2xl space-y-4">
-                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-2xl font-bold mx-auto border border-amber-500/30">
+            <div class="col-span-1 sm:col-span-2 lg:col-span-1 bg-gradient-to-br from-slate-900/95 via-slate-800/95 to-indigo-950/95 rounded-2xl p-6 border-2 border-dashed border-primary-500/40 text-white flex flex-col justify-between text-center shadow-xl backdrop-blur-md relative overflow-hidden group min-h-[350px]">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-500/20 rounded-full blur-2xl"></div>
+                <div class="my-auto space-y-4 relative z-10">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-primary-500/20 border border-primary-500/40 flex items-center justify-center text-primary-400 text-2xl shadow-inner">
                         <i class="fa-solid fa-lock"></i>
                     </div>
-                    <div class="max-w-xl mx-auto space-y-2">
-                        <h3 class="text-xl sm:text-2xl font-extrabold text-white">Xem Thêm +${totalCount - 2} Mẫu Prompt & Sản Phẩm Khác</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">Bạn đang ở chế độ xem thử (giới hạn 2 mẫu). Đăng nhập tài khoản hoặc nhận cấp phép kích hoạt sử dụng qua Zalo để mở khóa toàn bộ thư viện!</p>
+                    <div>
+                        <h3 class="font-extrabold text-base sm:text-lg text-white">Nội Dung Dành Cho Học Viên</h3>
+                        <p class="text-xs text-slate-300 mt-1 max-w-xs mx-auto leading-relaxed">
+                            Đăng nhập tài khoản kích hoạt để xem thêm <span class="text-primary-400 font-bold text-sm">${remainingCount}+</span> ${typeName} & sao chép prompt đầy đủ.
+                        </p>
                     </div>
-                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <button onclick="openLoginModal()" class="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center space-x-2">
+                    <div class="space-y-2 pt-2">
+                        <button onclick="openLoginModal()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-right-to-bracket"></i>
                             <span>Đăng Nhập Ngay</span>
                         </button>
-                        <a href="https://zalo.me/0984348734" target="_blank" class="w-full sm:w-auto px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-lg transition-all flex items-center justify-center space-x-2">
+                        <a href="https://zalo.me/0984348734" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 text-blue-300 border border-blue-500/40 text-xs font-semibold transition-all flex items-center justify-center space-x-2">
                             <i class="fa-solid fa-comment-dots"></i>
                             <span>Nhận Tài Khoản Qua Zalo</span>
                         </a>
                     </div>
                 </div>
-            `;
+                <div class="text-[10px] text-slate-400 border-t border-slate-700/50 pt-3 relative z-10">
+                    <i class="fa-solid fa-shield-halved text-emerald-400 mr-1"></i> Hỗ trợ kích hoạt 24/7 qua Zalo 0984348734
+                </div>
+            </div>`;
+        }
+
+        function renderMediaContainer(item) {
+            if (item.video) {
+                const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
+                const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+                if (ytMatch && ytMatch[1]) {
+                    const videoId = ytMatch[1];
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                            <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
+                            
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
+                                class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                            
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+                return `
+                    <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        
+                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                            <i class="fa-solid fa-volume-xmark"></i>
+                        </button>
+                    </div>
+                `;
+            } else if (item.image) {
+                return `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
+            }
+            return '';
+        }
+
+        function renderHomeGridItem(item) {
+            if (item.price) {
+                return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
+                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
+                        </span>
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">
+                            ${item.price}
+                        </span>
+                    </div>
+                    <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
+                                <i class="fa-solid fa-eye mr-1"></i> Chi tiết
+                            </button>
+                            <button onclick="openQRModal('${item.id}')" class="px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
+                                <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            return `
+            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                    ${renderMediaContainer(item)}
+                    <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">
+                        ${item.tool}
+                    </span>
+                </div>
+                <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
+                    </div>
+                    <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                        <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
+                            <i class="fa-solid fa-eye mr-1"></i> Xem
+                        </button>
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] sm:text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
+                            <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                        </button>
+                    </div>
+                </div>
+            </div>`;
         }
 
         function refreshAllGrids() {
@@ -867,18 +1201,31 @@
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
             const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
-            const access = getAccessFilteredList(featured);
-            let html = access.items.map(item => renderHomeGridItem(item)).join('');
-            if (access.restricted) html += renderLockedCardBanner(1500);
-            container.innerHTML = html;
+            
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            if (isAuthorized) {
+                container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
+            } else {
+                const visibleItems = featured.slice(0, 2);
+                const lockedHtml = renderLockedCard(featured.length - 2, 'mẫu Prompt xu hướng');
+                container.innerHTML = visibleItems.map(item => renderHomeGridItem(item)).join('') + lockedHtml;
+            }
+
             setupAutoPlayObserver();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
             const container = document.getElementById('image-templates-grid');
             if (!container) return;
-            const access = getAccessFilteredList(list);
-            let html = access.items.map(item => `
+
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            const renderList = isAuthorized ? list : list.slice(0, 2);
+
+            let html = renderList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
@@ -906,7 +1253,11 @@
                     </div>
                 </div>
             `).join('');
-            if (access.restricted) html += renderLockedCardBanner(list.length);
+
+            if (!isAuthorized && list.length > 2) {
+                html += renderLockedCard(list.length - 2, 'mẫu hình ảnh');
+            }
+
             container.innerHTML = html;
             setupAutoPlayObserver();
         }
@@ -914,8 +1265,13 @@
         function renderMotionPrompts(list = sampleMotionPrompts) {
             const container = document.getElementById('motion-templates-grid');
             if (!container) return;
-            const access = getAccessFilteredList(list);
-            let html = access.items.map(item => `
+
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            const renderList = isAuthorized ? list : list.slice(0, 2);
+
+            let html = renderList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -943,7 +1299,11 @@
                     </div>
                 </div>
             `).join('');
-            if (access.restricted) html += renderLockedCardBanner(list.length);
+
+            if (!isAuthorized && list.length > 2) {
+                html += renderLockedCard(list.length - 2, 'mẫu chuyển động');
+            }
+
             container.innerHTML = html;
             setupAutoPlayObserver();
         }
@@ -951,8 +1311,13 @@
         function renderVideoPrompts(list = sampleVideoPrompts) {
             const container = document.getElementById('video-templates-grid');
             if (!container) return;
-            const access = getAccessFilteredList(list);
-            let html = access.items.map(item => `
+
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            const renderList = isAuthorized ? list : list.slice(0, 2);
+
+            let html = renderList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -980,7 +1345,11 @@
                     </div>
                 </div>
             `).join('');
-            if (access.restricted) html += renderLockedCardBanner(list.length);
+
+            if (!isAuthorized && list.length > 2) {
+                html += renderLockedCard(list.length - 2, 'mẫu video');
+            }
+
             container.innerHTML = html;
             setupAutoPlayObserver();
         }
@@ -988,8 +1357,13 @@
         function renderToolProducts(list = sampleToolProducts) {
             const container = document.getElementById('tool-templates-grid');
             if (!container) return;
-            const access = getAccessFilteredList(list);
-            let html = access.items.map(item => `
+
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            const renderList = isAuthorized ? list : list.slice(0, 2);
+
+            let html = renderList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1024,7 +1398,11 @@
                     </div>
                 </div>
             `).join('');
-            if (access.restricted) html += renderLockedCardBanner(list.length);
+
+            if (!isAuthorized && list.length > 2) {
+                html += renderLockedCard(list.length - 2, 'tool tự động');
+            }
+
             container.innerHTML = html;
             setupAutoPlayObserver();
         }
@@ -1032,8 +1410,13 @@
         function renderDancePrompts(list = sampleDancePrompts) {
             const container = document.getElementById('dance-templates-grid');
             if (!container) return;
-            const access = getAccessFilteredList(list);
-            let html = access.items.map(item => `
+
+            const auth = checkAuthStatus();
+            const isAuthorized = auth.isAuthenticated && !auth.isExpired;
+
+            const renderList = isAuthorized ? list : list.slice(0, 2);
+
+            let html = renderList.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1068,15 +1451,424 @@
                     </div>
                 </div>
             `).join('');
-            if (access.restricted) html += renderLockedCardBanner(list.length);
+
+            if (!isAuthorized && list.length > 2) {
+                html += renderLockedCard(list.length - 2, 'mẫu vũ đạo Dance');
+            }
+
             container.innerHTML = html;
             setupAutoPlayObserver();
+        }
+
+        function removeVietnameseTones(str) {
+            if (!str) return '';
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+        }
+
+        function handleHomeSearch(e) { if (e.key === 'Enter') executeHomeSearch(); }
+        function handleHomeSearchInput() { if (!document.getElementById('home-search-input').value.trim()) clearHomeSearch(); }
+
+        function executeHomeSearch() {
+            const rawQuery = document.getElementById('home-search-input').value.trim();
+            const query = removeVietnameseTones(rawQuery);
+            const container = document.getElementById('home-featured-grid');
+            switchTab('home', true);
+            
+            const clearBtn = document.getElementById('clear-home-search-btn');
+            if (rawQuery) {
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = `Kết Quả Tìm Kiếm Cho: "${rawQuery}"`;
+            } else {
+                if (clearBtn) clearBtn.classList.add('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
+                renderFeaturedHomePrompts();
+                return;
+            }
+
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
+            const filtered = allItems.filter(item => {
+                return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
+            } else {
+                container.innerHTML = filtered.map(item => renderHomeGridItem(item)).join('');
+            }
+            
+            setupAutoPlayObserver();
+
+            const gridSection = document.getElementById('home-grid-title');
+            if (gridSection) {
+                gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function clearHomeSearch() {
+            const searchInput = document.getElementById('home-search-input');
+            if (searchInput) searchInput.value = '';
+            const clearBtn = document.getElementById('clear-home-search-btn');
+            if (clearBtn) clearBtn.classList.add('hidden');
+            const titleEl = document.getElementById('home-grid-title');
+            if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
+            renderFeaturedHomePrompts();
+        }
+
+        function filterImages() {
+            const query = removeVietnameseTones(document.getElementById('image-search').value);
+            renderImagePrompts(sampleImagePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterImageCategory(cat, btnElement) {
+            document.querySelectorAll('.img-cat-btn').forEach(b => b.className = "img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm";
+            renderImagePrompts(cat === 'all' ? sampleImagePrompts : sampleImagePrompts.filter(item => item.category === cat));
+        }
+
+        function filterMotion() {
+            const query = removeVietnameseTones(document.getElementById('motion-search').value);
+            renderMotionPrompts(sampleMotionPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterMotionCategory(cat, btnElement) {
+            document.querySelectorAll('.motion-cat-btn').forEach(b => b.className = "motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm";
+            renderMotionPrompts(cat === 'all' ? sampleMotionPrompts : sampleMotionPrompts.filter(item => item.category === cat));
+        }
+
+        function filterVideo() {
+            const query = removeVietnameseTones(document.getElementById('video-search').value);
+            renderVideoPrompts(sampleVideoPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterVideoCategory(cat, btnElement) {
+            document.querySelectorAll('.video-cat-btn').forEach(b => b.className = "video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm";
+            renderVideoPrompts(cat === 'all' ? sampleVideoPrompts : sampleVideoPrompts.filter(item => item.category === cat));
+        }
+
+        function filterTools() {
+            const query = removeVietnameseTones(document.getElementById('tool-search').value);
+            renderToolProducts(sampleToolProducts.filter(item => removeVietnameseTones(item.title).includes(query)));
+        }
+
+        function filterToolCategory(cat, btnElement) {
+            document.querySelectorAll('.tool-cat-btn').forEach(b => b.className = "tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm";
+            renderToolProducts(cat === 'all' ? sampleToolProducts : sampleToolProducts.filter(item => item.category === cat));
+        }
+
+        function filterDance() {
+            const query = removeVietnameseTones(document.getElementById('dance-search').value);
+            renderDancePrompts(sampleDancePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.description).includes(query)));
+        }
+
+        function filterDanceCategory(cat, btnElement) {
+            document.querySelectorAll('.dance-cat-btn').forEach(b => b.className = "dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm";
+            renderDancePrompts(cat === 'all' ? sampleDancePrompts : sampleDancePrompts.filter(item => item.category === cat));
+        }
+
+        function copyPromptObject(btn, encodedText) {
+            const text = decodeURIComponent(atob(encodedText));
+            copyToClipboard(text);
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Đã sao chép prompt văn bản chuẩn!");
+                }).catch(() => { fallbackCopy(text); });
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast("Đã sao chép prompt văn bản chuẩn!");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            const messageEl = document.getElementById('toast-message');
+            if (messageEl) messageEl.innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        let mediaObserver = null;
+
+        function playMedia(container) {
+            if (!container) return;
+            const video = container.querySelector('video');
+            if (video) { video.play().catch(() => {}); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
+            }
+        }
+
+        function pauseMedia(container) {
+            if (!container) return;
+            const video = container.querySelector('video');
+            if (video) { video.pause(); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
+        }
+
+        function pauseAllMedia() {
+            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
+        }
+
+        function setupAutoPlayObserver() {
+            if (mediaObserver) mediaObserver.disconnect();
+            mediaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const isTabVisible = !entry.target.closest('.tab-content.hidden');
+                    if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
+                        playMedia(entry.target);
+                    } else {
+                        pauseMedia(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
+        }
+
+        function muteAllAudio(exceptId = null) {
+            document.querySelectorAll('.media-container').forEach(container => {
+                const iframe = container.querySelector('iframe');
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+            });
+        }
+
+        function toggleAudio(elementId, type, btn, event) {
+            if (event) { event.stopPropagation(); event.preventDefault(); }
+            const icon = btn.querySelector('i');
+            const isMuted = btn.getAttribute('data-muted') !== 'false';
+            if (isMuted) {
+                muteAllAudio(elementId);
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                    iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = false;
+                }
+                btn.setAttribute('data-muted', 'false');
+                if (icon) icon.className = 'fa-solid fa-volume-high';
+                btn.classList.remove('bg-black/40');
+                btn.classList.add('bg-purple-600', 'scale-110');
+            } else {
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = true;
+                }
+                btn.setAttribute('data-muted', 'true');
+                if (icon) icon.className = 'fa-solid fa-volume-xmark';
+                btn.classList.remove('bg-purple-600', 'scale-110');
+                btn.classList.add('bg-black/40');
+            }
+        }
+
+        function openModal(itemId) {
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
+            const item = allItems.find(x => x.id === itemId);
+            if (!item) return;
+            pauseAllMedia();
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+
+            if (item.downloadUrl) {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-bold uppercase"><i class="fa-solid fa-person-dancing mr-1"></i>${item.tool}</span>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Vũ Đạo</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-purple-500 mb-1">Hướng Dẫn Tạo Dance AI Chi Tiết</label>
+                            <div class="p-3.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-xs text-slate-800 dark:text-slate-200 border border-purple-200 dark:border-purple-800/50 whitespace-pre-line leading-relaxed">${item.guide}</div>
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                            <a href="${item.redirectUrl}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${item.redirectLabel}</span>
+                            </a>
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-download"></i> <span>TẢI VIDEO MẪU</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            } else if (item.price) {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">${item.tool}</span>
+                            <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${item.price} <span class="text-xs text-slate-400 line-through font-normal">${item.originalPrice}</span></span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Sản Phẩm</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Hướng Dẫn Sử Dụng & Setup</label>
+                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 whitespace-pre-line leading-relaxed">${item.guide}</div>
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                            <a href="${item.zaloLink}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo</span>
+                            </a>
+                            <button onclick="closeModal(); openQRModal('${item.id}')" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-qrcode"></i> <span>MUA NGAY (MÃ QR)</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">${item.tool}</span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[60vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Hướng Dẫn</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || 'Không có mô tả chi tiết.'}</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản (Chuẩn Copy)</label>
+                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                                </button>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
+                                ${item.prompt}
+                            </div>
+                        </div>
+                        <div class="pt-4 flex justify-end">
+                            <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300">Đóng cửa sổ</button>
+                        </div>
+                    </div>
+                `;
+            }
+            modal.classList.remove('hidden');
+            setTimeout(() => { playMedia(content); }, 100);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            pauseMedia(modal);
+            muteAllAudio();
+            modal.classList.add('hidden');
+            setTimeout(() => { setupAutoPlayObserver(); }, 100);
+        }
+
+        function openQRModal(toolId) {
+            const tool = sampleToolProducts.find(x => x.id === toolId);
+            if (!tool) return;
+            const modal = document.getElementById('qr-modal');
+            const content = document.getElementById('qr-modal-content');
+            
+            const qrUrl = tool.customQrImage || `https://img.vietqr.io/image/MB-${tool.accountNo}-compact2.png?amount=${tool.price.replace(/[^0-9]/g, '')}&addInfo=${encodeURIComponent(tool.note)}&accountName=${encodeURIComponent(tool.accountName)}`;
+
+            content.innerHTML = `
+                <div class="space-y-3">
+                    <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">
+                        <i class="fa-solid fa-shield-halved"></i> <span>Thanh Toán An Toàn Qua QR</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
+                    
+                    <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto relative group">
+                        <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
+                        <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Quét mã QR bằng ứng dụng Ngân hàng</div>
+                    </div>
+
+                    <div class="space-y-2 text-left bg-slate-100 dark:bg-slate-900/60 p-3.5 rounded-xl text-xs">
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tiền:</span><span class="font-extrabold text-emerald-600 text-sm">${tool.price}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Ngân hàng:</span><span class="font-bold text-slate-800 dark:text-slate-200">${tool.bankName}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tài khoản:</span><span class="font-mono font-bold">${tool.accountNo}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Nội dung CK:</span><span class="font-mono font-bold text-rose-500">${tool.note}</span></div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-between gap-3">
+                        <a href="${tool.zaloLink}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow">
+                            <i class="fa-solid fa-headset"></i> <span>Xác Nhận Qua Zalo</span>
+                        </a>
+                        <button onclick="closeQRModal()" class="py-2.5 px-4 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs">Đóng</button>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeQRModal() { document.getElementById('qr-modal').classList.add('hidden'); }
+
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.getElementById('scroll-top-btn');
+            if (!scrollBtn) return;
+            if (window.scrollY > 300) {
+                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.onload = function() {
             initTheme();
             getUsersFromStorage();
-            updateAuthHeader();
+            renderAuthWidget();
             refreshAllGrids();
 
             const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
