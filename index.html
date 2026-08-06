@@ -34,7 +34,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <!-- Custom Animations & Scrollbar CSS -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -48,6 +48,24 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        .motion-card-preview {
+            background-size: 200% 200%;
+            animation: gradientShift 4s infinite ease-in-out alternate;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .wave-bar {
+            animation: wave 1.2s infinite ease-in-out alternate;
+        }
+        @keyframes wave {
+            0% { height: 15%; }
+            100% { height: 100%; }
         }
 
         ::-webkit-scrollbar {
@@ -68,6 +86,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
+    <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -106,8 +125,9 @@
 
                 <!-- Actions: Theme Switcher & Mobile Menu Toggle -->
                 <div class="flex items-center space-x-2 sm:space-x-3">
+                    <!-- Auth User Bar -->
                     <div id="auth-user-widget" class="flex items-center space-x-2">
-                        <!-- JS populated login button or user profile -->
+                        <!-- JS populated login button or user profile dropdown -->
                     </div>
 
                     <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
@@ -115,6 +135,7 @@
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
                     </button>
 
+                    <!-- Mobile Menu Button -->
                     <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
                         <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
@@ -122,23 +143,24 @@
             </div>
         </div>
 
+        <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1 shadow-lg">
-            <button onclick="switchTab('home')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
+            <button onclick="switchTab('home')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
                 <i class="fa-solid fa-house w-5 text-center"></i> <span>Trang Chủ</span>
             </button>
-            <button onclick="switchTab('image')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button onclick="switchTab('image')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-image w-5 text-center"></i> <span>Mẫu Hình Ảnh</span>
             </button>
-            <button onclick="switchTab('motion')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button onclick="switchTab('motion')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-film w-5 text-center"></i> <span>Mẫu Chuyển Động</span>
             </button>
-            <button onclick="switchTab('video')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button onclick="switchTab('video')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-video w-5 text-center"></i> <span>Mẫu Video</span>
             </button>
-            <button onclick="switchTab('tool')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button onclick="switchTab('tool')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-robot w-5 text-center"></i> <span>Tool Tự Động</span>
             </button>
-            <button onclick="switchTab('dance')" class="w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+            <button onclick="switchTab('dance')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-person-dancing w-5 text-center text-purple-500"></i> <span>Nhảy Dance</span>
             </button>
         </div>
@@ -499,7 +521,7 @@
                     <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center">
                         <i class="fa-solid fa-user-plus text-emerald-500 mr-2"></i> Cấp Tài Khoản Mới Cho Học Viên
                     </h3>
-                    <form onsubmit="handleCreateUserSubmit(event)" class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <form onsubmit="handleCreateUserSubmit(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                             <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Tên tài khoản (Username)</label>
                             <input type="text" id="admin-new-username" required placeholder="vd: hocvien2026" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
@@ -509,14 +531,10 @@
                             <input type="text" id="admin-new-password" required placeholder="vd: 123456" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Chọn Ngày Đóng TK</label>
-                            <input type="date" id="admin-new-expdate" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Số ngày kích hoạt (Ngày)</label>
+                            <input type="number" id="admin-new-days" required min="1" max="3650" value="30" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
                         </div>
-                        <div>
-                            <label class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 mb-1">Hoặc Số Ngày Cộng</label>
-                            <input type="number" id="admin-new-days" min="1" max="3650" placeholder="vd: 30" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        </div>
-                        <div class="sm:col-span-4 flex justify-end pt-1">
+                        <div class="sm:col-span-3 flex justify-end pt-1">
                             <button type="submit" class="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5">
                                 <i class="fa-solid fa-plus"></i>
                                 <span>Tạo & Kích Hoạt Tài Khoản</span>
@@ -541,8 +559,7 @@
                                     <th class="p-3">Tài Khoản</th>
                                     <th class="p-3">Mật Khẩu</th>
                                     <th class="p-3">Vai Trò</th>
-                                    <th class="p-3">Hạn Sử Dụng (Thời Gian)</th>
-                                    <th class="p-3">Điều Chỉnh Ngày Hết Hạn</th>
+                                    <th class="p-3">Hạn Sử Dụng</th>
                                     <th class="p-3">Trạng Thái</th>
                                     <th class="p-3 text-right">Thao Tác</th>
                                 </tr>
@@ -564,6 +581,195 @@
     </div>
 
     <script>
+        // Default Admin Account Credentials: admin / Pv181290@1
+        const DEFAULT_ADMIN = {
+            username: 'admin',
+            password: 'Pv181290@1',
+            role: 'admin',
+            createdAt: new Date().toISOString()
+        };
+
+        const DEFAULT_MEMBERS = [
+            {
+                username: 'hocvien1',
+                password: '123456',
+                role: 'member',
+                expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                createdAt: new Date().toISOString()
+            };
+			
+        const DEFAULT_MEMBERS = [
+            {
+                username: 'hocvien2',
+                password: '123456',
+                role: 'member',
+                expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                createdAt: new Date().toISOString()
+            };
+			
+        const DEFAULT_MEMBERS = [
+            {
+                username: 'hocvien3',
+                password: '123456',
+                role: 'member',
+                expiresAt: new Date(Date.now() + 30 * 86400000).toISOString(),
+                createdAt: new Date().toISOString()
+            }
+        ];
+
+        const sampleImagePrompts = [
+            {
+                id: 'img-1',
+                title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
+                category: 'taonhanvat',
+                categoryLabel: 'taonhanvat',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
+`,
+                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
+                author: 'Grok'
+            },
+			{
+                id: 'img-2',
+                title: 'Kiểu Tóc 1',
+                category: 'taonhanvat',
+                categoryLabel: 'taonhanvat',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
+
+Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown), màu nhuộm đồng đều từ chân tóc đến ngọn tóc, dưới ánh sáng tự nhiên tóc phản chiếu nhẹ tạo cảm giác mềm mại và mượt mà, chân tóc không quá tối, phần rẽ ngôi hơi đậm hơn một chút do mật độ tóc và bóng đổ. Kiểu tóc: Tóc dài được buộc thấp gọn gàng phía sau gáy, kiểu buộc không quá chặt nên phần đỉnh đầu vẫn giữ được độ phồng tự nhiên, hai bên có vài lọn tóc mảnh buông xuống tạo cảm giác mềm mại và tự nhiên, toàn bộ phần đuôi tóc được thả hoàn toàn phía sau lưng nhân vật, không có bất kỳ lọn tóc hay đuôi tóc nào rơi hoặc vắt ra phía trước vai hay trước ngực. Ngôi tóc: Rẽ ngôi giữa gần như cân đối, đường ngôi thẳng, rõ ràng và tự nhiên. Độ dày: Tóc có mật độ từ trung bình đến khá dày, phần da đầu chỉ lộ nhẹ ở đường ngôi, hai bên đầu có độ phủ tóc tốt. Kết cấu tóc: Chất tóc thẳng tự nhiên, sợi tóc nhỏ đến trung bình, bề mặt tóc mượt, ít tóc con dựng lên, không có dấu hiệu xơ hay chẻ ngọn. Độ bóng: Tóc có độ bóng nhẹ tự nhiên, ánh sáng phản chiếu đều trên bề mặt tạo cảm giác tóc khỏe mạnh và được chăm sóc tốt, không có hiện tượng bóng dầu rõ rệt. Đường chân tóc: Đường chân tóc đều và mềm mại, phần trán lộ hoàn toàn nhờ kiểu rẽ ngôi giữa, không có tóc mái che trán. Tóc mai: Hai bên có các lọn tóc mai mảnh buông tự nhiên, ôm sát gò má và quai hàm giúp gương mặt trông thanh thoát hơn, các lọn tóc không được uốn rõ mà chỉ cong nhẹ theo trọng lực. Độ hoàn thiện: Tổng thể mái tóc mang phong cách tối giản, sạch sẽ, thanh lịch và hiện đại, không sử dụng kiểu uốn xoăn hay tạo kiểu cầu kỳ, phù hợp với phong cách tự nhiên, nhẹ nhàng, tinh tế, toàn bộ mái tóc được sắp xếp gọn gàng với toàn bộ đuôi tóc nằm phía sau lưng, không che vai, không che ngực và không xuất hiện bất kỳ phần tóc nào ở phía trước cơ thể. 
+`,
+                image: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
+                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
+                author: 'Grok'
+            },
+			
+
+
+        ];
+
+        const sampleMotionPrompts = [
+            {
+                id: 'mot-1',
+                title: 'Chuyển Động tại chỗ 01',
+                category: 'taicho',
+                categoryLabel: 'Tại chỗ',
+                tool: 'Luma Dream Machine',
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
+            },
+            {
+                id: 'mot-2',
+                title: 'Chuyển Động tại chỗ 02',
+                category: 'taicho',
+                categoryLabel: 'Trình diễn',
+                tool: 'Kling AI',
+                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.`,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
+            }
+        ];
+
+        const sampleVideoPrompts = [
+            {
+                id: 'vid-1',
+                title: 'Trộm Đồ Manocanh - TikTok Shorts',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus`,
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
+            }
+        ];
+
+        const sampleToolProducts = [
+            {
+                id: 'tool-1',
+                title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
+                category: 'autovideo',
+                categoryLabel: 'Tự Động Tạo Video',
+                tool: 'Auto Software',
+                price: '290.000đ',
+                originalPrice: '590.000đ',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
+                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
+                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
+                guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).\n• Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.',
+                zaloLink: 'https://zalo.me/0984348734',
+                bankName: 'Vietinbank',
+                accountNo: '103868751388',
+                accountName: 'PHAM TUAN VINH',
+                note: 'Tool 01'
+            }
+        ];
+
+        const sampleDancePrompts = [
+            {
+                id: 'dance-1',
+                title: 'K-Pop Hit Trend Dance Cover (9:16)',
+                category: 'kpop',
+                categoryLabel: 'K-Pop Trend',
+                tool: 'Viggle AI Dance',
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn (VD: Linh xinh gái) để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
+                redirectUrl: 'https://viggle.ai/',
+                redirectLabel: 'Đến Viggle AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+            },
+            {
+                id: 'dance-2',
+                title: 'TikTok Viral Dance Challenge 2026',
+                category: 'tiktok',
+                categoryLabel: 'TikTok Challenge',
+                tool: 'Kling Motion Swap',
+                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
+                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
+                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
+                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc TikTok hot trend bạt ngàn lượt view.',
+                redirectUrl: 'https://klingai.com/',
+                redirectLabel: 'Mở Kling AI Studio',
+                downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
+            },
+            {
+                id: 'dance-3',
+                title: 'HipHop Street Dance Energy 9:16',
+                category: 'hiphop',
+                categoryLabel: 'HipHop Street',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 street dance hiphop choreography, street fashion outfit, urban background, dynamic camera pan, 4k resolution`,
+                video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
+                description: 'Vũ đạo đường phố HipHop mạnh mẽ, dứt khoát dành cho video ngắn.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" để tải bản vũ đạo HipHop 60FPS.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI để gắn chuyển động vào trang phục đường phố AI.\n• Bước 3: Bật hiệu ứng lắc camera điện ảnh khi nhân vật thực hiện các cú giật nẩy tay.',
+                redirectUrl: 'https://runwayml.com/',
+                redirectLabel: 'Mở Runway ML',
+                downloadUrl: 'https://www.youtube.com/shorts/4EktxxHrKyc'
+            },
+            {
+                id: 'dance-4',
+                title: 'Múa Đương Đại Uyển Chuyển Gió Nhẹ',
+                category: 'modern',
+                categoryLabel: 'Múa Đương Đại',
+                tool: 'Luma Dance AI',
+                prompt: `9:16 aspect ratio, modern dance performance in peaceful studio, silk dress flowing with movement, soft volumetric lighting, elegant camera motion`,
+                video: 'https://www.youtube.com/shorts/icKchwsROCU',
+                description: 'Điệu múa đương đại uyển chuyển kết hợp hiệu ứng tà áo và gió thổi tự nhiên.',
+                guide: '• Bước 1: Tải video múa mẫu bằng nút bên dưới.\n• Bước 2: Dùng Luma Dream Machine hoặc Kling AI với prompt mô tả chất liệu vải mềm mại.\n• Bước 3: Kết hợp nhạc nền acoustic chill để thu hút người xem trên YouTube Shorts.',
+                redirectUrl: 'https://lumalabs.ai/dream-machine',
+                redirectLabel: 'Mở Luma Dream Machine',
+                downloadUrl: 'https://www.youtube.com/shorts/icKchwsROCU'
+            }
+        ];
+
         function initTheme() {
             const savedTheme = localStorage.getItem('theme');
             const darkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -624,166 +830,6 @@
             pauseAllMedia();
             setTimeout(() => { setupAutoPlayObserver(); }, 100);
             if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        const DEFAULT_ADMIN = {
-            username: 'admin',
-            password: 'Pv181290@1',
-            role: 'admin',
-            createdAt: new Date().toISOString()
-        };
-
-        // BẠN CÓ THỂ ĐIỀU CHỈNH THỦ CÔNG NGÀY ĐÓNG TÀI KHOẢN MẶC ĐỊNH TẠI ĐÂY (Định dạng: 'YYYY-MM-DD' hoặc ISO string)
-        const DEFAULT_MEMBERS = [
-            {
-                username: 'hocvien1',
-                password: '123456',
-                role: 'member',
-                expiresAt: '2026-08-06T00:02:59.000Z',
-                createdAt: new Date().toISOString()
-            },
-            {
-                username: 'hocvien2',
-                password: '123456',
-                role: 'member',
-                expiresAt: '2026-10-15T23:59:59.000Z',
-                createdAt: new Date().toISOString()
-            }
-        ];
-
-        const sampleImagePrompts = [
-            {
-                id: 'img-1',
-                title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
-                category: 'taonhanvat',
-                categoryLabel: 'taonhanvat',
-                tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
-                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
-                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
-                author: 'Grok'
-            },
-            {
-                id: 'img-2',
-                title: 'Kiểu Tóc Buộc Thấp Tự Nhiên',
-                category: 'taonhanvat',
-                categoryLabel: 'taonhanvat',
-                tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng. Tóc dài buộc thấp gọn gàng sau gáy, hai bên rủ nhẹ các lọn tóc mai ôm sát gò má. Khung hình 9:16 dọc, góc máy ngang tầm mắt, background studio trắng tối giản.`,
-                image: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
-                description: 'Tạo Ảnh nhân vật kiểu tóc buộc thấp thanh lịch tự nhiên.',
-                author: 'Grok'
-            }
-        ];
-
-        const sampleMotionPrompts = [
-            {
-                id: 'mot-1',
-                title: 'Chuyển Động Tại Chỗ 01 - Gió Nhẹ',
-                category: 'taicho',
-                categoryLabel: 'Tại chỗ',
-                tool: 'Luma Dream Machine',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật. Ánh sáng 4 giờ chiều, gió thổi nhẹ làm tóc bay tự nhiên. Phong cách diễn xuất ngây ngô trước máy quay.`,
-                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
-                description: 'Ứng dụng vào dạng video thời trang short-form.',
-                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
-            },
-            {
-                id: 'mot-2',
-                title: 'Chuyển Động Trình Diễn 02',
-                category: 'trinhdien',
-                categoryLabel: 'Trình diễn',
-                tool: 'Kling AI',
-                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể. Nhân vật đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên chiều tà, hiệu ứng điện ảnh sắc nét.`,
-                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
-                description: 'Ứng dụng vào dạng video thời trang lookbook.',
-                technique: 'Dùng cho các video biến hình hoặc chuyển cảnh nhẹ nhàng.'
-            }
-        ];
-
-        const sampleVideoPrompts = [
-            {
-                id: 'vid-1',
-                title: 'Trộm Đồ Manocanh - TikTok Shorts',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Runway Gen-3',
-                prompt: `Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus`,
-                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
-                duration: '30 giây',
-                fps: '60 FPS',
-                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
-            }
-        ];
-
-        const sampleToolProducts = [
-            {
-                id: 'tool-1',
-                title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
-                category: 'autovideo',
-                categoryLabel: 'Tự Động Tạo Video',
-                tool: 'Auto Software',
-                price: '290.000đ',
-                originalPrice: '590.000đ',
-                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
-                image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
-                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
-                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
-                guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề.\n• Bước 4: Nhấn "Bắt Đầu Auto" để phần mềm tự tạo prompt & tải video về thư mục.',
-                zaloLink: 'https://zalo.me/0984348734',
-                bankName: 'Vietinbank',
-                accountNo: '103868751388',
-                accountName: 'PHAM TUAN VINH',
-                note: 'Tool 01'
-            }
-        ];
-
-        const sampleDancePrompts = [
-            {
-                id: 'dance-1',
-                title: 'K-Pop Hit Trend Dance Cover (9:16)',
-                category: 'kpop',
-                categoryLabel: 'K-Pop Trend',
-                tool: 'Viggle AI Dance',
-                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
-                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
-                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
-                guide: '• Bước 1: Nhấn "Tải Video Mẫu" để lưu video dance nhịp điệu.\n• Bước 2: Truy cập Viggle AI hoặc Kling AI.\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động.\n• Bước 4: Tải ảnh nhân vật AI của bạn để tự động thay người khớp vũ đạo.',
-                redirectUrl: 'https://viggle.ai/',
-                redirectLabel: 'Đến Viggle AI Studio',
-                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
-            },
-            {
-                id: 'dance-2',
-                title: 'TikTok Viral Dance Challenge 2026',
-                category: 'tiktok',
-                categoryLabel: 'TikTok Challenge',
-                tool: 'Kling Motion Swap',
-                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
-                video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
-                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
-                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc trend.',
-                redirectUrl: 'https://klingai.com/',
-                redirectLabel: 'Mở Kling AI Studio',
-                downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
-            }
-        ];
-
-        function formatDateForInput(isoString) {
-            if (!isoString) return '';
-            const d = new Date(isoString);
-            if (isNaN(d.getTime())) return '';
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const day = String(d.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        }
-
-        function formatDateDisplay(isoString) {
-            if (!isoString) return 'Chưa thiết lập';
-            const d = new Date(isoString);
-            if (isNaN(d.getTime())) return 'Không hợp lệ';
-            return d.toLocaleDateString('vi-VN', { year: 'numeric', month: '2-digit', day: '2-digit' });
         }
 
         function getUsersFromStorage() {
@@ -950,18 +996,8 @@
             tbody.innerHTML = users.map(u => {
                 let statusBadge = '<span class="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-bold text-[10px]">Quản trị viên</span>';
                 let daysLeftText = 'Vĩnh viễn';
-                let expDateInputHtml = '<span class="text-slate-400 text-[10px]">—</span>';
 
                 if (u.role !== 'admin') {
-                    const formattedDate = formatDateForInput(u.expiresAt);
-                    const dateDisplay = formatDateDisplay(u.expiresAt);
-
-                    expDateInputHtml = `
-                        <div class="flex items-center space-x-1">
-                            <input type="date" value="${formattedDate}" onchange="setCustomUserExpiry('${u.username}', this.value)" class="px-2 py-1 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-purple-500">
-                        </div>
-                    `;
-
                     if (!u.expiresAt) {
                         statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
                         daysLeftText = '0 ngày';
@@ -969,11 +1005,11 @@
                         const ms = new Date(u.expiresAt).getTime() - Date.now();
                         const days = Math.ceil(ms / (1000 * 60 * 60 * 24));
                         if (days <= 0) {
-                            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Đã Đóng / Hết Hạn</span>';
-                            daysLeftText = `Đóng ngày ${dateDisplay} (0 ngày)`;
+                            statusBadge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 font-bold text-[10px]">Hết Hạn</span>';
+                            daysLeftText = '0 ngày';
                         } else {
                             statusBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 font-bold text-[10px]">Đang Kích Hoạt</span>`;
-                            daysLeftText = `Đóng ngày ${dateDisplay} (${days} ngày)`;
+                            daysLeftText = `${days} ngày`;
                         }
                     }
                 }
@@ -984,7 +1020,6 @@
                         <td class="p-3 font-mono text-slate-500">${u.password}</td>
                         <td class="p-3 uppercase font-semibold text-[10px]">${u.role}</td>
                         <td class="p-3 font-semibold text-slate-700 dark:text-slate-300">${daysLeftText}</td>
-                        <td class="p-3">${expDateInputHtml}</td>
                         <td class="p-3">${statusBadge}</td>
                         <td class="p-3 text-right space-x-1">
                             ${u.role !== 'admin' ? `
@@ -1001,26 +1036,11 @@
             }).join('');
         }
 
-        function setCustomUserExpiry(username, dateString) {
-            if (!dateString) return;
-            const users = getUsersFromStorage();
-            const user = users.find(u => u.username === username);
-            if (!user) return;
-
-            user.expiresAt = new Date(`${dateString}T23:59:59.000Z`).toISOString();
-            saveUsersToStorage(users);
-            renderAdminUserTable();
-            renderAuthWidget();
-            refreshAllGrids();
-            showToast(`Đã cập nhật ngày đóng tài khoản cho ${username} thành ${formatDateDisplay(user.expiresAt)}`);
-        }
-
         function handleCreateUserSubmit(e) {
             e.preventDefault();
             const username = document.getElementById('admin-new-username').value.trim();
             const password = document.getElementById('admin-new-password').value.trim();
-            const expDateVal = document.getElementById('admin-new-expdate').value;
-            const daysVal = parseInt(document.getElementById('admin-new-days').value);
+            const days = parseInt(document.getElementById('admin-new-days').value) || 30;
 
             if (!username || !password) return;
 
@@ -1030,15 +1050,7 @@
                 return;
             }
 
-            let expiresAt;
-            if (expDateVal) {
-                expiresAt = new Date(`${expDateVal}T23:59:59.000Z`).toISOString();
-            } else if (!isNaN(daysVal) && daysVal > 0) {
-                expiresAt = new Date(Date.now() + daysVal * 86400000).toISOString();
-            } else {
-                expiresAt = new Date(Date.now() + 30 * 86400000).toISOString();
-            }
-
+            const expiresAt = new Date(Date.now() + days * 86400000).toISOString();
             users.push({
                 username,
                 password,
@@ -1051,9 +1063,7 @@
             renderAdminUserTable();
             document.getElementById('admin-new-username').value = '';
             document.getElementById('admin-new-password').value = '';
-            document.getElementById('admin-new-expdate').value = '';
-            document.getElementById('admin-new-days').value = '';
-            showToast(`Đã tạo tài khoản ${username} (Ngày đóng: ${formatDateDisplay(expiresAt)})`);
+            showToast(`Đã tạo tài khoản ${username} (${days} ngày kích hoạt)`);
         }
 
         function extendUserDays(username, days) {
@@ -1069,7 +1079,7 @@
             renderAdminUserTable();
             renderAuthWidget();
             refreshAllGrids();
-            showToast(`Đã gia hạn thêm ${days} ngày cho ${username} (Ngày đóng: ${formatDateDisplay(user.expiresAt)})`);
+            showToast(`Đã gia hạn thêm ${days} ngày cho ${username}`);
         }
 
         function deleteUser(username) {
