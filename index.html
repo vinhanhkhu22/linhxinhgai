@@ -249,7 +249,8 @@
 
             <div class="flex flex-wrap gap-2 text-sm" id="image-categories">
                 <button onclick="filterImageCategory('all', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
+                <button onclick="filterImageCategory('taonhanvat', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật</button>
+				<button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
                 <button onclick="filterImageCategory('thoitrangnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nam</button>
                 <button onclick="filterImageCategory('dogiadung', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterImageCategory('doanuong', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Ăn - Uống</button>
@@ -562,14 +563,15 @@
         const sampleImagePrompts = [
             {
                 id: 'img-1',
-                title: 'Ảnh Linh Xinh Gái',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Midjourney',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
-                image: 'https://i.postimg.cc/Kzxckj5F/1784807411595.jpg',
-                description: 'Tạo hình Linh xinh gái tỷ lệ khung dọc 9:16 tối ưu cho TikTok & Instagram Reels.',
-                author: 'Alex AI'
+                title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
+                category: 'taonhanvat',
+                categoryLabel: 'taonhanvat',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
+`,
+                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
+                author: 'Grok'
             },
             {
                 id: 'img-2',
