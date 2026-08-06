@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linh Xinh Gái - Thư Viện Prompt & Membership VIP.</title>
+    <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,11 +22,6 @@
                         accent: {
                             500: '#8b5cf6',
                             600: '#7c3aed',
-                        },
-                        vip: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
                         }
                     },
                     fontFamily: {
@@ -47,97 +42,95 @@
             animation: animatedgradient 6s ease infinite;
         }
 
-        .vip-glow {
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-        }
-
         @keyframes animatedgradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
-        ::-webkit-scrollbar-thumb { background: rgba(14, 165, 233, 0.4); border-radius: 999px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(14, 165, 233, 0.8); }
+        .motion-card-preview {
+            background-size: 200% 200%;
+            animation: gradientShift 4s infinite ease-in-out alternate;
+        }
 
-        .locked-blur {
-            filter: blur(6px);
-            pointer-events: none;
-            user-select: none;
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .wave-bar {
+            animation: wave 1.2s infinite ease-in-out alternate;
+        }
+        @keyframes wave {
+            0% { height: 15%; }
+            100% { height: 100%; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(14, 165, 233, 0.4);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(14, 165, 233, 0.8);
         }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
     <!-- HEADER NAVIGATION -->
-    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 via-accent-500 to-amber-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary-500/30">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 via-accent-500 to-indigo-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary-500/30">
+                        <i class="fa-solid font-bold fa-wand-magic-sparkles"></i>
                     </div>
                     <div>
                         <span class="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
-                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase">Thư Viện Prompt AI & VIP</span>
+                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase">Thư Viện Mẫu Prompt</span>
                     </div>
                 </div>
 
                 <!-- Desktop Navigation Tabs -->
                 <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
-                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition-all text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
                         <i class="fa-solid fa-house mr-1.5"></i> Trang Chủ
                     </button>
-                    <button onclick="switchTab('image')" id="nav-image" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <button onclick="switchTab('image')" id="nav-image" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-image mr-1.5"></i> Mẫu Hình Ảnh
                     </button>
-                    <button onclick="switchTab('motion')" id="nav-motion" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <button onclick="switchTab('motion')" id="nav-motion" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-film mr-1.5"></i> Mẫu Chuyển Động
                     </button>
-                    <button onclick="switchTab('video')" id="nav-video" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <button onclick="switchTab('video')" id="nav-video" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-video mr-1.5"></i> Mẫu Video
                     </button>
-                    <button onclick="switchTab('tool')" id="nav-tool" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <button onclick="switchTab('tool')" id="nav-tool" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-robot mr-1.5"></i> Tool Tự Động
                     </button>
-                    <button onclick="switchTab('dance')" id="nav-dance" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                    <button onclick="switchTab('dance')" id="nav-dance" class="nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-person-dancing mr-1.5 text-purple-500"></i> Nhảy Dance
                     </button>
                 </nav>
 
-                <!-- User Account & VIP Area -->
-                <div class="flex items-center space-x-2 sm:space-x-3">
-                    <!-- User Status Badge -->
-                    <div id="user-status-pill" class="hidden sm:flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-semibold">
-                        <span id="user-status-dot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-                        <span id="user-status-text" class="text-slate-700 dark:text-slate-200">Khách</span>
-                    </div>
-
-                    <!-- Upgrade VIP Button -->
-                    <button onclick="openVipModal()" id="btn-upgrade-vip" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold text-xs shadow-md shadow-amber-500/20 transition-all flex items-center space-x-1.5">
-                        <i class="fa-solid fa-crown text-amber-200"></i>
-                        <span>Nạp VIP</span>
-                    </button>
-
-                    <!-- Auth Button (Login / Register / Profile) -->
-                    <div id="auth-button-container">
-                        <button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-semibold transition-all">
-                            <i class="fa-solid fa-right-to-bracket mr-1"></i> Đăng Nhập
-                        </button>
-                    </div>
-
-                    <!-- Theme Switcher -->
-                    <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
+                <!-- Actions: Theme Switcher & Mobile Menu Toggle -->
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
                         <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg hidden"></i>
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
                     </button>
 
                     <!-- Mobile Menu Button -->
-                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
-                        <i class="fa-solid fa-bars text-xl"></i>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="mobile-menu-icon"></i>
                     </button>
                 </div>
             </div>
@@ -145,46 +138,27 @@
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1 shadow-lg">
-            <button onclick="switchTab('home')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
+            <button onclick="switchTab('home')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
                 <i class="fa-solid fa-house w-5 text-center"></i> <span>Trang Chủ</span>
             </button>
-            <button onclick="switchTab('image')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+            <button onclick="switchTab('image')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-image w-5 text-center"></i> <span>Mẫu Hình Ảnh</span>
             </button>
-            <button onclick="switchTab('motion')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+            <button onclick="switchTab('motion')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-film w-5 text-center"></i> <span>Mẫu Chuyển Động</span>
             </button>
-            <button onclick="switchTab('video')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+            <button onclick="switchTab('video')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-video w-5 text-center"></i> <span>Mẫu Video</span>
             </button>
-            <button onclick="switchTab('tool')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+            <button onclick="switchTab('tool')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-robot w-5 text-center"></i> <span>Tool Tự Động</span>
             </button>
-            <button onclick="switchTab('dance')" class="mobile-nav-btn w-full text-left px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300">
+            <button onclick="switchTab('dance')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
                 <i class="fa-solid fa-person-dancing w-5 text-center text-purple-500"></i> <span>Nhảy Dance</span>
             </button>
         </div>
     </header>
 
-    <!-- TRIAL / VIP BANNER NOTIFICATION -->
-    <div id="trial-alert-bar" class="bg-gradient-to-r from-sky-600 via-indigo-600 to-purple-600 text-white text-xs sm:text-sm py-2 px-4 shadow-inner">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-            <div class="flex items-center space-x-2">
-                <span class="px-2 py-0.5 rounded bg-white/20 font-bold uppercase text-[10px] tracking-wide">Ưu Đãi Học Viên</span>
-                <span id="trial-alert-text">🎉 Đăng ký thành viên ngay hôm nay để nhận <strong>5 ngày Dùng Thử Miễn Phí</strong> toàn bộ prompt & tính năng!</span>
-            </div>
-            <div class="flex items-center space-x-2 shrink-0">
-                <button onclick="openAuthModal('register')" id="btn-trial-register" class="px-3 py-1 bg-white text-primary-700 font-bold rounded-lg text-xs hover:bg-slate-100 transition-all shadow">
-                    Đăng Ký 0đ (5 Ngày)
-                </button>
-                <button onclick="openVipModal()" id="btn-trial-vip" class="px-3 py-1 bg-amber-400 text-slate-900 font-extrabold rounded-lg text-xs hover:bg-amber-300 transition-all shadow flex items-center gap-1">
-                    <i class="fa-solid fa-crown text-amber-800"></i> Nạp VIP Tháng
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN CONTENT CONTAINERS -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- 1. TAB: TRANG CHỦ -->
@@ -192,28 +166,28 @@
             <!-- Hero Banner -->
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white p-8 sm:p-12 shadow-2xl border border-slate-700/50">
                 <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 max-w-3xl space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold text-sky-300 border border-white/10">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold text-primary-300 border border-white/10">
                         <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>Cập nhật VIP Prompt AI Khung Đứng 9:16 - 2026</span>
+                        <span>Cập nhật hàng tuần các Prompt AI đỉnh cao 2026</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Thư viện Prompt & Mẫu Sáng Tạo <span class="bg-gradient-to-r from-sky-400 via-amber-400 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
+                        Thư viện Prompt & Mẫu Sáng Tạo <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span> Dành cho học viên
                     </h1>
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-                        Khám phá hàng nghìn prompt chuẩn hóa dành cho học viên. Khách xem bị giới hạn - Đăng ký để dùng miễn phí 5 ngày hoặc Nạp VIP không giới hạn!
+                        Khám phá hàng nghìn prompt chuẩn hóa dành cho các học viên của Linh Xinh Gái copy và sử dụng chỉ trong 1 cú click!
                     </p>
 
                     <!-- Search Quick Launch -->
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-grow">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm prompt (vd: nhân vật, tóc, dance, kpop, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
+                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, cà phê, dance, kpop, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
-                        <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-amber-500 hover:from-primary-600 hover:to-amber-600 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
-                            <span>Khám Phá Prompt</span>
+                        <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
+                            <span>Khám Phá Ngay</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
                     </div>
@@ -225,16 +199,16 @@
                             <p class="text-xs text-slate-400">Mẫu Prompt Chuẩn</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold text-emerald-400">5 Ngày</p>
-                            <p class="text-xs text-slate-400">Dùng Thử Miễn Phí</p>
+                            <p class="text-2xl font-bold text-white">100%</p>
+                            <p class="text-xs text-slate-400">Miễn Phí Sử Dụng</p>
                         </div>
                         <div>
-                            <p class="text-2xl font-bold text-amber-400">VIP Pass</p>
-                            <p class="text-xs text-slate-400">Đầy Đủ Feature</p>
+                            <p class="text-2xl font-bold text-white">8+ Model</p>
+                            <p class="text-xs text-slate-400">AI Hỗ Trợ Phổ Biến</p>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-white">50k+</p>
-                            <p class="text-xs text-slate-400">Lượt Copy Prompt</p>
+                            <p class="text-xs text-slate-400">Lượt Sao Chép</p>
                         </div>
                     </div>
                 </div>
@@ -293,15 +267,22 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động Camera (9:16)
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
+                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
                 </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterMotionCategory('all', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterMotionCategory('taicho', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tại chỗ</button>
+                <button onclick="filterMotionCategory('trinhdien', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trình diễn</button>
+                <button onclick="filterMotionCategory('noireview', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nói Review</button>
             </div>
 
             <div id="motion-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -325,6 +306,15 @@
                 </div>
             </div>
 
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
+                <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
+                <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
+                <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
+                <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
+            </div>
+
             <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 <!-- JS populated -->
             </div>
@@ -346,12 +336,19 @@
                 </div>
             </div>
 
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
+                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Đăng Bài & Reels</button>
+                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Lồng Tiếng & Vietsub</button>
+            </div>
+
             <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 <!-- JS populated -->
             </div>
         </section>
 
-        <!-- 6. TAB: NHẢY DANCE -->
+        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
         <section id="tab-dance" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
@@ -363,8 +360,16 @@
 
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
+                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
+                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
+                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
             </div>
 
             <div id="dance-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -372,18 +377,133 @@
             </div>
         </section>
 
+        <!-- 3. TAB: MẪU CHUYỂN ĐỘNG -->
+        <section id="tab-motion" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterMotionCategory('all', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterMotionCategory('taicho', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tại chỗ</button>
+                <button onclick="filterMotionCategory('trinhdien', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trình diễn</button>
+                <button onclick="filterMotionCategory('noireview', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nói Review</button>
+            </div>
+
+            <div id="motion-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 4. TAB: MẪU VIDEO -->
+        <section id="tab-video" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & prompt tạo video Reels/TikTok chân thực với AI</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="video-search" oninput="filterVideo()" placeholder="Lọc prompt video..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
+                <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
+                <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
+                <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
+                <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
+            </div>
+
+            <div id="video-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 5. TAB: TOOL TỰ ĐỘNG -->
+        <section id="tab-tool" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động đăng bài và nuôi tài khoản tự động hóa</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="tool-search" oninput="filterTools()" placeholder="Lọc phần mềm & tool..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
+                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Đăng Bài & Reels</button>
+                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Lồng Tiếng & Vietsub</button>
+            </div>
+
+            <div id="tool-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
+        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
+        <section id="tab-dance" class="tab-content hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
+                </div>
+
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
+                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
+                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
+                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
+            </div>
+
+            <div id="dance-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- JS populated -->
+            </div>
+        </section>
+
     </main>
 
-    <!-- FLOATING ACTION BUTTONS -->
+    <!-- FLOATING ACTION BUTTONS (Zalo & Scroll to Top) -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col space-y-3">
         <!-- Zalo Support Button -->
-        <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative">
+        <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative" title="Hỗ trợ Zalo nhanh">
             <i class="fa-solid fa-comment-dots text-xl"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Hỗ trợ Zalo 24/7</span>
         </a>
 
         <!-- Scroll to Top Button -->
-        <button id="scroll-top-btn" onclick="scrollToTop()" class="w-12 h-12 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-primary-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none group relative">
+        <button id="scroll-top-btn" onclick="scrollToTop()" class="w-12 h-12 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-primary-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none group relative" title="Lên đầu trang">
             <i class="fa-solid fa-arrow-up text-lg"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Về đầu trang</span>
         </button>
@@ -394,161 +514,52 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm font-bold">AI</div>
-                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI PromptHub - Linh Xinh Gái. Hệ thống thành viên VIP & dùng thử 5 ngày.</span>
+                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI PromptHub - Linh Xinh Gái. Tất cả quyền được bảo lưu.</span>
             </div>
             <div class="flex flex-wrap justify-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
                 <button onclick="switchTab('home')" class="hover:text-primary-600">Trang chủ</button>
                 <button onclick="switchTab('image')" class="hover:text-primary-600">Hình ảnh</button>
                 <button onclick="switchTab('motion')" class="hover:text-primary-600">Chuyển động</button>
                 <button onclick="switchTab('video')" class="hover:text-primary-600">Video</button>
+                <button onclick="switchTab('tool')" class="hover:text-primary-600">Tool tự động</button>
                 <button onclick="switchTab('dance')" class="hover:text-purple-600 font-semibold">Nhảy Dance</button>
             </div>
         </div>
     </footer>
 
-    <!-- AUTH MODAL (LOGIN & REGISTER) -->
-    <div id="auth-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
-                <i class="fa-solid fa-xmark text-base"></i>
-            </button>
-
-            <!-- Auth Tabs -->
-            <div class="flex border-b border-slate-200 dark:border-slate-700 mb-6">
-                <button id="auth-tab-login-btn" onclick="toggleAuthTab('login')" class="flex-1 pb-3 text-sm font-bold text-center border-b-2 border-primary-600 text-primary-600">Đăng Nhập</button>
-                <button id="auth-tab-register-btn" onclick="toggleAuthTab('register')" class="flex-1 pb-3 text-sm font-bold text-center border-b-2 border-transparent text-slate-400 hover:text-slate-600">Đăng Ký Thành Viên</button>
-            </div>
-
-            <!-- LOGIN FORM -->
-            <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
-                <div class="text-center mb-4">
-                    <h3 class="text-xl font-black text-slate-900 dark:text-white">Chào mừng trở lại!</h3>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Đăng nhập tài khoản để tiếp tục sử dụng thư viện Prompt</p>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Email</label>
-                    <input type="email" id="login-email" required placeholder="email@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Mật khẩu</label>
-                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-700 hover:to-indigo-700 text-white font-bold text-sm shadow-lg shadow-primary-500/20 transition-all flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <span>Đăng Nhập Ngay</span>
-                </button>
-            </form>
-
-            <!-- REGISTER FORM -->
-            <form id="register-form" onsubmit="handleRegisterSubmit(event)" class="hidden space-y-4">
-                <div class="bg-sky-50 dark:bg-sky-950/50 p-3 rounded-xl border border-sky-200 dark:border-sky-800 text-center mb-2">
-                    <p class="text-xs font-semibold text-sky-800 dark:text-sky-300">🎁 Đăng ký ngay hôm nay: Nhận <strong>5 Ngày Dùng Thử Miễn Phí</strong> xem tất cả prompt & video!</p>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Họ & Tên</label>
-                    <input type="text" id="reg-name" required placeholder="Nguyễn Văn A" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Email</label>
-                    <input type="email" id="reg-email" required placeholder="email@example.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Mật khẩu</label>
-                    <input type="password" id="reg-password" minlength="6" required placeholder="Ít nhất 6 ký tự" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                </div>
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <span>Tạo Tài Khoản (Free 5 Ngày)</span>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- VIP UPGRADE MODAL -->
-    <div id="vip-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-amber-500/30 p-6 relative animate-in fade-in zoom-in-95 duration-200">
-            <button onclick="closeVipModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
-                <i class="fa-solid fa-xmark text-base"></i>
-            </button>
-
-            <div class="text-center space-y-2 mb-6">
-                <span class="px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 text-xs font-extrabold uppercase tracking-wider inline-flex items-center gap-1">
-                    <i class="fa-solid fa-crown text-amber-500"></i> Nâng Cấp Tài Khoản VIP
-                </span>
-                <h2 class="text-2xl font-black text-slate-900 dark:text-white">Mở Khóa Toàn Bộ Quyền Lợi VIP</h2>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Xem không giới hạn prompt, tải video mẫu 4K, công cụ auto và cập nhật prompt mới nhất 24/7</p>
-            </div>
-
-            <!-- VIP Package Selection -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-                <!-- Package 1 Month -->
-                <div onclick="selectVipPackage('month', 99000, 'Nạp VIP 1 Tháng', this)" class="vip-pkg-card cursor-pointer p-4 rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 flex flex-col justify-between space-y-2 relative transition-all shadow-md">
-                    <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-900 font-extrabold text-[9px] uppercase px-2 py-0.5 rounded-full">Phổ Biến</span>
-                    <div class="text-center">
-                        <span class="text-xs font-bold text-slate-700 dark:text-slate-300">1 THÁNG</span>
-                        <div class="text-xl font-black text-amber-600 dark:text-amber-400 mt-1">99.000đ</div>
-                        <span class="text-[10px] text-slate-400 line-through">199.000đ</span>
-                    </div>
-                </div>
-
-                <!-- Package 6 Months -->
-                <div onclick="selectVipPackage('6months', 499000, 'Nạp VIP 6 Tháng', this)" class="vip-pkg-card cursor-pointer p-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col justify-between space-y-2 transition-all hover:border-amber-400">
-                    <div class="text-center">
-                        <span class="text-xs font-bold text-slate-700 dark:text-slate-300">6 THÁNG</span>
-                        <div class="text-xl font-black text-amber-600 dark:text-amber-400 mt-1">499.000đ</div>
-                        <span class="text-[10px] text-emerald-500 font-bold">Tiết kiệm 20%</span>
-                    </div>
-                </div>
-
-                <!-- Package 1 Year -->
-                <div onclick="selectVipPackage('year', 890000, 'Nạp VIP 1 Năm', this)" class="vip-pkg-card cursor-pointer p-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col justify-between space-y-2 transition-all hover:border-amber-400">
-                    <div class="text-center">
-                        <span class="text-xs font-bold text-slate-700 dark:text-slate-300">1 NĂM</span>
-                        <div class="text-xl font-black text-amber-600 dark:text-amber-400 mt-1">890.000đ</div>
-                        <span class="text-[10px] text-purple-500 font-bold">VIP Trọn Đời</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dynamic VietQR Payment Box -->
-            <div class="bg-slate-50 dark:bg-slate-900/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-center space-y-3">
-                <div id="vip-qr-container">
-                    <!-- Populated by JS -->
-                </div>
-
-                <div class="text-xs text-slate-500 dark:text-slate-400 space-y-1 text-left bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-200 dark:border-slate-700">
-                    <div class="flex justify-between"><span>Ngân hàng:</span><strong class="text-slate-800 dark:text-slate-200">Vietinbank</strong></div>
-                    <div class="flex justify-between"><span>Chủ tài khoản:</span><strong class="text-slate-800 dark:text-slate-200">PHAM TUAN VINH</strong></div>
-                    <div class="flex justify-between"><span>Số tài khoản:</span><strong class="font-mono text-primary-600 font-bold">103868751388</strong></div>
-                    <div class="flex justify-between"><span>Nội dung chuyển khoản:</span><strong id="vip-transfer-note" class="font-mono text-rose-500 font-bold">VIP MEMBER</strong></div>
-                </div>
-
-                <a href="https://zalo.me/0984348734" target="_blank" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center space-x-2 transition-all shadow-md">
-                    <i class="fa-solid fa-headset text-sm"></i>
-                    <span>Xác Nhận Đã Thanh Toán Qua Zalo</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
     <!-- PROMPT DETAIL MODAL -->
     <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full z-10 bg-black/40 w-8 h-8 flex items-center justify-center text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            <div id="modal-content" class="space-y-5"></div>
+            
+            <div id="modal-content" class="space-y-5">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- QR PAYMENT MODAL -->
+    <div id="qr-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeQRModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div id="qr-modal-content" class="space-y-4 text-center">
+                <!-- Dynamic QR content -->
+            </div>
         </div>
     </div>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3.5 rounded-xl shadow-xl flex items-center space-x-3 pointer-events-none">
         <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
-        <span id="toast-message" class="text-sm font-medium">Thành công!</span>
+        <span id="toast-message" class="text-sm font-medium">Đã sao chép vào bộ nhớ tạm!</span>
     </div>
 
     <script>
-        // Sample Prompts Data
         const sampleImagePrompts = [
             {
                 id: 'img-1',
@@ -1018,26 +1029,34 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 description: 'Tạo Ảnh nhân vật với làn da trắng hồng tự nhiên, giữ nguyên theo nhân vật mẫu.',
                 author: 'Grok'
             },
+
+           
         ];
 
         const sampleMotionPrompts = [
             {
                 id: 'mot-1',
-                title: 'Chuyển Động Gió Thổi Tự Nhiên',
+                title: 'Chuyển Động tại chỗ 01',
                 category: 'taicho',
+                categoryLabel: 'Tại chỗ',
                 tool: 'Luma Dream Machine',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và bối cảnh. Thời điểm 4h chiều, gió thổi khá mạnh làm tóc và trang phục bay tự nhiên, ánh mắt né tránh máy quay... 9:16.`,
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
-                description: 'Ứng dụng vào video thời trang nữ.'
+                gradient: 'from-indigo-600 via-purple-600 to-pink-600',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
             {
                 id: 'mot-2',
-                title: 'Chuyển Động Trình Diễn Nhẹ Nhàng',
-                category: 'trinhdien',
+                title: 'Chuyển Động tại chỗ 02',
+                category: 'taicho',
+                categoryLabel: 'Trình diễn',
                 tool: 'Kling AI',
-                prompt: `Giữ nguyên nhân vật, đứng tại chỗ di chuyển góc nhìn nhẹ nhàng, gió chiều làm tóc xoay tự nhiên... 9:16.`,
+                prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.`,
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
-                description: 'Chuyển động trình diễn Lookbook.'
+                gradient: 'from-amber-500 via-rose-600 to-purple-800',
+                description: 'Ứng dụng vào dạng video thời trang.',
+                technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
             }
         ];
 
@@ -1046,10 +1065,13 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 id: 'vid-1',
                 title: 'Trộm Đồ Manocanh - TikTok Shorts',
                 category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
                 tool: 'Runway Gen-3',
-                prompt: `Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting`,
+                prompt: `Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus`,
                 video: 'https://www.youtube.com/shorts/lTYgFMyMric',
-                description: 'Video ngắn tình huống hài hước thời trang.'
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
             }
         ];
 
@@ -1058,14 +1080,15 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 id: 'tool-1',
                 title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
                 category: 'autovideo',
+                categoryLabel: 'Tự Động Tạo Video',
                 tool: 'Auto Software',
                 price: '290.000đ',
                 originalPrice: '590.000đ',
                 video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
                 customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
-                description: 'Phần mềm chạy tự động tạo prompt và kết nối API render video TikTok/Reels hàng loạt.',
-                guide: '• Bước 1: Tải bộ cài setup.exe\n• Bước 2: Nhập API Key\n• Bước 3: Nhấn Bắt Đầu Auto',
+                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
+                guide: '• Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).\n• Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.\n• Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).\n• Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.',
                 zaloLink: 'https://zalo.me/0984348734',
                 bankName: 'Vietinbank',
                 accountNo: '103868751388',
@@ -1079,11 +1102,12 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 id: 'dance-1',
                 title: 'K-Pop Hit Trend Dance Cover (9:16)',
                 category: 'kpop',
+                categoryLabel: 'K-Pop Trend',
                 tool: 'Viggle AI Dance',
-                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography`,
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
-                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16.',
-                guide: 'Tải video mẫu -> Tải lên Viggle AI -> Ghép nhân vật AI.',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn (VD: Linh xinh gái) để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
                 redirectUrl: 'https://viggle.ai/',
                 redirectLabel: 'Đến Viggle AI Studio',
                 downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
@@ -1092,154 +1116,45 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 id: 'dance-2',
                 title: 'TikTok Viral Dance Challenge 2026',
                 category: 'tiktok',
+                categoryLabel: 'TikTok Challenge',
                 tool: 'Kling Motion Swap',
-                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat`,
+                prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
-                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung.',
-                guide: 'Tải video mẫu -> Mở Kling AI -> Dùng Motion Swap.',
+                description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
+                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc TikTok hot trend bạt ngàn lượt view.',
                 redirectUrl: 'https://klingai.com/',
                 redirectLabel: 'Mở Kling AI Studio',
                 downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
+            },
+            {
+                id: 'dance-3',
+                title: 'HipHop Street Dance Energy 9:16',
+                category: 'hiphop',
+                categoryLabel: 'HipHop Street',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 street dance hiphop choreography, street fashion outfit, urban background, dynamic camera pan, 4k resolution`,
+                video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
+                description: 'Vũ đạo đường phố HipHop mạnh mẽ, dứt khoát dành cho video ngắn.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" để tải bản vũ đạo HipHop 60FPS.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI để gắn chuyển động vào trang phục đường phố AI.\n• Bước 3: Bật hiệu ứng lắc camera điện ảnh khi nhân vật thực hiện các cú giật nẩy tay.',
+                redirectUrl: 'https://runwayml.com/',
+                redirectLabel: 'Mở Runway ML',
+                downloadUrl: 'https://www.youtube.com/shorts/4EktxxHrKyc'
+            },
+            {
+                id: 'dance-4',
+                title: 'Múa Đương Đại Uyển Chuyển Gió Nhẹ',
+                category: 'modern',
+                categoryLabel: 'Múa Đương Đại',
+                tool: 'Luma Dance AI',
+                prompt: `9:16 aspect ratio, modern dance performance in peaceful studio, silk dress flowing with movement, soft volumetric lighting, elegant camera motion`,
+                video: 'https://www.youtube.com/shorts/icKchwsROCU',
+                description: 'Điệu múa đương đại uyển chuyển kết hợp hiệu ứng tà áo và gió thổi tự nhiên.',
+                guide: '• Bước 1: Tải video múa mẫu bằng nút bên dưới.\n• Bước 2: Dùng Luma Dream Machine hoặc Kling AI với prompt mô tả chất liệu vải mềm mại.\n• Bước 3: Kết hợp nhạc nền acoustic chill để thu hút người xem trên YouTube Shorts.',
+                redirectUrl: 'https://lumalabs.ai/dream-machine',
+                redirectLabel: 'Mở Luma Dream Machine',
+                downloadUrl: 'https://www.youtube.com/shorts/icKchwsROCU'
             }
         ];
-
-        // STATE MANAGEMENT FOR USER & VIP
-        let currentUser = null; // { name, email, role: 'free_trial'|'vip'|'expired', createdAt, trialExpiresAt, vipExpiresAt }
-
-        function loadUserSession() {
-            const saved = localStorage.getItem('app_user_session');
-            if (saved) {
-                try {
-                    currentUser = JSON.parse(saved);
-                    validateUserStatus();
-                } catch(e) { currentUser = null; }
-            }
-            updateUserHeaderUI();
-        }
-
-        function saveUserSession() {
-            if (currentUser) {
-                localStorage.setItem('app_user_session', JSON.stringify(currentUser));
-            } else {
-                localStorage.removeItem('app_user_session');
-            }
-            updateUserHeaderUI();
-        }
-
-        function validateUserStatus() {
-            if (!currentUser) return;
-            const now = Date.now();
-            if (currentUser.role === 'vip') {
-                if (currentUser.vipExpiresAt && now > currentUser.vipExpiresAt) {
-                    currentUser.role = 'expired';
-                }
-            } else if (currentUser.role === 'free_trial') {
-                if (currentUser.trialExpiresAt && now > currentUser.trialExpiresAt) {
-                    currentUser.role = 'expired';
-                }
-            }
-        }
-
-        function getUserPermission() {
-            if (!currentUser) return 'guest'; // Khách xem hạn chế
-            validateUserStatus();
-            return currentUser.role; // 'free_trial', 'vip', or 'expired'
-        }
-
-        function canAccessItem(itemIndex) {
-            const perm = getUserPermission();
-            if (perm === 'vip' || perm === 'free_trial') return true;
-            return itemIndex < 2; // Khách và Hết hạn chỉ xem 2 sản phẩm đầu
-        }
-
-        function updateUserHeaderUI() {
-            const statusPill = document.getElementById('user-status-pill');
-            const statusDot = document.getElementById('user-status-dot');
-            const statusText = document.getElementById('user-status-text');
-            const authContainer = document.getElementById('auth-button-container');
-            const trialAlertBar = document.getElementById('trial-alert-bar');
-            const trialAlertText = document.getElementById('trial-alert-text');
-
-            const perm = getUserPermission();
-
-            if (!currentUser) {
-                // GUEST
-                statusDot.className = 'w-2.5 h-2.5 rounded-full bg-slate-400';
-                statusText.innerText = 'Tài khoản: Khách (Xem hạn chế)';
-                authContainer.innerHTML = `
-                    <button onclick="openAuthModal('login')" class="px-3.5 py-1.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-semibold transition-all">
-                        <i class="fa-solid fa-right-to-bracket mr-1"></i> Đăng Nhập
-                    </button>`;
-                trialAlertText.innerHTML = `🎉 Đăng ký ngay để nhận <strong>5 ngày Dùng Thử Miễn Phí</strong> không giới hạn!`;
-            } else if (perm === 'vip') {
-                // VIP MEMBER
-                const expDate = currentUser.vipExpiresAt ? new Date(currentUser.vipExpiresAt).toLocaleDateString('vi-VN') : 'Vĩnh viễn';
-                statusDot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse';
-                statusText.innerHTML = `<span class="text-amber-500 font-extrabold"><i class="fa-solid fa-crown mr-1"></i>VIP MEMBER</span> (${expDate})`;
-                authContainer.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <span class="text-xs font-bold text-slate-700 dark:text-slate-200 hidden md:inline">${currentUser.name}</span>
-                        <button onclick="logoutUser()" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium hover:bg-slate-300">Thoát</button>
-                    </div>`;
-                trialAlertBar.classList.add('hidden');
-            } else if (perm === 'free_trial') {
-                // FREE TRIAL ACTIVE
-                const timeLeft = Math.max(0, currentUser.trialExpiresAt - Date.now());
-                const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
-                statusDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping';
-                statusText.innerHTML = `<span class="text-emerald-500 font-bold">Dùng thử Miễn Phí:</span> Còn ${daysLeft} ngày`;
-                authContainer.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <span class="text-xs font-bold text-slate-700 dark:text-slate-200 hidden md:inline">${currentUser.name}</span>
-                        <button onclick="logoutUser()" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium hover:bg-slate-300">Thoát</button>
-                    </div>`;
-                trialAlertText.innerHTML = `🎁 Khuyến mãi Dùng Thử 5 Ngày của bạn đang kích hoạt! Còn <strong>${daysLeft} ngày</strong> sử dụng full tính năng.`;
-            } else if (perm === 'expired') {
-                // EXPIRED TRIAL
-                statusDot.className = 'w-2.5 h-2.5 rounded-full bg-rose-500';
-                statusText.innerHTML = `<span class="text-rose-500 font-bold">Hết hạn dùng thử</span>`;
-                authContainer.innerHTML = `
-                    <div class="flex items-center space-x-2">
-                        <button onclick="openVipModal()" class="px-3 py-1.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600">Nạp VIP</button>
-                        <button onclick="logoutUser()" class="px-3 py-1.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium">Thoát</button>
-                    </div>`;
-                trialAlertText.innerHTML = `⚠️ Hạn 5 ngày dùng thử của bạn đã hết! Vui lòng <strong>Nạp VIP</strong> để mở lại quyền xem full sản phẩm.`;
-            }
-
-            // Re-render current tab items to update blur/lock status
-            renderFeaturedHomePrompts();
-            renderImagePrompts();
-            renderMotionPrompts();
-            renderVideoPrompts();
-            renderToolProducts();
-            renderDancePrompts();
-        }
-
-        function renderLockedOverlayCard(item) {
-            return `
-            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col relative group">
-                <div class="relative aspect-[9/16] overflow-hidden bg-slate-900 locked-blur">
-                    <img src="${item.image || 'https://placehold.co/400x700/1e293b/fff?text=LOCKED'}" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute inset-0 z-20 bg-slate-900/80 backdrop-blur-md p-4 flex flex-col items-center justify-center text-center space-y-3">
-                    <div class="w-12 h-12 rounded-full bg-amber-500/20 border border-amber-500/50 flex items-center justify-center text-amber-400 text-xl shadow-lg">
-                        <i class="fa-solid fa-lock"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-extrabold text-white text-sm line-clamp-1">${item.title}</h4>
-                        <p class="text-[11px] text-slate-300 mt-1">Đăng nhập để nhận <strong>5 Ngày Dùng Thử Miễn Phí</strong> hoặc Nạp VIP để xem toàn bộ.</p>
-                    </div>
-                    <div class="flex flex-col w-full space-y-2 pt-1">
-                        <button onclick="openAuthModal('register')" class="w-full py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs shadow-md">
-                            Đăng Ký Khởi Tạo (Free 5 Ngày)
-                        </button>
-                        <button onclick="openVipModal()" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold text-xs shadow-md">
-                            <i class="fa-solid fa-crown mr-1"></i> Nạp VIP Ngay (99k)
-                        </button>
-                    </div>
-                </div>
-            </div>`;
-        }
 
         function renderMediaContainer(item) {
             if (item.video) {
@@ -1250,27 +1165,70 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
+                            
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
                                 class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
-                        </div>`;
+                            
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
                 }
+                return `
+                    <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        
+                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                            <i class="fa-solid fa-volume-xmark"></i>
+                        </button>
+                    </div>
+                `;
             } else if (item.image) {
                 return `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
             }
             return '';
         }
 
-        function renderHomeGridItem(item, idx) {
-            if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
+        function renderHomeGridItem(item) {
+            if (item.price) {
+                return `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
+                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
+                        </span>
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">
+                            ${item.price}
+                        </span>
+                    </div>
+                    <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
+                        <div>
+                            <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
+                                <i class="fa-solid fa-eye mr-1"></i> Chi tiết
+                            </button>
+                            <button onclick="openQRModal('${item.id}')" class="px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
+                                <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            }
 
             return `
             <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                     ${renderMediaContainer(item)}
                     <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">
-                        ${item.tool || 'AI Tool'}
+                        ${item.tool}
                     </span>
                 </div>
                 <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
@@ -1282,7 +1240,7 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                         <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
                             <i class="fa-solid fa-eye mr-1"></i> Xem
                         </button>
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] sm:text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] sm:text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
                             <i class="fa-solid fa-copy mr-1"></i> Sao chép
                         </button>
                     </div>
@@ -1294,15 +1252,14 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
             const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
-            container.innerHTML = featured.map((item, idx) => renderHomeGridItem(item, idx)).join('');
+            container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
+            setupAutoPlayObserver();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
             const container = document.getElementById('image-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map((item, idx) => {
-                if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
-                return `
+            container.innerHTML = list.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
@@ -1311,202 +1268,246 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                     <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
                             <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
-                            <div class="mt-2 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
                                 "${item.prompt}"
                             </div>
                         </div>
                         <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-1.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200">
-                                <i class="fa-solid fa-expand mr-1"></i> Chi tiết
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                                <i class="fa-solid fa-expand"></i>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
                             </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 px-3 rounded-xl bg-primary-600 text-white text-xs font-semibold hover:bg-primary-700">
-                                <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-primary-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-copy"></i>
+                                <span>Sao chép</span>
                             </button>
                         </div>
                     </div>
-                </div>`;
-            }).join('');
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
         }
 
         function renderMotionPrompts(list = sampleMotionPrompts) {
             const container = document.getElementById('motion-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map((item, idx) => {
-                if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
-                return renderHomeGridItem(item, idx);
-            }).join('');
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">${item.tool}</span>
+                    </div>
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-accent-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
+                                "${item.prompt}"
+                            </div>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                                <i class="fa-solid fa-expand"></i>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
+                            </button>
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-accent-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-copy"></i>
+                                <span>Sao chép</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
         }
 
         function renderVideoPrompts(list = sampleVideoPrompts) {
             const container = document.getElementById('video-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map((item, idx) => {
-                if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
-                return renderHomeGridItem(item, idx);
-            }).join('');
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none">${item.tool}</span>
+                    </div>
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-rose-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
+                                "${item.prompt}"
+                            </div>
+                        </div>
+                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
+                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
+                                <i class="fa-solid fa-expand"></i>
+                                <span class="hidden sm:inline">Chi tiết</span>
+                                <span class="sm:hidden">Xem</span>
+                            </button>
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-rose-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-copy"></i>
+                                <span>Sao chép</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
         }
 
         function renderToolProducts(list = sampleToolProducts) {
             const container = document.getElementById('tool-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map((item, idx) => {
-                if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
-                return `
+            container.innerHTML = list.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
-                        <span class="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-semibold px-2 py-1 rounded-lg">${item.tool}</span>
-                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg">${item.price}</span>
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10"><i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}</span>
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>
                     </div>
-                    <div class="p-3 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
                         <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-2">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description}</p>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-[9px] sm:text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel}</span>
+                                <span class="text-[10px] sm:text-xs text-slate-400 line-through">${item.originalPrice}</span>
+                            </div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1 sm:mt-2 line-clamp-2 sm:line-clamp-3">${item.description}</p>
                         </div>
-                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="text-xs text-emerald-600 font-bold hover:underline">Hướng dẫn</button>
-                            <button onclick="openVipModal()" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-700">Tải Tool</button>
+                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>HD</span>
+                                </button>
+                                <a href="${item.zaloLink}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] sm:text-xs font-semibold hover:bg-blue-100 transition-colors flex items-center justify-center space-x-1">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                    <span>Zalo</span>
+                                </a>
+                            </div>
+                            <button onclick="openQRModal('${item.id}')" class="w-full py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
+                                <i class="fa-solid fa-qrcode text-xs sm:text-sm"></i>
+                                <span>MUA (QR)</span>
+                            </button>
                         </div>
                     </div>
-                </div>`;
-            }).join('');
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
         }
 
         function renderDancePrompts(list = sampleDancePrompts) {
             const container = document.getElementById('dance-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map((item, idx) => {
-                if (!canAccessItem(idx)) return renderLockedOverlayCard(item);
-                return renderHomeGridItem(item, idx);
-            }).join('');
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
+                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
+                        ${renderMediaContainer(item)}
+                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10 flex items-center gap-1">
+                            <i class="fa-solid fa-person-dancing text-purple-400"></i> ${item.tool}
+                        </span>
+                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-purple-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
+                            ${item.categoryLabel}
+                        </span>
+                    </div>
+                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
+                        <div>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-purple-500 transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
+                        </div>
+                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-[10px] sm:text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors flex items-center justify-center space-x-1">
+                                    <i class="fa-solid fa-book-open"></i>
+                                    <span>Hướng Dẫn</span>
+                                </button>
+                                <a href="${item.redirectUrl}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1" title="Chuyển đến web AI">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Tạo AI</span>
+                                </a>
+                            </div>
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-purple-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>TẢI VIDEO MẪU</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            setupAutoPlayObserver();
         }
 
-        // AUTH MODAL HANDLERS
-        function openAuthModal(tab = 'login') {
-            toggleAuthTab(tab);
-            document.getElementById('auth-modal').classList.remove('hidden');
-        }
+        let mediaObserver = null;
 
-        function closeAuthModal() {
-            document.getElementById('auth-modal').classList.add('hidden');
-        }
-
-        function toggleAuthTab(tab) {
-            const loginBtn = document.getElementById('auth-tab-login-btn');
-            const regBtn = document.getElementById('auth-tab-register-btn');
-            const loginForm = document.getElementById('login-form');
-            const regForm = document.getElementById('register-form');
-
-            if (tab === 'login') {
-                loginBtn.className = "flex-1 pb-3 text-sm font-bold text-center border-b-2 border-primary-600 text-primary-600";
-                regBtn.className = "flex-1 pb-3 text-sm font-bold text-center border-b-2 border-transparent text-slate-400 hover:text-slate-600";
-                loginForm.classList.remove('hidden');
-                regForm.classList.add('hidden');
-            } else {
-                regBtn.className = "flex-1 pb-3 text-sm font-bold text-center border-b-2 border-emerald-500 text-emerald-600";
-                loginBtn.className = "flex-1 pb-3 text-sm font-bold text-center border-b-2 border-transparent text-slate-400 hover:text-slate-600";
-                regForm.classList.remove('hidden');
-                loginForm.classList.add('hidden');
+        function playMedia(container) {
+            const video = container.querySelector('video');
+            if (video) { video.play().catch(() => {}); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
             }
         }
 
-        function handleLoginSubmit(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value.trim();
-            const name = email.split('@')[0];
-
-            currentUser = {
-                name: name,
-                email: email,
-                role: 'free_trial',
-                createdAt: Date.now(),
-                trialExpiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000) // 5 days free
-            };
-
-            saveUserSession();
-            closeAuthModal();
-            showToast(`Chào mừng ${name}! Bạn có 5 ngày Dùng Thử Miễn Phí.`);
+        function pauseMedia(container) {
+            const video = container.querySelector('video');
+            if (video) { video.pause(); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
         }
 
-        function handleRegisterSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value.trim();
-            const email = document.getElementById('reg-email').value.trim();
-
-            currentUser = {
-                name: name,
-                email: email,
-                role: 'free_trial',
-                createdAt: Date.now(),
-                trialExpiresAt: Date.now() + (5 * 24 * 60 * 60 * 1000) // 5 Days Free Trial
-            };
-
-            saveUserSession();
-            closeAuthModal();
-            showToast(`Đăng ký thành công! Bạn nhận được 5 ngày Dùng Thử Miễn Phí 🎉`);
+        function pauseAllMedia() {
+            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
         }
 
-        function logoutUser() {
-            currentUser = null;
-            saveUserSession();
-            showToast("Đã đăng xuất tài khoản.");
+        function setupAutoPlayObserver() {
+            if (mediaObserver) mediaObserver.disconnect();
+            mediaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const isTabVisible = !entry.target.closest('.tab-content.hidden');
+                    if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
+                        playMedia(entry.target);
+                    } else {
+                        pauseMedia(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
         }
 
-        // VIP MODAL HANDLERS
-        let selectedVipAmount = 99000;
-        let selectedVipPackageTitle = 'Nạp VIP 1 Tháng';
-
-        function openVipModal() {
-            document.getElementById('vip-modal').classList.remove('hidden');
-            updateVipQrCode();
-        }
-
-        function closeVipModal() {
-            document.getElementById('vip-modal').classList.add('hidden');
-        }
-
-        function selectVipPackage(type, amount, title, element) {
-            document.querySelectorAll('.vip-pkg-card').forEach(el => {
-                el.className = "vip-pkg-card cursor-pointer p-4 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col justify-between space-y-2 transition-all hover:border-amber-400";
-            });
-            element.className = "vip-pkg-card cursor-pointer p-4 rounded-2xl border-2 border-amber-500 bg-amber-50/50 dark:bg-amber-950/20 flex flex-col justify-between space-y-2 relative transition-all shadow-md";
-
-            selectedVipAmount = amount;
-            selectedVipPackageTitle = title;
-            updateVipQrCode();
-        }
-
-        function updateVipQrCode() {
-            const qrContainer = document.getElementById('vip-qr-container');
-            const noteEl = document.getElementById('vip-transfer-note');
-            
-            const userIdentifier = currentUser ? (currentUser.email || currentUser.name) : 'GUEST';
-            const transferNote = `VIP ${userIdentifier.replace(/[^a-zA-Z0-9]/g, '')}`.toUpperCase();
-            noteEl.innerText = transferNote;
-
-            const qrUrl = `https://api.vietqr.io/image/970415-103868751388-2xrjgS2.jpg?accountName=PHAM%20TUAN%20VINH&amount=99000&addInfo=Dang%20ky%20VIP%20thang%20`;
-
-            qrContainer.innerHTML = `
-                <div class="inline-block p-3 bg-white rounded-2xl shadow-md border border-slate-200">
-                    <img src="${qrUrl}" alt="Mã QR VietQR VIP" class="w-52 h-52 mx-auto rounded-xl object-contain">
-                    <div class="mt-2 text-[11px] font-bold text-amber-600 uppercase tracking-wide">${selectedVipPackageTitle} - ${selectedVipAmount.toLocaleString('vi-VN')}đ</div>
-                </div>`;
-        }
-
-        function switchTab(tabId) {
+        function switchTab(tabId, skipScroll = false) {
+            localStorage.setItem('activeTab', tabId);
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, null, '#' + tabId);
+            }
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             const activeTab = document.getElementById(`tab-${tabId}`);
             if (activeTab) activeTab.classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 transition-all";
+                btn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
             });
             const currentNavBtn = document.getElementById(`nav-${tabId}`);
             if (currentNavBtn) {
-                currentNavBtn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition-all text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
+                currentNavBtn.className = "nav-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            pauseAllMedia();
+            setTimeout(() => { setupAutoPlayObserver(); }, 100);
+            if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMobileMenu() {
@@ -1515,24 +1516,168 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
 
         function toggleDarkMode() {
             const html = document.documentElement;
+            const darkIcon = document.getElementById('theme-toggle-dark-icon');
+            const lightIcon = document.getElementById('theme-toggle-light-icon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
-                document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
-                document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
+                localStorage.setItem('theme', 'light');
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
             } else {
                 html.classList.add('dark');
-                document.getElementById('theme-toggle-light-icon').classList.add('hidden');
-                document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
+                localStorage.setItem('theme', 'dark');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
             }
+        }
+
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
+                document.getElementById('theme-toggle-light-icon').classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
+                document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
+            }
+        }
+
+        function removeVietnameseTones(str) {
+            if (!str) return '';
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+        }
+
+        function handleHomeSearch(e) { if (e.key === 'Enter') executeHomeSearch(); }
+        function handleHomeSearchInput() { if (!document.getElementById('home-search-input').value.trim()) clearHomeSearch(); }
+
+        function executeHomeSearch() {
+            const rawQuery = document.getElementById('home-search-input').value.trim();
+            const query = removeVietnameseTones(rawQuery);
+            const container = document.getElementById('home-featured-grid');
+            switchTab('home', true);
+            
+            const clearBtn = document.getElementById('clear-home-search-btn');
+            if (rawQuery) {
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = `Kết Quả Tìm Kiếm Cho: "${rawQuery}"`;
+            } else {
+                if (clearBtn) clearBtn.classList.add('hidden');
+                const titleEl = document.getElementById('home-grid-title');
+                if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
+                renderFeaturedHomePrompts();
+                return;
+            }
+
+            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
+            const filtered = allItems.filter(item => {
+                return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
+            } else {
+                container.innerHTML = filtered.map(item => renderHomeGridItem(item)).join('');
+            }
+            
+            setupAutoPlayObserver();
+
+            const gridSection = document.getElementById('home-grid-title');
+            if (gridSection) {
+                gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function clearHomeSearch() {
+            const searchInput = document.getElementById('home-search-input');
+            if (searchInput) searchInput.value = '';
+            const clearBtn = document.getElementById('clear-home-search-btn');
+            if (clearBtn) clearBtn.classList.add('hidden');
+            const titleEl = document.getElementById('home-grid-title');
+            if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
+            renderFeaturedHomePrompts();
+        }
+
+        function filterImages() {
+            const query = removeVietnameseTones(document.getElementById('image-search').value);
+            renderImagePrompts(sampleImagePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterImageCategory(cat, btnElement) {
+            document.querySelectorAll('.img-cat-btn').forEach(b => b.className = "img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm";
+            renderImagePrompts(cat === 'all' ? sampleImagePrompts : sampleImagePrompts.filter(item => item.category === cat));
+        }
+
+        function filterMotion() {
+            const query = removeVietnameseTones(document.getElementById('motion-search').value);
+            renderMotionPrompts(sampleMotionPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterMotionCategory(cat, btnElement) {
+            document.querySelectorAll('.motion-cat-btn').forEach(b => b.className = "motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm";
+            renderMotionPrompts(cat === 'all' ? sampleMotionPrompts : sampleMotionPrompts.filter(item => item.category === cat));
+        }
+
+        function filterVideo() {
+            const query = removeVietnameseTones(document.getElementById('video-search').value);
+            renderVideoPrompts(sampleVideoPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt).includes(query)));
+        }
+
+        function filterVideoCategory(cat, btnElement) {
+            document.querySelectorAll('.video-cat-btn').forEach(b => b.className = "video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm";
+            renderVideoPrompts(cat === 'all' ? sampleVideoPrompts : sampleVideoPrompts.filter(item => item.category === cat));
+        }
+
+        function filterTools() {
+            const query = removeVietnameseTones(document.getElementById('tool-search').value);
+            renderToolProducts(sampleToolProducts.filter(item => removeVietnameseTones(item.title).includes(query)));
+        }
+
+        function filterToolCategory(cat, btnElement) {
+            document.querySelectorAll('.tool-cat-btn').forEach(b => b.className = "tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm";
+            renderToolProducts(cat === 'all' ? sampleToolProducts : sampleToolProducts.filter(item => item.category === cat));
+        }
+
+        function filterDance() {
+            const query = removeVietnameseTones(document.getElementById('dance-search').value);
+            renderDancePrompts(sampleDancePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.description).includes(query)));
+        }
+
+        function filterDanceCategory(cat, btnElement) {
+            document.querySelectorAll('.dance-cat-btn').forEach(b => b.className = "dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
+            btnElement.className = "dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm";
+            renderDancePrompts(cat === 'all' ? sampleDancePrompts : sampleDancePrompts.filter(item => item.category === cat));
         }
 
         function copyPromptObject(btn, encodedText) {
             const text = decodeURIComponent(atob(encodedText));
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(text).then(() => showToast("Đã sao chép prompt văn bản chuẩn!"));
+            copyToClipboard(text);
+        }
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Đã sao chép prompt văn bản chuẩn!");
+                }).catch(() => { fallbackCopy(text); });
             } else {
-                showToast("Đã sao chép prompt!");
+                fallbackCopy(text);
             }
+        }
+
+        function fallbackCopy(text) {
+            const dummy = document.createElement('textarea');
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            showToast("Đã sao chép prompt văn bản chuẩn!");
         }
 
         function showToast(msg) {
@@ -1546,50 +1691,230 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             }, 2500);
         }
 
+        function muteAllAudio(exceptId = null) {
+            document.querySelectorAll('.media-container').forEach(container => {
+                const iframe = container.querySelector('iframe');
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+            });
+        }
+
+        function toggleAudio(elementId, type, btn, event) {
+            if (event) { event.stopPropagation(); event.preventDefault(); }
+            const icon = btn.querySelector('i');
+            const isMuted = btn.getAttribute('data-muted') !== 'false';
+            if (isMuted) {
+                muteAllAudio(elementId);
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                    iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = false;
+                }
+                btn.setAttribute('data-muted', 'false');
+                icon.className = 'fa-solid fa-volume-high';
+                btn.classList.remove('bg-black/40');
+                btn.classList.add('bg-purple-600', 'scale-110');
+            } else {
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = true;
+                }
+                btn.setAttribute('data-muted', 'true');
+                icon.className = 'fa-solid fa-volume-xmark';
+                btn.classList.remove('bg-purple-600', 'scale-110');
+                btn.classList.add('bg-black/40');
+            }
+        }
+
         function openModal(itemId) {
             const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleToolProducts, ...sampleDancePrompts];
             const item = allItems.find(x => x.id === itemId);
             if (!item) return;
-
+            pauseAllMedia();
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
 
-            content.innerHTML = `
-                <div class="space-y-4">
-                    <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 text-xs font-bold uppercase">${item.tool || 'AI TOOL'}</span>
-                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Hướng Dẫn</label>
-                        <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || 'Không có mô tả chi tiết.'}</p>
-                    </div>
-                    ${item.prompt ? `
-                    <div>
-                        <div class="flex items-center justify-between mb-1">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản</label>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="text-xs text-primary-600 font-semibold hover:underline">Sao chép</button>
+            if (item.downloadUrl) {
+                // Dance item modal format
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-bold uppercase"><i class="fa-solid fa-person-dancing mr-1"></i>${item.tool}</span>
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
                         </div>
-                        <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 leading-relaxed max-h-48 overflow-y-auto">
-                            ${item.prompt}
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
                         </div>
-                    </div>` : ''}
-                    <div class="pt-4 flex justify-end">
-                        <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-xs font-semibold">Đóng</button>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Vũ Đạo</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-purple-500 mb-1">Hướng Dẫn Tạo Dance AI Chi Tiết</label>
+                            <div class="p-3.5 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-xs text-slate-800 dark:text-slate-200 border border-purple-200 dark:border-purple-800/50 whitespace-pre-line leading-relaxed">${item.guide}</div>
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                            <a href="${item.redirectUrl}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${item.redirectLabel}</span>
+                            </a>
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-download"></i> <span>TẢI VIDEO MẪU</span>
+                            </a>
+                        </div>
                     </div>
-                </div>`;
-
+                `;
+            } else if (item.price) {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">${item.tool}</span>
+                            <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${item.price} <span class="text-xs text-slate-400 line-through font-normal">${item.originalPrice}</span></span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Sản Phẩm</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Hướng Dẫn Sử Dụng & Setup</label>
+                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 whitespace-pre-line leading-relaxed">${item.guide}</div>
+                        </div>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                            <a href="${item.zaloLink}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo</span>
+                            </a>
+                            <button onclick="closeModal(); openQRModal('${item.id}')" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                                <i class="fa-solid fa-qrcode"></i> <span>MUA NGAY (MÃ QR)</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                content.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">${item.tool}</span>
+                        </div>
+                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[60vh] aspect-[9/16] mx-auto overflow-hidden">
+                            ${renderMediaContainer(item)}
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Hướng Dẫn</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || 'Không có mô tả chi tiết.'}</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản (Chuẩn Copy)</label>
+                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép
+                                </button>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
+                                ${item.prompt}
+                            </div>
+                        </div>
+                        <div class="pt-4 flex justify-end">
+                            <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300">Đóng cửa sổ</button>
+                        </div>
+                    </div>
+                `;
+            }
             modal.classList.remove('hidden');
+            setTimeout(() => { playMedia(content); }, 100);
         }
 
         function closeModal() {
-            document.getElementById('detail-modal').classList.add('hidden');
+            const modal = document.getElementById('detail-modal');
+            pauseMedia(modal);
+            muteAllAudio();
+            modal.classList.add('hidden');
+            setTimeout(() => { setupAutoPlayObserver(); }, 100);
         }
+
+        function openQRModal(toolId) {
+            const tool = sampleToolProducts.find(x => x.id === toolId);
+            if (!tool) return;
+            const modal = document.getElementById('qr-modal');
+            const content = document.getElementById('qr-modal-content');
+            
+            const qrUrl = tool.customQrImage || `https://img.vietqr.io/image/MB-${tool.accountNo}-compact2.png?amount=${tool.price.replace(/[^0-9]/g, '')}&addInfo=${encodeURIComponent(tool.note)}&accountName=${encodeURIComponent(tool.accountName)}`;
+
+            content.innerHTML = `
+                <div class="space-y-3">
+                    <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">
+                        <i class="fa-solid fa-shield-halved"></i> <span>Thanh Toán An Toàn Qua QR</span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
+                    
+                    <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto relative group">
+                        <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
+                        <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Quét mã QR bằng ứng dụng Ngân hàng</div>
+                    </div>
+
+                    <div class="space-y-2 text-left bg-slate-100 dark:bg-slate-900/60 p-3.5 rounded-xl text-xs">
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tiền:</span><span class="font-extrabold text-emerald-600 text-sm">${tool.price}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Ngân hàng:</span><span class="font-bold text-slate-800 dark:text-slate-200">${tool.bankName}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tài khoản:</span><span class="font-mono font-bold">${tool.accountNo}</span></div>
+                        <div class="flex justify-between items-center"><span class="text-slate-400">Nội dung CK:</span><span class="font-mono font-bold text-rose-500">${tool.note}</span></div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-between gap-3">
+                        <a href="${tool.zaloLink}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow">
+                            <i class="fa-solid fa-headset"></i> <span>Xác Nhận Qua Zalo</span>
+                        </a>
+                        <button onclick="closeQRModal()" class="py-2.5 px-4 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs">Đóng</button>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeQRModal() { document.getElementById('qr-modal').classList.add('hidden'); }
+
+        window.addEventListener('scroll', () => {
+            const scrollBtn = document.getElementById('scroll-top-btn');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
 
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         window.onload = function() {
-            loadUserSession();
+            initTheme();
+            renderFeaturedHomePrompts();
+            renderImagePrompts();
+            renderMotionPrompts();
+            renderVideoPrompts();
+            renderToolProducts();
+            renderDancePrompts();
+            setupAutoPlayObserver();
+
+            const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
+            const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
+            if (['home', 'image', 'motion', 'video', 'tool', 'dance'].includes(savedTab)) {
+                switchTab(savedTab, true);
+            }
         };
     </script>
 </body>
