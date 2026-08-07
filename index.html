@@ -68,13 +68,13 @@
 
     <script>
         // =========================================================================
-        // DANH SÁCH TÀI KHOẢN THÀNH VIÊN (Bạn có thể thêm hoặc bớt tài khoản ở đây dễ dàng)
+        // DANH SÁCH TÀI KHOẢN THÀNH VIÊN
         // =========================================================================
         const memberAccounts = [
             { username: "hocvien01", password: "123", name: "Học Viên VIP 01" },
             { username: "hocvien02", password: "123", name: "Học Viên VIP 02" },
             { username: "linhxinh", password: "123", name: "Linh Xinh Gái VIP" },
-			{ username: "linhxinh1", password: "123", name: "Linh Xinh Gái VIP" },
+			{ username: "test1", password: "123", name: "Linh Xinh Gái VIP" },
         ];
 
         // Tài khoản Quản trị cố định
@@ -84,7 +84,6 @@
         let currentUser = JSON.parse(localStorage.getItem('ai_prompt_current_user')) || null;
     </script>
 
-    <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -166,7 +165,7 @@
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- Guest Restriction Banner (If not logged in) -->
+        <!-- Guest Restriction Banner -->
         <div id="guest-notice-banner" class="hidden mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-purple-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shrink-0 shadow-md">
@@ -1143,104 +1142,7 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             }
         ];
 
-        // Hàm kiểm tra và giới hạn danh sách sản phẩm (Guest: chỉ 2 sản phẩm đầu tiên)
-        function getAccessibleList(list) {
-            if (currentUser) {
-                return list; // Đã đăng nhập thấy tất cả
-            }
-            return list.slice(0, 2); // Chưa đăng nhập chỉ thấy 2 sản phẩm đầu
-        }
-
-        function updateAuthHeaderUI() {
-            const authArea = document.getElementById('auth-header-area');
-            const guestBanner = document.getElementById('guest-notice-banner');
-            
-            if (currentUser) {
-                if (guestBanner) guestBanner.classList.add('hidden');
-                authArea.innerHTML = `
-                    <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
-                        <div class="w-7 h-7 rounded-lg bg-primary-600 text-white flex items-center justify-center font-bold text-xs">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="hidden sm:block text-left">
-                            <span class="block text-xs font-bold text-slate-800 dark:text-white leading-tight">${currentUser.name}</span>
-                            <span class="block text-[9px] text-emerald-500 font-semibold">${currentUser.role === 'admin' ? 'Quản Trị Viên' : 'Hội Viên VIP'}</span>
-                        </div>
-                        <button onclick="logoutUser()" class="ml-2 text-xs text-rose-500 hover:text-rose-700 font-semibold p-1" title="Đăng xuất">
-                            <i class="fa-solid fa-right-from-bracket text-base"></i>
-                        </button>
-                    </div>
-                `;
-            } else {
-                if (guestBanner) guestBanner.classList.remove('hidden');
-                authArea.innerHTML = `
-                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-xs shadow-md shadow-primary-500/20 transition-all flex items-center space-x-1.5">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        <span>Đăng Nhập</span>
-                    </button>
-                `;
-            }
-        }
-
-        function openLoginModal() {
-            document.getElementById('login-modal').classList.remove('hidden');
-            document.getElementById('login-error-msg').classList.add('hidden');
-        }
-
-        function closeLoginModal() {
-            document.getElementById('login-modal').classList.add('hidden');
-        }
-
-        function handleLoginSubmit(event) {
-            event.preventDefault();
-            const u = document.getElementById('login-username').value.trim();
-            const p = document.getElementById('login-password').value.trim();
-            const errorEl = document.getElementById('login-error-msg');
-
-            // Kiểm tra Admin
-            if (u === adminAccount.username && p === adminAccount.password) {
-                currentUser = { username: adminAccount.username, name: adminAccount.name, role: 'admin' };
-                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
-                closeLoginModal();
-                updateAuthHeaderUI();
-                refreshAllGrids();
-                showToast('Đăng nhập Quản trị viên thành công!');
-                return;
-            }
-
-            // Kiểm tra Hội viên trong mảng memberAccounts
-            const foundMember = memberAccounts.find(acc => acc.username === u && acc.password === p);
-            if (foundMember) {
-                currentUser = { username: foundMember.username, name: foundMember.name, role: 'member' };
-                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
-                closeLoginModal();
-                updateAuthHeaderUI();
-                refreshAllGrids();
-                showToast(`Chào mừng thành viên ${foundMember.name} quay lại!`);
-                return;
-            }
-
-            // Sai tài khoản
-            errorEl.classList.remove('hidden');
-        }
-
-        function logoutUser() {
-            currentUser = null;
-            localStorage.removeItem('ai_prompt_current_user');
-            updateAuthHeaderUI();
-            refreshAllGrids();
-            showToast('Đã đăng xuất tài khoản!');
-        }
-
-        function refreshAllGrids() {
-            renderFeaturedHomePrompts();
-            renderImagePrompts();
-            renderMotionPrompts();
-            renderVideoPrompts();
-            renderToolProducts();
-            renderDancePrompts();
-        }
-
+        // Hàm hỗ trợ render media container
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
@@ -1250,12 +1152,10 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
                                 class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
-                            
                             <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
@@ -1265,7 +1165,6 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
                         <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
-                        
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
@@ -1277,257 +1176,200 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             return '';
         }
 
-        function renderHomeGridItem(item) {
-            if (item.price) {
-                return `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        ${renderMediaContainer(item)}
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
-                            <i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}
-                        </span>
-                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">
-                            ${item.price}
-                        </span>
-                    </div>
-                    <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
-                        <div>
-                            <span class="text-[9px] sm:text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel || 'Tool AI'}</span>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-emerald-500 transition-colors">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description}</p>
+        // Cập nhật giao diện Đăng Nhập / Đăng Xuất trên Header
+        function updateAuthHeaderUI() {
+            const area = document.getElementById('auth-header-area');
+            const noticeBanner = document.getElementById('guest-notice-banner');
+            if (!area) return;
+
+            if (currentUser) {
+                if (noticeBanner) noticeBanner.classList.add('hidden');
+                area.innerHTML = `
+                    <div class="flex items-center space-x-2 bg-primary-50 dark:bg-primary-900/40 px-3 py-1.5 rounded-xl border border-primary-200 dark:border-primary-800">
+                        <div class="w-7 h-7 rounded-lg bg-primary-600 text-white flex items-center justify-center text-xs font-bold">
+                            ${currentUser.name.charAt(0)}
                         </div>
-                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-emerald-600 flex items-center">
-                                <i class="fa-solid fa-eye mr-1"></i> Chi tiết
-                            </button>
-                            <button onclick="openQRModal('${item.id}')" class="px-2 sm:px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-emerald-700 transition-colors flex items-center">
-                                <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
-                            </button>
+                        <div class="hidden sm:block text-left">
+                            <p class="text-xs font-bold text-slate-900 dark:text-white line-clamp-1">${currentUser.name}</p>
+                            <p class="text-[10px] text-primary-600 dark:text-primary-400 font-semibold">${currentUser.username === 'admin' ? 'Quản trị viên' : 'Hội viên VIP'}</p>
                         </div>
+                        <button onclick="handleLogout()" class="ml-2 p-1.5 rounded-lg text-slate-400 hover:text-rose-500 transition-colors" title="Đăng xuất">
+                            <i class="fa-solid fa-right-from-bracket text-sm"></i>
+                        </button>
                     </div>
-                </div>`;
+                `;
+            } else {
+                if (noticeBanner) noticeBanner.classList.remove('hidden');
+                area.innerHTML = `
+                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-xs shadow-md transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Đăng Nhập</span>
+                    </button>
+                `;
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('login-username').value = '';
+            document.getElementById('login-password').value = '';
+            document.getElementById('login-error-msg').classList.add('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value.trim();
+            const err = document.getElementById('login-error-msg');
+
+            // Kiểm tra Admin
+            if (u === adminAccount.username && p === adminAccount.password) {
+                currentUser = adminAccount;
+                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
+                closeLoginModal();
+                updateAuthHeaderUI();
+                refreshAllGrids();
+                showToast("Đăng nhập tài khoản Quản Trị Viên thành công!");
+                return;
             }
 
+            // Kiểm tra Hội viên
+            const foundMember = memberAccounts.find(m => m.username === u && m.password === p);
+            if (foundMember) {
+                currentUser = foundMember;
+                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
+                closeLoginModal();
+                updateAuthHeaderUI();
+                refreshAllGrids();
+                showToast("Đăng nhập hội viên thành công!");
+                return;
+            }
+
+            err.classList.remove('hidden');
+        }
+
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('ai_prompt_current_user');
+            updateAuthHeaderUI();
+            refreshAllGrids();
+            showToast("Đã đăng xuất tài khoản!");
+        }
+
+        function refreshAllGrids() {
+            renderFeaturedHomePrompts();
+            renderImagePrompts();
+            renderMotionPrompts();
+            renderVideoPrompts();
+            renderToolProducts();
+            renderDancePrompts();
+        }
+
+        function renderGenericCard(item, type, index) {
+            const isLocked = !currentUser && index >= 2;
+            let badgeColor = 'bg-primary-600';
+            if (type === 'motion') badgeColor = 'bg-accent-600';
+            if (type === 'video') badgeColor = 'bg-rose-600';
+            if (type === 'tool') badgeColor = 'bg-emerald-600';
+            if (type === 'dance') badgeColor = 'bg-purple-600';
+
             return `
-            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                    ${renderMediaContainer(item)}
-                    <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
+                ${isLocked ? `
+                <div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center">
+                    <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce">
+                        <i class="fa-solid fa-lock text-lg"></i>
+                    </div>
+                    <p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p>
+                    <p class="text-[10px] text-slate-300 mb-3">Vui lòng đăng nhập hội viên để xem và mở khóa sản phẩm này</p>
+                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold shadow transition-all">Đăng Nhập Ngay</button>
+                </div>
+                ` : ''}
+
+                <div class="relative aspect-[9/16] overflow-hidden bg-slate-900 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
+                    ${type === 'image' ? `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">` : renderMediaContainer(item)}
+                    <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
                         ${item.tool}
                     </span>
+                    ${item.price ? `<span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>` : ''}
                 </div>
-                <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2">
+
+                <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     <div>
-                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1 group-hover:text-primary-600 transition-colors">${item.title}</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 line-clamp-2">${item.description || item.prompt}</p>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description || item.prompt || ''}</p>
+                        ${item.prompt && !item.price ? `
+                        <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
+                            "${item.prompt}"
+                        </div>` : ''}
                     </div>
+
                     <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                        <button onclick="openModal('${item.id}')" class="text-[10px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary-600 flex items-center">
-                            <i class="fa-solid fa-eye mr-1"></i> Xem
+                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 transition-colors flex items-center space-x-1">
+                            <i class="fa-solid fa-expand"></i>
+                            <span>Chi tiết</span>
                         </button>
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="px-2 sm:px-2.5 py-1 rounded-lg bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-[10px] sm:text-xs font-semibold hover:bg-primary-100 transition-colors flex items-center">
-                            <i class="fa-solid fa-copy mr-1"></i> Sao chép
-                        </button>
+                        ${item.price ? `
+                        <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-3 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center">
+                            <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
+                        </button>` : item.downloadUrl ? `
+                        <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-3 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center">
+                            <i class="fa-solid fa-download mr-1"></i> Tải Mẫu
+                        </a>` : `
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
+                            <i class="fa-solid fa-copy"></i>
+                            <span>Sao chép</span>
+                        </button>`}
                     </div>
                 </div>
-            </div>`;
+            </div>
+            `;
         }
 
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
             const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
-            const accessible = getAccessibleList(featured);
-            container.innerHTML = accessible.map(item => renderHomeGridItem(item)).join('');
+            container.innerHTML = featured.map((item, index) => renderGenericCard(item, 'home', index)).join('');
             setupAutoPlayObserver();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
             const container = document.getElementById('image-templates-grid');
             if (!container) return;
-            const accessible = getAccessibleList(list);
-            container.innerHTML = accessible.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/75 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg">${item.tool}</span>
-                    </div>
-                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
-                                "${item.prompt}"
-                            </div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
-                                <i class="fa-solid fa-expand"></i>
-                                <span class="hidden sm:inline">Chi tiết</span>
-                                <span class="sm:hidden">Xem</span>
-                            </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-primary-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-primary-700 shadow-sm transition-all flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i>
-                                <span>Sao chép</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'image', index)).join('');
             setupAutoPlayObserver();
         }
 
         function renderMotionPrompts(list = sampleMotionPrompts) {
             const container = document.getElementById('motion-templates-grid');
             if (!container) return;
-            const accessible = getAccessibleList(list);
-            container.innerHTML = accessible.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        ${renderMediaContainer(item)}
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">${item.tool}</span>
-                    </div>
-                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-accent-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
-                                "${item.prompt}"
-                            </div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
-                                <i class="fa-solid fa-expand"></i>
-                                <span class="hidden sm:inline">Chi tiết</span>
-                                <span class="sm:hidden">Xem</span>
-                            </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-accent-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-accent-700 shadow-sm transition-all flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i>
-                                <span>Sao chép</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'motion', index)).join('');
             setupAutoPlayObserver();
         }
 
         function renderVideoPrompts(list = sampleVideoPrompts) {
             const container = document.getElementById('video-templates-grid');
             if (!container) return;
-            const accessible = getAccessibleList(list);
-            container.innerHTML = accessible.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        ${renderMediaContainer(item)}
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none">${item.tool}</span>
-                    </div>
-                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-rose-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
-                            <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800 line-clamp-2">
-                                "${item.prompt}"
-                            </div>
-                        </div>
-                        <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                            <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center space-x-1">
-                                <i class="fa-solid fa-expand"></i>
-                                <span class="hidden sm:inline">Chi tiết</span>
-                                <span class="sm:hidden">Xem</span>
-                            </button>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl bg-rose-600 text-white text-[10px] sm:text-xs font-semibold hover:bg-rose-700 shadow-sm transition-all flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i>
-                                <span>Sao chép</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'video', index)).join('');
             setupAutoPlayObserver();
         }
 
         function renderToolProducts(list = sampleToolProducts) {
             const container = document.getElementById('tool-templates-grid');
             if (!container) return;
-            const accessible = getAccessibleList(list);
-            container.innerHTML = accessible.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        ${renderMediaContainer(item)}
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10"><i class="fa-solid fa-gears mr-1 text-emerald-400"></i>${item.tool}</span>
-                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>
-                    </div>
-                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <span class="text-[9px] sm:text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">${item.categoryLabel}</span>
-                                <span class="text-[10px] sm:text-xs text-slate-400 line-through">${item.originalPrice}</span>
-                            </div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-emerald-500 transition-colors line-clamp-2">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-1 sm:mt-2 line-clamp-2 sm:line-clamp-3">${item.description}</p>
-                        </div>
-                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
-                            <div class="flex items-center gap-1.5 sm:gap-2">
-                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1">
-                                    <i class="fa-solid fa-circle-info"></i>
-                                    <span>HD</span>
-                                </button>
-                                <a href="${item.zaloLink}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] sm:text-xs font-semibold hover:bg-blue-100 transition-colors flex items-center justify-center space-x-1">
-                                    <i class="fa-solid fa-comment-dots"></i>
-                                    <span>Zalo</span>
-                                </a>
-                            </div>
-                            <button onclick="openQRModal('${item.id}')" class="w-full py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-emerald-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
-                                <i class="fa-solid fa-qrcode text-xs sm:text-sm"></i>
-                                <span>MUA (QR)</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'tool', index)).join('');
             setupAutoPlayObserver();
         }
 
         function renderDancePrompts(list = sampleDancePrompts) {
             const container = document.getElementById('dance-templates-grid');
             if (!container) return;
-            const accessible = getAccessibleList(list);
-            container.innerHTML = accessible.map(item => `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
-                    <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
-                        ${renderMediaContainer(item)}
-                        <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10 flex items-center gap-1">
-                            <i class="fa-solid fa-person-dancing text-purple-400"></i> ${item.tool}
-                        </span>
-                        <span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-purple-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
-                            ${item.categoryLabel}
-                        </span>
-                    </div>
-                    <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4">
-                        <div>
-                            <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-purple-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description}</p>
-                        </div>
-                        <div class="space-y-1.5 sm:space-y-2 pt-2 border-t border-slate-100 dark:border-slate-700/50">
-                            <div class="flex items-center gap-1.5 sm:gap-2">
-                                <button onclick="openModal('${item.id}')" class="flex-1 py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-[10px] sm:text-xs font-semibold hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-colors flex items-center justify-center space-x-1">
-                                    <i class="fa-solid fa-book-open"></i>
-                                    <span>Hướng Dẫn</span>
-                                </button>
-                                <a href="${item.redirectUrl}" target="_blank" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors flex items-center justify-center space-x-1" title="Chuyển đến web AI">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    <span>Tạo AI</span>
-                                </a>
-                            </div>
-                            <a href="${item.downloadUrl}" target="_blank" download class="w-full py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-[10px] sm:text-xs shadow-md shadow-purple-500/20 transition-all flex items-center justify-center space-x-1 sm:space-x-2">
-                                <i class="fa-solid fa-download"></i>
-                                <span>TẢI VIDEO MẪU</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
+            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'dance', index)).join('');
             setupAutoPlayObserver();
         }
 
@@ -1667,20 +1509,12 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
             });
 
-            const accessible = getAccessibleList(filtered);
-
-            if (accessible.length === 0) {
+            if (filtered.length === 0) {
                 container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
             } else {
-                container.innerHTML = accessible.map(item => renderHomeGridItem(item)).join('');
+                container.innerHTML = filtered.map((item, index) => renderGenericCard(item, 'home', index)).join('');
             }
-            
             setupAutoPlayObserver();
-
-            const gridSection = document.getElementById('home-grid-title');
-            if (gridSection) {
-                gridSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
         }
 
         function clearHomeSearch() {
