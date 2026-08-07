@@ -71,10 +71,37 @@
         // DANH SÁCH TÀI KHOẢN THÀNH VIÊN
         // =========================================================================
         const memberAccounts = [
-            { username: "hocvien01", password: "123", name: "Học Viên VIP 01" },
-            { username: "hocvien02", password: "123", name: "Học Viên VIP 02" },
-            { username: "linhxinh", password: "123", name: "Linh Xinh Gái VIP" },
-			{ username: "test1", password: "123", name: "Linh Xinh Gái VIP" },
+            { username: "hocvien01", password: "123", name: "Học Viên VIP" },
+            { username: "hocvien02", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien03", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien04", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien05", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien06", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien07", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien08", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien09", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien10", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien11", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien12", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien13", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien14", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien15", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien16", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien17", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien18", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien19", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien20", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien21", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien22", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien23", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien24", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien25", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien26", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien27", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien28", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien29", password: "123", name: "Học Viên VIP" },
+			{ username: "hocvien30", password: "123", name: "Học Viên VIP" },
+            
         ];
 
         // Tài khoản Quản trị cố định
@@ -212,7 +239,7 @@
                             <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, cà phê, dance, kpop, auto, midjourney...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
                         <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
-                            <span>Khám Phá Ngay</span>
+                            <span>Tìm Kiếm Ngay</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
                     </div>
@@ -261,9 +288,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-image text-primary-500 mr-3"></i> Mẫu Hình Ảnh AI Dọc (9:16)
+                        <i class="fa-solid fa-image text-primary-500 mr-3"></i> Mẫu Hình Ảnh
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao định dạng dọc 9:16</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -292,7 +319,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
                 </div>
@@ -320,7 +347,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
+                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & prompt tạo video Reels/TikTok chân thực với AI</p>
                 </div>
@@ -352,7 +379,7 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động đăng bài và nuôi tài khoản tự động hóa</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động hoá các bước tăng tốc độ sản xuất video</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -364,8 +391,8 @@
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
                 <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
-                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Đăng Bài & Reels</button>
-                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Lồng Tiếng & Vietsub</button>
+                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đang cập nhật</button>
+                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đang cập nhật</button>
             </div>
 
             <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -378,9 +405,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
+                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, Hướng dẫn và tạo video nhảy theo video mẫu</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -391,10 +418,10 @@
 
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
-                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
-                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
-                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
+                <button onclick="filterDanceCategory('nhaymotnguoi', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy một người</button>
+                <button onclick="filterDanceCategory('nhaynhom', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy nhóm</button>
+                <button onclick="filterDanceCategory('nhaybienhinh', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy biến hình</button>
+                <button onclick="filterDanceCategory('dancervip', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Dancer VIP</button>
             </div>
 
             <div id="dance-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -481,7 +508,7 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Bạn chưa có tài khoản thành viên?</p>
                 <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
                     <i class="fa-solid fa-comment-dots"></i>
-                    <span>Nhận tài khoản miễn phí qua Zalo 24/7</span>
+                    <span>Nhận tài khoản qua Zalo 24/7</span>
                 </a>
             </div>
         </div>
@@ -1284,8 +1311,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                     <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce">
                         <i class="fa-solid fa-lock text-lg"></i>
                     </div>
-                    <p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p>
-                    <p class="text-[10px] text-slate-300 mb-3">Vui lòng đăng nhập hội viên để xem và mở khóa sản phẩm này</p>
+                    <p class="text-xs font-bold text-white mb-1">Mở khóa để xem</p>
+                    <p class="text-[10px] text-slate-300 mb-3">Vui lòng đăng nhập để xem đầy đủ</p>
                     <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold shadow transition-all">Đăng Nhập Ngay</button>
                 </div>
                 ` : ''}
