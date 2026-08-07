@@ -48,24 +48,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        .motion-card-preview {
-            background-size: 200% 200%;
-            animation: gradientShift 4s infinite ease-in-out alternate;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
-        }
-
-        .wave-bar {
-            animation: wave 1.2s infinite ease-in-out alternate;
-        }
-        @keyframes wave {
-            0% { height: 15%; }
-            100% { height: 100%; }
-        }
-
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -83,6 +65,24 @@
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <script>
+        // =========================================================================
+        // DANH SÁCH TÀI KHOẢN THÀNH VIÊN (Bạn có thể thêm hoặc bớt tài khoản ở đây dễ dàng)
+        // =========================================================================
+        const memberAccounts = [
+            { username: "hocvien01", password: "123", name: "Học Viên VIP 01" },
+            { username: "hocvien02", password: "123", name: "Học Viên VIP 02" },
+            { username: "linhxinh", password: "123", name: "Linh Xinh Gái VIP" }
+			{ username: "testthu", password: "123", name: "Linh Xinh Gái VIP" }
+        ];
+
+        // Tài khoản Quản trị cố định
+        const adminAccount = { username: "admin", password: "Pv181290@1", name: "Quản Trị Viên (Admin)" };
+
+        // Lấy trạng thái đăng nhập từ localStorage
+        let currentUser = JSON.parse(localStorage.getItem('ai_prompt_current_user')) || null;
+    </script>
 
     <!-- HEADER NAVIGATION -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
@@ -121,12 +121,17 @@
                     </button>
                 </nav>
 
-                <!-- Actions: Theme Switcher & Mobile Menu Toggle -->
+                <!-- Actions: Auth, Theme & Mobile Menu Toggle -->
                 <div class="flex items-center space-x-3">
                     <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
                         <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg hidden"></i>
                         <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-lg"></i>
                     </button>
+
+                    <!-- Auth Box Area -->
+                    <div id="auth-header-area">
+                        <!-- JS populated -->
+                    </div>
 
                     <!-- Mobile Menu Button -->
                     <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none">
@@ -160,6 +165,27 @@
     </header>
 
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Guest Restriction Banner (If not logged in) -->
+        <div id="guest-notice-banner" class="hidden mb-8 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-purple-500/10 border border-amber-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shrink-0 shadow-md">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Tài khoản khách bị hạn chế xem sản phẩm</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Bạn đang xem ở chế độ khách (Chỉ hiển thị tối đa 2 sản phẩm đầu tiên). Vui lòng <button onclick="openLoginModal()" class="text-primary-600 font-bold hover:underline">Đăng nhập</button> hoặc liên hệ Zalo để nhận tài khoản hội viên đầy đủ!</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a href="https://zalo.me/0984348734" target="_blank" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow flex items-center space-x-1.5">
+                    <i class="fa-solid fa-comment-dots"></i> <span>Nhận Tài Khoản Zalo</span>
+                </a>
+                <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold transition-all shadow flex items-center space-x-1.5">
+                    <i class="fa-solid fa-right-to-bracket"></i> <span>Đăng Nhập Ngay</span>
+                </button>
+            </div>
+        </div>
 
         <!-- 1. TAB: TRANG CHỦ -->
         <section id="tab-home" class="tab-content space-y-12">
@@ -250,7 +276,7 @@
             <div class="flex flex-wrap gap-2 text-sm" id="image-categories">
                 <button onclick="filterImageCategory('all', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm">Tất cả</button>
                 <button onclick="filterImageCategory('taonhanvat', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật</button>
-				<button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
+                <button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
                 <button onclick="filterImageCategory('thoitrangnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nam</button>
                 <button onclick="filterImageCategory('dogiadung', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterImageCategory('doanuong', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Ăn - Uống</button>
@@ -348,7 +374,7 @@
             </div>
         </section>
 
-        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
+        <!-- 6. TAB: NHẢY DANCE -->
         <section id="tab-dance" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
@@ -377,132 +403,15 @@
             </div>
         </section>
 
-        <!-- 3. TAB: MẪU CHUYỂN ĐỘNG -->
-        <section id="tab-motion" class="tab-content hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
-                <div>
-                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
-                    </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
-                </div>
-
-                <div class="w-full md:w-80 relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
-                </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterMotionCategory('all', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterMotionCategory('taicho', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tại chỗ</button>
-                <button onclick="filterMotionCategory('trinhdien', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trình diễn</button>
-                <button onclick="filterMotionCategory('noireview', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nói Review</button>
-            </div>
-
-            <div id="motion-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- JS populated -->
-            </div>
-        </section>
-
-        <!-- 4. TAB: MẪU VIDEO -->
-        <section id="tab-video" class="tab-content hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
-                <div>
-                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
-                    </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & prompt tạo video Reels/TikTok chân thực với AI</p>
-                </div>
-
-                <div class="w-full md:w-80 relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="video-search" oninput="filterVideo()" placeholder="Lọc prompt video..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
-                </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
-                <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
-                <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
-                <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
-                <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
-            </div>
-
-            <div id="video-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- JS populated -->
-            </div>
-        </section>
-
-        <!-- 5. TAB: TOOL TỰ ĐỘNG -->
-        <section id="tab-tool" class="tab-content hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
-                <div>
-                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
-                    </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động đăng bài và nuôi tài khoản tự động hóa</p>
-                </div>
-
-                <div class="w-full md:w-80 relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="tool-search" oninput="filterTools()" placeholder="Lọc phần mềm & tool..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
-                </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
-                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Đăng Bài & Reels</button>
-                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Lồng Tiếng & Vietsub</button>
-            </div>
-
-            <div id="tool-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- JS populated -->
-            </div>
-        </section>
-
-        <!-- 6. TAB: NHẢY DANCE (THAY THẾ TAB LIÊN HỆ) -->
-        <section id="tab-dance" class="tab-content hidden space-y-8">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
-                <div>
-                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
-                    </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
-                </div>
-
-                <div class="w-full md:w-80 relative">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                </div>
-            </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterDanceCategory('kpop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">K-Pop Trend</button>
-                <button onclick="filterDanceCategory('tiktok', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">TikTok Challenge</button>
-                <button onclick="filterDanceCategory('hiphop', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HipHop Street</button>
-                <button onclick="filterDanceCategory('modern', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Múa Đương Đại</button>
-            </div>
-
-            <div id="dance-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- JS populated -->
-            </div>
-        </section>
-
     </main>
 
-    <!-- FLOATING ACTION BUTTONS (Zalo & Scroll to Top) -->
+    <!-- FLOATING ACTION BUTTONS -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col space-y-3">
-        <!-- Zalo Support Button -->
         <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative" title="Hỗ trợ Zalo nhanh">
             <i class="fa-solid fa-comment-dots text-xl"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Hỗ trợ Zalo 24/7</span>
         </a>
 
-        <!-- Scroll to Top Button -->
         <button id="scroll-top-btn" onclick="scrollToTop()" class="w-12 h-12 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-primary-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none group relative" title="Lên đầu trang">
             <i class="fa-solid fa-arrow-up text-lg"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Về đầu trang</span>
@@ -526,6 +435,58 @@
             </div>
         </div>
     </footer>
+
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-200">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+
+            <div class="text-center space-y-2 mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary-600 to-accent-500 text-white flex items-center justify-center mx-auto text-xl shadow-lg shadow-primary-500/30">
+                    <i class="fa-solid fa-lock-open"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Hệ Thống</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên hoặc admin của bạn để mở khóa toàn bộ kho thư viện</p>
+            </div>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Tên tài khoản</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="login-username" required placeholder="vd: hocvien01 hoặc admin" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Mật khẩu</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                    </div>
+                </div>
+
+                <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold text-center bg-rose-50 dark:bg-rose-950/40 p-2.5 rounded-lg border border-rose-200 dark:border-rose-800">
+                    Tài khoản hoặc mật khẩu không chính xác!
+                </div>
+
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg shadow-primary-500/20 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Đăng Nhập Ngay</span>
+                </button>
+            </form>
+
+            <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-700 text-center">
+                <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Bạn chưa có tài khoản thành viên?</p>
+                <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    <span>Nhận tài khoản miễn phí qua Zalo 24/7</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- PROMPT DETAIL MODAL -->
     <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
@@ -1030,7 +991,7 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 author: 'Grok'
             },
 
-           
+
         ];
 
         const sampleMotionPrompts = [
@@ -1042,7 +1003,6 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 tool: 'Luma Dream Machine',
                 prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo, không thêm hay bớt bất kỳ chi tiết nào. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên, ngây ngô, hơi ngượng ngùng trước máy quay, không bao giờ nhìn thẳng vào camera quá nửa giây, luôn đảo mắt né tránh.`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
-                gradient: 'from-indigo-600 via-purple-600 to-pink-600',
                 description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
@@ -1054,9 +1014,19 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 tool: 'Kling AI',
                 prompt: `Giữ nguyên 100% nhân vật, khuôn mặt, kiểu tóc, phụ kiện, trang phục, tỷ lệ cơ thể, vị trí đứng và toàn bộ không gian như ảnh gốc. Nhân vật luôn đứng tại chỗ, chỉ di chuyển rất nhẹ trong phạm vi nhỏ. Ánh sáng tự nhiên khoảng 4 giờ chiều, gió thổi khá mạnh liên tục làm tóc và trang phục bay tự nhiên. Phong cách diễn xuất ngây ngô, hơi ngượng ngùng trước máy quay, tuyệt đối không tạo dáng người mẫu, không quyến rũ, không nhìn thẳng vào camera quá 0,5 giây.`,
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA?feature=share',
-                gradient: 'from-amber-500 via-rose-600 to-purple-800',
                 description: 'Ứng dụng vào dạng video thời trang.',
                 technique: 'Dùng cho các video biến hình hoặc hiệu ứng huyền bí.'
+            },
+            {
+                id: 'mot-3',
+                title: 'Quay Camera Xoay 360 Độ',
+                category: 'trinhdien',
+                categoryLabel: 'Trình diễn',
+                tool: 'Runway Gen-3',
+                prompt: `360 degree orbiting camera around model in modern studio, cinematic lighting, 4k`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA?feature=share',
+                description: 'Góc quay xoay vòng chuyên nghiệp khoe trọn outfit.',
+                technique: 'Góc máy điện ảnh cao cấp.'
             }
         ];
 
@@ -1072,6 +1042,18 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 duration: '30 giây',
                 fps: '60 FPS',
                 description: 'Cô gái trộm đồ trên manocanh trong tiệm thời trang (Phát YouTube Shorts 9:16).'
+            },
+            {
+                id: 'vid-2',
+                title: 'Review Cà Phê Sáng Tinh Tế',
+                category: 'dogiadung',
+                categoryLabel: 'Đồ Gia Dụng',
+                tool: 'Kling AI',
+                prompt: `Close up 9:16 video pouring hot coffee into ceramic cup, morning sunlight through window`,
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '15 giây',
+                fps: '60 FPS',
+                description: 'Video review không gian và đồ uống buổi sáng.'
             }
         ];
 
@@ -1094,6 +1076,25 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 accountNo: '103868751388',
                 accountName: 'PHAM TUAN VINH',
                 note: 'Tool 01'
+            },
+            {
+                id: 'tool-2',
+                title: 'Tool Auto Đăng Reels TikTok Hàng Loạt',
+                category: 'autopost',
+                categoryLabel: 'Auto Đăng Bài & Reels',
+                tool: 'Automation Tool',
+                price: '490.000đ',
+                originalPrice: '890.000đ',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
+                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
+                description: 'Phần mềm nuôi tài khoản và tự động lên lịch đăng video hàng loạt lên các nền tảng.',
+                guide: '• Kết nối nhiều tài khoản và lên lịch hẹn giờ đăng.',
+                zaloLink: 'https://zalo.me/0984348734',
+                bankName: 'Vietinbank',
+                accountNo: '103868751388',
+                accountName: 'PHAM TUAN VINH',
+                note: 'Tool 02'
             }
         ];
 
@@ -1107,7 +1108,7 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
                 video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
                 description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
-                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn (VD: Linh xinh gái) để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
+                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" phía dưới để lưu video dance nhịp điệu về thiết bị.\n• Bước 2: Truy cập trang web Viggle AI hoặc Kling AI (dùng nút "Đến Trang Tạo Dance AI").\n• Bước 3: Tải video dance mẫu này lên làm Video tham chiếu chuyển động (Pose / Motion reference).\n• Bước 4: Tải ảnh nhân vật AI của bạn để công cụ tự động thay người khớp vũ đạo chuẩn 100%.',
                 redirectUrl: 'https://viggle.ai/',
                 redirectLabel: 'Đến Viggle AI Studio',
                 downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
@@ -1121,7 +1122,7 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 prompt: `9:16 vertical video, trendy girl dancing to catchy viral beat, outdoor sunset lighting, fluid body motion, perfectly synced dance moves`,
                 video: 'https://www.youtube.com/shorts/ZlJGbrfnJZA',
                 description: 'Điệu nhảy TikTok Trend uốn lượn phong cách trẻ trung hiện đại.',
-                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.\n• Bước 4: Render video 1080p và chèn nhạc TikTok hot trend bạt ngàn lượt view.',
+                guide: '• Bước 1: Tải video điệu nhảy TikTok mẫu về máy.\n• Bước 2: Mở Kling AI Studio -> chọn mục AI Dance / Motion Control.\n• Bước 3: Đưa video mẫu vào ô Motion và đưa nhân vật AI vào ô Character.',
                 redirectUrl: 'https://klingai.com/',
                 redirectLabel: 'Mở Kling AI Studio',
                 downloadUrl: 'https://www.youtube.com/shorts/ZlJGbrfnJZA'
@@ -1135,26 +1136,110 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 prompt: `Vertical 9:16 street dance hiphop choreography, street fashion outfit, urban background, dynamic camera pan, 4k resolution`,
                 video: 'https://www.youtube.com/shorts/4EktxxHrKyc',
                 description: 'Vũ đạo đường phố HipHop mạnh mẽ, dứt khoát dành cho video ngắn.',
-                guide: '• Bước 1: Nhấn nút "Tải Video Mẫu" để tải bản vũ đạo HipHop 60FPS.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI để gắn chuyển động vào trang phục đường phố AI.\n• Bước 3: Bật hiệu ứng lắc camera điện ảnh khi nhân vật thực hiện các cú giật nẩy tay.',
+                guide: '• Bước 1: Tải video điệu nhảy mẫu.\n• Bước 2: Sử dụng Runway Gen-3 hoặc DomoAI.',
                 redirectUrl: 'https://runwayml.com/',
                 redirectLabel: 'Mở Runway ML',
                 downloadUrl: 'https://www.youtube.com/shorts/4EktxxHrKyc'
-            },
-            {
-                id: 'dance-4',
-                title: 'Múa Đương Đại Uyển Chuyển Gió Nhẹ',
-                category: 'modern',
-                categoryLabel: 'Múa Đương Đại',
-                tool: 'Luma Dance AI',
-                prompt: `9:16 aspect ratio, modern dance performance in peaceful studio, silk dress flowing with movement, soft volumetric lighting, elegant camera motion`,
-                video: 'https://www.youtube.com/shorts/icKchwsROCU',
-                description: 'Điệu múa đương đại uyển chuyển kết hợp hiệu ứng tà áo và gió thổi tự nhiên.',
-                guide: '• Bước 1: Tải video múa mẫu bằng nút bên dưới.\n• Bước 2: Dùng Luma Dream Machine hoặc Kling AI với prompt mô tả chất liệu vải mềm mại.\n• Bước 3: Kết hợp nhạc nền acoustic chill để thu hút người xem trên YouTube Shorts.',
-                redirectUrl: 'https://lumalabs.ai/dream-machine',
-                redirectLabel: 'Mở Luma Dream Machine',
-                downloadUrl: 'https://www.youtube.com/shorts/icKchwsROCU'
             }
         ];
+
+        // Hàm kiểm tra và giới hạn danh sách sản phẩm (Guest: chỉ 2 sản phẩm đầu tiên)
+        function getAccessibleList(list) {
+            if (currentUser) {
+                return list; // Đã đăng nhập thấy tất cả
+            }
+            return list.slice(0, 2); // Chưa đăng nhập chỉ thấy 2 sản phẩm đầu
+        }
+
+        function updateAuthHeaderUI() {
+            const authArea = document.getElementById('auth-header-area');
+            const guestBanner = document.getElementById('guest-notice-banner');
+            
+            if (currentUser) {
+                if (guestBanner) guestBanner.classList.add('hidden');
+                authArea.innerHTML = `
+                    <div class="flex items-center space-x-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="w-7 h-7 rounded-lg bg-primary-600 text-white flex items-center justify-center font-bold text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="hidden sm:block text-left">
+                            <span class="block text-xs font-bold text-slate-800 dark:text-white leading-tight">${currentUser.name}</span>
+                            <span class="block text-[9px] text-emerald-500 font-semibold">${currentUser.role === 'admin' ? 'Quản Trị Viên' : 'Hội Viên VIP'}</span>
+                        </div>
+                        <button onclick="logoutUser()" class="ml-2 text-xs text-rose-500 hover:text-rose-700 font-semibold p-1" title="Đăng xuất">
+                            <i class="fa-solid fa-right-from-bracket text-base"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                if (guestBanner) guestBanner.classList.remove('hidden');
+                authArea.innerHTML = `
+                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-xs shadow-md shadow-primary-500/20 transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Đăng Nhập</span>
+                    </button>
+                `;
+            }
+        }
+
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+            document.getElementById('login-error-msg').classList.add('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const u = document.getElementById('login-username').value.trim();
+            const p = document.getElementById('login-password').value.trim();
+            const errorEl = document.getElementById('login-error-msg');
+
+            // Kiểm tra Admin
+            if (u === adminAccount.username && p === adminAccount.password) {
+                currentUser = { username: adminAccount.username, name: adminAccount.name, role: 'admin' };
+                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
+                closeLoginModal();
+                updateAuthHeaderUI();
+                refreshAllGrids();
+                showToast('Đăng nhập Quản trị viên thành công!');
+                return;
+            }
+
+            // Kiểm tra Hội viên trong mảng memberAccounts
+            const foundMember = memberAccounts.find(acc => acc.username === u && acc.password === p);
+            if (foundMember) {
+                currentUser = { username: foundMember.username, name: foundMember.name, role: 'member' };
+                localStorage.setItem('ai_prompt_current_user', JSON.stringify(currentUser));
+                closeLoginModal();
+                updateAuthHeaderUI();
+                refreshAllGrids();
+                showToast(`Chào mừng thành viên ${foundMember.name} quay lại!`);
+                return;
+            }
+
+            // Sai tài khoản
+            errorEl.classList.remove('hidden');
+        }
+
+        function logoutUser() {
+            currentUser = null;
+            localStorage.removeItem('ai_prompt_current_user');
+            updateAuthHeaderUI();
+            refreshAllGrids();
+            showToast('Đã đăng xuất tài khoản!');
+        }
+
+        function refreshAllGrids() {
+            renderFeaturedHomePrompts();
+            renderImagePrompts();
+            renderMotionPrompts();
+            renderVideoPrompts();
+            renderToolProducts();
+            renderDancePrompts();
+        }
 
         function renderMediaContainer(item) {
             if (item.video) {
@@ -1252,14 +1337,16 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
             const featured = [sampleDancePrompts[0], sampleMotionPrompts[0], sampleImagePrompts[0], sampleVideoPrompts[0]];
-            container.innerHTML = featured.map(item => renderHomeGridItem(item)).join('');
+            const accessible = getAccessibleList(featured);
+            container.innerHTML = accessible.map(item => renderHomeGridItem(item)).join('');
             setupAutoPlayObserver();
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
             const container = document.getElementById('image-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map(item => `
+            const accessible = getAccessibleList(list);
+            container.innerHTML = accessible.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
@@ -1293,7 +1380,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
         function renderMotionPrompts(list = sampleMotionPrompts) {
             const container = document.getElementById('motion-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map(item => `
+            const accessible = getAccessibleList(list);
+            container.innerHTML = accessible.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1327,7 +1415,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
         function renderVideoPrompts(list = sampleVideoPrompts) {
             const container = document.getElementById('video-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map(item => `
+            const accessible = getAccessibleList(list);
+            container.innerHTML = accessible.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1361,7 +1450,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
         function renderToolProducts(list = sampleToolProducts) {
             const container = document.getElementById('tool-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map(item => `
+            const accessible = getAccessibleList(list);
+            container.innerHTML = accessible.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1402,7 +1492,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
         function renderDancePrompts(list = sampleDancePrompts) {
             const container = document.getElementById('dance-templates-grid');
             if (!container) return;
-            container.innerHTML = list.map(item => `
+            const accessible = getAccessibleList(list);
+            container.innerHTML = accessible.map(item => `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group">
                     <div class="relative aspect-[9/16] overflow-hidden bg-slate-900">
                         ${renderMediaContainer(item)}
@@ -1576,10 +1667,12 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
                 return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
             });
 
-            if (filtered.length === 0) {
+            const accessible = getAccessibleList(filtered);
+
+            if (accessible.length === 0) {
                 container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
             } else {
-                container.innerHTML = filtered.map(item => renderHomeGridItem(item)).join('');
+                container.innerHTML = accessible.map(item => renderHomeGridItem(item)).join('');
             }
             
             setupAutoPlayObserver();
@@ -1744,7 +1837,6 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
             const content = document.getElementById('modal-content');
 
             if (item.downloadUrl) {
-                // Dance item modal format
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -1902,13 +1994,8 @@ Mái tóc là kiểu Long Layer Hush Cut kết hợp Soft Glam Waves và See-thr
 
         window.onload = function() {
             initTheme();
-            renderFeaturedHomePrompts();
-            renderImagePrompts();
-            renderMotionPrompts();
-            renderVideoPrompts();
-            renderToolProducts();
-            renderDancePrompts();
-            setupAutoPlayObserver();
+            updateAuthHeaderUI();
+            refreshAllGrids();
 
             const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
             const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
