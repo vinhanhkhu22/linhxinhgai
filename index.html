@@ -397,78 +397,17 @@
 
         <!-- 6. TAB MỚI: PHÁT LINK GOOGLE DRIVE -->
         <section id="tab-gdrive" class="tab-content hidden space-y-8">
-            <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-950 text-white shadow-xl border border-blue-500/30">
-                <div class="max-w-3xl space-y-4">
-                    <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30 inline-flex items-center space-x-1.5">
-                        <i class="fa-brands fa-google-drive text-sm"></i>
-                        <span>Công Cụ Phát Video Google Drive Trực Tiếp</span>
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold">Chuyển Đổi & Xem Thử Video Từ Link Google Drive</h2>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Nhập bất kỳ đường link chia sẻ video từ Google Drive (Lưu ý: Link phải cài đặt chế độ <b>"Bất kỳ ai có liên kết đều có thể xem"</b>). Hệ thống sẽ tự động chuyển thành trình phát video tương thích sẵn sàng để chèn vào mẫu!
-                    </p>
-
-                    <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="gdrive-input-url" placeholder="Dán link Google Drive tại đây (vd: https://drive.google.com/file/d/12345/view?usp=sharing)..." class="flex-grow px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <button onclick="testGoogleDriveLink()" class="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg transition-all shrink-0 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Phát Thử Video</span>
-                        </button>
-                    </div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-brands fa-google-drive text-blue-500 mr-3"></i> Mẫu Video Google Drive
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Danh sách các mẫu video đang phát trực tiếp bằng đường link lưu trữ Google Drive</p>
                 </div>
             </div>
 
-            <!-- Preview Test Container -->
-            <div id="gdrive-preview-box" class="hidden bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl space-y-6">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-brands fa-google-drive text-blue-500 mr-2"></i> Kết Quả Xem Thử Video Drive
-                    </h3>
-                    <span id="gdrive-file-id-badge" class="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 px-3 py-1 rounded-lg">
-                        ID: ...
-                    </span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <div class="w-full max-w-xs mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl relative border border-slate-800" id="gdrive-player-render">
-                        <!-- Dynamic Player Render -->
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-2">
-                            <label class="block text-xs font-bold uppercase text-slate-400">Mã Nhúng iframe Chuẩn:</label>
-                            <div id="gdrive-code-snippet" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-950 text-xs font-mono text-blue-600 dark:text-blue-400 border border-slate-200 dark:border-slate-800 break-all select-all">
-                                ...
-                            </div>
-                            <button onclick="copyToClipboard(document.getElementById('gdrive-code-snippet').innerText)" class="w-full py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow flex items-center justify-center space-x-1.5 mt-2">
-                                <i class="fa-solid fa-copy"></i>
-                                <span>Sao chép Mã Nhúng</span>
-                            </button>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-2">
-                            <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase flex items-center">
-                                <i class="fa-solid fa-circle-check mr-1.5"></i> Hướng Dẫn Thêm Vào Mẫu Code Web
-                            </h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                                Bạn có thể dán nguyên đường link dạng <code>https://drive.google.com/file/d/FILE_ID/view</code> vào thuộc tính <code>video: "..."</code> trong danh sách JavaScript của trang web này. Hệ thống sẽ tự động biến nó thành trình phát video tương thích!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Danh sách Video Mẫu từ Google Drive -->
-            <div class="space-y-6 pt-4">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-blue-500 mr-2"></i> Danh Sách Mẫu Video Đang Phát Bằng Link Google Drive
-                    </h3>
-                </div>
-
-                <div id="gdrive-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                    <!-- JS populated -->
-                </div>
+            <div id="gdrive-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
             </div>
         </section>
 
@@ -656,7 +595,33 @@
             return match ? match[1] : null;
         }
 
+        // HÀM CHUYỂN LINK DRIVE THÀNH LINK HIỂN THỊ/STREAM TRỰC TIẾP (ẢNH / ÂM THANH)
+        function getGoogleDriveDirectUrl(url) {
+            if (!url) return '';
+            const driveId = getGoogleDriveId(url);
+            if (driveId) {
+                return `https://lh3.googleusercontent.com/d/${driveId}`;
+            }
+            return url;
+        }
+
         const sampleImagePrompts = [
+            {
+                id: 'img-gdrive-1',
+                title: 'Mẫu Ảnh Thời Trang Nữ - Link Google Drive',
+                category: 'thoitrangnu',
+                categoryLabel: 'Google Drive',
+                tool: 'Google Drive',
+                prompt: `Full length 9:16 high fashion studio portrait of a Asian model, chic elegant aesthetic, natural lighting, ultra high detail 8k`,
+                image: 'https://drive.google.com/file/d/1RGhkkF6Xm1xVkfcvdorHaQRKWLT9shr3/view?usp=sharing',
+                description: 'Mẫu ảnh load trực tiếp từ đường link lưu trữ Google Drive.',
+                guideSteps: [
+                    'Bước 1: Upload ảnh của bạn lên Google Drive và bật chia sẻ công khai ("Bất kỳ ai có liên kết").',
+                    'Bước 2: Copy link chia sẻ dán vào thuộc tính image của mẫu.',
+                    'Bước 3: Hệ thống tự động chuyển đổi thành link ảnh trực tiếp hiển thị sắc nét.'
+                ],
+                author: 'Google Drive'
+            },
             {
                 id: 'img-1',
                 title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
@@ -664,7 +629,7 @@
                 categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
                 prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
-                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                image: 'https://drive.google.com/file/d/1RGhkkF6Xm1xVkfcvdorHaQRKWLT9shr3/view?usp=sharing',
                 description: 'Tải bức ảnh người mẫu của bạn lên A.I như Grok, King, Gemini, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
                     'Bước 1: Tải bức ảnh người mẫu gốc của bạn lên công cụ AI (như Grok, Gemini, ChatGPT, King...).',
@@ -809,7 +774,7 @@
                 category: 'gdrive',
                 categoryLabel: 'Google Drive',
                 tool: 'Google Drive Video',
-                video: 'https://drive.google.com/file/d/1OvwnEUVA1z_CRm3YHHyh39Rkq1j2Zx1f/view?usp=sharing',
+                video: 'https://drive.google.com/file/d/1126-a0mBimY6S2qFfCjE28PshL1u4s2s/view',
                 duration: '20 giây',
                 fps: '60 FPS',
                 description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ lưu trữ Google Drive cá nhân.',
@@ -868,7 +833,7 @@
                 category: 'doanuong',
                 categoryLabel: 'Đồ Ăn - Uống',
                 tool: 'Kling AI',
-                video: 'https://drive.google.com/file/d/1OvwnEUVA1z_CRm3YHHyh39Rkq1j2Zx1f/view?usp=sharing',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 duration: '15 giây',
                 fps: '60 FPS',
                 description: 'Hướng dẫn quy trình 2 bước tạo video review đồ uống, không gian quán cà phê sáng sớm.',
@@ -893,6 +858,19 @@
 
         // MẪU ÂM THANH DATA
         const sampleAudioPrompts = [
+            {
+                id: 'aud-gdrive-1',
+                title: 'Nhạc Nền Google Drive MP3 Stream',
+                category: 'nhacnen',
+                categoryLabel: 'Google Drive Audio',
+                tool: 'Google Drive',
+                prompt: 'Chill relaxing background music uploaded on Google Drive, smooth acoustic instrumentals, high quality audio stream',
+                audioUrl: 'https://drive.google.com/file/d/1126-a0mBimY6S2qFfCjE28PshL1u4s2s/view',
+                description: 'Mẫu file âm thanh MP3 lưu trữ trên Google Drive phát trực tiếp không cần tải về.',
+                generatorUrl: 'https://drive.google.com',
+                generatorName: 'Google Drive Storage',
+                downloadUrl: 'https://drive.google.com'
+            },
             {
                 id: 'aud-1',
                 title: 'Nhạc Nền Lofi Chill Cafe Sáng TikTok',
@@ -1035,14 +1013,15 @@
                 }
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
-                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
                     </div>
                 `;
             } else if (item.image) {
-                return `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
+                const imageUrl = getGoogleDriveDirectUrl(item.image);
+                return `<img src="${imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">`;
             }
             return '';
         }
@@ -1153,6 +1132,7 @@
 
             // Xử lý riêng cho CARD ÂM THANH
             if (type === 'audio' || item.audioUrl) {
+                const audioStreamUrl = getGoogleDriveDirectUrl(item.audioUrl);
                 return `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
                     ${isLocked ? `
@@ -1184,7 +1164,7 @@
                             <!-- BỘ PHÁT NHẠC MP3 TRỰC TIẾP -->
                             <div class="mt-3.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/60">
                                 <audio controls class="w-full h-8 text-xs focus:outline-none rounded-lg" preload="none" onplay="handleAudioPlay(this)">
-                                    <source src="${item.audioUrl}" type="audio/mpeg">
+                                    <source src="${audioStreamUrl}" type="audio/mpeg">
                                     Trình duyệt của bạn không hỗ trợ phát audio.
                                 </audio>
                             </div>
@@ -1198,7 +1178,7 @@
                         <!-- CÁC NÚT THAO TÁC ÂM THANH -->
                         <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex flex-wrap items-center justify-between gap-2">
                             <div class="flex items-center space-x-1.5">
-                                <a href="${item.audioUrl}" download target="_blank" class="py-1.5 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center space-x-1" title="Tải File MP3">
+                                <a href="${audioStreamUrl}" download target="_blank" class="py-1.5 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center space-x-1" title="Tải File MP3">
                                     <i class="fa-solid fa-download text-xs"></i>
                                     <span>Tải MP3</span>
                                 </a>
@@ -1237,7 +1217,7 @@
                 ` : ''}
 
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-900 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
-                    ${type === 'image' ? `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">` : renderMediaContainer(item)}
+                    ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
                     <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
                         ${item.tool}
                     </span>
@@ -1422,20 +1402,37 @@
             }
         }
 
-        function pauseAllMedia() {
-            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
-            document.querySelectorAll('audio').forEach(aud => { aud.pause(); });
-        }
-
-        function handleAudioPlay(currentAudio) {
+        // TẠM DỪNG TOÀN BỘ ÂM THANH & VIDEO TRÊN TRANG (ĐẢM BẢO CHỈ 1 SẢN PHẨM PHÁT TẠI MỘT THỜI ĐIỂM)
+        function pauseAllMedia(exceptElement = null) {
+            // Tạm dừng tất cả các thẻ <audio> ngoại trừ ngoại lệ
             document.querySelectorAll('audio').forEach(aud => {
-                if (aud !== currentAudio) {
+                if (aud !== exceptElement) {
                     aud.pause();
                 }
             });
+
+            // Tạm dừng tất cả các thẻ <video> & iframe YouTube/Drive ngoại trừ ngoại lệ
             document.querySelectorAll('.media-container').forEach(container => {
-                pauseMedia(container);
+                if (container !== exceptElement && (!exceptElement || !container.contains(exceptElement))) {
+                    pauseMedia(container);
+                    // Đặt lại các nút bật âm thanh về trạng thái Mute
+                    const btn = container.querySelector('button[data-muted]');
+                    if (btn && btn.getAttribute('data-muted') === 'false') {
+                        const icon = btn.querySelector('i');
+                        const videoEl = container.querySelector('video');
+                        if (videoEl) videoEl.muted = true;
+                        btn.setAttribute('data-muted', 'true');
+                        if (icon) icon.className = 'fa-solid fa-volume-xmark';
+                        btn.classList.remove('bg-purple-600', 'scale-110');
+                        btn.classList.add('bg-black/40');
+                    }
+                }
             });
+        }
+
+        // KHI BẤM NGHE THỬ 1 MẪU ÂM THANH -> TỰ ĐỘNG TẠM DỪNG TẤT CẢ ÂM THANH & VIDEO KHÁC
+        function handleAudioPlay(currentAudio) {
+            pauseAllMedia(currentAudio);
         }
 
         function setupAutoPlayObserver() {
@@ -1444,7 +1441,7 @@
                 entries.forEach(entry => {
                     const isTabVisible = !entry.target.closest('.tab-content.hidden');
                     if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
-                        playMedia(entry.target);
+                        // Tránh tự động phát video làm gián đoạn nhạc người dùng đang chủ động nghe
                     } else {
                         pauseMedia(entry.target);
                     }
@@ -1685,8 +1682,13 @@
             if (event) { event.stopPropagation(); event.preventDefault(); }
             const icon = btn.querySelector('i');
             const isMuted = btn.getAttribute('data-muted') !== 'false';
+            
+            const currentContainer = btn.closest('.media-container');
+
             if (isMuted) {
-                muteAllAudio(elementId);
+                // Tạm dừng toàn bộ âm thanh và video khác trước khi bật tiếng sản phẩm này
+                pauseAllMedia(currentContainer);
+
                 const iframe = document.getElementById(elementId);
                 if (iframe && iframe.contentWindow) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
@@ -1695,6 +1697,7 @@
                 const videoEl = document.getElementById(elementId);
                 if (videoEl && videoEl.tagName === 'VIDEO') {
                     videoEl.muted = false;
+                    videoEl.play().catch(() => {});
                 }
                 btn.setAttribute('data-muted', 'false');
                 icon.className = 'fa-solid fa-volume-high';
@@ -1725,6 +1728,7 @@
             const content = document.getElementById('modal-content');
 
             if (item.audioUrl) {
+                const audioStreamUrl = getGoogleDriveDirectUrl(item.audioUrl);
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -1736,7 +1740,7 @@
                         <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
                             <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Nghe thử bản nhạc MP3</p>
                             <audio controls class="w-full h-10 focus:outline-none" preload="metadata" onplay="handleAudioPlay(this)">
-                                <source src="${item.audioUrl}" type="audio/mpeg">
+                                <source src="${audioStreamUrl}" type="audio/mpeg">
                                 Trình duyệt của bạn không hỗ trợ phát nhạc.
                             </audio>
                         </div>
@@ -1762,7 +1766,7 @@
                             <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Trang AI (${item.generatorName || 'Suno AI'})</span>
                             </a>
-                            <a href="${item.audioUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                            <a href="${audioStreamUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3 VỀ MÁY</span>
                             </a>
                         </div>
