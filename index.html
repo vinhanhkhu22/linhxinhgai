@@ -100,21 +100,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="flex items-center space-x-3 cursor-pointer shrink-0" onclick="switchTab('home')">
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary-600 via-accent-500 to-indigo-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary-500/30">
                         <i class="fa-solid font-bold fa-wand-magic-sparkles"></i>
                     </div>
                     <div>
-                        <span class="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
-                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase">Thư Viện Mẫu Prompt</span>
+                        <span class="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent whitespace-nowrap">Linh Xinh Gái</span>
+                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase whitespace-nowrap">Thư Viện Mẫu Prompt</span>
                     </div>
                 </div>
 
                 <!-- Desktop Navigation Tabs -->
                 <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
-                    <button onclick="switchTab('home')" id="nav-home" class="nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
-                        <i class="fa-solid fa-house mr-1.5"></i> Trang Chủ
-                    </button>
                     <button onclick="switchTab('image')" id="nav-image" class="nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200">
                         <i class="fa-solid fa-image mr-1.5"></i> Mẫu Hình Ảnh
                     </button>
