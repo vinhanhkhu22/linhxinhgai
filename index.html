@@ -70,6 +70,11 @@
         .dark audio::-webkit-media-controls-panel {
             background-color: #1e293b;
         }
+
+        /* Mobile touch feel optimization */
+        .touch-manipulation {
+            touch-action: manipulation;
+        }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
@@ -214,7 +219,7 @@
                         <span>Cập nhật các prompt mới nhất</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Thư viện Prompt & Mẫu Video Google Drive <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
+                        Thư viện Prompt & Mẫu Video<span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
                     </h1>
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
                         Chia sẻ mẫu prompt AI chất lượng cao chỉ với 1 cú click!
@@ -493,7 +498,7 @@
                     <i class="fa-solid fa-lock-open"></i>
                 </div>
                 <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Hệ Thống</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên hoặc admin của bạn để mở khóa toàn bộ kho thư viện</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên của bạn để mở khóa toàn bộ kho thư viện</p>
             </div>
 
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
@@ -527,7 +532,7 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Bạn chưa có tài khoản thành viên?</p>
                 <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
                     <i class="fa-solid fa-comment-dots"></i>
-                    <span>Nhận tài khoản miễn phí qua Zalo 24/7</span>
+                    <span>Nhận tài khoản qua Zalo 24/7</span>
                 </a>
             </div>
         </div>
@@ -915,7 +920,7 @@
             }
         ];
 
-        // RENDER MEDIA CONTAINER (HỖ TRỢ YOUTUBE, GOOGLE DRIVE VÀ FILE VIDEO)
+        // RENDER MEDIA CONTAINER (NÂNG CẤP TỐI GIẢN VÀ TRỰC QUAN DÀNH CHO ĐIỆN THOẠI)
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
@@ -923,14 +928,15 @@
                 const gDriveId = getGoogleDriveId(item.video);
 
                 if (gDriveId) {
-                    // Phát video qua Google Drive Embed
+                    // Phát video qua Google Drive Embed (Tối giản điện thoại)
                     return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
                                 class="w-full h-full object-cover border-0 absolute inset-0" 
                                 allow="autoplay; encrypted-media" 
                                 allowfullscreen></iframe>
-                            <span class="absolute top-2 right-2 z-30 bg-blue-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-md pointer-events-none flex items-center space-x-1">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                            <span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-20 bg-blue-600/90 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
                                 <i class="fa-brands fa-google-drive"></i>
                                 <span>Drive Video</span>
                             </span>
@@ -939,22 +945,24 @@
                 } else if (ytMatch && ytMatch[1]) {
                     const videoId = ytMatch[1];
                     return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
                                 class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
-                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
                         </div>
                     `;
                 }
                 return `
-                    <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                    <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                         <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
-                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
                     </div>
@@ -1058,7 +1066,7 @@
             renderDancePrompts();
         }
 
-        // Render Card mẫu dùng chung cho các TAB
+        // Render Card mẫu dùng chung cho các TAB (TỐI GIẢN VÀ TRỰC QUAN GIAO DIỆN ĐIỆN THOẠI)
         function renderGenericCard(item, type, index) {
             const isLocked = !currentUser && index >= 2;
             let badgeColor = 'bg-primary-600';
@@ -1068,7 +1076,7 @@
             if (type === 'tool') badgeColor = 'bg-emerald-600';
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
-            // Xử lý riêng cho CARD ÂM THANH: Đầy đủ trình phát nhạc Google Drive, BỎ phần prompt
+            // Xử lý riêng cho CARD ÂM THANH
             if (type === 'audio' || item.audioUrl) {
                 const gDriveAudioId = getGoogleDriveId(item.audioUrl);
                 const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
@@ -1108,7 +1116,7 @@
                             <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-500 transition-colors line-clamp-1">${item.title}</h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || ''}</p>
 
-                            <!-- BỘ PHÁT NHẠC GOOGLE DRIVE / MP3 ĐẦY ĐỦ HIỆN MẸO PHÁT TỰ ĐỘNG TẮT NGUỒN KHÁC -->
+                            <!-- BỘ PHÁT NHẠC GOOGLE DRIVE / MP3 -->
                             <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-inner">
                                 ${gDriveAudioId ? `
                                 <div class="w-full h-14 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
@@ -1147,7 +1155,7 @@
             }
 
             return `
-            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
+            <div class="bg-white dark:bg-slate-800/90 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 dark:border-slate-800 flex flex-col group relative">
                 ${isLocked ? `
                 <div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center">
                     <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce">
@@ -1159,45 +1167,49 @@
                 </div>
                 ` : ''}
 
-                <div class="relative aspect-[9/16] overflow-hidden bg-slate-900 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
+                <!-- KHUNG PHÁT VIDEO CHUẨN ĐIỆN THOẠI 9:16 -->
+                <div class="relative aspect-[9/16] overflow-hidden bg-slate-950 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
-                    <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
+                    
+                    <!-- BADGE TÊN TOOL TỐI GIẢN CÓ ĐỘ MỜ BẮT MẮT TRÊN MOBILE -->
+                    <span class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-slate-900/70 backdrop-blur-md text-white/90 text-[9px] sm:text-[11px] font-medium px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full pointer-events-none z-20 border border-white/10 tracking-wide">
                         ${item.tool}
                     </span>
-                    ${item.price ? `<span class="absolute top-2 sm:top-3 right-2 sm:right-3 bg-emerald-600 text-white text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg shadow-md pointer-events-none z-10">${item.price}</span>` : ''}
+                    ${item.price ? `<span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 bg-emerald-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md pointer-events-none z-20 border border-emerald-400/30">${item.price}</span>` : ''}
                 </div>
 
-                <div class="p-2.5 sm:p-5 flex-grow flex flex-col justify-between space-y-2 sm:space-y-4 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
+                <!-- KHU VỰC THÔNG TIN TỐI GIẢN CỦA CARD -->
+                <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2 sm:space-y-3.5 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     <div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-2">${item.description || item.prompt || ''}</p>
+                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2">${item.description || item.prompt || ''}</p>
                         ${item.prompt && !item.price ? `
-                        <div class="mt-2 sm:mt-3 p-2 sm:p-3 rounded-xl bg-slate-50 dark:bg-slate-900 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800">
+                        <div class="mt-1.5 sm:mt-2.5 p-1.5 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800/80">
                             "${item.prompt}"
                         </div>` : ''}
                         ${item.steps ? `
-                        <div class="mt-2 text-[11px] font-semibold text-rose-500 flex items-center space-x-1">
-                            <i class="fa-solid fa-list-check"></i> <span>Gồm ${item.steps.length} bước thực hiện chi tiết</span>
+                        <div class="mt-1.5 text-[10px] sm:text-[11px] font-semibold text-rose-500 flex items-center space-x-1">
+                            <i class="fa-solid fa-list-check"></i> <span>Gồm ${item.steps.length} bước thực hiện</span>
                         </div>` : ''}
                     </div>
 
                     <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 transition-colors flex items-center space-x-1">
+                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 transition-colors flex items-center space-x-1">
                             <i class="fa-solid fa-expand"></i>
                             <span>Chi tiết</span>
                         </button>
                         ${item.price ? `
-                        <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-3 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center">
+                        <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center shadow-sm">
                             <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
                         </button>` : item.downloadUrl ? `
-                        <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-3 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center">
+                        <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center shadow-sm">
                             <i class="fa-solid fa-download mr-1"></i> Tải Mẫu
                         </a>` : item.steps ? `
-                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
+                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
                             <i class="fa-solid fa-layer-group"></i>
                             <span>Xem Các Bước</span>
                         </button>` : `
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
                             <i class="fa-solid fa-copy"></i>
                             <span>Sao chép</span>
                         </button>`}
@@ -1310,20 +1322,17 @@
             }
         }
 
-        // TẠM DỪNG TOÀN BỘ ÂM THANH & VIDEO TRÊN TRANG (ĐẢM BẢO CHỈ 1 SẢN PHẨM PHÁT TẠI MỘT THỜI ĐIỂM)
+        // TẠM DỪNG TOÀN BỘ ÂM THANH & VIDEO TRÊN TRANG
         function pauseAllMedia(exceptElement = null) {
-            // Tạm dừng tất cả các thẻ <audio> ngoại trừ ngoại lệ
             document.querySelectorAll('audio').forEach(aud => {
                 if (aud !== exceptElement) {
                     aud.pause();
                 }
             });
 
-            // Tạm dừng tất cả các thẻ <video> & iframe YouTube/Drive ngoại trừ ngoại lệ
             document.querySelectorAll('.media-container').forEach(container => {
                 if (!exceptElement || !container.contains(exceptElement)) {
                     pauseMedia(container);
-                    // Đặt lại các nút bật âm thanh về trạng thái Mute
                     const btn = container.querySelector('button[data-muted]');
                     if (btn && btn.getAttribute('data-muted') === 'false') {
                         const icon = btn.querySelector('i');
@@ -1332,18 +1341,16 @@
                         btn.setAttribute('data-muted', 'true');
                         if (icon) icon.className = 'fa-solid fa-volume-xmark';
                         btn.classList.remove('bg-purple-600', 'scale-110');
-                        btn.classList.add('bg-black/40');
+                        btn.classList.add('bg-black/50');
                     }
                 }
             });
         }
 
-        // KHI BẤM NGHE THỬ 1 MẪU ÂM THANH -> TỰ ĐỘNG TẠM DỪNG TẤT CẢ ÂM THANH & VIDEO KHÁC
         function handleAudioPlay(currentAudio) {
             pauseAllMedia(currentAudio);
         }
 
-        // TỰ ĐỘNG PHÁT KHI LƯỚT ĐẾN (MUTE) VÀ TỰ TẮT KHI LƯỚT QUA
         function setupAutoPlayObserver() {
             if (mediaObserver) mediaObserver.disconnect();
             mediaObserver = new IntersectionObserver((entries) => {
@@ -1596,7 +1603,6 @@
             const currentContainer = btn.closest('.media-container');
 
             if (isMuted) {
-                // Tạm dừng toàn bộ âm thanh và video khác trước khi bật tiếng sản phẩm này
                 pauseAllMedia(currentContainer);
 
                 const iframe = document.getElementById(elementId);
@@ -1611,7 +1617,7 @@
                 }
                 btn.setAttribute('data-muted', 'false');
                 icon.className = 'fa-solid fa-volume-high';
-                btn.classList.remove('bg-black/40');
+                btn.classList.remove('bg-black/50');
                 btn.classList.add('bg-purple-600', 'scale-110');
             } else {
                 const iframe = document.getElementById(elementId);
@@ -1625,7 +1631,7 @@
                 btn.setAttribute('data-muted', 'true');
                 icon.className = 'fa-solid fa-volume-xmark';
                 btn.classList.remove('bg-purple-600', 'scale-110');
-                btn.classList.add('bg-black/40');
+                btn.classList.add('bg-black/50');
             }
         }
 
@@ -1679,7 +1685,7 @@
                     </div>
                 `;
             } else if (item.steps) {
-                // TAB 4: MẪU VIDEO - HIỂN THỊ HƯỚNG DẪN CÓ ẢNH 16:9 & LINK TẢI ẢNH MẪU TỪNG BƯỚC
+                // TAB 4: MẪU VIDEO
                 let stepsHtml = item.steps.map(step => {
                     const stepImg = step.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80';
                     const downloadImgUrl = step.downloadUrl || stepImg;
@@ -1696,7 +1702,6 @@
                         </div>
                         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${step.instruction}</p>
                         
-                        <!-- ẢNH MINH HỌA 16:9 & NÚT TẢI HÌNH ẢNH MẪU -->
                         <div class="space-y-1.5 mt-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-rose-500 uppercase tracking-wider flex items-center">
@@ -1751,7 +1756,7 @@
                     </div>
                 `;
             } else if (item.price) {
-                // TAB 6: TOOL TỰ ĐỘNG - HIỂN THỊ HƯỚNG DẪN CÓ ẢNH 16:9 & LINK TẢI ẢNH MẪU TỪNG BƯỚC
+                // TAB 6: TOOL TỰ ĐỘNG
                 const toolSteps = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : (item.guide ? item.guide.split('\n').map(s => s.replace(/^•\s*/, '')) : []);
 
                 let toolStepsHtml = toolSteps.map((step, idx) => {
@@ -1773,7 +1778,6 @@
                             </div>
                         </div>
 
-                        <!-- ẢNH MINH HỌA 16:9 & LINK TẢI HÌNH ẢNH MẪU -->
                         <div class="space-y-1.5 pt-1">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center">
@@ -1827,7 +1831,7 @@
                     </div>
                 `;
             } else if (item.downloadUrl) {
-                // TAB 7: NHẢY DANCE - HIỂN THỊ HƯỚNG DẪN CÓ ẢNH 16:9 & LINK TẢI ẢNH MẪU TỪNG BƯỚC
+                // TAB 7: NHẢY DANCE
                 const stepsList = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [
                     {
                         stepNumber: 1,
@@ -1885,7 +1889,6 @@
                             </div>
                         </div>
 
-                        <!-- ẢNH MINH HỌA 16:9 & LINK TẢI HÌNH ẢNH MẪU -->
                         <div class="space-y-1.5 pt-1">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center">
