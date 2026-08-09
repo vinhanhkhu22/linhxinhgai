@@ -595,12 +595,22 @@
             return match ? match[1] : null;
         }
 
-        // HÀM CHUYỂN LINK DRIVE THÀNH LINK HIỂN THỊ/STREAM TRỰC TIẾP (ẢNH / ÂM THANH)
+        // HÀM CHUYỂN LINK DRIVE THÀNH LINK HIỂN THỊ/STREAM TRỰC TIẾP (ẢNH)
         function getGoogleDriveDirectUrl(url) {
             if (!url) return '';
             const driveId = getGoogleDriveId(url);
             if (driveId) {
                 return `https://lh3.googleusercontent.com/d/${driveId}`;
+            }
+            return url;
+        }
+
+        // HÀM CHUYỂN LINK DRIVE THÀNH LINK PHÁT ÂM THANH TRỰC TIẾP (MP3/AUDIO)
+        function getGoogleDriveAudioUrl(url) {
+            if (!url) return '';
+            const driveId = getGoogleDriveId(url);
+            if (driveId) {
+                return `https://docs.google.com/uc?export=download&id=${driveId}`;
             }
             return url;
         }
@@ -629,7 +639,7 @@
                 categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
                 prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
-                image: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                image: 'https://drive.google.com/file/d/1RGhkkF6Xm1xVkfcvdorHaQRKWLT9shr3/view?usp=sharing',
                 description: 'Tải bức ảnh người mẫu của bạn lên A.I như Grok, King, Gemini, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
                     'Bước 1: Tải bức ảnh người mẫu gốc của bạn lên công cụ AI (như Grok, Gemini, ChatGPT, King...).',
@@ -645,7 +655,7 @@
                 categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
                 prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng. Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown), kiểu buộc thấp gọn gàng phía sau gáy.`,
-                image: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
+                image: 'https://drive.google.com/file/d/1RGhkkF6Xm1xVkfcvdorHaQRKWLT9shr3/view?usp=sharing',
                 description: 'Tải bức ảnh người mẫu của bạn lên AI, dán câu lệnh và chỉnh sửa kiểu tóc nâu hạt dẻ thanh lịch.',
                 guideSteps: [
                     'Bước 1: Chuẩn bị bức ảnh chân dung người mẫu mà bạn muốn thay đổi kiểu tóc.',
@@ -799,7 +809,7 @@
                 category: 'thoitrangnu',
                 categoryLabel: 'Thời Trang Nữ',
                 tool: 'Runway Gen-3 + Midjourney',
-                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                video: 'https://drive.google.com/file/d/1OvwnEUVA1z_CRm3YHHyh39Rkq1j2Zx1f/view?usp=sharing',
                 duration: '30 giây',
                 fps: '60 FPS',
                 description: 'Kịch bản hoàn chỉnh gồm nhiều bước từ tạo ảnh nhân vật đến tạo chuyển động và lồng ghép video ngắn TikTok/Reels.',
@@ -833,7 +843,7 @@
                 category: 'doanuong',
                 categoryLabel: 'Đồ Ăn - Uống',
                 tool: 'Kling AI',
-                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                video: 'https://drive.google.com/file/d/1OvwnEUVA1z_CRm3YHHyh39Rkq1j2Zx1f/view?usp=sharing',
                 duration: '15 giây',
                 fps: '60 FPS',
                 description: 'Hướng dẫn quy trình 2 bước tạo video review đồ uống, không gian quán cà phê sáng sớm.',
@@ -860,15 +870,15 @@
         const sampleAudioPrompts = [
             {
                 id: 'aud-gdrive-1',
-                title: 'Nhạc Nền Google Drive MP3 Stream',
+                title: 'Nhạc Nền Lofi Chill - Link Google Drive MP3',
                 category: 'nhacnen',
                 categoryLabel: 'Google Drive Audio',
-                tool: 'Google Drive',
-                prompt: 'Chill relaxing background music uploaded on Google Drive, smooth acoustic instrumentals, high quality audio stream',
-                audioUrl: 'https://drive.google.com/file/d/1126-a0mBimY6S2qFfCjE28PshL1u4s2s/view',
-                description: 'Mẫu file âm thanh MP3 lưu trữ trên Google Drive phát trực tiếp không cần tải về.',
+                tool: 'Mp3',
+                prompt: 'Cozy lofi hip hop beat uploaded on Google Drive, smooth acoustic piano, relaxing guitar melody',
+                audioUrl: 'https://drive.google.com/file/d/151dIYlkvsDooF8S5jgQG1ygS0NggAx00/view?usp=sharing',
+                description: 'Mẫu file âm thanh MP3 lưu trữ trên Google Drive, phát trực tiếp không cần tải về.',
                 generatorUrl: 'https://drive.google.com',
-                generatorName: 'Google Drive Storage',
+                generatorName: 'thử nghiệm 1',
                 downloadUrl: 'https://drive.google.com'
             },
             {
@@ -891,7 +901,7 @@
                 categoryLabel: 'Giọng Nói AI',
                 tool: 'ElevenLabs',
                 prompt: 'Voice: Friendly & Persuasive Female Voiceover, Vietnamese Accent, Warm and engaging tone, clear pronunciation for e-commerce product review, natural breathing rhythm',
-                audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=successful-purchase-10928.mp3',
+                audioUrl: 'https://drive.google.com/file/d/151dIYlkvsDooF8S5jgQG1ygS0NggAx00/view?usp=sharing',
                 description: 'Giọng đọc AI tự nhiên, ngữ điệu cuốn hút thích hợp làm lồng tiếng review sản phẩm TikTok Shop và Shopee.',
                 generatorUrl: 'https://elevenlabs.io',
                 generatorName: 'ElevenLabs Voice Generator',
@@ -1132,7 +1142,9 @@
 
             // Xử lý riêng cho CARD ÂM THANH
             if (type === 'audio' || item.audioUrl) {
-                const audioStreamUrl = getGoogleDriveDirectUrl(item.audioUrl);
+                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
+                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
+                
                 return `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
                     ${isLocked ? `
@@ -1153,20 +1165,33 @@
                                     <i class="fa-solid fa-music"></i>
                                     <span>${item.tool}</span>
                                 </span>
+                                ${gDriveAudioId ? `
+                                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800 flex items-center space-x-1">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                    <span>Drive Audio</span>
+                                </span>
+                                ` : `
                                 <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
                                     ${item.categoryLabel || 'Âm Thanh'}
                                 </span>
+                                `}
                             </div>
 
                             <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-500 transition-colors line-clamp-1">${item.title}</h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || item.prompt}</p>
 
-                            <!-- BỘ PHÁT NHẠC MP3 TRỰC TIẾP -->
-                            <div class="mt-3.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/60">
+                            <!-- BỘ PHÁT NHẠC MP3 / GOOGLE DRIVE TRỰC TIẾP -->
+                            <div class="mt-3.5 p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/60 space-y-2">
                                 <audio controls class="w-full h-8 text-xs focus:outline-none rounded-lg" preload="none" onplay="handleAudioPlay(this)">
                                     <source src="${audioStreamUrl}" type="audio/mpeg">
+                                    ${gDriveAudioId ? `<source src="https://lh3.googleusercontent.com/d/${gDriveAudioId}" type="audio/mpeg">` : ''}
                                     Trình duyệt của bạn không hỗ trợ phát audio.
                                 </audio>
+                                ${gDriveAudioId ? `
+                                <div class="relative w-full h-10 rounded-lg overflow-hidden bg-slate-900 border border-slate-700/50">
+                                    <iframe id="aud-frame-${item.id}" src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                                </div>
+                                ` : ''}
                             </div>
 
                             ${item.prompt ? `
@@ -1728,7 +1753,9 @@
             const content = document.getElementById('modal-content');
 
             if (item.audioUrl) {
-                const audioStreamUrl = getGoogleDriveDirectUrl(item.audioUrl);
+                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
+                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
+
                 content.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -1738,11 +1765,17 @@
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
                         
                         <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
-                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Nghe thử bản nhạc MP3</p>
+                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Nghe thử bản nhạc MP3 ${gDriveAudioId ? '(Google Drive)' : ''}</p>
                             <audio controls class="w-full h-10 focus:outline-none" preload="metadata" onplay="handleAudioPlay(this)">
                                 <source src="${audioStreamUrl}" type="audio/mpeg">
+                                ${gDriveAudioId ? `<source src="https://lh3.googleusercontent.com/d/${gDriveAudioId}" type="audio/mpeg">` : ''}
                                 Trình duyệt của bạn không hỗ trợ phát nhạc.
                             </audio>
+                            ${gDriveAudioId ? `
+                            <div class="relative w-full h-14 rounded-xl overflow-hidden bg-slate-900 border border-slate-700/50">
+                                <iframe src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                            </div>
+                            ` : ''}
                         </div>
 
                         <div>
