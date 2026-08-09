@@ -33,7 +33,6 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -122,7 +121,7 @@
                 } else if (type === 'audio') {
                     return `https://docs.google.com/uc?export=open&id=${fileId}&confirm=no_antivirus`;
                 } else if (type === 'video') {
-                    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+                    return `https://drive.google.com/file/d/${fileId}/preview`;
                 }
             }
             return url;
@@ -315,9 +314,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-image text-primary-500 mr-3"></i> Mẫu Hình Ảnh
+                        <i class="fa-solid fa-image text-primary-500 mr-3"></i> Mẫu Hình Ảnh AI Dọc (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt tạo hình ảnh chất lượng cao và chân thực </p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao định dạng dọc 9:16 - Hỗ trợ kho Google Drive</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -328,14 +327,12 @@
 
             <div class="flex flex-wrap gap-2 text-sm" id="image-categories">
                 <button onclick="filterImageCategory('all', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterImageCategory('taonhanvatnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nữ</button>
-                <button onclick="filterImageCategory('taonhanvatnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nam</button>
+                <button onclick="filterImageCategory('taonhanvat', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật</button>
                 <button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
                 <button onclick="filterImageCategory('thoitrangnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nam</button>
                 <button onclick="filterImageCategory('dogiadung', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterImageCategory('doanuong', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Ăn - Uống</button>
                 <button onclick="filterImageCategory('giaydep', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Giày Dép</button>
-                <button onclick="filterImageCategory('mypham', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Mỹ Phẩm - Nail</button>
             </div>
 
             <div id="image-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
@@ -346,9 +343,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động Nhân Vật
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & và nhân vật thu hút</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -372,9 +369,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video Theo Kịch Bản
+                        <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Hướng dẫn từng bước làm video theo mẫu để có video hoàn chỉnh</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Video tự động phát với thanh thời gian tua trực quan - Bật loa sẽ tắt các nguồn âm thanh khác</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -390,20 +387,19 @@
                 <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
                 <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
-                <button onclick="filterVideoCategory('mypham', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Mỹ Phẩm - Nail</button>
             </div>
 
             <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
-        <!-- 5. TAB: MẪU ÂM THANH -->
+        <!-- 5. TAB MỚI: MẪU ÂM THANH (NÂNG CẤP GIAO DIỆN PHÁT NHẠC ĐƠN GIẢN, TRỰC QUAN & ĐỔI MÀU KHÁC KHI PLAY) -->
         <section id="tab-audio" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-music text-amber-500 mr-3"></i> Mẫu Âm Thanh Xu Hướng và Viral
+                        <i class="fa-solid fa-music text-amber-500 mr-3"></i> Mẫu Âm Thanh & Nhạc AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Chọn lọc các âm thanh xu hướng và nhạc đang Hot viral hay nhất</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Trình phát nhạc trực quan - Đổi màu nổi bật khi phát & Có thanh thời gian chọn điểm tua nghe thử</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -414,10 +410,10 @@
 
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterAudioCategory('all', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-amber-500 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterAudioCategory('nhacxuhuong', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhạc Xu Hướng</button>
-                <button onclick="filterAudioCategory('nhacnen', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhạc nền</button>
+                <button onclick="filterAudioCategory('nhacnen', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhạc Nền</button>
+                <button onclick="filterAudioCategory('giongnoi', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giọng Nói AI</button>
                 <button onclick="filterAudioCategory('hieuung', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Hiệu Ứng Sound FX</button>
-                <button onclick="filterAudioCategory('giongnoi', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giọng nói</button>
+                <button onclick="filterAudioCategory('baihat', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Bài Hát AI</button>
             </div>
 
             <div id="audio-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
@@ -428,7 +424,7 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm tạo video AI
+                        <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động hoá các bước tăng tốc độ sản xuất video</p>
                 </div>
@@ -441,9 +437,9 @@
 
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterToolCategory('autokichban', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Viết Kịch Bản</button>
-                <button onclick="filterToolCategory('autoprompt', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto Viết Prompt</button>
-                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Auto tạo video</button>
+                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
+                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Đăng Bài</button>
+                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giọng Nói AI</button>
             </div>
 
             <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
@@ -454,9 +450,9 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Nhảy Dance AI và Bắt chước theo video gốc
+                        <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp các video nhảy Dancer viral triệu view mới nhất</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu Google Drive, hướng dẫn biến đổi vũ đạo AI & link download trực tiếp</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -478,7 +474,6 @@
 
     </main>
 
-    <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col space-y-3">
         <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative" title="Hỗ trợ Zalo nhanh">
             <i class="fa-solid fa-comment-dots text-xl"></i>
@@ -496,7 +491,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm font-bold">AI</div>
-                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI - Linh Xinh Gái. Tất cả quyền được bảo lưu.</span>
+                <span class="text-slate-600 dark:text-slate-400 text-sm font-medium">© 2026 AI PromptHub - Linh Xinh Gái. Tất cả quyền được bảo lưu.</span>
             </div>
             <div class="flex flex-wrap justify-center space-x-6 text-sm text-slate-500 dark:text-slate-400">
                 <button onclick="switchTab('home')" class="hover:text-primary-600">Trang chủ</button>
@@ -522,7 +517,7 @@
                     <i class="fa-solid fa-lock-open"></i>
                 </div>
                 <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Hệ Thống</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên của bạn để mở khóa toàn bộ kho thư viện</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên hoặc admin của bạn để mở khóa toàn bộ kho thư viện</p>
             </div>
 
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
@@ -556,7 +551,7 @@
                 <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Bạn chưa có tài khoản thành viên?</p>
                 <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
                     <i class="fa-solid fa-comment-dots"></i>
-                    <span>Nhận tài khoản qua Zalo 24/7</span>
+                    <span>Nhận tài khoản miễn phí qua Zalo 24/7</span>
                 </a>
             </div>
         </div>
@@ -596,63 +591,166 @@
             {
                 id: 'img-1',
                 title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
-                category: 'taonhanvatnu',
-                categoryLabel: 'taonhanvatnu',
+                category: 'taonhanvat',
+                categoryLabel: 'Tạo Nhân Vật',
                 tool: 'Grok',
-                prompt: 'xdfvccxvdv',
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                fallbackImage: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Tải ảnh người mẫu của bạn lên A.I như Grok, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
+                image: 'https://drive.google.com/file/d/1_TwWxspMB_SampleImg1/view?usp=sharing',
+                fallbackImage: 'https://i.postimg.cc/TwWxspMB/Tao-nhan-vat-1.jpg',
+                description: 'Tải bức ảnh người mẫu của bạn lên A.I như Grok, King, Gemini, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
-                    'Bước 1: Tải ảnh người mẫu gốc của bạn lên công cụ AI (như Grok,ChatGPT...).',
-                    'Bước 2: Sao chép câu lệnh Prompt bên dưới và dán vào ô nhập lệnh AI.',
-                    'Bước 3: Bấm tạo ảnh và nhận kết quả.'
+                    'Bước 1: Tải bức ảnh người mẫu gốc của bạn lên công cụ AI (như Grok, Gemini, ChatGPT, King...).',
+                    'Bước 2: Sao chép toàn bộ câu lệnh Prompt chuẩn bên dưới và dán vào ô nhập lệnh AI.',
+                    'Bước 3: Bấm tạo ảnh và nhận kết quả nhân vật chuẩn khung hình dọc 9:16 giữ nguyên đặc điểm khuôn mặt.'
                 ],
                 author: 'Grok'
             },
+            {
+                id: 'img-2',
+                title: 'Kiểu Tóc Nâu Ánh Vàng Buộc Thấp',
+                category: 'taonhanvat',
+                categoryLabel: 'Tạo Nhân Vật',
+                tool: 'Grok',
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng. Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown), kiểu buộc thấp gọn gàng phía sau gáy.`,
+                image: 'https://drive.google.com/file/d/1_Pq7vg3N1_SampleImg2/view?usp=sharing',
+                fallbackImage: 'https://i.postimg.cc/Pq7vg3N1/Kieu-toc-1.jpg',
+                description: 'Tải bức ảnh người mẫu của bạn lên AI, dán câu lệnh và chỉnh sửa kiểu tóc nâu hạt dẻ thanh lịch.',
+                guideSteps: [
+                    'Bước 1: Chuẩn bị bức ảnh chân dung người mẫu mà bạn muốn thay đổi kiểu tóc.',
+                    'Bước 2: Copy câu lệnh mô tả chi tiết kiểu tóc nâu ánh vàng buộc thấp ở bên dưới.',
+                    'Bước 3: Gửi ảnh kèm Prompt cho AI để render ra hình ảnh thời trang tinh tế.'
+                ],
+                author: 'Grok'
+            },
+            {
+                id: 'img-3',
+                title: 'Thời Trang Nữ - Streetwear Cao Cấp',
+                category: 'thoitrangnu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Midjourney v6',
+                prompt: `Full length 9:16 portrait of a stunning Vietnamese female model walking on modern city streets, wearing luxury oversize blazer with pleated skirt, high knees leather boots, natural sunlight, cinematic atmosphere, 8k --ar 9:16 --v 6.0`,
+                image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80',
+                description: 'Mẫu outfit nữ dạo phố thời thượng chuẩn Lookbook Hàn Quốc.',
+                guideSteps: [
+                    'Bước 1: Mở phần mềm Midjourney v6 hoặc ứng dụng tạo ảnh AI tương đương.',
+                    'Bước 2: Copy dòng lệnh Prompt mô tả outfit nữ streetwear dạo phố.',
+                    'Bước 3: Bấm Enter tạo mẫu ảnh và chọn phiên bản 9:16 ưng ý nhất.'
+                ],
+                author: 'Midjourney'
+            },
+            {
+                id: 'img-4',
+                title: 'Thời Trang Nam - Minimalist Style',
+                category: 'thoitrangnam',
+                categoryLabel: 'Thời Trang Nam',
+                tool: 'Midjourney v6',
+                prompt: `Full length 9:16 photo of a handsome Asian male model wearing beige linen shirt and dark trousers, sitting in a minimalist minimalist cafe studio, warm morning light, soft shadows, sharp details --ar 9:16`,
+                image: 'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=600&q=80',
+                description: 'Phong cách tối giản nam tính, chụp không gian quán cafe lịch lãm.',
+                guideSteps: [
+                    'Bước 1: Đăng nhập công cụ tạo ảnh AI ưa thích của bạn.',
+                    'Bước 2: Dán prompt mẫu nam phong cách tối giản màu be.',
+                    'Bước 3: Nhận ảnh chuẩn Lookbook nam phong cách Hàn Quốc.'
+                ],
+                author: 'Midjourney'
+            },
+            {
+                id: 'img-5',
+                title: 'Đồ Gia Dụng - Máy Pha Cà Phê Hiện Đại',
+                category: 'dogiadung',
+                categoryLabel: 'Đồ Gia Dụng',
+                tool: 'Stable Diffusion',
+                prompt: `Commercial product shot, 9:16 aspect ratio, modern espresso coffee machine on white marble kitchen countertop, steam rising, warm ambient morning light, ultra high resolution 8k`,
+                image: 'https://images.unsplash.com/photo-1517668808822-9e4288246ede?auto=format&fit=crop&w=600&q=80',
+                description: 'Hình ảnh thương mại quảng cáo thiết bị đồ dùng gia đình.',
+                guideSteps: [
+                    'Bước 1: Copy câu lệnh chụp sản phẩm thương mại đồ gia dụng.',
+                    'Bước 2: Tải lên Stable Diffusion hoặc Midjourney.',
+                    'Bước 3: Render hình ảnh chất lượng cao 8K làm banner bán hàng.'
+                ],
+                author: 'Stable Diffusion'
+            },
+            {
+                id: 'img-6',
+                title: 'Giày Dép - Sneaker Chuyển Động Đô Thị',
+                category: 'giaydep',
+                categoryLabel: 'Giày Dép',
+                tool: 'Midjourney v6',
+                prompt: `Close up hero shot of modern aesthetic chunky sneakers resting on urban neon pavement, 9:16 frame, wet asphalt reflection, cinematic night light, editorial streetwear lookbook --ar 9:16`,
+                image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80',
+                description: 'Chụp cận cảnh giày thể thao bắt mắt thích hợp làm bìa video/bài viết bán hàng.',
+                guideSteps: [
+                    'Bước 1: Copy prompt cận cảnh giày sneaker phong cách urban.',
+                    'Bước 2: Dán vào AI generator với tỉ lệ khung hình 9:16.',
+                    'Bước 3: Xuất hình ảnh sắc nét sẵn sàng đăng TikTok/Reels.'
+                ],
+                author: 'Midjourney'
+            }
         ];
 
         // DATA DEMO CHUYỂN ĐỘNG
         const sampleMotionPrompts = [
             {
                 id: 'mot-1',
-                title: 'Tại Chỗ 1',
+                title: 'Chuyển Động Tại Chỗ - Tóc Bay Trong Gió 01',
                 category: 'taicho',
-                categoryLabel: 'taicho',
-                tool: 'Grok',
+                categoryLabel: 'Tại chỗ',
+                tool: 'Luma Dream Machine',
                 prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên.`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view',
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
                 description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
+            {
+                id: 'mot-2',
+                title: 'Trình Diễn Runway Catwalk 9:16',
+                category: 'trinhdien',
+                categoryLabel: 'Trình diễn',
+                tool: 'Runway Gen-3',
+                prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show, cinematic slow motion, depth of field, sharp 4k focus`,
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tin trình diễn sải bước.',
+                technique: 'Zoom & Dolly in mượt mà.'
+            },
+            {
+                id: 'mot-3',
+                title: 'Góc Quay Nói Review Cận Cảnh',
+                category: 'noireview',
+                categoryLabel: 'Nói Review',
+                tool: 'Kling AI',
+                prompt: `Close-up vertical shot of female influencer talking naturally into camera, subtle head movement, genuine facial expressions, soft background blur`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
+                description: 'Chuyển động môi và ánh mắt cử chỉ tự nhiên phục vụ làm video ngắn nói review.',
+                technique: 'Static camera with natural micro-expressions.'
+            }
         ];
 
         // DATA DEMO VIDEO
         const sampleVideoPrompts = [
             {
                 id: 'vid-1',
-                title: 'Trộm Đồ Manocanh',
+                title: 'Trộm Đồ Manocanh - TikTok Shorts (Đa Bước)',
                 category: 'thoitrangnu',
-                categoryLabel: 'thoitrangnu',
-                tool: 'Grok',
-                video: 'https://drive.google.com/file/d/1tSGMgBbJMGrg5ac9ocERuAHt6ZhXFUkj/view',
-                duration: '',
-                fps: '',
-                description: 'Hướng dẫn tạo video giống như video mẫu',
+                categoryLabel: 'Thời Trang Nữ',
+                tool: 'Runway Gen-3 + Midjourney',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '30 giây',
+                fps: '60 FPS',
+                description: 'Kịch bản hoàn chỉnh gồm nhiều bước từ tạo ảnh nhân vật đến tạo chuyển động và lồng ghép video ngắn TikTok/Reels.',
                 steps: [
                     {
                         stepNumber: 1,
-                        title: 'Tạo Ảnh Nhân Vật Mặc Đồ Cũ',
-                        instruction: 'Ảnh số 1 tải ảnh nhân vật mẫu của bạn. Ảnh số 2 tải ảnh bộ quần áo cũ. lên công cụ AI như Grok, Veo3.. Copy câu lệnh Prompt dán để tạo ảnh.',
+                        title: 'Tạo Ảnh Nền Tảng Nhân Vật (Image Generation)',
+                        instruction: 'Tải ảnh gốc hoặc dùng Midjourney để tạo ảnh nhân vật chính mặc đồ thời trang trong cửa hàng boutique cao cấp.',
                         image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
-                        prompt: 'Câu lệnh test 1'
+                        prompt: 'Vertical 9:16 high fashion editorial photo of stylish girl standing inside a luxury clothing boutique, soft cinematic lighting, 8k --ar 9:16'
                     },
                     {
                         stepNumber: 2,
-                        title: 'Tạo Tạo Ảnh Nhân Vật Mặc Đồ Muốn Bán',
-                        instruction: 'Ảnh số 1 tải ảnh nhân vật mẫu của bạn. Ảnh số 2 tải ảnh bộ quần áo muốn bán. lên công cụ AI như Grok, Veo3.. Copy câu lệnh Prompt dán để tạo ảnh.',
+                        title: 'Tạo Chuyển Động Video AI (Video Motion)',
+                        instruction: 'Đưa ảnh từ Bước 1 vào Runway Gen-3 hoặc Kling AI để thêm chuyển động camera và hành động.',
                         image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
-                        prompt: 'Câu lệnh test 2'
+                        prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus'
                     },
                     {
                         stepNumber: 3,
@@ -660,65 +758,128 @@
                         instruction: 'Sử dụng CapCut để chèn nhạc bắt tai, thêm hiệu ứng chuyển cảnh mượt mà và xuất video độ phân giải 1080x1920 chuẩn 60FPS.',
                         image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
                         prompt: 'CapCut template settings: 1080x1920 resolution, 60fps, color grading warm cinematic LUT, trending TikTok beat.'
-                    },
+                    }
                 ]
             },
+            {
+                id: 'vid-2',
+                title: 'Review Cà Phê Sáng Tinh Tế (Đa Bước)',
+                category: 'doanuong',
+                categoryLabel: 'Đồ Ăn - Uống',
+                tool: 'Kling AI',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
+                duration: '15 giây',
+                fps: '60 FPS',
+                description: 'Hướng dẫn quy trình 2 bước tạo video review đồ uống, không gian quán cà phê sáng sớm.',
+                steps: [
+                    {
+                        stepNumber: 1,
+                        title: 'Tạo Ảnh Cốc Cà Phê & Ánh Sáng Buổi Sáng',
+                        instruction: 'Tạo hình ảnh chi tiết góc cận cảnh bàn cà phê với ánh nắng chiếu qua cửa sổ.',
+                        image: 'https://images.unsplash.com/photo-1517668808822-9e4288246ede?auto=format&fit=crop&w=800&q=80',
+                        prompt: 'Close up 9:16 photo of ceramic coffee cup on wooden table, morning sunlight through window, cozy aesthetic, photorealistic --ar 9:16'
+                    },
+                    {
+                        stepNumber: 2,
+                        title: 'Tạo Hiệu Ứng Đổ Nước Rót Cà Phê',
+                        instruction: 'Tải ảnh sang Kling AI và dùng lệnh chuyển động rót nước.',
+                        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+                        prompt: 'Close up 9:16 video pouring hot coffee into ceramic cup, morning sunlight through window, smooth cinematic camera motion'
+                    }
+                ]
+            }
         ];
 
         // MẪU ÂM THANH DATA
         const sampleAudioPrompts = [
             {
                 id: 'aud-1',
-                title: 'Mở Đầu 1',
-                category: 'hieuung',
-                categoryLabel: 'hieuung',
-                tool: 'Mp3',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view', 
-                fallbackAudioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view',
-                description: 'Nhạc mở đầu hài hước.',
+                title: 'Nhạc Nền Lofi Chill Cafe Sáng TikTok',
+                category: 'nhacnen',
+                categoryLabel: 'Nhạc Nền',
+                tool: 'Suno AI v3.5',
+                audioUrl: 'https://drive.google.com/file/d/1_SampleDriveAudioLofi/view?usp=sharing', 
+                fallbackAudioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3',
+                description: 'Giai điệu lofi ấm áp, êm dịu cực hợp làm nhạc nền cho video vlog cuộc sống, review cafe, phối đồ thời trang.',
                 generatorUrl: 'https://suno.com',
-                generatorName: 'tt',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view'
+                generatorName: 'Suno AI Generator',
+                downloadUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
             },
+            {
+                id: 'aud-2',
+                title: 'Giọng Nói AI Nữ Review Bán Hàng Truyền Cảm',
+                category: 'giongnoi',
+                categoryLabel: 'Giọng Nói AI',
+                tool: 'ElevenLabs',
+                audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=successful-purchase-10928.mp3',
+                description: 'Giọng đọc AI tự nhiên, ngữ điệu cuốn hút thích hợp làm lồng tiếng review sản phẩm TikTok Shop và Shopee.',
+                generatorUrl: 'https://elevenlabs.io',
+                generatorName: 'ElevenLabs Voice Generator',
+                downloadUrl: 'https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=successful-purchase-10928.mp3'
+            },
+            {
+                id: 'aud-3',
+                title: 'Nhạc EDM Trend Biến Hình TikTok Sôi Động',
+                category: 'baihat',
+                categoryLabel: 'Bài Hát AI',
+                tool: 'Udio AI',
+                audioUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=action-electro-house-11000.mp3',
+                description: 'Nhạc nhảy tiết tấu nhanh, dồn dập chuẩn đoạn drop chuyển cảnh biến hình thời trang sôi động.',
+                generatorUrl: 'https://www.udio.com',
+                generatorName: 'Udio AI Song Generator',
+                downloadUrl: 'https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0a13f69d2.mp3?filename=action-electro-house-11000.mp3'
+            },
+            {
+                id: 'aud-4',
+                title: 'Hiệu Ứng Sound FX Chuyển Cảnh Phim Cinematic',
+                category: 'hieuung',
+                categoryLabel: 'Hiệu Ứng Sound FX',
+                tool: 'ElevenLabs Sound FX',
+                audioUrl: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_c268832a82.mp3?filename=impact-swoosh-110824.mp3',
+                description: 'Âm thanh vụt qua swoosh & va đập kịch tính giúp video CapCut/Reels giật gân, thu hút sự chú ý.',
+                generatorUrl: 'https://elevenlabs.io/sound-effects',
+                generatorName: 'ElevenLabs SFX Tool',
+                downloadUrl: 'https://cdn.pixabay.com/download/audio/2022/03/10/audio_c268832a82.mp3?filename=impact-swoosh-110824.mp3'
+            }
         ];
 
         const sampleToolProducts = [
             {
                 id: 'tool-1',
-                title: 'Tool Auto test',
+                title: 'Tool Auto Prompt & Render Video AI Hàng Loạt 9:16',
                 category: 'autovideo',
                 categoryLabel: 'Tự Động Tạo Video',
-                tool: 'Auto',
+                tool: 'Auto Software',
                 price: '290.000đ',
                 originalPrice: '590.000đ',
-                video: 'https://drive.google.com/file/d/1tSGMgBbJMGrg5ac9ocERuAHt6ZhXFUkj/view?usp=sharing',
+                video: 'https://www.youtube.com/shorts/lTYgFMyMric',
                 image: 'https://i.postimg.cc/JzhwYjtS/290k.jpg',
-                customQrImage: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
+                customQrImage: 'https://i.postimg.cc/QCz3pbrv/290k.jpg',
                 description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
                 guideSteps: [
-                    'Bước 1: Tải bộ cài phần mềm và chạy.',
+                    'Bước 1: Tải bộ cài phần mềm và chạy tệp setup.exe (Dành cho Windows/Mac).',
                     'Bước 2: Dán API Key hoặc tài khoản AI của bạn vào giao diện Cấu hình.',
                     'Bước 3: Nhập danh sách từ khóa chủ đề (ví dụ: thời trang, đồ ăn, du lịch).',
                     'Bước 4: Nhấn nút "Bắt Đầu Auto" và phần mềm sẽ tự tạo prompt & tải video về thư mục.'
                 ],
                 zaloLink: 'https://zalo.me/0984348734',
                 bankName: 'Vietinbank',
-                accountNo: '103868751388 PHẠM TUẤN VINH',
+                accountNo: '103868751388',
                 accountName: 'PHAM TUAN VINH',
                 note: 'Tool 01'
-            },
+            }
         ];
 
         const sampleDancePrompts = [
             {
                 id: 'dance-1',
-                title: 'Dancer theo video mẫu',
+                title: 'K-Pop Hit Trend Dance Cover (9:16)',
                 category: 'nhaymotnguoi',
-                categoryLabel: 'nhaymotnguoi',
-                tool: 'Dancer',
-                prompt: `Hướng đẫn tạo video Dancer siêu đẹp`,
-                video: 'https://drive.google.com/file/d/1tSGMgBbJMGrg5ac9ocERuAHt6ZhXFUkj/view?usp=sharing',
-                description: 'Mẫu vũ đạo sôi động khung đứng 9:16 cực hot trên TikTok.',
+                categoryLabel: 'Nhảy một người',
+                tool: 'Viggle AI Dance',
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
+                video: 'https://www.youtube.com/shorts/W-YVtgZt6BA',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
                 guideSteps: [
                     'Bước 1: Tải Video Mẫu - Bấm nút "TẢI VIDEO MẪU" ở cuối trang để lưu video dance nhịp điệu về thiết bị.',
                     'Bước 2: Chuẩn Bị Nhân Vật - Tải lên hoặc tạo 1 bức ảnh chân dung toàn thân nhân vật AI (tỉ lệ 9:16, rõ nét).',
@@ -727,9 +888,9 @@
                     'Bước 5: Xuất Video Dance - Bấm Tạo Video (Generate) để AI tự động ghép khuôn mặt & cơ thể nhân vật khớp 100% điệu nhảy.'
                 ],
                 redirectUrl: 'https://aidancing.net?ref=aidancing50632',
-                redirectLabel: 'Đến Trang Tạo Dance',
-                downloadUrl: 'https://drive.google.com/file/d/1tSGMgBbJMGrg5ac9ocERuAHt6ZhXFUkj/view?usp=sharing'
-            },
+                redirectLabel: 'Đến Trang Tạo Dance AI',
+                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+            }
         ];
 
         // RENDER CONTAINER MEDIA HỖ TRỢ ĐẮC LỰC THANH THỜI GIAN VÀ CÁC TÙY CHỌN TUA VIDEO
@@ -737,6 +898,20 @@
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
                 const parsedVideoUrl = parseDriveUrl(item.video, 'video');
+
+                // Google Drive Video Preview
+                if (parsedVideoUrl.includes('drive.google.com')) {
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black flex flex-col justify-end">
+                            <iframe id="${uniqueId}" src="${parsedVideoUrl}" 
+                                class="w-full h-full object-cover border-0 absolute inset-0 pointer-events-none" 
+                                allow="autoplay"></iframe>
+                            <button onclick="toggleAudio('${uniqueId}', 'gdrive', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                }
 
                 // Youtube Video
                 const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
@@ -756,7 +931,7 @@
                     `;
                 }
 
-                // Standard Video HTML5 (Bao gồm video từ Google Drive tự động phát trực tiếp & có thanh điều khiển)
+                // Standard Video HTML5 Với Thanh Tua Thời Gian & Control Trực Quan
                 return `
                     <div id="vcard-${uniqueId}" class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black flex flex-col justify-end">
                         <video id="${uniqueId}" src="${parsedVideoUrl}" poster="${parseDriveUrl(item.image, 'image') || ''}" autoplay loop muted playsinline 
@@ -935,7 +1110,7 @@
             if (type === 'tool') badgeColor = 'bg-emerald-600';
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
-            // GIAO DIỆN PHÁT NHẠC NÂNG CẤP
+            // GIAO DIỆN PHÁT NHẠC NÂNG CẤP: ĐỔI MÀU NỔI BẬT KHI PLAY, CÓ THANH THỜI GIAN KÉO TUA CHỌN ĐIỂM PHÁT
             if (type === 'audio' || item.audioUrl) {
                 const uniqueAudioId = 'aud-el-' + Math.random().toString(36).substr(2, 9);
                 const audioSrc = parseDriveUrl(item.audioUrl, 'audio');
@@ -972,6 +1147,7 @@
                             <!-- BỘ PHÁT NHẠC ĐỔI MÀU NỔI BẬT KHI PLAY + THANH THỜI GIAN TUA PHÁT -->
                             <div id="aplayer-${uniqueAudioId}" class="mt-4 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 transition-all duration-300 space-y-3">
                                 <div class="flex items-center space-x-3">
+                                    <!-- Đĩa nhạc xoay tròn & đổi màu viền khi phát -->
                                     <div id="disc-${uniqueAudioId}" class="w-12 h-12 rounded-full bg-slate-900 border-2 border-slate-400 flex items-center justify-center shrink-0 shadow-md relative overflow-hidden transition-all">
                                         <div class="w-3.5 h-3.5 rounded-full bg-amber-400 border border-slate-900"></div>
                                         <i class="fa-solid fa-compact-disc text-slate-400 text-2xl absolute opacity-30"></i>
@@ -983,11 +1159,13 @@
                                             <span id="time-dur-${uniqueAudioId}">00:00</span>
                                         </div>
                                     </div>
+                                    <!-- Nút Play/Pause lớn và đổi màu rực rỡ khi phát -->
                                     <button id="abtn-${uniqueAudioId}" onclick="toggleAudioCardPlay('${uniqueAudioId}', this)" class="w-11 h-11 rounded-full bg-slate-800 text-white hover:bg-amber-500 flex items-center justify-center shadow-md transition-all shrink-0 active:scale-95" title="Phát/Tạm Dừng">
                                         <i class="fa-solid fa-play text-sm ml-0.5"></i>
                                     </button>
                                 </div>
 
+                                <!-- Thanh thời gian Kéo / Tua chọn điểm bắt đầu phát -->
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="aseek-${uniqueAudioId}" min="0" max="100" value="0" step="0.1" 
                                         oninput="seekAudioCardSlider(this.value, '${uniqueAudioId}')"
@@ -1002,14 +1180,15 @@
                             </div>
                         </div>
 
+                        <!-- CÁC NÚT THAO TÁC ÂM THANH (KHÔNG CÓ Ô PROMPT VĂN BẢN) -->
                         <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
                             <a href="${item.downloadUrl || audioSrc}" download target="_blank" class="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center justify-center space-x-1.5" title="Tải File MP3">
                                 <i class="fa-solid fa-download text-xs"></i>
-                                <span>Tải MP3</span>
+                                <span>Tải MP3 Google Drive</span>
                             </a>
                             <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="py-2 px-3 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-500 hover:text-white transition-all flex items-center space-x-1" title="Đến trang tạo âm thanh AI">
                                 <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                                <span>Tới Trang AI</span>
+                                <span>Trang AI</span>
                             </a>
                         </div>
                     </div>
@@ -1059,16 +1238,16 @@
                         </button>
                         ${item.price ? `
                         <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-3 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center">
-                            <i class="fa-solid fa-qrcode mr-1"></i> Quét Thanh Toán QR
+                            <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
                         </button>` : item.downloadUrl ? `
                         <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-3 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center">
-                            <i class="fa-solid fa-download mr-1"></i> Tải Video Mẫu
+                            <i class="fa-solid fa-download mr-1"></i> Tải Mẫu
                         </a>` : item.steps ? `
                         <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
                             <i class="fa-solid fa-layer-group"></i>
                             <span>Xem Các Bước</span>
                         </button>` : `
-                        <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(item.prompt || ''))}')" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
+                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
                             <i class="fa-solid fa-copy"></i>
                             <span>Sao chép</span>
                         </button>`}
@@ -1092,13 +1271,16 @@
             }
         }
 
+        // TỰ ĐỘNG THAY ĐỔI MÀU SẮC ĐỔI TRẠNG THÁI NỔI BẬT KHI PHÁT BÀI NHẠC
         function handleAudioPlay(currentAudio, audioId) {
+            // Tắt tất cả bài audio khác và đưa về màu nguyên bản
             document.querySelectorAll('audio').forEach(aud => {
                 if (aud !== currentAudio) {
                     aud.pause();
                 }
             });
 
+            // Thay đổi giao diện bài đang phát sang màu Nổi Bật (Amber Golden Glow)
             const card = document.getElementById('acard-' + audioId);
             const player = document.getElementById('aplayer-' + audioId);
             const disc = document.getElementById('disc-' + audioId);
@@ -1589,7 +1771,7 @@
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
 
-            // MODAL CHI TIẾT ÂM THANH
+            // MODAL CHI TIẾT ÂM THANH - GIAO DIỆN PHÁT NHẠC ĐỔI MÀU NỔI BẬT KHI PLAY VÀ CÓ THANH TUA
             if (item.audioUrl) {
                 const uniqueAudioModalId = 'aud-modal-' + Math.random().toString(36).substr(2, 9);
                 const audioSrc = parseDriveUrl(item.audioUrl, 'audio');
@@ -1603,6 +1785,7 @@
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
                         
+                        <!-- AUDIO PLAYER ĐĨA QUAY CAO CẤP NGOÀI MODAL CÓ THANH THỜI GIAN & ĐỔI MÀU KHI PLAY -->
                         <div id="aplayer-${uniqueAudioModalId}" class="p-6 rounded-3xl bg-slate-900 text-white text-center space-y-4 shadow-xl border-2 border-slate-700 transition-all duration-300">
                             <div class="w-20 h-20 rounded-full bg-slate-950 border-4 border-slate-500 flex items-center justify-center mx-auto shadow-2xl relative overflow-hidden transition-all" id="disc-${uniqueAudioModalId}">
                                 <div class="w-6 h-6 rounded-full bg-amber-400 border-2 border-slate-900"></div>
@@ -1645,7 +1828,7 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Trang AI (${item.generatorName || 'Suno AI'})</span>
                             </a>
                             <a href="${item.downloadUrl || audioSrc}" download target="_blank" class="w-full sm:w-1/2 py-3 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3</span>
+                                <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3 TỪ GOOGLE DRIVE</span>
                             </a>
                         </div>
                     </div>
@@ -1657,8 +1840,8 @@
                             <span class="px-2.5 py-1 rounded-lg bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 text-xs font-bold uppercase">
                                 <i class="fa-solid fa-shoe-prints mr-1"></i> Bước ${step.stepNumber}: ${step.title}
                             </span>
-                            <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(step.prompt))}')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow transition-all flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i> <span>Sao chép Prompt Bước ${step.stepNumber}</span>
+                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(step.prompt))}\`)" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow transition-all flex items-center space-x-1">
+                                <i class="fa-solid fa-copy"></i> <span>Sao chép Bước ${step.stepNumber}</span>
                             </button>
                         </div>
                         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${step.instruction}</p>
@@ -1667,7 +1850,7 @@
                             <img src="${parseDriveUrl(step.image, 'image')}" alt="${step.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
                             <span class="absolute bottom-2.5 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/10 flex items-center">
-                                <i class="fa-solid fa-image text-rose-400 mr-1.5"></i> Hướng dẫn hình ảnh ${step.stepNumber}
+                                <i class="fa-solid fa-image text-rose-400 mr-1.5"></i> Kết quả / Minh họa Bước ${step.stepNumber}
                             </span>
                         </div>
                         ` : ''}
@@ -1707,11 +1890,11 @@
                 `;
             } else if (item.downloadUrl) {
                 const stepsList = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [
-                    'Bước 1: Tải Video Mẫu - Bấm nút "TẢI VIDEO MẪU" ở cuối trang.',
-                    'Bước 2: Chuẩn bị ảnh nhân vật chân dung toàn thân(tỉ lệ 9:16, rõ nét).',
-                    'Bước 3: Mở Trang Tạo AI - Bấm nút "Đến Trang Tạo Dance AI".',
-                    'Bước 4: Đưa Video Mẫu vào và đưa Ảnh Nhân Vật vào khung.',
-                    'Bước 5: Bấm Tạo Video và chờ kết quả để tải về.'
+                    'Bước 1: Tải Video Mẫu - Bấm nút "TẢI VIDEO MẪU" ở cuối trang để lưu video dance nhịp điệu về thiết bị.',
+                    'Bước 2: Chuẩn Bị Nhân Vật - Tải lên hoặc tạo 1 bức ảnh chân dung toàn thân nhân vật AI (tỉ lệ 9:16, rõ nét).',
+                    'Bước 3: Mở Trang Tạo AI - Bấm nút "Đến Trang Tạo Dance AI" để mở công cụ Viggle AI hoặc Kling AI.',
+                    'Bước 4: Tải Dữ Liệu Lên Công Cụ - Đưa Video Mẫu vào ô Motion/Pose Reference và đưa Ảnh Nhân Vật vào ô Character Image.',
+                    'Bước 5: Xuất Video Dance - Bấm Tạo Video (Generate) để AI tự động ghép khuôn mặt & cơ thể nhân vật khớp 100% điệu nhảy.'
                 ];
 
                 let danceStepsHtml = stepsList.map(step => {
@@ -1793,7 +1976,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-extrabold mb-2 flex items-center">
-                                <i class="fa-solid fa-list-ol mr-1.5 text-emerald-500"></i> Hướng Dẫn Sử Dụng Chi Tiết
+                                <i class="fa-solid fa-list-ol mr-1.5 text-emerald-500"></i> Hướng Dẫn Sử Dụng & Setup Chi Tiết
                             </label>
                             <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 space-y-3">
                                 ${toolStepsHtml}
@@ -1801,7 +1984,7 @@
                         </div>
                         <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
                             <a href="${item.zaloLink}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo 24/7</span>
+                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo</span>
                             </a>
                             <button onclick="closeModal(); openQRModal('${item.id}')" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-qrcode"></i> <span>MUA NGAY (MÃ QR)</span>
@@ -1831,21 +2014,21 @@
                             <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
                             <div class="leading-relaxed">
                                 <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 1:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Tải bức ảnh người mẫu/sản phẩm của bạn lên phần mềm AI như Grok...</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Tải bức ảnh người mẫu/sản phẩm của bạn lên phần mềm AI.</span>
                             </div>
                         </div>
                         <div class="flex items-start space-x-2 text-xs sm:text-sm">
                             <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
                             <div class="leading-relaxed">
                                 <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 2:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Sao chép câu lệnh Prompt ở bên dưới.</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Sao chép chính xác câu lệnh Prompt ở bên dưới.</span>
                             </div>
                         </div>
                         <div class="flex items-start space-x-2 text-xs sm:text-sm">
                             <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
                             <div class="leading-relaxed">
                                 <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 3:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Dán Prompt vào và tạo video.</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Dán Prompt vào AI và xuất ảnh khung hình dọc 9:16 chất lượng cao.</span>
                             </div>
                         </div>
                     `;
@@ -1872,7 +2055,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản (Chuẩn Copy)</label>
-                                <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(item.prompt || ''))}')" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                                     <i class="fa-solid fa-copy mr-1"></i> Sao chép
                                 </button>
                             </div>
