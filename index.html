@@ -596,68 +596,22 @@
         const sampleImagePrompts = [
             {
                 id: 'img-gdrive-1',
-                title: 'Mẫu Ảnh Thời Trang Nữ - Link Google Drive',
-                category: 'thoitrangnu',
-                categoryLabel: 'Google Drive',
-                tool: 'Google Drive',
-                prompt: `Full length 9:16 high fashion studio portrait of a Asian model, chic elegant aesthetic, natural lighting, ultra high detail 8k`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Mẫu ảnh load trực tiếp từ đường link lưu trữ Google Drive.',
-                guideSteps: [
-                    'Bước 1: Upload ảnh của bạn lên Google Drive và bật chia sẻ công khai ("Bất kỳ ai có liên kết").',
-                    'Bước 2: Copy link chia sẻ dán vào thuộc tính image của mẫu.',
-                    'Bước 3: Hệ thống tự động chuyển đổi thành link ảnh trực tiếp hiển thị sắc nét.'
-                ],
-                author: 'Google Drive'
-            },
-            {
-                id: 'img-1',
-                title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
-                category: 'taonhanvat',
-                categoryLabel: 'Tạo Nhân Vật',
+                title: 'Tạo nhân vật - Giữ nguyên tóc',
+                category: 'taonhanvatnu',
+                categoryLabel: 'taonhanvatnu',
                 tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.`,
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
+`,
                 image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Tải bức ảnh người mẫu của bạn lên A.I như Grok, King, Gemini, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
+                description: 'Tạo nhân vật và giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
-                    'Bước 1: Tải bức ảnh người mẫu gốc của bạn lên công cụ AI (như Grok, Gemini, ChatGPT, King...).',
-                    'Bước 2: Sao chép toàn bộ câu lệnh Prompt chuẩn bên dưới và dán vào ô nhập lệnh AI.',
-                    'Bước 3: Bấm tạo ảnh và nhận kết quả nhân vật chuẩn khung hình dọc 9:16 giữ nguyên đặc điểm khuôn mặt.'
+                    'Bước 1: Upload ảnh nhân vật mẫu lên công cụ Ai như Grok...',
+                    'Bước 2: Copy prompt mẫu và dán và khung yêu cầu prompt.',
+                    'Bước 3: Nhấn tạo và chừo kết quả.'
                 ],
-                author: 'Grok'
+                author: '0'
             },
-            {
-                id: 'img-2',
-                title: 'Kiểu Tóc Nâu Ánh Vàng Buộc Thấp',
-                category: 'taonhanvat',
-                categoryLabel: 'Tạo Nhân Vật',
-                tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng. Màu tóc: Màu nâu sáng trung tính pha nhẹ ánh vàng (light ash brown/honey brown), kiểu buộc thấp gọn gàng phía sau gáy.`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Tải bức ảnh người mẫu của bạn lên AI, dán câu lệnh và chỉnh sửa kiểu tóc nâu hạt dẻ thanh lịch.',
-                guideSteps: [
-                    'Bước 1: Chuẩn bị bức ảnh chân dung người mẫu mà bạn muốn thay đổi kiểu tóc.',
-                    'Bước 2: Copy câu lệnh mô tả chi tiết kiểu tóc nâu ánh vàng buộc thấp ở bên dưới.',
-                    'Bước 3: Gửi ảnh kèm Prompt cho AI để render ra hình ảnh thời trang tinh tế.'
-                ],
-                author: 'Grok'
-            },
-            {
-                id: 'img-3',
-                title: 'Thời Trang Nữ - Streetwear Cao Cấp',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Midjourney v6',
-                prompt: `Full length 9:16 portrait of a stunning Vietnamese female model walking on modern city streets, wearing luxury oversize blazer with pleated skirt, high knees leather boots, natural sunlight, cinematic atmosphere, 8k --ar 9:16 --v 6.0`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Mẫu outfit nữ dạo phố thời thượng chuẩn Lookbook Hàn Quốc.',
-                guideSteps: [
-                    'Bước 1: Mở phần mềm Midjourney v6 hoặc ứng dụng tạo ảnh AI tương đương.',
-                    'Bước 2: Copy dòng lệnh Prompt mô tả outfit nữ streetwear dạo phố.',
-                    'Bước 3: Bấm Enter tạo mẫu ảnh và chọn phiên bản 9:16 ưng ý nhất.'
-                ],
-                author: 'Midjourney'
-            }
+            
         ];
 
         const sampleMotionPrompts = [
