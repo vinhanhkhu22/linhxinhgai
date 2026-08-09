@@ -116,13 +116,7 @@
             }
             
             if (fileId) {
-                if (type === 'image') {
-                    return `https://lh3.googleusercontent.com/d/${fileId}`;
-                } else if (type === 'audio') {
-                    return `https://docs.google.com/uc?export=open&id=${fileId}&confirm=no_antivirus`;
-                } else if (type === 'video') {
-                    return `https://drive.google.com/file/d/${fileId}/preview`;
-                }
+                return `https://lh3.googleusercontent.com/d/${fileId}`;
             }
             return url;
         }
@@ -899,20 +893,6 @@
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
                 const parsedVideoUrl = parseDriveUrl(item.video, 'video');
 
-                // Google Drive Video Preview
-                if (parsedVideoUrl.includes('drive.google.com')) {
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black flex flex-col justify-end">
-                            <iframe id="${uniqueId}" src="${parsedVideoUrl}" 
-                                class="w-full h-full object-cover border-0 absolute inset-0 pointer-events-none" 
-                                allow="autoplay"></iframe>
-                            <button onclick="toggleAudio('${uniqueId}', 'gdrive', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
-                                <i class="fa-solid fa-volume-xmark"></i>
-                            </button>
-                        </div>
-                    `;
-                }
-
                 // Youtube Video
                 const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                 if (ytMatch && ytMatch[1]) {
@@ -931,7 +911,7 @@
                     `;
                 }
 
-                // Standard Video HTML5 Với Thanh Tua Thời Gian & Control Trực Quan
+                // Standard Video HTML5 (Bao gồm Google Drive Direct Link) Với Thanh Tua Thời Gian & Control Trực Quan
                 return `
                     <div id="vcard-${uniqueId}" class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black flex flex-col justify-end">
                         <video id="${uniqueId}" src="${parsedVideoUrl}" poster="${parseDriveUrl(item.image, 'image') || ''}" autoplay loop muted playsinline 
@@ -1984,7 +1964,7 @@
                         </div>
                         <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
                             <a href="${item.zaloLink}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo</span>
+                                <i class="fa-solid fa-headset"></i> <span>Tư Vấn Zalo</span>
                             </a>
                             <button onclick="closeModal(); openQRModal('${item.id}')" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-qrcode"></i> <span>MUA NGAY (MÃ QR)</span>
