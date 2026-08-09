@@ -397,78 +397,17 @@
 
         <!-- 6. TAB MỚI: PHÁT LINK GOOGLE DRIVE -->
         <section id="tab-gdrive" class="tab-content hidden space-y-8">
-            <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-950 text-white shadow-xl border border-blue-500/30">
-                <div class="max-w-3xl space-y-4">
-                    <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-bold border border-blue-400/30 inline-flex items-center space-x-1.5">
-                        <i class="fa-brands fa-google-drive text-sm"></i>
-                        <span>Công Cụ Phát Video Google Drive Trực Tiếp</span>
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold">Chuyển Đổi & Xem Thử Video Từ Link Google Drive</h2>
-                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Nhập bất kỳ đường link chia sẻ video từ Google Drive (Lưu ý: Link phải cài đặt chế độ <b>"Bất kỳ ai có liên kết đều có thể xem"</b>). Hệ thống sẽ tự động chuyển thành trình phát video tương thích sẵn sàng để chèn vào mẫu!
-                    </p>
-
-                    <div class="pt-2 flex flex-col sm:flex-row gap-3">
-                        <input type="text" id="gdrive-input-url" placeholder="Dán link Google Drive tại đây (vd: https://drive.google.com/file/d/12345/view?usp=sharing)..." class="flex-grow px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <button onclick="testGoogleDriveLink()" class="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg transition-all shrink-0 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-play"></i>
-                            <span>Phát Thử Video</span>
-                        </button>
-                    </div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
+                        <i class="fa-brands fa-google-drive text-blue-500 mr-3"></i> Mẫu Video Google Drive
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Danh sách các mẫu video đang phát trực tiếp bằng đường link lưu trữ Google Drive</p>
                 </div>
             </div>
 
-            <!-- Preview Test Container -->
-            <div id="gdrive-preview-box" class="hidden bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xl space-y-6">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-brands fa-google-drive text-blue-500 mr-2"></i> Kết Quả Xem Thử Video Drive
-                    </h3>
-                    <span id="gdrive-file-id-badge" class="text-xs font-mono bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-300 px-3 py-1 rounded-lg">
-                        ID: ...
-                    </span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                    <div class="w-full max-w-xs mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl relative border border-slate-800" id="gdrive-player-render">
-                        <!-- Dynamic Player Render -->
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 space-y-2">
-                            <label class="block text-xs font-bold uppercase text-slate-400">Mã Nhúng iframe Chuẩn:</label>
-                            <div id="gdrive-code-snippet" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-950 text-xs font-mono text-blue-600 dark:text-blue-400 border border-slate-200 dark:border-slate-800 break-all select-all">
-                                ...
-                            </div>
-                            <button onclick="copyToClipboard(document.getElementById('gdrive-code-snippet').innerText)" class="w-full py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all shadow flex items-center justify-center space-x-1.5 mt-2">
-                                <i class="fa-solid fa-copy"></i>
-                                <span>Sao chép Mã Nhúng</span>
-                            </button>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 space-y-2">
-                            <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase flex items-center">
-                                <i class="fa-solid fa-circle-check mr-1.5"></i> Hướng Dẫn Thêm Vào Mẫu Code Web
-                            </h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                                Bạn có thể dán nguyên đường link dạng <code>https://drive.google.com/file/d/FILE_ID/view</code> vào thuộc tính <code>video: "..."</code> trong danh sách JavaScript của trang web này. Hệ thống sẽ tự động biến nó thành trình phát video tương thích!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Danh sách Video Mẫu từ Google Drive -->
-            <div class="space-y-6 pt-4">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-blue-500 mr-2"></i> Danh Sách Mẫu Video Đang Phát Bằng Link Google Drive
-                    </h3>
-                </div>
-
-                <div id="gdrive-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                    <!-- JS populated -->
-                </div>
+            <div id="gdrive-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+                <!-- JS populated -->
             </div>
         </section>
 
