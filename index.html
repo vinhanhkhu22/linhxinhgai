@@ -1,7 +1,6 @@
-Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript phía sau ngưng chạy ngay lập tức, dẫn đến trang web bị đứng, các danh mục, hiệu ứng và chức năng không thể hiển thị hay tương tác được.🛠️ Các điểm đã được sửa chữa:Sửa dứt điểm lỗi SyntaxError: Khôi phục thuộc tính prompt về đúng cú pháp chuỗi tiêu chuẩn 'xdfvccxvdv'. Tối ưu hóa sự kiện Click Copy Prompt: Sửa dấu escape backtick trong thuộc tính onclick của các nút sao chép để đảm bảo trình duyệt thực thi mượt mà trên cả trình duyệt máy tính lẫn điện thoại.Giữ nguyên 100% dữ liệu hiện có: Giữ đầy đủ tất cả tài khoản, dữ liệu mẫu hình ảnh, chuyển động, kịch bản video, bài hát MP3, QR code thanh toán và toàn bộ giao diện CSS/Tailwind.Dưới đây là toàn bộ mã nguồn file web đã được sửa lỗi hoàn chỉnh và sẵn sàng vận hành:<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
-    <!-- STREAMING_CHUNK:Configuring meta tags and tailwind CSS setup... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
@@ -35,7 +34,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- STREAMING_CHUNK:Styling custom animations and player scrollbars... -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -107,7 +105,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
-    <!-- STREAMING_CHUNK:Initializing state and drive parser functions... -->
     <script>
         function parseDriveUrl(url, type = 'image') {
             if (!url) return '';
@@ -148,7 +145,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
         let currentUser = JSON.parse(localStorage.getItem('ai_prompt_current_user')) || null;
     </script>
 
-    <!-- STREAMING_CHUNK:Rendering application header and navigation bar... -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -227,7 +223,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
         </div>
     </header>
 
-    <!-- STREAMING_CHUNK:Constructing main layout and tab containers... -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Guest Notice Banner -->
@@ -315,7 +310,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             </div>
         </section>
 
-        <!-- STREAMING_CHUNK:Building section views for categories... -->
         <!-- 2. TAB: MẪU HÌNH ẢNH -->
         <section id="tab-image" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
@@ -335,13 +329,13 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             <div class="flex flex-wrap gap-2 text-sm" id="image-categories">
                 <button onclick="filterImageCategory('all', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm">Tất cả</button>
                 <button onclick="filterImageCategory('taonhanvatnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nữ</button>
-				<button onclick="filterImageCategory('taonhanvatnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nam</button>
+                <button onclick="filterImageCategory('taonhanvatnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nam</button>
                 <button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
                 <button onclick="filterImageCategory('thoitrangnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nam</button>
                 <button onclick="filterImageCategory('dogiadung', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterImageCategory('doanuong', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Ăn - Uống</button>
                 <button onclick="filterImageCategory('giaydep', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Giày Dép</button>
-				<button onclick="filterImageCategory('mypham', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Mỹ Phẩm - Nail</button>
+                <button onclick="filterImageCategory('mypham', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Mỹ Phẩm - Nail</button>
             </div>
 
             <div id="image-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
@@ -396,13 +390,12 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
                 <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
                 <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
-				<button onclick="filterVideoCategory('mypham', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Mỹ Phẩm - Nail</button>
+                <button onclick="filterVideoCategory('mypham', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Mỹ Phẩm - Nail</button>
             </div>
 
             <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
-        <!-- STREAMING_CHUNK:Configuring audio, tool, and dance template views... -->
         <!-- 5. TAB: MẪU ÂM THANH -->
         <section id="tab-audio" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
@@ -498,7 +491,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
         </button>
     </div>
 
-    <!-- STREAMING_CHUNK:Rendering footer and modals... -->
     <!-- FOOTER -->
     <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-12 py-8 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -598,7 +590,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
         <span id="toast-message" class="text-sm font-medium">Đã sao chép vào bộ nhớ tạm!</span>
     </div>
 
-    <!-- STREAMING_CHUNK:Loading and fixing sample data prompts... -->
     <script>
         // DATA DEMO MẪU HÌNH ẢNH (HỖ TRỢ LINK GOOGLE DRIVE)
         const sampleImagePrompts = [
@@ -741,7 +732,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             },
         ];
 
-        <!-- STREAMING_CHUNK:Rendering media container and timeline sliders... -->
         // RENDER CONTAINER MEDIA HỖ TRỢ ĐẮC LỰC THANH THỜI GIAN VÀ CÁC TÙY CHỌN TUA VIDEO
         function renderMediaContainer(item) {
             if (item.video) {
@@ -859,7 +849,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             }
         }
 
-        <!-- STREAMING_CHUNK:Handling user authentication and UI state... -->
         function updateAuthHeaderUI() {
             const area = document.getElementById('auth-header-area');
             const noticeBanner = document.getElementById('guest-notice-banner');
@@ -951,7 +940,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             renderDancePrompts();
         }
 
-        <!-- STREAMING_CHUNK:Rendering generic template cards and audio players... -->
         function renderGenericCard(item, type, index) {
             const isLocked = !currentUser && index >= 2;
             let badgeColor = 'bg-primary-600';
@@ -1104,7 +1092,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             `;
         }
 
-        <!-- STREAMING_CHUNK:Configuring audio playback helpers and events... -->
         function toggleAudioCardPlay(audioId, btn) {
             const audio = document.getElementById(audioId);
             if (!audio) return;
@@ -1211,7 +1198,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
         }
 
-        <!-- STREAMING_CHUNK:Rendering functions for all category grids... -->
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
@@ -1285,7 +1271,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             setupAutoPlayObserver();
         }
 
-        <!-- STREAMING_CHUNK:Configuring intersection observers and navigation tab logic... -->
         let mediaObserver = null;
 
         function playMedia(container) {
@@ -1398,7 +1383,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
         }
 
-        <!-- STREAMING_CHUNK:Implementing search filters and copy utilities... -->
         function handleHomeSearch(e) { if (e.key === 'Enter') executeHomeSearch(); }
         function handleHomeSearchInput() { if (!document.getElementById('home-search-input').value.trim()) clearHomeSearch(); }
 
@@ -1550,7 +1534,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             }, 2500);
         }
 
-        <!-- STREAMING_CHUNK:Configuring audio mute and modal views... -->
         function muteAllAudio() {
             document.querySelectorAll('.media-container').forEach(container => {
                 const iframe = container.querySelector('iframe');
@@ -1929,7 +1912,6 @@ Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript ph�
             setTimeout(() => { setupAutoPlayObserver(); }, 100);
         }
 
-        <!-- STREAMING_CHUNK:Configuring payment modal and window load initialization... -->
         function openQRModal(toolId) {
             const tool = sampleToolProducts.find(x => x.id === toolId);
             if (!tool) return;
