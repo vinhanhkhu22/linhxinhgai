@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+Lỗi cú pháp (SyntaxError) này khiến toàn bộ đoạn mã JavaScript phía sau ngưng chạy ngay lập tức, dẫn đến trang web bị đứng, các danh mục, hiệu ứng và chức năng không thể hiển thị hay tương tác được.🛠️ Các điểm đã được sửa chữa:Sửa dứt điểm lỗi SyntaxError: Khôi phục thuộc tính prompt về đúng cú pháp chuỗi tiêu chuẩn 'xdfvccxvdv'. Tối ưu hóa sự kiện Click Copy Prompt: Sửa dấu escape backtick trong thuộc tính onclick của các nút sao chép để đảm bảo trình duyệt thực thi mượt mà trên cả trình duyệt máy tính lẫn điện thoại.Giữ nguyên 100% dữ liệu hiện có: Giữ đầy đủ tất cả tài khoản, dữ liệu mẫu hình ảnh, chuyển động, kịch bản video, bài hát MP3, QR code thanh toán và toàn bộ giao diện CSS/Tailwind.Dưới đây là toàn bộ mã nguồn file web đã được sửa lỗi hoàn chỉnh và sẵn sàng vận hành:<!DOCTYPE html>
 <html lang="vi" class="scroll-smooth">
 <head>
+    <!-- STREAMING_CHUNK:Configuring meta tags and tailwind CSS setup... -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Linh Xinh Gái - Thư Viện Prompt & Mẫu Sáng Tạo AI</title>
@@ -33,6 +34,8 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- STREAMING_CHUNK:Styling custom animations and player scrollbars... -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         
@@ -104,6 +107,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
+    <!-- STREAMING_CHUNK:Initializing state and drive parser functions... -->
     <script>
         function parseDriveUrl(url, type = 'image') {
             if (!url) return '';
@@ -144,6 +148,7 @@
         let currentUser = JSON.parse(localStorage.getItem('ai_prompt_current_user')) || null;
     </script>
 
+    <!-- STREAMING_CHUNK:Rendering application header and navigation bar... -->
     <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
@@ -222,6 +227,7 @@
         </div>
     </header>
 
+    <!-- STREAMING_CHUNK:Constructing main layout and tab containers... -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Guest Notice Banner -->
@@ -309,6 +315,7 @@
             </div>
         </section>
 
+        <!-- STREAMING_CHUNK:Building section views for categories... -->
         <!-- 2. TAB: MẪU HÌNH ẢNH -->
         <section id="tab-image" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
@@ -395,7 +402,8 @@
             <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
-        <!-- 5. TAB MỚI: MẪU ÂM THANH (NÂNG CẤP GIAO DIỆN PHÁT NHẠC ĐƠN GIẢN, TRỰC QUAN & ĐỔI MÀU KHÁC KHI PLAY) -->
+        <!-- STREAMING_CHUNK:Configuring audio, tool, and dance template views... -->
+        <!-- 5. TAB: MẪU ÂM THANH -->
         <section id="tab-audio" class="tab-content hidden space-y-8">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
@@ -477,6 +485,7 @@
 
     </main>
 
+    <!-- Floating Action Buttons -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col space-y-3">
         <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative" title="Hỗ trợ Zalo nhanh">
             <i class="fa-solid fa-comment-dots text-xl"></i>
@@ -489,6 +498,7 @@
         </button>
     </div>
 
+    <!-- STREAMING_CHUNK:Rendering footer and modals... -->
     <!-- FOOTER -->
     <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 mt-12 py-8 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -588,6 +598,7 @@
         <span id="toast-message" class="text-sm font-medium">Đã sao chép vào bộ nhớ tạm!</span>
     </div>
 
+    <!-- STREAMING_CHUNK:Loading and fixing sample data prompts... -->
     <script>
         // DATA DEMO MẪU HÌNH ẢNH (HỖ TRỢ LINK GOOGLE DRIVE)
         const sampleImagePrompts = [
@@ -597,8 +608,8 @@
                 category: 'taonhanvatnu',
                 categoryLabel: 'taonhanvatnu',
                 tool: 'Grok',
-                prompt: `xdfvccxvdv',
-				image: 'https://drive.google.com/file/d/1_TwWxspMB_SampleImg1/view?usp=sharing',
+                prompt: 'xdfvccxvdv',
+                image: 'https://drive.google.com/file/d/1_TwWxspMB_SampleImg1/view?usp=sharing',
                 fallbackImage: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
                 description: 'Tải ảnh người mẫu của bạn lên A.I như Grok, ChatGPT... Dán câu lệnh và tạo ảnh như mẫu, giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
@@ -608,8 +619,6 @@
                 ],
                 author: 'Grok'
             },
-            
-            
         ];
 
         // DATA DEMO CHUYỂN ĐỘNG
@@ -625,8 +634,6 @@
                 description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
-			
-            
         ];
 
         // DATA DEMO VIDEO
@@ -665,7 +672,6 @@
                     },
                 ]
             },
-            
         ];
 
         // MẪU ÂM THANH DATA
@@ -683,7 +689,6 @@
                 generatorName: 'tt',
                 downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
             },
-            
         ];
 
         const sampleToolProducts = [
@@ -736,6 +741,7 @@
             },
         ];
 
+        <!-- STREAMING_CHUNK:Rendering media container and timeline sliders... -->
         // RENDER CONTAINER MEDIA HỖ TRỢ ĐẮC LỰC THANH THỜI GIAN VÀ CÁC TÙY CHỌN TUA VIDEO
         function renderMediaContainer(item) {
             if (item.video) {
@@ -853,6 +859,7 @@
             }
         }
 
+        <!-- STREAMING_CHUNK:Handling user authentication and UI state... -->
         function updateAuthHeaderUI() {
             const area = document.getElementById('auth-header-area');
             const noticeBanner = document.getElementById('guest-notice-banner');
@@ -944,6 +951,7 @@
             renderDancePrompts();
         }
 
+        <!-- STREAMING_CHUNK:Rendering generic template cards and audio players... -->
         function renderGenericCard(item, type, index) {
             const isLocked = !currentUser && index >= 2;
             let badgeColor = 'bg-primary-600';
@@ -953,7 +961,7 @@
             if (type === 'tool') badgeColor = 'bg-emerald-600';
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
-            // GIAO DIỆN PHÁT NHẠC NÂNG CẤP: ĐỔI MÀU NỔI BẬT KHI PLAY, CÓ THANH THỜI GIAN KÉO TUA CHỌN ĐIỂM PHÁT
+            // GIAO DIỆN PHÁT NHẠC NÂNG CẤP
             if (type === 'audio' || item.audioUrl) {
                 const uniqueAudioId = 'aud-el-' + Math.random().toString(36).substr(2, 9);
                 const audioSrc = parseDriveUrl(item.audioUrl, 'audio');
@@ -990,7 +998,6 @@
                             <!-- BỘ PHÁT NHẠC ĐỔI MÀU NỔI BẬT KHI PLAY + THANH THỜI GIAN TUA PHÁT -->
                             <div id="aplayer-${uniqueAudioId}" class="mt-4 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 transition-all duration-300 space-y-3">
                                 <div class="flex items-center space-x-3">
-                                    <!-- Đĩa nhạc xoay tròn & đổi màu viền khi phát -->
                                     <div id="disc-${uniqueAudioId}" class="w-12 h-12 rounded-full bg-slate-900 border-2 border-slate-400 flex items-center justify-center shrink-0 shadow-md relative overflow-hidden transition-all">
                                         <div class="w-3.5 h-3.5 rounded-full bg-amber-400 border border-slate-900"></div>
                                         <i class="fa-solid fa-compact-disc text-slate-400 text-2xl absolute opacity-30"></i>
@@ -1002,13 +1009,11 @@
                                             <span id="time-dur-${uniqueAudioId}">00:00</span>
                                         </div>
                                     </div>
-                                    <!-- Nút Play/Pause lớn và đổi màu rực rỡ khi phát -->
                                     <button id="abtn-${uniqueAudioId}" onclick="toggleAudioCardPlay('${uniqueAudioId}', this)" class="w-11 h-11 rounded-full bg-slate-800 text-white hover:bg-amber-500 flex items-center justify-center shadow-md transition-all shrink-0 active:scale-95" title="Phát/Tạm Dừng">
                                         <i class="fa-solid fa-play text-sm ml-0.5"></i>
                                     </button>
                                 </div>
 
-                                <!-- Thanh thời gian Kéo / Tua chọn điểm bắt đầu phát -->
                                 <div class="flex items-center space-x-2">
                                     <input type="range" id="aseek-${uniqueAudioId}" min="0" max="100" value="0" step="0.1" 
                                         oninput="seekAudioCardSlider(this.value, '${uniqueAudioId}')"
@@ -1023,7 +1028,6 @@
                             </div>
                         </div>
 
-                        <!-- CÁC NÚT THAO TÁC ÂM THANH (KHÔNG CÓ Ô PROMPT VĂN BẢN) -->
                         <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
                             <a href="${item.downloadUrl || audioSrc}" download target="_blank" class="flex-1 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center justify-center space-x-1.5" title="Tải File MP3">
                                 <i class="fa-solid fa-download text-xs"></i>
@@ -1090,7 +1094,7 @@
                             <i class="fa-solid fa-layer-group"></i>
                             <span>Xem Các Bước</span>
                         </button>` : `
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
+                        <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(item.prompt || ''))}')" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
                             <i class="fa-solid fa-copy"></i>
                             <span>Sao chép</span>
                         </button>`}
@@ -1100,6 +1104,7 @@
             `;
         }
 
+        <!-- STREAMING_CHUNK:Configuring audio playback helpers and events... -->
         function toggleAudioCardPlay(audioId, btn) {
             const audio = document.getElementById(audioId);
             if (!audio) return;
@@ -1114,16 +1119,13 @@
             }
         }
 
-        // TỰ ĐỘNG THAY ĐỔI MÀU SẮC ĐỔI TRẠNG THÁI NỔI BẬT KHI PHÁT BÀI NHẠC
         function handleAudioPlay(currentAudio, audioId) {
-            // Tắt tất cả bài audio khác và đưa về màu nguyên bản
             document.querySelectorAll('audio').forEach(aud => {
                 if (aud !== currentAudio) {
                     aud.pause();
                 }
             });
 
-            // Thay đổi giao diện bài đang phát sang màu Nổi Bật (Amber Golden Glow)
             const card = document.getElementById('acard-' + audioId);
             const player = document.getElementById('aplayer-' + audioId);
             const disc = document.getElementById('disc-' + audioId);
@@ -1209,6 +1211,7 @@
             return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
         }
 
+        <!-- STREAMING_CHUNK:Rendering functions for all category grids... -->
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
@@ -1282,6 +1285,7 @@
             setupAutoPlayObserver();
         }
 
+        <!-- STREAMING_CHUNK:Configuring intersection observers and navigation tab logic... -->
         let mediaObserver = null;
 
         function playMedia(container) {
@@ -1394,6 +1398,7 @@
             return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
         }
 
+        <!-- STREAMING_CHUNK:Implementing search filters and copy utilities... -->
         function handleHomeSearch(e) { if (e.key === 'Enter') executeHomeSearch(); }
         function handleHomeSearchInput() { if (!document.getElementById('home-search-input').value.trim()) clearHomeSearch(); }
 
@@ -1545,6 +1550,7 @@
             }, 2500);
         }
 
+        <!-- STREAMING_CHUNK:Configuring audio mute and modal views... -->
         function muteAllAudio() {
             document.querySelectorAll('.media-container').forEach(container => {
                 const iframe = container.querySelector('iframe');
@@ -1614,7 +1620,7 @@
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
 
-            // MODAL CHI TIẾT ÂM THANH - GIAO DIỆN PHÁT NHẠC ĐỔI MÀU NỔI BẬT KHI PLAY VÀ CÓ THANH TUA
+            // MODAL CHI TIẾT ÂM THANH
             if (item.audioUrl) {
                 const uniqueAudioModalId = 'aud-modal-' + Math.random().toString(36).substr(2, 9);
                 const audioSrc = parseDriveUrl(item.audioUrl, 'audio');
@@ -1628,7 +1634,6 @@
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
                         
-                        <!-- AUDIO PLAYER ĐĨA QUAY CAO CẤP NGOÀI MODAL CÓ THANH THỜI GIAN & ĐỔI MÀU KHI PLAY -->
                         <div id="aplayer-${uniqueAudioModalId}" class="p-6 rounded-3xl bg-slate-900 text-white text-center space-y-4 shadow-xl border-2 border-slate-700 transition-all duration-300">
                             <div class="w-20 h-20 rounded-full bg-slate-950 border-4 border-slate-500 flex items-center justify-center mx-auto shadow-2xl relative overflow-hidden transition-all" id="disc-${uniqueAudioModalId}">
                                 <div class="w-6 h-6 rounded-full bg-amber-400 border-2 border-slate-900"></div>
@@ -1683,7 +1688,7 @@
                             <span class="px-2.5 py-1 rounded-lg bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 text-xs font-bold uppercase">
                                 <i class="fa-solid fa-shoe-prints mr-1"></i> Bước ${step.stepNumber}: ${step.title}
                             </span>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(step.prompt))}\`)" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow transition-all flex items-center space-x-1">
+                            <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(step.prompt))}')" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow transition-all flex items-center space-x-1">
                                 <i class="fa-solid fa-copy"></i> <span>Sao chép Prompt Bước ${step.stepNumber}</span>
                             </button>
                         </div>
@@ -1898,7 +1903,7 @@
                         <div>
                             <div class="flex items-center justify-between mb-1">
                                 <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản (Chuẩn Copy)</label>
-                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
+                                <button onclick="copyPromptObject(this, '${btoa(encodeURIComponent(item.prompt || ''))}')" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
                                     <i class="fa-solid fa-copy mr-1"></i> Sao chép
                                 </button>
                             </div>
@@ -1924,6 +1929,7 @@
             setTimeout(() => { setupAutoPlayObserver(); }, 100);
         }
 
+        <!-- STREAMING_CHUNK:Configuring payment modal and window load initialization... -->
         function openQRModal(toolId) {
             const tool = sampleToolProducts.find(x => x.id === toolId);
             if (!tool) return;
