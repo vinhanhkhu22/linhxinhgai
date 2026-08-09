@@ -63,37 +63,18 @@
             background: rgba(14, 165, 233, 0.8);
         }
 
-        /* Minimalist Audio & Video Player Styling */
+        /* Custom Audio Player Controls */
         audio::-webkit-media-controls-panel {
             background-color: #f1f5f9;
-            border-radius: 12px;
         }
         .dark audio::-webkit-media-controls-panel {
             background-color: #1e293b;
-            border-radius: 12px;
-        }
-
-        .minimal-player {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(8px);
         }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
     <script>
-        // HÀM XỬ LÝ LINK GOOGLE DRIVE
-        function formatGDriveUrl(url) {
-            if (!url) return '';
-            if (url.includes('drive.google.com') || url.includes('docs.google.com')) {
-                const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
-                if (match && match[1]) {
-                    return `https://lh3.googleusercontent.com/d/${match[1]}`;
-                }
-            }
-            return url;
-        }
-
         // DANH SÁCH TÀI KHOẢN THÀNH VIÊN
         const memberAccounts = [
             { username: "hocvien01", password: "123", name: "Học Viên VIP 01" },
@@ -125,7 +106,7 @@
                     </div>
                     <div>
                         <span class="text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent whitespace-nowrap">Linh Xinh Gái</span>
-                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase whitespace-nowrap">Thư Viện Mẫu Prompt</span>
+                        <span class="block text-[10px] font-semibold text-slate-400 tracking-wider uppercase whitespace-nowrap">Thư Viện Mẫu Prompt & Google Drive Video</span>
                     </div>
                 </div>
 
@@ -230,20 +211,20 @@
                 <div class="relative z-10 max-w-3xl space-y-6">
                     <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold text-primary-300 border border-white/10">
                         <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>Cập nhật hàng tuần các Prompt AI đỉnh cao 2026</span>
+                        <span>Hỗ trợ phát Video trực tiếp từ Link Google Drive & YouTube</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Thư viện Prompt & Mẫu Sáng Tạo <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span> Dành cho học viên
+                        Thư viện Prompt & Mẫu Video Google Drive <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
                     </h1>
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-                        Khám phá hàng nghìn prompt chuẩn hóa dành cho các học viên của Linh Xinh Gái copy và sử dụng chỉ trong 1 cú click!
+                        Hỗ trợ chèn link video từ Google Drive, YouTube Shorts, MP3 và các prompt AI chất lượng cao chỉ với 1 cú click!
                     </p>
 
                     <!-- Search Quick Launch -->
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-grow">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: chân dung, lofi, suno, voice, dance...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
+                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: drive, lofi, suno, fashion, dance...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
                         <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
                             <span>Khám Phá Ngay</span>
@@ -254,16 +235,16 @@
                     <!-- Quick Stats -->
                     <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-700/60">
                         <div>
+                            <p class="text-2xl font-bold text-white">Drive OK</p>
+                            <p class="text-xs text-slate-400">Phát Video Google Drive</p>
+                        </div>
+                        <div>
                             <p class="text-2xl font-bold text-white">1,500+</p>
                             <p class="text-xs text-slate-400">Mẫu Prompt Chuẩn</p>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-white">100%</p>
                             <p class="text-xs text-slate-400">Miễn Phí Sử Dụng</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-bold text-white">8+ Model</p>
-                            <p class="text-xs text-slate-400">AI Hỗ Trợ Phổ Biến</p>
                         </div>
                         <div>
                             <p class="text-2xl font-bold text-white">50k+</p>
@@ -277,7 +258,7 @@
             <div class="space-y-6">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
                     <h2 id="home-grid-title" class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-fire text-amber-500 mr-2.5"></i> Mẫu Prompt Xu Hướng
+                        <i class="fa-solid fa-fire text-amber-500 mr-2.5"></i> Mẫu Prompt & Video Nổi Bật
                     </h2>
                     <button id="clear-home-search-btn" onclick="clearHomeSearch()" class="hidden text-xs font-semibold text-primary-600 dark:text-primary-400 hover:underline flex items-center">
                         <i class="fa-solid fa-xmark mr-1"></i> Xóa tìm kiếm
@@ -297,7 +278,7 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-image text-primary-500 mr-3"></i> Mẫu Hình Ảnh AI Dọc (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao định dạng dọc 9:16 lấy từ Google Drive</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao định dạng dọc 9:16</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -328,7 +309,7 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kỹ thuật tạo chuyển động camera & hiệu ứng hình ảnh khung hình dọc (Phát trực tiếp Google Drive / Youtube)</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -356,7 +337,7 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video AI Dọc (9:16)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & hướng dẫn từng bước tạo video Reels/TikTok chuyên nghiệp với AI</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Kịch bản & hướng dẫn từng bước tạo video Reels/TikTok chuyên nghiệp (Hỗ trợ nhúng link Google Drive)</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -367,11 +348,11 @@
 
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
+                <button onclick="filterVideoCategory('gdrive', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium"><i class="fa-brands fa-google-drive mr-1 text-blue-500"></i> Google Drive</button>
                 <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
                 <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
                 <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
                 <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
-                <button onclick="filterVideoCategory('giaydep', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giày Dép</button>
             </div>
 
             <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
@@ -386,7 +367,7 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-music text-amber-500 mr-3"></i> Mẫu Âm Thanh & Nhạc AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp nhạc nền, giọng đọc AI, hiệu ứng âm thanh từ Google Drive chuẩn Suno, Udio, ElevenLabs</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Giao diện nghe nhạc trực tiếp từ Google Drive, phát âm thanh chất lượng cao và tự động ngắt các nguồn âm thanh khác khi phát</p>
                 </div>
 
                 <div class="w-full md:w-80 relative">
@@ -584,8 +565,50 @@
     </div>
 
     <script>
-        // DATA SỬ DỤNG LINK GOOGLE DRIVE
+        // HÀM TRÍCH XUẤT GOOGLE DRIVE FILE ID
+        function getGoogleDriveId(url) {
+            if (!url) return null;
+            const match = url.match(/(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)/);
+            return match ? match[1] : null;
+        }
+
+        // HÀM CHUYỂN LINK DRIVE THÀNH LINK HIỂN THỊ/STREAM TRỰC TIẾP (ẢNH)
+        function getGoogleDriveDirectUrl(url) {
+            if (!url) return '';
+            const driveId = getGoogleDriveId(url);
+            if (driveId) {
+                return `https://lh3.googleusercontent.com/d/${driveId}`;
+            }
+            return url;
+        }
+
+        // HÀM CHUYỂN LINK DRIVE THÀNH LINK PHÁT ÂM THANH TRỰC TIẾP (MP3/AUDIO)
+        function getGoogleDriveAudioUrl(url) {
+            if (!url) return '';
+            const driveId = getGoogleDriveId(url);
+            if (driveId) {
+                return `https://docs.google.com/uc?export=download&id=${driveId}`;
+            }
+            return url;
+        }
+
         const sampleImagePrompts = [
+            {
+                id: 'img-gdrive-1',
+                title: 'Mẫu Ảnh Thời Trang Nữ - Link Google Drive',
+                category: 'thoitrangnu',
+                categoryLabel: 'Google Drive',
+                tool: 'Google Drive',
+                prompt: `Full length 9:16 high fashion studio portrait of a Asian model, chic elegant aesthetic, natural lighting, ultra high detail 8k`,
+                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
+                description: 'Mẫu ảnh load trực tiếp từ đường link lưu trữ Google Drive.',
+                guideSteps: [
+                    'Bước 1: Upload ảnh của bạn lên Google Drive và bật chia sẻ công khai ("Bất kỳ ai có liên kết").',
+                    'Bước 2: Copy link chia sẻ dán vào thuộc tính image của mẫu.',
+                    'Bước 3: Hệ thống tự động chuyển đổi thành link ảnh trực tiếp hiển thị sắc nét.'
+                ],
+                author: 'Google Drive'
+            },
             {
                 id: 'img-1',
                 title: 'Tạo Nhân Vật - Giữ Nguyên Tóc',
@@ -633,58 +656,21 @@
                     'Bước 3: Bấm Enter tạo mẫu ảnh và chọn phiên bản 9:16 ưng ý nhất.'
                 ],
                 author: 'Midjourney'
-            },
-            {
-                id: 'img-4',
-                title: 'Thời Trang Nam - Minimalist Style',
-                category: 'thoitrangnam',
-                categoryLabel: 'Thời Trang Nam',
-                tool: 'Midjourney v6',
-                prompt: `Full length 9:16 photo of a handsome Asian male model wearing beige linen shirt and dark trousers, sitting in a minimalist minimalist cafe studio, warm morning light, soft shadows, sharp details --ar 9:16`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Phong cách tối giản nam tính, chụp không gian quán cafe lịch lãm.',
-                guideSteps: [
-                    'Bước 1: Đăng nhập công cụ tạo ảnh AI ưa thích của bạn.',
-                    'Bước 2: Dán prompt mẫu nam phong cách tối giản màu be.',
-                    'Bước 3: Nhận ảnh chuẩn Lookbook nam phong cách Hàn Quốc.'
-                ],
-                author: 'Midjourney'
-            },
-            {
-                id: 'img-5',
-                title: 'Đồ Gia Dụng - Máy Pha Cà Phê Hiện Đại',
-                category: 'dogiadung',
-                categoryLabel: 'Đồ Gia Dụng',
-                tool: 'Stable Diffusion',
-                prompt: `Commercial product shot, 9:16 aspect ratio, modern espresso coffee machine on white marble kitchen countertop, steam rising, warm ambient morning light, ultra high resolution 8k`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Hình ảnh thương mại quảng cáo thiết bị đồ dùng gia đình.',
-                guideSteps: [
-                    'Bước 1: Copy câu lệnh chụp sản phẩm thương mại đồ gia dụng.',
-                    'Bước 2: Tải lên Stable Diffusion hoặc Midjourney.',
-                    'Bước 3: Render hình ảnh chất lượng cao 8K làm banner bán hàng.'
-                ],
-                author: 'Stable Diffusion'
-            },
-            {
-                id: 'img-6',
-                title: 'Giày Dép - Sneaker Chuyển Động Đô Thị',
-                category: 'giaydep',
-                categoryLabel: 'Giày Dép',
-                tool: 'Midjourney v6',
-                prompt: `Close up hero shot of modern aesthetic chunky sneakers resting on urban neon pavement, 9:16 frame, wet asphalt reflection, cinematic night light, editorial streetwear lookbook --ar 9:16`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Chụp cận cảnh giày thể thao bắt mắt thích hợp làm bìa video/bài viết bán hàng.',
-                guideSteps: [
-                    'Bước 1: Copy prompt cận cảnh giày sneaker phong cách urban.',
-                    'Bước 2: Dán vào AI generator với tỉ lệ khung hình 9:16.',
-                    'Bước 3: Xuất hình ảnh sắc nét sẵn sàng đăng TikTok/Reels.'
-                ],
-                author: 'Midjourney'
             }
         ];
 
         const sampleMotionPrompts = [
+            {
+                id: 'mot-gdrive-1',
+                title: 'Video Chuyển Động Tự Nhiên - Google Drive Demo 01',
+                category: 'taicho',
+                categoryLabel: 'Google Drive Video',
+                tool: 'Google Drive',
+                prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16, ánh sáng điện ảnh mượt mà.`,
+                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                description: 'Mẫu video phát trực tiếp bằng link chia sẻ Google Drive public.',
+                technique: 'Phát trực tiếp từ Google Drive iframe preview'
+            },
             {
                 id: 'mot-1',
                 title: 'Chuyển Động Tại Chỗ - Tóc Bay Trong Gió 01',
@@ -693,7 +679,6 @@
                 tool: 'Luma Dream Machine',
                 prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên.`,
                 video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG1/view',
                 description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
@@ -705,7 +690,6 @@
                 tool: 'Runway Gen-3',
                 prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show, cinematic slow motion, depth of field, sharp 4k focus`,
                 video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                image: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
                 description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tin trình diễn sải bước.',
                 technique: 'Zoom & Dolly in mượt mà.'
             },
@@ -717,13 +701,37 @@
                 tool: 'Kling AI',
                 prompt: `Close-up vertical shot of female influencer talking naturally into camera, subtle head movement, genuine facial expressions, soft background blur`,
                 video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG2/view',
                 description: 'Chuyển động môi và ánh mắt cử chỉ tự nhiên phục vụ làm video ngắn nói review.',
                 technique: 'Static camera with natural micro-expressions.'
             }
         ];
 
         const sampleVideoPrompts = [
+            {
+                id: 'vid-gdrive-1',
+                title: 'Kịch Bản Review Sản Phẩm - Link Video Google Drive',
+                category: 'gdrive',
+                categoryLabel: 'Google Drive',
+                tool: 'Google Drive Video',
+                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                duration: '20 giây',
+                fps: '60 FPS',
+                description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ lưu trữ Google Drive cá nhân.',
+                steps: [
+                    {
+                        stepNumber: 1,
+                        title: 'Tải Video Lên Google Drive',
+                        instruction: 'Upload file video AI đã render lên Google Drive của bạn và cài đặt quyền "Bất kỳ ai có liên kết đều có thể xem".',
+                        prompt: 'https://drive.google.com/file/d/1126-a0mBimY6S2qFfCjE28PshL1u4s2s/view'
+                    },
+                    {
+                        stepNumber: 2,
+                        title: 'Copy Đường Link Nhúng Vào Website',
+                        instruction: 'Copy đường link video từ Google Drive và chèn trực tiếp vào hệ thống web Linh Xinh Gái.',
+                        prompt: 'Format link: https://drive.google.com/file/d/FILE_ID/view'
+                    }
+                ]
+            },
             {
                 id: 'vid-1',
                 title: 'Trộm Đồ Manocanh - TikTok Shorts (Đa Bước)',
@@ -739,21 +747,21 @@
                         stepNumber: 1,
                         title: 'Tạo Ảnh Nền Tảng Nhân Vật (Image Generation)',
                         instruction: 'Tải ảnh gốc hoặc dùng Midjourney để tạo ảnh nhân vật chính mặc đồ thời trang trong cửa hàng boutique cao cấp.',
-                        image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG3/view',
+                        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80',
                         prompt: 'Vertical 9:16 high fashion editorial photo of stylish girl standing inside a luxury clothing boutique, soft cinematic lighting, 8k --ar 9:16'
                     },
                     {
                         stepNumber: 2,
                         title: 'Tạo Chuyển Động Video AI (Video Motion)',
                         instruction: 'Đưa ảnh từ Bước 1 vào Runway Gen-3 hoặc Kling AI để thêm chuyển động camera và hành động.',
-                        image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG1/view',
+                        image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800&q=80',
                         prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus'
                     },
                     {
                         stepNumber: 3,
                         title: 'Thêm Hiệu Ứng & Nhạc Nền (Post-Production)',
                         instruction: 'Sử dụng CapCut để chèn nhạc bắt tai, thêm hiệu ứng chuyển cảnh mượt mà và xuất video độ phân giải 1080x1920 chuẩn 60FPS.',
-                        image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG2/view',
+                        image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
                         prompt: 'CapCut template settings: 1080x1920 resolution, 60fps, color grading warm cinematic LUT, trending TikTok beat.'
                     }
                 ]
@@ -773,29 +781,40 @@
                         stepNumber: 1,
                         title: 'Tạo Ảnh Cốc Cà Phê & Ánh Sáng Buổi Sáng',
                         instruction: 'Tạo hình ảnh chi tiết góc cận cảnh bàn cà phê với ánh nắng chiếu qua cửa sổ.',
-                        image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG5/view',
+                        image: 'https://images.unsplash.com/photo-1517668808822-9e4288246ede?auto=format&fit=crop&w=800&q=80',
                         prompt: 'Close up 9:16 photo of ceramic coffee cup on wooden table, morning sunlight through window, cozy aesthetic, photorealistic --ar 9:16'
                     },
                     {
                         stepNumber: 2,
                         title: 'Tạo Hiệu Ứng Đổ Nước Rót Cà Phê',
                         instruction: 'Tải ảnh sang Kling AI và dùng lệnh chuyển động rót nước.',
-                        image: 'https://drive.google.com/file/d/1yN_GDRIVE_SAMPLE_IMG4/view',
+                        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
                         prompt: 'Close up 9:16 video pouring hot coffee into ceramic cup, morning sunlight through window, smooth cinematic camera motion'
                     }
                 ]
             }
         ];
 
-        // MẪU ÂM THANH DATA (NGUỒN GOOGLE DRIVE)
+        // MẪU ÂM THANH DATA
         const sampleAudioPrompts = [
+            {
+                id: 'aud-gdrive-1',
+                title: 'Nhạc Nền Lofi Chill - Link Google Drive MP3',
+                category: 'nhacnen',
+                categoryLabel: 'Google Drive Audio',
+                tool: 'Google Drive',
+                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
+                description: 'Bản nhạc Lofi Chill thư giãn lưu trữ trên Google Drive, giao diện phát đầy đủ không bị cắt bớt.',
+                generatorUrl: 'https://drive.google.com',
+                generatorName: 'Google Drive Storage',
+                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
+            },
             {
                 id: 'aud-1',
                 title: 'Nhạc Nền Lofi Chill Cafe Sáng TikTok',
                 category: 'nhacnen',
                 categoryLabel: 'Nhạc Nền',
                 tool: 'Suno AI v3.5',
-                prompt: 'Cozy lofi hip hop beat, smooth warm acoustic piano, relaxing guitar melody, soft vinyl crackle, peaceful morning mood, aesthetic vlog background music, bpm 85',
                 audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
                 description: 'Giai điệu lofi ấm áp, êm dịu cực hợp làm nhạc nền cho video vlog cuộc sống, review cafe, phối đồ thời trang.',
                 generatorUrl: 'https://suno.com',
@@ -808,7 +827,6 @@
                 category: 'giongnoi',
                 categoryLabel: 'Giọng Nói AI',
                 tool: 'ElevenLabs',
-                prompt: 'Voice: Friendly & Persuasive Female Voiceover, Vietnamese Accent, Warm and engaging tone, clear pronunciation for e-commerce product review, natural breathing rhythm',
                 audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
                 description: 'Giọng đọc AI tự nhiên, ngữ điệu cuốn hút thích hợp làm lồng tiếng review sản phẩm TikTok Shop và Shopee.',
                 generatorUrl: 'https://elevenlabs.io',
@@ -821,24 +839,10 @@
                 category: 'baihat',
                 categoryLabel: 'Bài Hát AI',
                 tool: 'Udio AI',
-                prompt: 'Upbeat future bass electronic dance track, powerful drop synth, catchy vocal chops, energetic bassline, 128 bpm, trending viral TikTok transition music',
                 audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
                 description: 'Nhạc nhảy tiết tấu nhanh, dồn dập chuẩn đoạn drop chuyển cảnh biến hình thời trang sôi động.',
                 generatorUrl: 'https://www.udio.com',
                 generatorName: 'Udio AI Song Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-4',
-                title: 'Hiệu Ứng Sound FX Chuyển Cảnh Phim Cinematic',
-                category: 'hieuung',
-                categoryLabel: 'Hiệu Ứng Sound FX',
-                tool: 'ElevenLabs Sound FX',
-                prompt: 'Cinematic deep swoosh transition, energetic hit impact sound effect for short video editing, high quality audio',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Âm thanh vụt qua swoosh & va đập kịch tính giúp video CapCut/Reels giật gân, thu hút sự chú ý.',
-                generatorUrl: 'https://elevenlabs.io/sound-effects',
-                generatorName: 'ElevenLabs SFX Tool',
                 downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
             }
         ];
@@ -889,44 +893,62 @@
                 ],
                 redirectUrl: 'https://aidancing.net?ref=aidancing50632',
                 redirectLabel: 'Đến Trang Tạo Dance AI',
-                downloadUrl: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing'
+                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
             }
         ];
 
-        // HÀM DỪNG TẤT CẢ MEDIA KHÁC KHI MỘT PHẦN TỬ PHÁT
-        function stopAllOtherMedia(currentMedia) {
-            document.querySelectorAll('video, audio').forEach(media => {
-                if (media !== currentMedia) {
-                    media.pause();
-                }
-            });
-        }
-
-        // Render video/image media container
+        // RENDER MEDIA CONTAINER (HỖ TRỢ YOUTUBE, GOOGLE DRIVE VÀ FILE VIDEO)
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
-                const gDriveVideoUrl = formatGDriveUrl(item.video);
-                const gDrivePosterUrl = formatGDriveUrl(item.image || '');
+                const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+                const gDriveId = getGoogleDriveId(item.video);
 
+                if (gDriveId) {
+                    // Phát video qua Google Drive Embed
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                            <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
+                                class="w-full h-full object-cover border-0 absolute inset-0" 
+                                allow="autoplay; encrypted-media" 
+                                allowfullscreen></iframe>
+                            <span class="absolute top-2 right-2 z-30 bg-blue-600/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-md pointer-events-none flex items-center space-x-1">
+                                <i class="fa-brands fa-google-drive"></i>
+                                <span>Drive Video</span>
+                            </span>
+                        </div>
+                    `;
+                } else if (ytMatch && ytMatch[1]) {
+                    const videoId = ytMatch[1];
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
+                            <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
+                                class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                }
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-xl group/vid bg-black">
-                        <video id="${uniqueId}" src="${gDriveVideoUrl}" poster="${gDrivePosterUrl}" autoplay loop muted playsinline 
-                            onplay="stopAllOtherMedia(this)"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
-                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
+                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-3 right-3 z-30 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-xs transition-all active:scale-95 shadow-md border border-white/10 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
                     </div>
                 `;
             } else if (item.image) {
-                const gDriveImgUrl = formatGDriveUrl(item.image);
-                return `<img src="${gDriveImgUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
+                const imageUrl = getGoogleDriveDirectUrl(item.image);
+                return `<img src="${imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">`;
             }
             return '';
         }
 
-        // Cập nhật giao diện Auth
+        // Cập nhật giao diện Đăng Nhập / Đăng Xuất
         function updateAuthHeaderUI() {
             const area = document.getElementById('auth-header-area');
             const noticeBanner = document.getElementById('guest-notice-banner');
@@ -1018,7 +1040,7 @@
             renderDancePrompts();
         }
 
-        // Render Card mẫu dùng chung
+        // Render Card mẫu dùng chung cho các TAB
         function renderGenericCard(item, type, index) {
             const isLocked = !currentUser && index >= 2;
             let badgeColor = 'bg-primary-600';
@@ -1028,10 +1050,11 @@
             if (type === 'tool') badgeColor = 'bg-emerald-600';
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
-            // Xử lý CARD ÂM THANH MINIMALIST
+            // Xử lý riêng cho CARD ÂM THANH: Đầy đủ trình phát nhạc Google Drive, BỎ phần prompt
             if (type === 'audio' || item.audioUrl) {
-                const gDriveAudioUrl = formatGDriveUrl(item.audioUrl);
-
+                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
+                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
+                
                 return `
                 <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
                     ${isLocked ? `
@@ -1052,50 +1075,53 @@
                                     <i class="fa-solid fa-music"></i>
                                     <span>${item.tool}</span>
                                 </span>
+                                ${gDriveAudioId ? `
+                                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800 flex items-center space-x-1">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                    <span>Drive Audio</span>
+                                </span>
+                                ` : `
                                 <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
                                     ${item.categoryLabel || 'Âm Thanh'}
                                 </span>
+                                `}
                             </div>
 
                             <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || item.prompt}</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || ''}</p>
 
-                            <!-- BỘ PHÁT NHẠC TỐI GIẢN CHUẨN GOOGLE DRIVE -->
-                            <div class="mt-3.5 p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-inner">
-                                <audio controls onplay="handleAudioPlay(this)" class="w-full h-8 text-xs focus:outline-none rounded-lg" preload="none">
-                                    <source src="${gDriveAudioUrl}" type="audio/mpeg">
-                                    Trình duyệt không hỗ trợ phát audio.
+                            <!-- BỘ PHÁT NHẠC GOOGLE DRIVE / MP3 ĐẦY ĐỦ HIỆN MẸO PHÁT TỰ ĐỘNG TẮT NGUỒN KHÁC -->
+                            <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-inner">
+                                ${gDriveAudioId ? `
+                                <div class="w-full h-14 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+                                    <iframe id="aud-frame-${item.id}" src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                                </div>
+                                ` : `
+                                <audio controls class="w-full h-10 focus:outline-none rounded-lg" preload="metadata" onplay="handleAudioPlay(this)">
+                                    <source src="${audioStreamUrl}" type="audio/mpeg">
+                                    Trình duyệt không hỗ trợ phát âm thanh.
                                 </audio>
+                                `}
                             </div>
-
-                            ${item.prompt ? `
-                            <div class="mt-3 p-2.5 rounded-xl bg-amber-500/5 dark:bg-amber-500/10 text-[11px] font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-amber-500/20">
-                                "${item.prompt}"
-                            </div>` : ''}
                         </div>
 
-                        <!-- NÚT THAO TÁC ÂM THANH -->
-                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex flex-wrap items-center justify-between gap-2">
+                        <!-- CÁC NÚT THAO TÁC ÂM THANH -->
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
                             <div class="flex items-center space-x-1.5">
-                                <a href="${gDriveAudioUrl}" download target="_blank" class="py-1.5 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white transition-all flex items-center space-x-1" title="Tải File MP3">
+                                <a href="${audioStreamUrl}" download target="_blank" class="py-1.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center space-x-1" title="Tải File MP3">
                                     <i class="fa-solid fa-download text-xs"></i>
                                     <span>Tải MP3</span>
                                 </a>
-                                <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="py-1.5 px-2.5 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-500 hover:text-white transition-all flex items-center space-x-1" title="Đến trang tạo âm thanh">
+                                <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="py-1.5 px-3 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-500 hover:text-white transition-all flex items-center space-x-1" title="Đến trang tạo âm thanh">
                                     <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
                                     <span>Trang AI</span>
                                 </a>
                             </div>
 
-                            <div class="flex items-center space-x-1.5">
-                                <button onclick="openModal('${item.id}')" class="py-1.5 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 transition-colors">
-                                    <i class="fa-solid fa-expand"></i>
-                                </button>
-                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 px-3 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-all shadow-sm flex items-center space-x-1">
-                                    <i class="fa-solid fa-copy"></i>
-                                    <span>Prompt</span>
-                                </button>
-                            </div>
+                            <button onclick="openModal('${item.id}')" class="py-1.5 px-3 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-all shadow-sm flex items-center space-x-1">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Chi tiết</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1116,7 +1142,7 @@
                 ` : ''}
 
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-900 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
-                    ${type === 'image' ? `<img src="${formatGDriveUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">` : renderMediaContainer(item)}
+                    ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
                     <span class="absolute top-2 sm:top-3 left-2 sm:left-3 bg-slate-900/80 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-semibold px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-lg pointer-events-none z-10">
                         ${item.tool}
                     </span>
@@ -1146,7 +1172,7 @@
                         <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-3 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center">
                             <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
                         </button>` : item.downloadUrl ? `
-                        <a href="${formatGDriveUrl(item.downloadUrl)}" target="_blank" download class="py-1.5 sm:py-2 px-3 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center">
+                        <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-3 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center">
                             <i class="fa-solid fa-download mr-1"></i> Tải Mẫu
                         </a>` : item.steps ? `
                         <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-4 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
@@ -1166,7 +1192,7 @@
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
-            const featured = [sampleAudioPrompts[0], sampleDancePrompts[0], sampleMotionPrompts[0], sampleVideoPrompts[0]];
+            const featured = [sampleMotionPrompts[0], sampleVideoPrompts[0], sampleAudioPrompts[0], sampleDancePrompts[0]];
             container.innerHTML = featured.map((item, index) => renderGenericCard(item, item.audioUrl ? 'audio' : 'home', index)).join('');
             setupAutoPlayObserver();
         }
@@ -1236,48 +1262,83 @@
             setupAutoPlayObserver();
         }
 
-        // TỰ ĐỘNG PHÁT VIDEO CHẾ ĐỘ IM LẶNG KHI LƯỚT ĐẾN & TẮT KHI LƯỚT QUA
         let mediaObserver = null;
 
         function playMedia(container) {
             const video = container.querySelector('video');
-            if (video) {
+            if (video) { 
                 video.muted = true;
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
+                video.play().catch(() => {}); 
+                return; 
+            }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
             }
         }
 
         function pauseMedia(container) {
             const video = container.querySelector('video');
-            if (video) { video.pause(); }
+            if (video) { video.pause(); return; }
+            const iframe = container.querySelector('iframe');
+            if (iframe && iframe.contentWindow) {
+                const src = iframe.src || '';
+                if (src.includes('youtube.com')) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+            }
         }
 
-        function pauseAllMedia() {
-            document.querySelectorAll('.media-container').forEach(container => { pauseMedia(container); });
-            document.querySelectorAll('audio').forEach(aud => { aud.pause(); });
+        // TẠM DỪNG TOÀN BỘ ÂM THANH & VIDEO TRÊN TRANG (ĐẢM BẢO CHỈ 1 SẢN PHẨM PHÁT TẠI MỘT THỜI ĐIỂM)
+        function pauseAllMedia(exceptElement = null) {
+            // Tạm dừng tất cả các thẻ <audio> ngoại trừ ngoại lệ
+            document.querySelectorAll('audio').forEach(aud => {
+                if (aud !== exceptElement) {
+                    aud.pause();
+                }
+            });
+
+            // Tạm dừng tất cả các thẻ <video> & iframe YouTube/Drive ngoại trừ ngoại lệ
+            document.querySelectorAll('.media-container').forEach(container => {
+                if (!exceptElement || !container.contains(exceptElement)) {
+                    pauseMedia(container);
+                    // Đặt lại các nút bật âm thanh về trạng thái Mute
+                    const btn = container.querySelector('button[data-muted]');
+                    if (btn && btn.getAttribute('data-muted') === 'false') {
+                        const icon = btn.querySelector('i');
+                        const videoEl = container.querySelector('video');
+                        if (videoEl) videoEl.muted = true;
+                        btn.setAttribute('data-muted', 'true');
+                        if (icon) icon.className = 'fa-solid fa-volume-xmark';
+                        btn.classList.remove('bg-purple-600', 'scale-110');
+                        btn.classList.add('bg-black/40');
+                    }
+                }
+            });
         }
 
-        // KHI PHÁT BẤT KỲ ÂM THANH/VIDEO NÀO -> TỰ ĐỘNG ĐÓNG TẤT CẢ NGUỒN ÂM THANH KHÁC
+        // KHI BẤM NGHE THỬ 1 MẪU ÂM THANH -> TỰ ĐỘNG TẠM DỪNG TẤT CẢ ÂM THANH & VIDEO KHÁC
         function handleAudioPlay(currentAudio) {
-            stopAllOtherMedia(currentAudio);
+            pauseAllMedia(currentAudio);
         }
 
+        // TỰ ĐỘNG PHÁT KHI LƯỚT ĐẾN (MUTE) VÀ TỰ TẮT KHI LƯỚT QUA
         function setupAutoPlayObserver() {
             if (mediaObserver) mediaObserver.disconnect();
             mediaObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    const isTabVisible = !entry.target.closest('.tab-content.hidden');
+                    const container = entry.target;
+                    const isTabVisible = !container.closest('.tab-content.hidden');
                     if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
-                        playMedia(entry.target);
+                        playMedia(container);
                     } else {
-                        pauseMedia(entry.target);
+                        pauseMedia(container);
                     }
                 });
             }, { threshold: 0.3 });
-
             document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
         }
 
@@ -1420,7 +1481,11 @@
         function filterVideoCategory(cat, btnElement) {
             document.querySelectorAll('.video-cat-btn').forEach(b => b.className = "video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
             btnElement.className = "video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm";
-            renderVideoPrompts(cat === 'all' ? sampleVideoPrompts : sampleVideoPrompts.filter(item => item.category === cat));
+            if (cat === 'gdrive') {
+                renderVideoPrompts(sampleVideoPrompts.filter(item => getGoogleDriveId(item.video)));
+            } else {
+                renderVideoPrompts(cat === 'all' ? sampleVideoPrompts : sampleVideoPrompts.filter(item => item.category === cat));
+            }
         }
 
         function filterAudio() {
@@ -1468,7 +1533,7 @@
         function copyToClipboard(text) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(() => {
-                    showToast("Đã sao chép prompt văn bản chuẩn!");
+                    showToast("Đã sao chép vào bộ nhớ tạm!");
                 }).catch(() => { fallbackCopy(text); });
             } else {
                 fallbackCopy(text);
@@ -1482,7 +1547,7 @@
             dummy.select();
             document.execCommand('copy');
             document.body.removeChild(dummy);
-            showToast("Đã sao chép prompt văn bản chuẩn!");
+            showToast("Đã sao chép vào bộ nhớ tạm!");
         }
 
         function showToast(msg) {
@@ -1496,26 +1561,53 @@
             }, 2500);
         }
 
+        function muteAllAudio() {
+            document.querySelectorAll('.media-container').forEach(container => {
+                const iframe = container.querySelector('iframe');
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+            });
+        }
+
         function toggleAudio(elementId, type, btn, event) {
             if (event) { event.stopPropagation(); event.preventDefault(); }
             const icon = btn.querySelector('i');
-            const videoEl = document.getElementById(elementId);
-            if (!videoEl) return;
-
             const isMuted = btn.getAttribute('data-muted') !== 'false';
+            
+            const currentContainer = btn.closest('.media-container');
+
             if (isMuted) {
-                stopAllOtherMedia(videoEl);
-                videoEl.muted = false;
+                // Tạm dừng toàn bộ âm thanh và video khác trước khi bật tiếng sản phẩm này
+                pauseAllMedia(currentContainer);
+
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                    iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = false;
+                    videoEl.play().catch(() => {});
+                }
                 btn.setAttribute('data-muted', 'false');
                 icon.className = 'fa-solid fa-volume-high';
-                btn.classList.remove('bg-black/50');
+                btn.classList.remove('bg-black/40');
                 btn.classList.add('bg-purple-600', 'scale-110');
             } else {
-                videoEl.muted = true;
+                const iframe = document.getElementById(elementId);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                }
+                const videoEl = document.getElementById(elementId);
+                if (videoEl && videoEl.tagName === 'VIDEO') {
+                    videoEl.muted = true;
+                }
                 btn.setAttribute('data-muted', 'true');
                 icon.className = 'fa-solid fa-volume-xmark';
                 btn.classList.remove('bg-purple-600', 'scale-110');
-                btn.classList.add('bg-black/50');
+                btn.classList.add('bg-black/40');
             }
         }
 
@@ -1528,7 +1620,8 @@
             const content = document.getElementById('modal-content');
 
             if (item.audioUrl) {
-                const gDriveAudioUrl = formatGDriveUrl(item.audioUrl);
+                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
+                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
 
                 content.innerHTML = `
                     <div class="space-y-4">
@@ -1538,13 +1631,18 @@
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
                         
-                        <!-- AUDIO PLAYER MODAL (TỐI GIẢN CHUẨN GDRIVE) -->
                         <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
-                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Nghe thử bản nhạc MP3</p>
+                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Trình phát nhạc Google Drive MP3</p>
+                            ${gDriveAudioId ? `
+                            <div class="relative w-full h-16 rounded-xl overflow-hidden bg-slate-900 border border-slate-700/50 shadow-inner">
+                                <iframe src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                            </div>
+                            ` : `
                             <audio controls class="w-full h-10 focus:outline-none" preload="metadata" onplay="handleAudioPlay(this)">
-                                <source src="${gDriveAudioUrl}" type="audio/mpeg">
-                                Trình duyệt không hỗ trợ phát nhạc.
+                                <source src="${audioStreamUrl}" type="audio/mpeg">
+                                Trình duyệt của bạn không hỗ trợ phát nhạc.
                             </audio>
+                            `}
                         </div>
 
                         <div>
@@ -1552,23 +1650,11 @@
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
                         </div>
 
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-bold uppercase tracking-wider text-amber-500 font-extrabold">Prompt Âm Thanh / Giọng Nói AI (Chuẩn Copy)</label>
-                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="text-xs text-amber-600 dark:text-amber-400 font-semibold hover:underline">
-                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép Prompt
-                                </button>
-                            </div>
-                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
-                                ${item.prompt}
-                            </div>
-                        </div>
-
                         <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
                             <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Trang AI (${item.generatorName || 'Suno AI'})</span>
                             </a>
-                            <a href="${gDriveAudioUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                            <a href="${audioStreamUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3 VỀ MÁY</span>
                             </a>
                         </div>
@@ -1588,7 +1674,7 @@
                         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${step.instruction}</p>
                         ${step.image ? `
                         <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-slate-200 dark:border-slate-800 aspect-video w-full flex items-center justify-center my-2 group">
-                            <img src="${formatGDriveUrl(step.image)}" alt="${step.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                            <img src="${step.image}" alt="${step.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
                             <span class="absolute bottom-2.5 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-lg border border-white/10 flex items-center">
                                 <i class="fa-solid fa-image text-rose-400 mr-1.5"></i> Kết quả / Minh họa Bước ${step.stepNumber}
@@ -1678,14 +1764,14 @@
                             <a href="${item.redirectUrl}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${item.redirectLabel}</span>
                             </a>
-                            <a href="${formatGDriveUrl(item.downloadUrl)}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
+                            <a href="${item.downloadUrl}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
                                 <i class="fa-solid fa-download"></i> <span>TẢI VIDEO MẪU</span>
                             </a>
                         </div>
                     </div>
                 `;
             } else if (item.price) {
-                const toolSteps = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [];
+                const toolSteps = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : (item.guide ? item.guide.split('\n').map(s => s.replace(/^•\s*/, '')) : []);
 
                 let toolStepsHtml = toolSteps.map(step => {
                     const match = step.match(/^(Bước\s+\d+[\:\-]?)(.*)$/i);
@@ -1749,6 +1835,30 @@
                             </div>
                         </div>
                     `}).join('');
+                } else {
+                    guideStepsHtml = `
+                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
+                            <div class="leading-relaxed">
+                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 1:</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Tải bức ảnh người mẫu/sản phẩm của bạn lên phần mềm AI.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
+                            <div class="leading-relaxed">
+                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 2:</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Sao chép chính xác câu lệnh Prompt ở bên dưới.</span>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
+                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
+                            <div class="leading-relaxed">
+                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 3:</span>
+                                <span class="text-slate-900 dark:text-slate-100 font-medium">Dán Prompt vào AI và xuất ảnh khung hình dọc 9:16 chất lượng cao.</span>
+                            </div>
+                        </div>
+                    `;
                 }
 
                 content.innerHTML = `
@@ -1793,7 +1903,7 @@
         function closeModal() {
             const modal = document.getElementById('detail-modal');
             pauseMedia(modal);
-            pauseAllMedia();
+            muteAllAudio();
             modal.classList.add('hidden');
             setTimeout(() => { setupAutoPlayObserver(); }, 100);
         }
@@ -1814,7 +1924,7 @@
                     <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
                     
                     <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto relative group">
-                        <img src="${formatGDriveUrl(qrUrl)}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
+                        <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
                         <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Quét mã QR bằng ứng dụng Ngân hàng</div>
                     </div>
 
