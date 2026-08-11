@@ -219,7 +219,7 @@
                         <span>Cập nhật các prompt mới nhất</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-                        Thư viện Prompt & Mẫu Video<span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
+                        Thư viện Prompt & Mẫu Video <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
                     </h1>
                     <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
                         Chia sẻ mẫu prompt AI chất lượng cao chỉ với 1 cú click!
@@ -650,7 +650,7 @@
                 tool: 'Runway Gen-3',
                 prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show, cinematic slow motion, depth of field, sharp 4k focus`,
                 video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tin trình diễn sải bước.',
+                description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tự trình diễn sải bước.',
                 technique: 'Zoom & Dolly in mượt mà.'
             },
             {
@@ -928,11 +928,11 @@
                 const gDriveId = getGoogleDriveId(item.video);
 
                 if (gDriveId) {
-                    // Phát video qua Google Drive Embed (Tối giản điện thoại)
+                    // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
-                                class="w-full h-full object-cover border-0 absolute inset-0" 
+                                class="w-full h-full object-contain sm:object-cover border-0 absolute inset-0" 
                                 allow="autoplay; encrypted-media" 
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
@@ -944,11 +944,12 @@
                     `;
                 } else if (ytMatch && ytMatch[1]) {
                     const videoId = ytMatch[1];
+                    // CẬP NHẬT CHÍNH: object-contain và loại bỏ scale-[1.55] trên điện thoại
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
                             <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
-                                class="w-full h-full object-cover scale-[1.55] pointer-events-none border-0 absolute inset-0 -translate-x-[2px]" 
+                                class="w-full h-full object-contain sm:object-cover scale-100 sm:scale-[1.55] translate-x-0 sm:-translate-x-[2px] pointer-events-none border-0 absolute inset-0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
@@ -958,9 +959,10 @@
                         </div>
                     `;
                 }
+                // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-contain sm:object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
