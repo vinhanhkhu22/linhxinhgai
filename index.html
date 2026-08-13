@@ -767,7 +767,24 @@
             }
         ];
 
-        // RENDER MEDIA CONTAINER (CẬP NHẬT: THÊM THAM SỐ 720p VÀ CHẶN VIDEO GỢI Ý)
+        // LẮNG NGHE SỰ KIỆN KẾT THÚC VIDEO ĐỂ CHẶN VIDEO GỢI Ý VÀ TỰ ĐỘNG LẶP LẠI (LOOP)
+        window.addEventListener('message', function(event) {
+            if (!event.data) return;
+            try {
+                let data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+                if (data.event === 'video_end' || data.type === 'video_end' || (data.name === 'end')) {
+                    // Tìm frame vừa kết thúc và phát lại từ đầu
+                    const frames = document.querySelectorAll('iframe');
+                    frames.forEach(frame => {
+                        if (frame.contentWindow === event.source) {
+                            frame.contentWindow.postMessage('{"command":"seek","parameters":0}', '*');
+                            frame.contentWindow.postMessage('{"command":"play"}', '*');
+                        }
+                    });
+                }
+            } catch (e) {}
+        });
+
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
@@ -777,7 +794,7 @@
 
                 if (dmMatch && dmMatch[1]) {
                     const videoId = dmMatch[1];
-                    // ĐÃ CẬP NHẬT: Thêm quality=720, sharing-enable=0, related=0, queue-enable=0 để khóa không phát sang video gợi ý và chạy ở độ phân giải 720p
+                    // Thêm api=postMessage để kích hoạt bộ lọc sự kiện chống chuyển video gợi ý
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
