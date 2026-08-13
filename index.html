@@ -928,11 +928,10 @@
                 const gDriveId = getGoogleDriveId(item.video);
 
                 if (gDriveId) {
-                    // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
-                                class="w-full h-full object-contain sm:object-cover border-0 absolute inset-0" 
+                                class="w-full h-full sm:h-[135%] absolute top-0 sm:-top-[17.5%] left-0 border-0 pointer-events-auto" 
                                 allow="autoplay; encrypted-media" 
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
@@ -1121,8 +1120,11 @@
                             <!-- BỘ PHÁT NHẠC GOOGLE DRIVE / MP3 -->
                             <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-inner">
                                 ${gDriveAudioId ? `
-                                <div class="w-full h-14 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                                    <iframe id="aud-frame-${item.id}" src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                                <div class="w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 relative shadow-sm">
+                                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-0 text-xs font-medium">
+                                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang tải trình phát...
+                                    </div>
+                                    <iframe id="aud-frame-${item.id}" src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="relative z-10 w-full h-full border-0 absolute top-0 left-0" allow="autoplay"></iframe>
                                 </div>
                                 ` : `
                                 <audio controls class="w-full h-10 focus:outline-none rounded-lg" preload="metadata" onplay="handleAudioPlay(this)">
@@ -1188,11 +1190,13 @@
                         ${item.prompt && !item.price ? `
                         <div class="mt-1.5 sm:mt-2.5 p-1.5 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800/80">
                             "${item.prompt}"
-                        </div>` : ''}
-                        ${item.steps ? `
-                        <div class="mt-1.5 text-[10px] sm:text-[11px] font-semibold text-rose-500 flex items-center space-x-1">
-                            <i class="fa-solid fa-list-check"></i> <span>Gồm ${item.steps.length} bước thực hiện</span>
-                        </div>` : ''}
+                        </div>` : (item.steps ? `
+                        <div class="mt-1.5 sm:mt-2.5 p-1.5 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800/80">
+                            <div class="font-semibold text-rose-500 flex items-center space-x-1 mb-0.5">
+                                <i class="fa-solid fa-list-check"></i> <span>Gồm ${item.steps.length} bước thực hiện</span>
+                            </div>
+                            <div class="line-clamp-1 text-slate-500 text-[9px] sm:text-[10px]">${item.steps.map(s => s.title).join(' • ')}</div>
+                        </div>` : '')}
                     </div>
 
                     <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
@@ -1224,8 +1228,15 @@
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
-            const featured = [sampleMotionPrompts[0], sampleVideoPrompts[0], sampleAudioPrompts[0], sampleDancePrompts[0]];
-            container.innerHTML = featured.map((item, index) => renderGenericCard(item, item.audioUrl ? 'audio' : 'home', index)).join('');
+            // Đã thay Audio card bằng Image card để đồng bộ chiều cao aspect-[9/16] toàn bộ grid, tránh bị lệch lưới.
+            // Đồng thời truyền đúng tham số 'type' để thẻ hiển thị chuẩn màu badge (VD: Video hiện màu Đỏ Rose)
+            const featured = [
+                { item: sampleMotionPrompts[0], type: 'motion' }, 
+                { item: sampleVideoPrompts[0], type: 'video' }, 
+                { item: sampleImagePrompts[0], type: 'image' }, 
+                { item: sampleDancePrompts[0], type: 'dance' }
+            ];
+            container.innerHTML = featured.map((obj, index) => renderGenericCard(obj.item, obj.type, index)).join('');
             setupAutoPlayObserver();
         }
 
@@ -1463,7 +1474,17 @@
             if (filtered.length === 0) {
                 container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
             } else {
-                container.innerHTML = filtered.map((item, index) => renderGenericCard(item, item.audioUrl ? 'audio' : 'home', index)).join('');
+                container.innerHTML = filtered.map((item, index) => {
+                    // Phân loại động type khi tìm kiếm để thẻ hiển thị đúng thiết kế
+                    let type = 'home';
+                    if (item.audioUrl) type = 'audio';
+                    else if (item.price) type = 'tool';
+                    else if (item.steps) type = 'video';
+                    else if (item.category && item.category.includes('nhay')) type = 'dance';
+                    else if (item.image && !item.video) type = 'image';
+                    else if (item.video) type = 'motion';
+                    return renderGenericCard(item, type, index);
+                }).join('');
             }
             setupAutoPlayObserver();
         }
@@ -1660,8 +1681,11 @@
                         <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
                             <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Trình phát nhạc Google Drive MP3</p>
                             ${gDriveAudioId ? `
-                            <div class="relative w-full h-16 rounded-xl overflow-hidden bg-slate-900 border border-slate-700/50 shadow-inner">
-                                <iframe src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="w-full h-full border-0" allow="autoplay"></iframe>
+                            <div class="relative w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-amber-500/20 dark:border-slate-700/50 shadow-inner flex items-center justify-center">
+                                <div class="absolute inset-0 flex items-center justify-center text-amber-600/50 dark:text-amber-500/50 z-0 text-sm font-medium">
+                                    <i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Đang tải dữ liệu âm thanh...
+                                </div>
+                                <iframe src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="relative z-10 w-full h-full border-0 absolute top-0 left-0" allow="autoplay"></iframe>
                             </div>
                             ` : `
                             <audio controls class="w-full h-10 focus:outline-none" preload="metadata" onplay="handleAudioPlay(this)">
@@ -1739,7 +1763,7 @@
                             <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[40vh] aspect-[9/16] mx-auto overflow-hidden">
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
@@ -1807,7 +1831,7 @@
                             <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${item.price} <span class="text-xs text-slate-400 line-through font-normal">${item.originalPrice}</span></span>
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
@@ -1918,7 +1942,7 @@
                             <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[50vh] aspect-[9/16] mx-auto overflow-hidden">
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
@@ -1991,7 +2015,7 @@
                             <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">${item.tool}</span>
                         </div>
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[60vh] aspect-[9/16] mx-auto overflow-hidden">
+                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
