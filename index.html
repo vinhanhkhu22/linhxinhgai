@@ -621,13 +621,24 @@
 
         const sampleMotionPrompts = [
             {
+                id: 'mot-dm-1',
+                title: 'Dailymotion Video - Phát Nhạc Trực Tiếp',
+                category: 'taicho',
+                categoryLabel: 'Dailymotion',
+                tool: 'Dailymotion',
+                prompt: `Mẫu phát video từ nguồn Dailymotion, tương thích tỷ lệ 9:16 và có chức năng bật tắt âm thanh tự động tương tự Youtube, Google Drive.`,
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
+                description: 'Tích hợp mượt mà Dailymotion Video vào kho thư viện AI.',
+                technique: 'Phát qua Dailymotion iframe API'
+            },
+            {
                 id: 'mot-gdrive-1',
                 title: 'Video Chuyển Động Tự Nhiên - Google Drive Demo 01',
                 category: 'taicho',
                 categoryLabel: 'Google Drive Video',
                 tool: 'Google Drive',
                 prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16, ánh sáng điện ảnh mượt mà.`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
+                video: 'https://dai.ly/xaxb2fq',
                 description: 'Mẫu video phát trực tiếp bằng link chia sẻ Google Drive public.',
                 technique: 'Phát trực tiếp từ Google Drive iframe preview'
             },
@@ -671,9 +682,9 @@
                 id: 'vid-gdrive-1',
                 title: 'Kịch Bản Review Sản Phẩm - Link Video Google Drive',
                 category: 'gdrive',
-                categoryLabel: '',
-                tool: 'Grok',
-                video: 'https://www.youtube.com/shorts/lTYgFMyMric?feature=share',
+                categoryLabel: 'Google Drive',
+                tool: 'Google Drive Video',
+                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
                 duration: '20 giây',
                 fps: '60 FPS',
                 description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ lưu trữ Google Drive cá nhân.',
@@ -926,8 +937,10 @@
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
                 const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
                 const gDriveId = getGoogleDriveId(item.video);
+                const dmMatch = item.video.match(/(?:dailymotion\.com\/(?:video|embed\/video)\/|dai\.ly\/)([a-zA-Z0-9]+)/);
 
                 if (gDriveId) {
+                    // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
@@ -953,6 +966,26 @@
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
                             <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                } else if (dmMatch && dmMatch[1]) {
+                    const videoId = dmMatch[1];
+                    // THÊM XỬ LÝ CHO DAILYMOTION
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
+                            <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
+                            <iframe id="${uniqueId}" src="https://www.dailymotion.com/embed/video/${videoId}?api=postMessage&autoplay=1&mute=1&controls=0&ui-logo=0&ui-start-screen-info=0" 
+                                class="w-full h-full object-contain sm:object-cover scale-100 sm:scale-[1.55] translate-x-0 sm:-translate-x-[2px] pointer-events-none border-0 absolute inset-0" 
+                                allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
+                                allowfullscreen></iframe>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                            <span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-20 bg-slate-800/90 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
+                                <i class="fa-solid fa-play"></i>
+                                <span>Dailymotion</span>
+                            </span>
+                            <button onclick="toggleAudio('${uniqueId}', 'dm', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
                             </button>
                         </div>
@@ -1319,6 +1352,8 @@
                 const src = iframe.src || '';
                 if (src.includes('youtube.com')) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                } else if (src.includes('dailymotion.com')) {
+                    iframe.contentWindow.postMessage('play', '*');
                 }
             }
         }
@@ -1331,6 +1366,8 @@
                 const src = iframe.src || '';
                 if (src.includes('youtube.com')) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } else if (src.includes('dailymotion.com')) {
+                    iframe.contentWindow.postMessage('pause', '*');
                 }
             }
         }
@@ -1613,7 +1650,12 @@
             document.querySelectorAll('.media-container').forEach(container => {
                 const iframe = container.querySelector('iframe');
                 if (iframe && iframe.contentWindow) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    const src = iframe.src || '';
+                    if (src.includes('youtube.com')) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    } else if (src.includes('dailymotion.com')) {
+                        iframe.contentWindow.postMessage('muted=true', '*');
+                    }
                 }
             });
         }
@@ -1630,8 +1672,14 @@
 
                 const iframe = document.getElementById(elementId);
                 if (iframe && iframe.contentWindow) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-                    iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                    const src = iframe.src || '';
+                    if (src.includes('youtube.com')) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+                        iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
+                    } else if (src.includes('dailymotion.com')) {
+                        iframe.contentWindow.postMessage('muted=false', '*');
+                        iframe.contentWindow.postMessage('volume=1', '*');
+                    }
                 }
                 const videoEl = document.getElementById(elementId);
                 if (videoEl && videoEl.tagName === 'VIDEO') {
@@ -1645,7 +1693,12 @@
             } else {
                 const iframe = document.getElementById(elementId);
                 if (iframe && iframe.contentWindow) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    const src = iframe.src || '';
+                    if (src.includes('youtube.com')) {
+                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
+                    } else if (src.includes('dailymotion.com')) {
+                        iframe.contentWindow.postMessage('muted=true', '*');
+                    }
                 }
                 const videoEl = document.getElementById(elementId);
                 if (videoEl && videoEl.tagName === 'VIDEO') {
