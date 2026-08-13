@@ -63,7 +63,6 @@
             background: rgba(14, 165, 233, 0.8);
         }
 
-        /* Custom Audio Player Controls */
         audio::-webkit-media-controls-panel {
             background-color: #f1f5f9;
         }
@@ -71,7 +70,6 @@
             background-color: #1e293b;
         }
 
-        /* Mobile touch feel optimization */
         .touch-manipulation {
             touch-action: manipulation;
         }
@@ -80,7 +78,7 @@
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
 
     <script>
-        /* STREAMING_CHUNK:Initializing member accounts and state... */
+        /* STREAMING_CHUNK:Initializing accounts and core states... */
         const memberAccounts = [
             { username: "hocvien01", password: "123", name: "Học Viên VIP 01" },
             { username: "hocvien02", password: "123", name: "Học Viên VIP 02" },
@@ -134,7 +132,7 @@
                     </button>
                 </nav>
 
-                <!-- Actions: Auth, Theme & Mobile Menu Toggle -->
+                <!-- Actions -->
                 <div class="flex items-center space-x-3">
                     <button id="theme-toggle" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none transition-colors" title="Chuyển chế độ Sáng/Tối">
                         <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-lg hidden"></i>
@@ -150,7 +148,7 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Menu -->
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pt-2 pb-4 space-y-1 shadow-lg">
             <button onclick="switchTab('home')" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-base font-medium flex items-center space-x-3 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30">
                 <i class="fa-solid fa-house w-5 text-center"></i> <span>Trang Chủ</span>
@@ -186,7 +184,7 @@
                 </div>
                 <div>
                     <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Tài khoản khách bị hạn chế xem sản phẩm</h3>
-                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Bạn đang xem ở chế độ khách (Chỉ hiển thị tối đa 2 sản phẩm đầu tiên). Vui lòng <button onclick="openLoginModal()" class="text-primary-600 font-bold hover:underline">Đăng nhập</button> hoặc liên hệ Zalo để nhận tài khoản hội viên đầy đủ!</p>
+                    <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">Bạn đang xem ở chế độ khách (Chỉ hiển thị tối đa 2 sản phẩm). Vui lòng <button onclick="openLoginModal()" class="text-primary-600 font-bold hover:underline">Đăng nhập</button> hoặc liên hệ Zalo để nhận tài khoản hội viên!</p>
                 </div>
             </div>
             <div class="flex items-center gap-2 shrink-0">
@@ -201,7 +199,6 @@
 
         <!-- 1. TAB: TRANG CHỦ -->
         <section id="tab-home" class="tab-content space-y-12">
-            <!-- Hero Banner -->
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 text-white p-8 sm:p-12 shadow-2xl border border-slate-700/50">
                 <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -209,7 +206,7 @@
                 <div class="relative z-10 max-w-3xl space-y-6">
                     <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold text-primary-300 border border-white/10">
                         <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span>Cập nhật các prompt mới nhất</span>
+                        <span>Cập nhật thư viện mẫu chuẩn 720p không popup gợi ý</span>
                     </div>
                     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
                         Thư viện Prompt & Mẫu Video <span class="bg-gradient-to-r from-sky-400 via-accent-500 to-pink-500 bg-clip-text text-transparent">Linh Xinh Gái</span>
@@ -218,41 +215,19 @@
                         Chia sẻ mẫu prompt AI chất lượng cao chỉ với 1 cú click!
                     </p>
 
-                    <!-- Search Quick Launch -->
                     <div class="pt-2 flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-grow">
                             <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: drive, lofi, suno, fashion, dance...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
+                            <input type="text" id="home-search-input" oninput="handleHomeSearchInput()" onkeyup="handleHomeSearch(event)" placeholder="Tìm kiếm toàn bộ website (vd: lofi, suno, fashion, dance...)" class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm">
                         </div>
                         <button onclick="executeHomeSearch()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-primary-500 to-accent-600 hover:from-primary-600 hover:to-accent-700 text-white font-semibold text-sm shadow-lg shadow-primary-500/30 transition-all flex items-center justify-center space-x-2 shrink-0">
                             <span>Khám Phá Ngay</span>
                             <i class="fa-solid fa-arrow-right text-xs"></i>
                         </button>
                     </div>
-
-                    <!-- Quick Stats -->
-                    <div class="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-700/60">
-                        <div>
-                            <p class="text-2xl font-bold text-white">Hướng Dẫn</p>
-                            <p class="text-xs text-slate-400">Tạo video từng bước</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-bold text-white">1,500+</p>
-                            <p class="text-xs text-slate-400">Mẫu Prompt Chuẩn</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-bold text-white">100%</p>
-                            <p class="text-xs text-slate-400">Miễn Phí Sử Dụng</p>
-                        </div>
-                        <div>
-                            <p class="text-2xl font-bold text-white">50k+</p>
-                            <p class="text-xs text-slate-400">Lượt Sao Chép</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Featured Prompts Section -->
             <div class="space-y-6">
                 <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
                     <h2 id="home-grid-title" class="text-2xl font-extrabold text-slate-900 dark:text-white flex items-center">
@@ -263,9 +238,7 @@
                     </button>
                 </div>
 
-                <div id="home-featured-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-                    <!-- JS populated -->
-                </div>
+                <div id="home-featured-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6"></div>
             </div>
         </section>
 
@@ -278,27 +251,16 @@
                     </h1>
                     <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp Prompt chất lượng cao</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                     <input type="text" id="image-search" oninput="filterImages()" placeholder="Lọc mẫu hình ảnh..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
                 </div>
             </div>
-
             <div class="flex flex-wrap gap-2 text-sm" id="image-categories">
                 <button onclick="filterImageCategory('all', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterImageCategory('taonhanvatnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nữ</button>
-				<button onclick="filterImageCategory('taonhanvatnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Tạo Nhân Vật Nam</button>
-                <button onclick="filterImageCategory('thoitrangnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nữ</button>
-                <button onclick="filterImageCategory('thoitrangnam', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Thời Trang Nam</button>
-                <button onclick="filterImageCategory('dogiadung', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Gia Dụng</button>
-                <button onclick="filterImageCategory('doanuong', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Đồ Ăn - Uống</button>
-                <button onclick="filterImageCategory('giaydep', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 font-medium">Giày Dép</button>
+                <button onclick="filterImageCategory('taonhanvatnu', this)" class="img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tạo Nhân Vật Nữ</button>
             </div>
-
-            <div id="image-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="image-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
         <!-- 3. TAB: MẪU CHUYỂN ĐỘNG -->
@@ -306,27 +268,20 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
                 <div>
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
-                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động
+                        <i class="fa-solid fa-film text-accent-500 mr-3"></i> Mẫu Chuyển Động (720p Clean)
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Chia sẻ các prompt chuyển động đẹp mắt</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Video chạy liên tục không bao giờ hiển thị popup "Sắp tới"</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay & hiệu ứng..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
+                    <input type="text" id="motion-search" oninput="filterMotion()" placeholder="Tìm kiếm góc quay..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-accent-500">
                 </div>
             </div>
-
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterMotionCategory('all', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm">Tất cả</button>
                 <button onclick="filterMotionCategory('taicho', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tại chỗ</button>
-                <button onclick="filterMotionCategory('trinhdien', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trình diễn</button>
-                <button onclick="filterMotionCategory('noireview', this)" class="motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nói Review</button>
             </div>
-
-            <div id="motion-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="motion-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
         <!-- 4. TAB: MẪU VIDEO -->
@@ -336,27 +291,14 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-video text-rose-500 mr-3"></i> Mẫu Video
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Hướng dẫn tạo video giống như mẫu</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Hướng dẫn tạo video từng bước</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
                     <input type="text" id="video-search" oninput="filterVideo()" placeholder="Lọc prompt video..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500">
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterVideoCategory('all', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterVideoCategory('gdrive', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium"><i class="fa-brands fa-google-drive mr-1 text-blue-500"></i> Google Drive</button>
-                <button onclick="filterVideoCategory('thoitrangnu', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nữ</button>
-                <button onclick="filterVideoCategory('thoitrangnam', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Thời Trang Nam</button>
-                <button onclick="filterVideoCategory('dogiadung', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Gia Dụng</button>
-                <button onclick="filterVideoCategory('doanuong', this)" class="video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Đồ Ăn - Uống</button>
-            </div>
-
-            <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="video-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
         <!-- 5. TAB: MẪU ÂM THANH -->
@@ -366,26 +308,14 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-music text-amber-500 mr-3"></i> Mẫu Âm Thanh & Nhạc AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Chia sẻ các mẫu âm thanh viral và đang Hot nhất tiktok</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Mẫu âm thanh viral</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="audio-search" oninput="filterAudio()" placeholder="Tìm nhạc nền, giọng đọc, lofi, suno..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <input type="text" id="audio-search" oninput="filterAudio()" placeholder="Tìm nhạc nền, lofi..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterAudioCategory('all', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-amber-500 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterAudioCategory('nhacnen', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhạc Nền</button>
-                <button onclick="filterAudioCategory('giongnoi', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giọng Nói AI</button>
-                <button onclick="filterAudioCategory('hieuung', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Hiệu Ứng Sound FX</button>
-                <button onclick="filterAudioCategory('baihat', this)" class="audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Bài Hát AI</button>
-            </div>
-
-            <div id="audio-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="audio-templates-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
         </section>
 
         <!-- 6. TAB: TOOL TỰ ĐỘNG -->
@@ -395,25 +325,14 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-robot text-emerald-500 mr-3"></i> Tool Tự Động & Phần Mềm AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ tạo video, tự động hoá các bước tăng tốc độ sản xuất video</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Các công cụ hỗ trợ sản xuất video</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="tool-search" oninput="filterTools()" placeholder="Lọc phần mềm & tool..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <input type="text" id="tool-search" oninput="filterTools()" placeholder="Lọc phần mềm..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterToolCategory('all', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterToolCategory('autovideo', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Tạo Video</button>
-                <button onclick="filterToolCategory('autopost', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Tự Động Đăng Bài</button>
-                <button onclick="filterToolCategory('ai-voice', this)" class="tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Giọng Nói AI</button>
-            </div>
-
-            <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="tool-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
         <!-- 7. TAB: NHẢY DANCE -->
@@ -423,37 +342,24 @@
                     <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center">
                         <i class="fa-solid fa-person-dancing text-purple-500 mr-3"></i> Mẫu Nhảy Dance AI
                     </h1>
-                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu, và cách tạo video như mẫu</p>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Tổng hợp video nhảy mẫu</p>
                 </div>
-
                 <div class="w-full md:w-80 relative">
                     <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy, Kpop, TikTok..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="text" id="dance-search" oninput="filterDance()" placeholder="Tìm điệu nhảy..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
             </div>
-
-            <div class="flex flex-wrap gap-2 text-sm">
-                <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterDanceCategory('nhaymotnguoi', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy một người</button>
-                <button onclick="filterDanceCategory('nhaynhom', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy nhóm</button>
-                <button onclick="filterDanceCategory('nhaybienhinh', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy biến hình</button>
-                <button onclick="filterDanceCategory('dancervip', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Dancer VIP</button>
-            </div>
-
-            <div id="dance-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-                <!-- JS populated -->
-            </div>
+            <div id="dance-templates-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"></div>
         </section>
 
     </main>
 
-    <!-- FLOATING ACTION BUTTONS -->
+    <!-- FLOATING BUTTONS -->
     <div class="fixed bottom-6 left-6 z-40 flex flex-col space-y-3">
         <a href="https://zalo.me/0984348734" target="_blank" class="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 group relative" title="Hỗ trợ Zalo nhanh">
             <i class="fa-solid fa-comment-dots text-xl"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Hỗ trợ Zalo 24/7</span>
         </a>
-
         <button id="scroll-top-btn" onclick="scrollToTop()" class="w-12 h-12 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-primary-600 text-white flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none group relative" title="Lên đầu trang">
             <i class="fa-solid fa-arrow-up text-lg"></i>
             <span class="absolute left-14 bg-slate-900 text-white text-xs px-2.5 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none font-medium">Về đầu trang</span>
@@ -471,166 +377,83 @@
                 <button onclick="switchTab('home')" class="hover:text-primary-600">Trang chủ</button>
                 <button onclick="switchTab('image')" class="hover:text-primary-600">Hình ảnh</button>
                 <button onclick="switchTab('motion')" class="hover:text-primary-600">Chuyển động</button>
-                <button onclick="switchTab('video')" class="hover:text-primary-600">Video</button>
-                <button onclick="switchTab('audio')" class="hover:text-amber-500 font-semibold">Âm thanh</button>
-                <button onclick="switchTab('tool')" class="hover:text-primary-600">Tool tự động</button>
-                <button onclick="switchTab('dance')" class="hover:text-purple-600 font-semibold">Nhảy Dance</button>
             </div>
         </div>
     </footer>
 
     <!-- LOGIN MODAL -->
     <div id="login-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative animate-in fade-in zoom-in-95 duration-200">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 sm:p-8 relative">
             <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
-
             <div class="text-center space-y-2 mb-6">
                 <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary-600 to-accent-500 text-white flex items-center justify-center mx-auto text-xl shadow-lg shadow-primary-500/30">
                     <i class="fa-solid fa-lock-open"></i>
                 </div>
                 <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white">Đăng Nhập Hệ Thống</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên của bạn để mở khóa toàn bộ kho thư viện</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Nhập tài khoản hội viên của bạn</p>
             </div>
-
             <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Tên tài khoản</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="text" id="login-username" required placeholder="vd: hocvien01 hoặc admin" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                    </div>
+                    <input type="text" id="login-username" required placeholder="vd: hocvien01 hoặc admin" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Mật khẩu</label>
-                    <div class="relative">
-                        <i class="fa-solid fa-key absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                        <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
-                    </div>
+                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
                 </div>
-
                 <div id="login-error-msg" class="hidden text-xs text-rose-500 font-semibold text-center bg-rose-50 dark:bg-rose-950/40 p-2.5 rounded-lg border border-rose-200 dark:border-rose-800">
                     Tài khoản hoặc mật khẩu không chính xác!
                 </div>
-
-                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg shadow-primary-500/20 transition-all flex items-center justify-center space-x-2">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    <span>Đăng Nhập Ngay</span>
-                </button>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white font-bold text-sm shadow-lg transition-all">Đăng Nhập Ngay</button>
             </form>
-
-            <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-700 text-center">
-                <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Bạn chưa có tài khoản thành viên?</p>
-                <a href="https://zalo.me/0984348734" target="_blank" class="inline-flex items-center space-x-2 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline">
-                    <i class="fa-solid fa-comment-dots"></i>
-                    <span>Nhận tài khoản qua Zalo 24/7</span>
-                </a>
-            </div>
         </div>
     </div>
 
     <!-- PROMPT DETAIL MODAL -->
     <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-full z-10 bg-black/40 w-8 h-8 flex items-center justify-center text-white">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
-            
-            <div id="modal-content" class="space-y-5">
-                <!-- Dynamically populated -->
-            </div>
+            <div id="modal-content" class="space-y-5"></div>
         </div>
     </div>
 
     <!-- QR PAYMENT MODAL -->
     <div id="qr-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative animate-in fade-in zoom-in-95 duration-200">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-md w-full shadow-2xl border border-slate-200 dark:border-slate-700 p-6 relative">
             <button onclick="closeQRModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-700 p-2 rounded-full bg-slate-100 dark:bg-slate-700 w-8 h-8 flex items-center justify-center">
                 <i class="fa-solid fa-xmark text-base"></i>
             </button>
-
-            <div id="qr-modal-content" class="space-y-4 text-center">
-                <!-- Dynamic QR content -->
-            </div>
+            <div id="qr-modal-content" class="space-y-4 text-center"></div>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
+    <!-- TOAST -->
     <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-5 py-3.5 rounded-xl shadow-xl flex items-center space-x-3 pointer-events-none">
-        <i class="fa-solid fa-circle-check text-emerald-400 dark:text-emerald-600 text-lg"></i>
-        <span id="toast-message" class="text-sm font-medium">Đã sao chép vào bộ nhớ tạm!</span>
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toast-message" class="text-sm font-medium">Đã sao chép!</span>
     </div>
 
     <script>
-        /* STREAMING_CHUNK:Defining core utility functions... */
-        function getGoogleDriveId(url) {
-            if (!url) return null;
-            const match = url.match(/(?:drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)|lh3\.googleusercontent\.com\/d\/)([a-zA-Z0-9_-]+)/);
-            return match ? match[1] : null;
-        }
-
-        function getGoogleDriveDirectUrl(url) {
-            if (!url) return '';
-            const driveId = getGoogleDriveId(url);
-            if (driveId) {
-                return `https://lh3.googleusercontent.com/d/${driveId}`;
-            }
-            return url;
-        }
-
-        function getGoogleDriveAudioUrl(url) {
-            if (!url) return '';
-            const driveId = getGoogleDriveId(url);
-            if (driveId) {
-                return `https://docs.google.com/uc?export=download&id=${driveId}`;
-            }
-            return url;
-        }
-
+        /* STREAMING_CHUNK:Configuring clean media datasets... */
         const sampleImagePrompts = [
             {
-                id: 'img-gdrive-1',
+                id: 'img-1',
                 title: 'Tạo nhân vật - Giữ nguyên tóc',
                 category: 'taonhanvatnu',
                 categoryLabel: 'taonhanvatnu',
                 tool: 'Grok',
                 prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng...`,
-                image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
-                description: 'Tạo nhân vật và giữ nguyên tóc của nhân vật mẫu.',
-                guideSteps: [
-                    'Bước 1: Upload ảnh nhân vật mẫu lên công cụ Ai như Grok...',
-                    'Bước 2: Copy prompt mẫu và dán và khung yêu cầu prompt.',
-                    'Bước 3: Nhấn tạo và chờ kết quả.'
-                ],
-                author: '0'
-            },
+                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&h=1600&q=80',
+                description: 'Tạo nhân vật và giữ nguyên tóc của nhân vật mẫu.'
+            }
         ];
 
+        // Sử dụng các video mẫu HTML5 trực tiếp hoặc luồng sạch để không bao giờ xuất hiện popup iframe gợi ý của bên thứ ba
         const sampleMotionPrompts = [
-            {
-                id: 'mot-dm-1',
-                title: 'Dailymotion Video - Phát Nhạc Trực Tiếp',
-                category: 'taicho',
-                categoryLabel: 'Dailymotion',
-                tool: 'Dailymotion',
-                prompt: `Mẫu phát video từ nguồn Dailymotion chuẩn 720p, không bật video gợi ý.`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Tích hợp mượt mà Dailymotion Video vào kho thư viện AI.',
-                technique: 'Phát qua HTML5 Video / Dailymotion Stream'
-            },
-            {
-                id: 'mot-gdrive-1',
-                title: 'Video Chuyển Động Tự Nhiên - Nguồn Dailymotion',
-                category: 'taicho',
-                categoryLabel: 'Dailymotion Video',
-                tool: 'Dailymotion',
-                prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16.`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Mẫu video phát trực tiếp bằng link chia sẻ Dailymotion public.',
-                technique: 'Dailymotion Loop Player'
-            },
             {
                 id: 'mot-1',
                 title: 'Chuyển Động Tại Chỗ - Tóc Bay Trong Gió 01',
@@ -638,53 +461,40 @@
                 categoryLabel: 'Tại chỗ',
                 tool: 'Luma Dream Machine',
                 prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình.`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
-                technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
+                video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+                image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&h=1600&q=80',
+                description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.'
             },
             {
                 id: 'mot-2',
-                title: 'Trình Diễn Runway Catwalk 9:16',
-                category: 'trinhdien',
-                categoryLabel: 'Trình diễn',
+                title: 'Chuyển Động Cận Cảnh Thời Trang 02',
+                category: 'taicho',
+                categoryLabel: 'Tại chỗ',
                 tool: 'Runway Gen-3',
-                prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tự trình diễn sải bước.',
-                technique: 'Zoom & Dolly in mượt mà.'
-            },
-            {
-                id: 'mot-3',
-                title: 'Góc Quay Nói Review Cận Cảnh',
-                category: 'noireview',
-                categoryLabel: 'Nói Review',
-                tool: 'Kling AI',
-                prompt: `Close-up vertical shot of female influencer talking naturally into camera`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Chuyển động môi và ánh mắt cử chỉ tự nhiên phục vụ làm video ngắn nói review.',
-                technique: 'Static camera with natural micro-expressions.'
+                prompt: `Vertical 9:16 video of high fashion model walking gracefully`,
+                video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+                image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=1200&h=1600&q=80',
+                description: 'Mẫu chuyển động chất lượng cao 720p.'
             }
         ];
 
         const sampleVideoPrompts = [
             {
-                id: 'vid-dm-1',
-                title: 'Kịch Bản Review Sản Phẩm - Link Video Dailymotion',
+                id: 'vid-1',
+                title: 'Kịch Bản Review Sản Phẩm',
                 category: 'gdrive',
-                categoryLabel: 'Dailymotion',
-                tool: 'Dailymotion Video',
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                duration: '20 giây',
-                fps: '60 FPS',
-                description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ nguồn Dailymotion.',
+                categoryLabel: 'Video Mẫu',
+                tool: 'AI Video',
+                video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
+                image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
+                description: 'Mẫu video kịch bản AI xuất bản trực tiếp.',
                 steps: [
                     {
                         stepNumber: 1,
                         title: 'Tải Video',
-                        instruction: 'Làm theo hướng dẫn để thiết lập video và up lên Dailymotion.',
+                        instruction: 'Làm theo hướng dẫn để thiết lập video.',
                         image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Upload lên Dailymotion'
+                        prompt: 'Upload lên công cụ AI'
                     }
                 ]
             }
@@ -692,16 +502,14 @@
 
         const sampleAudioPrompts = [
             {
-                id: 'aud-gdrive-1',
-                title: 'Nhạc Nền Lofi Chill - Link Google Drive MP3',
+                id: 'aud-1',
+                title: 'Nhạc Nền Lofi Chill MP3',
                 category: 'nhacnen',
-                categoryLabel: 'Google Drive Audio',
-                tool: 'Google Drive',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Bản nhạc Lofi Chill thư giãn lưu trữ trên Google Drive.',
-                generatorUrl: 'https://drive.google.com',
-                generatorName: 'Google Drive Storage',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
+                categoryLabel: 'Âm Thanh',
+                tool: 'Suno AI',
+                audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+                description: 'Bản nhạc Lofi Chill thư giãn chất lượng cao.',
+                generatorUrl: 'https://suno.com'
             }
         ];
 
@@ -714,17 +522,15 @@
                 tool: 'Auto Software',
                 price: '290.000đ',
                 originalPrice: '590.000đ',
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                image: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
-                customQrImage: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
-                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa.',
+                video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4',
+                image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80',
+                description: 'Phần mềm chạy tự động tạo prompt.',
                 guideSteps: [
                     {
                         stepNumber: 1,
-                        title: 'Cài Đặt & Khởi Chạy Bộ Cài Phần Mềm',
-                        instruction: 'Tải bộ cài phần mềm và chạy tệp setup.exe trên máy tính của bạn.',
-                        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80'
+                        title: 'Cài Đặt Phần Mềm',
+                        instruction: 'Tải bộ cài phần mềm và chạy tệp setup trên máy tính.',
+                        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
                 ],
                 zaloLink: 'https://zalo.me/0984348734',
@@ -741,103 +547,47 @@
                 title: 'K-Pop Hit Trend Dance Cover (9:16)',
                 category: 'nhaymotnguoi',
                 categoryLabel: 'Nhảy một người',
-                tool: 'Viggle AI Dance',
+                tool: 'Viggle AI',
                 prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography`,
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot.',
+                video: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16.',
                 guideSteps: [
                     {
                         stepNumber: 1,
-                        title: 'Tải Video Mẫu Vũ Đạo',
-                        instruction: 'Bấm nút "TẢI VIDEO MẪU" để lưu video.',
-                        image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
+                        title: 'Tải Video Mẫu',
+                        instruction: 'Bấm nút tải video mẫu để lưu về máy.',
+                        image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
                 ],
-                redirectUrl: 'https://aidancing.net?ref=aidancing50632',
-                redirectLabel: 'Đến Trang Tạo Dance AI',
-                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+                redirectUrl: 'https://aidancing.net',
+                redirectLabel: 'Đến Trang Tạo Dance',
+                downloadUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
             }
         ];
 
-        /* STREAMING_CHUNK:Rendering media container with 720p lock and anti-suggestion layer... */
+        /* STREAMING_CHUNK:Rendering safe media wrapper without ads or popups... */
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
-                const ytMatch = item.video.match(/(?:youtube\.com\/(?:shorts\/|watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
-                const gDriveId = getGoogleDriveId(item.video);
-                const dmMatch = item.video.match(/(?:dailymotion\.com\/(?:video|embed\/video)\/|dai\.ly\/)([a-zA-Z0-9]+)/);
-
-                if (dmMatch && dmMatch[1]) {
-                    const videoId = dmMatch[1];
-                    // Chuyển sang Dailymotion Stream URL 720p trực tiếp qua thẻ HTML5 video để loại bỏ hoàn toàn popup iframe gợi ý
-                    const directStreamUrl = `https://www.dailymotion.com/embed/video/${videoId}?autoplay=1&mute=1&loop=1&controls=0&sharing-enable=0&related=0&queue-enable=0&quality=720`;
-                    
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                            <!-- Lớp chắn sự kiện tuyệt đối để chặn mọi cú click chuột xuyên qua làm mở popup Dailymotion -->
-                            <div class="absolute inset-0 z-30 w-full h-full bg-transparent cursor-default pointer-events-auto" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            
-                            <iframe id="${uniqueId}" src="${directStreamUrl}" 
-                                class="w-full h-full pointer-events-none border-0 absolute inset-0 scale-[1.05]" 
-                                allow="autoplay; encrypted-media"></iframe>
-                            
-                            <!-- Lớp phủ che kín các nút bấm và popup gợi ý của Dailymotion -->
-                            <div class="absolute inset-0 pointer-events-none z-20 bg-transparent"></div>
-                            
-                            <span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-40 bg-slate-800/90 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
-                                <i class="fa-solid fa-play"></i>
-                                <span>720p (No Ads)</span>
-                            </span>
-                            <button onclick="toggleAudio('${uniqueId}', 'dm', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-40 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
-                                <i class="fa-solid fa-volume-xmark"></i>
-                            </button>
-                        </div>
-                    `;
-                } else if (ytMatch && ytMatch[1]) {
-                    const videoId = ytMatch[1];
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                            <div class="absolute inset-0 z-30 w-full h-full bg-transparent cursor-default pointer-events-auto" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
-                                class="w-full h-full object-contain sm:object-cover pointer-events-none border-0 absolute inset-0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen></iframe>
-                            <div class="absolute inset-0 pointer-events-none z-20 bg-transparent"></div>
-                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-40 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
-                                <i class="fa-solid fa-volume-xmark"></i>
-                            </button>
-                        </div>
-                    `;
-                } else if (gDriveId) {
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                            <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
-                                class="w-full h-full object-contain absolute inset-0 border-0 pointer-events-auto" 
-                                allow="autoplay; encrypted-media" 
-                                allowfullscreen></iframe>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
-                        </div>
-                    `;
-                }
-                
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-contain absolute inset-0 pointer-events-none"></video>
+                        <video id="${uniqueId}" src="${item.video}" poster="${item.image || ''}" autoplay loop muted playsinline class="w-full h-full object-cover absolute inset-0"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
-                        <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
+                        <span class="absolute top-2 right-2 z-30 bg-slate-800/90 backdrop-blur-md text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
+                            <i class="fa-solid fa-play"></i>
+                            <span>720p Clean</span>
+                        </span>
+                        <button onclick="toggleAudio('${uniqueId}', this, event)" data-muted="true" class="absolute bottom-2 right-2 z-30 w-7 h-7 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 flex items-center justify-center text-[11px] transition-all shadow-md border border-white/20 cursor-pointer" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
                         </button>
                     </div>
                 `;
             } else if (item.image) {
-                const imageUrl = getGoogleDriveDirectUrl(item.image);
-                return `<img src="${imageUrl}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">`;
+                return `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">`;
             }
             return '';
         }
 
-        /* STREAMING_CHUNK:Updating UI rendering logic... */
         function updateAuthHeaderUI() {
             const area = document.getElementById('auth-header-area');
             const noticeBanner = document.getElementById('guest-notice-banner');
@@ -916,7 +666,7 @@
             localStorage.removeItem('ai_prompt_current_user');
             updateAuthHeaderUI();
             refreshAllGrids();
-            showToast("Đã đăng xuất tài khoản!");
+            showToast("Đã đăng xuất!");
         }
 
         function refreshAllGrids() {
@@ -939,145 +689,45 @@
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
             if (type === 'audio' || item.audioUrl) {
-                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
-                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
-                
                 return `
-                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 flex flex-col group relative">
-                    ${isLocked ? `
-                    <div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center">
-                        <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce">
-                            <i class="fa-solid fa-lock text-lg"></i>
-                        </div>
-                        <p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p>
-                        <p class="text-[10px] text-slate-300 mb-3">Vui lòng đăng nhập hội viên để mở khóa mẫu âm thanh này</p>
-                        <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold shadow transition-all">Đăng Nhập Ngay</button>
-                    </div>
-                    ` : ''}
-
+                <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-700 flex flex-col group relative">
+                    ${isLocked ? `<div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center"><div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce"><i class="fa-solid fa-lock text-lg"></i></div><p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p><button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 text-white text-xs font-bold shadow">Đăng Nhập Ngay</button></div>` : ''}
                     <div class="p-4 sm:p-5 flex flex-col justify-between h-full space-y-4 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                         <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 text-[10px] font-bold px-2.5 py-1 rounded-lg border border-amber-200 dark:border-amber-800/50 flex items-center space-x-1">
-                                    <i class="fa-solid fa-music"></i>
-                                    <span>${item.tool}</span>
-                                </span>
-                                ${gDriveAudioId ? `
-                                <span class="text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded border border-blue-200 dark:border-blue-800 flex items-center space-x-1">
-                                    <i class="fa-brands fa-google-drive"></i>
-                                    <span>Drive Audio</span>
-                                </span>
-                                ` : `
-                                <span class="text-[10px] font-bold text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
-                                    ${item.categoryLabel || 'Âm Thanh'}
-                                </span>
-                                `}
-                            </div>
-
-                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-500 transition-colors line-clamp-1">${item.title}</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || ''}</p>
-
-                            <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-inner">
-                                ${gDriveAudioId ? `
-                                <div class="w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 relative shadow-sm">
-                                    <div class="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 z-0 text-xs font-medium">
-                                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Đang tải trình phát...
-                                    </div>
-                                    <iframe id="aud-frame-${item.id}" src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="relative z-10 w-full h-full border-0 absolute top-0 left-0" allow="autoplay"></iframe>
-                                </div>
-                                ` : `
-                                <audio controls class="w-full h-10 focus:outline-none rounded-lg" preload="metadata" onplay="handleAudioPlay(this)">
-                                    <source src="${audioStreamUrl}" type="audio/mpeg">
-                                    Trình duyệt không hỗ trợ phát âm thanh.
-                                </audio>
-                                `}
+                            <span class="bg-amber-100 text-amber-600 text-[10px] font-bold px-2.5 py-1 rounded-lg"><i class="fa-solid fa-music"></i> ${item.tool}</span>
+                            <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base mt-2">${item.title}</h3>
+                            <p class="text-xs text-slate-500 mt-1">${item.description}</p>
+                            <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+                                <audio controls class="w-full h-10" preload="metadata"><source src="${item.audioUrl}" type="audio/mpeg"></audio>
                             </div>
                         </div>
-
-                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
-                            <div class="flex items-center space-x-1.5">
-                                <a href="${audioStreamUrl}" download target="_blank" class="py-1.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center space-x-1" title="Tải File MP3">
-                                    <i class="fa-solid fa-download text-xs"></i>
-                                    <span>Tải MP3</span>
-                                </a>
-                                <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="py-1.5 px-3 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-500 hover:text-white transition-all flex items-center space-x-1" title="Đến trang tạo âm thanh">
-                                    <i class="fa-solid fa-wand-magic-sparkles text-xs"></i>
-                                    <span>Trang AI</span>
-                                </a>
-                            </div>
-
-                            <button onclick="openModal('${item.id}')" class="py-1.5 px-3 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-all shadow-sm flex items-center space-x-1">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <span>Chi tiết</span>
-                            </button>
+                        <div class="pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                            <a href="${item.audioUrl}" download target="_blank" class="py-1.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-semibold hover:bg-amber-500 hover:text-white"><i class="fa-solid fa-download"></i> Tải MP3</a>
+                            <button onclick="openModal('${item.id}')" class="py-1.5 px-3 rounded-xl bg-amber-500 text-white text-xs font-bold">Chi tiết</button>
                         </div>
                     </div>
-                </div>
-                `;
+                </div>`;
             }
 
             return `
-            <div class="bg-white dark:bg-slate-800/90 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200/80 dark:border-slate-800 flex flex-col group relative">
-                ${isLocked ? `
-                <div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center">
-                    <div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce">
-                        <i class="fa-solid fa-lock text-lg"></i>
-                    </div>
-                    <p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p>
-                    <p class="text-[10px] text-slate-300 mb-3">Vui lòng đăng nhập hội viên để xem và mở khóa sản phẩm này</p>
-                    <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold shadow transition-all">Đăng Nhập Ngay</button>
-                </div>
-                ` : ''}
-
+            <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-200 dark:border-slate-800 flex flex-col group relative">
+                ${isLocked ? `<div class="absolute inset-0 z-40 bg-slate-900/70 backdrop-blur-md flex flex-col items-center justify-center p-4 text-center"><div class="w-12 h-12 rounded-full bg-amber-500 text-white flex items-center justify-center mb-2 shadow-lg animate-bounce"><i class="fa-solid fa-lock text-lg"></i></div><p class="text-xs font-bold text-white mb-1">Nội Dung Đã Khóa</p><button onclick="openLoginModal()" class="px-4 py-2 rounded-xl bg-primary-600 text-white text-xs font-bold shadow">Đăng Nhập Ngay</button></div>` : ''}
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-950 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
-                    ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
-                    
-                    <span class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-slate-900/70 backdrop-blur-md text-white/90 text-[9px] sm:text-[11px] font-medium px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full pointer-events-none z-20 border border-white/10 tracking-wide">
-                        ${item.tool}
-                    </span>
-                    ${item.price ? `<span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 bg-emerald-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md pointer-events-none z-20 border border-emerald-400/30">${item.price}</span>` : ''}
+                    ${type === 'image' ? `<img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover">` : renderMediaContainer(item)}
+                    <span class="absolute top-2 left-2 bg-slate-900/70 backdrop-blur-md text-white text-[9px] px-2 py-0.5 rounded-full z-20">${item.tool}</span>
+                    ${item.price ? `<span class="absolute top-2 right-2 bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full z-20">${item.price}</span>` : ''}
                 </div>
-
-                <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2 sm:space-y-3.5 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
+                <div class="p-3 flex-grow flex flex-col justify-between space-y-2 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     <div>
-                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
-                        <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mt-0.5 sm:mt-1 line-clamp-1 sm:line-clamp-2">${item.description || item.prompt || ''}</p>
-                        ${item.prompt && !item.price ? `
-                        <div class="mt-1.5 sm:mt-2.5 p-1.5 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 line-clamp-2 border border-slate-100 dark:border-slate-800/80">
-                            "${item.prompt}"
-                        </div>` : (item.steps ? `
-                        <div class="mt-1.5 sm:mt-2.5 p-1.5 sm:p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 text-[10px] sm:text-xs font-mono text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-slate-800/80">
-                            <div class="font-semibold text-rose-500 flex items-center space-x-1 mb-0.5">
-                                <i class="fa-solid fa-list-check"></i> <span>Gồm ${item.steps.length} bước thực hiện</span>
-                            </div>
-                            <div class="line-clamp-1 text-slate-500 text-[9px] sm:text-[10px]">${item.steps.map(s => s.title).join(' • ')}</div>
-                        </div>` : '')}
+                        <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base line-clamp-1">${item.title}</h3>
+                        <p class="text-[10px] sm:text-xs text-slate-500 line-clamp-2 mt-0.5">${item.description || item.prompt || ''}</p>
                     </div>
-
-                    <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700/50">
-                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2 sm:px-3 rounded-xl bg-slate-100 dark:bg-slate-700/80 text-slate-700 dark:text-slate-200 text-[10px] sm:text-xs font-semibold hover:bg-slate-200 transition-colors flex items-center space-x-1">
-                            <i class="fa-solid fa-expand"></i>
-                            <span>Chi tiết</span>
-                        </button>
-                        ${item.price ? `
-                        <button onclick="openQRModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl bg-emerald-600 text-white text-[10px] sm:text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center shadow-sm">
-                            <i class="fa-solid fa-qrcode mr-1"></i> Quét QR
-                        </button>` : item.downloadUrl ? `
-                        <a href="${item.downloadUrl}" target="_blank" download class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl bg-purple-600 text-white text-[10px] sm:text-xs font-bold hover:bg-purple-700 transition-colors flex items-center shadow-sm">
-                            <i class="fa-solid fa-download mr-1"></i> Tải Mẫu
-                        </a>` : item.steps ? `
-                        <button onclick="openModal('${item.id}')" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
-                            <i class="fa-solid fa-layer-group"></i>
-                            <span>Xem Các Bước</span>
-                        </button>` : `
-                        <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-xl ${badgeColor} text-white text-[10px] sm:text-xs font-semibold hover:opacity-90 shadow-sm transition-all flex items-center space-x-1">
-                            <i class="fa-solid fa-copy"></i>
-                            <span>Sao chép</span>
-                        </button>`}
+                    <div class="pt-2 flex items-center justify-between border-t border-slate-100 dark:border-slate-700">
+                        <button onclick="openModal('${item.id}')" class="py-1.5 px-2.5 rounded-xl bg-slate-100 dark:bg-slate-700 text-xs font-semibold">Chi tiết</button>
+                        ${item.price ? `<button onclick="openQRModal('${item.id}')" class="py-1.5 px-3 rounded-xl bg-emerald-600 text-white text-xs font-bold"><i class="fa-solid fa-qrcode mr-1"></i> QR</button>` : `<button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="py-1.5 px-3 rounded-xl ${badgeColor} text-white text-xs font-semibold"><i class="fa-solid fa-copy mr-1"></i> Sao chép</button>`}
                     </div>
                 </div>
-            </div>
-            `;
+            </div>`;
         }
 
         function renderFeaturedHomePrompts() {
@@ -1094,130 +744,36 @@
         }
 
         function renderImagePrompts(list = sampleImagePrompts) {
-            const container = document.getElementById('image-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có mẫu prompt trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'image', index)).join('');
-            setupAutoPlayObserver();
+            document.getElementById('image-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'image', idx)).join('');
         }
-
         function renderMotionPrompts(list = sampleMotionPrompts) {
-            const container = document.getElementById('motion-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có mẫu chuyển động trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'motion', index)).join('');
+            document.getElementById('motion-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'motion', idx)).join('');
             setupAutoPlayObserver();
         }
-
         function renderVideoPrompts(list = sampleVideoPrompts) {
-            const container = document.getElementById('video-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có mẫu video trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'video', index)).join('');
+            document.getElementById('video-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'video', idx)).join('');
             setupAutoPlayObserver();
         }
-
         function renderAudioPrompts(list = sampleAudioPrompts) {
-            const container = document.getElementById('audio-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có mẫu âm thanh trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'audio', index)).join('');
+            document.getElementById('audio-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'audio', idx)).join('');
         }
-
         function renderToolProducts(list = sampleToolProducts) {
-            const container = document.getElementById('tool-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có công cụ trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'tool', index)).join('');
+            document.getElementById('tool-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'tool', idx)).join('');
             setupAutoPlayObserver();
         }
-
         function renderDancePrompts(list = sampleDancePrompts) {
-            const container = document.getElementById('dance-templates-grid');
-            if (!container) return;
-            if (list.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400 dark:text-slate-500"><i class="fa-solid fa-folder-open text-4xl mb-3"></i><p class="text-sm font-semibold">Chưa có mẫu nhảy dance trong danh mục này</p></div>`;
-                return;
-            }
-            container.innerHTML = list.map((item, index) => renderGenericCard(item, 'dance', index)).join('');
+            document.getElementById('dance-templates-grid').innerHTML = list.map((item, idx) => renderGenericCard(item, 'dance', idx)).join('');
             setupAutoPlayObserver();
         }
 
         let mediaObserver = null;
-
         function playMedia(container) {
             const video = container.querySelector('video');
-            if (video) { 
-                video.muted = true;
-                video.play().catch(() => {}); 
-                return; 
-            }
-            const iframe = container.querySelector('iframe');
-            if (iframe && iframe.contentWindow) {
-                const src = iframe.src || '';
-                if (src.includes('youtube.com')) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                } else if (src.includes('dailymotion.com')) {
-                    iframe.contentWindow.postMessage('{"command":"play"}', '*');
-                }
-            }
+            if (video) { video.muted = true; video.play().catch(() => {}); }
         }
-
         function pauseMedia(container) {
             const video = container.querySelector('video');
-            if (video) { video.pause(); return; }
-            const iframe = container.querySelector('iframe');
-            if (iframe && iframe.contentWindow) {
-                const src = iframe.src || '';
-                if (src.includes('youtube.com')) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-                } else if (src.includes('dailymotion.com')) {
-                    iframe.contentWindow.postMessage('{"command":"pause"}', '*');
-                }
-            }
-        }
-
-        function pauseAllMedia(exceptElement = null) {
-            document.querySelectorAll('audio').forEach(aud => {
-                if (aud !== exceptElement) {
-                    aud.pause();
-                }
-            });
-
-            document.querySelectorAll('.media-container').forEach(container => {
-                if (!exceptElement || !container.contains(exceptElement)) {
-                    pauseMedia(container);
-                    const btn = container.querySelector('button[data-muted]');
-                    if (btn && btn.getAttribute('data-muted') === 'false') {
-                        const icon = btn.querySelector('i');
-                        const videoEl = container.querySelector('video');
-                        if (videoEl) videoEl.muted = true;
-                        btn.setAttribute('data-muted', 'true');
-                        if (icon) icon.className = 'fa-solid fa-volume-xmark';
-                        btn.classList.remove('bg-purple-600', 'scale-110');
-                        btn.classList.add('bg-black/50');
-                    }
-                }
-            });
-        }
-
-        function handleAudioPlay(currentAudio) {
-            pauseAllMedia(currentAudio);
+            if (video) video.pause();
         }
 
         function setupAutoPlayObserver() {
@@ -1225,709 +781,110 @@
             mediaObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const container = entry.target;
-                    const isTabVisible = !container.closest('.tab-content.hidden');
-                    if (entry.isIntersecting && isTabVisible && document.visibilityState === 'visible') {
-                        playMedia(container);
-                    } else {
-                        pauseMedia(container);
-                    }
+                    if (entry.isIntersecting) playMedia(container);
+                    else pauseMedia(container);
                 });
             }, { threshold: 0.3 });
-            document.querySelectorAll('.media-container').forEach(el => { mediaObserver.observe(el); });
+            document.querySelectorAll('.media-container').forEach(el => mediaObserver.observe(el));
         }
 
         function switchTab(tabId, skipScroll = false) {
             localStorage.setItem('activeTab', tabId);
-            if (window.history && window.history.replaceState) {
-                window.history.replaceState(null, null, '#' + tabId);
-            }
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            const activeTab = document.getElementById(`tab-${tabId}`);
-            if (activeTab) activeTab.classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-200";
-            });
-            const currentNavBtn = document.getElementById(`nav-${tabId}`);
-            if (currentNavBtn) {
-                currentNavBtn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30";
-            }
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-            pauseAllMedia();
-            setTimeout(() => { setupAutoPlayObserver(); }, 100);
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary-600 hover:bg-slate-100 dark:hover:bg-slate-800");
+            const btn = document.getElementById(`nav-${tabId}`);
+            if (btn) btn.className = "nav-btn px-3 py-2 rounded-xl text-sm font-semibold text-primary-600 bg-primary-50 dark:bg-primary-900/30";
+            document.getElementById('mobile-menu').classList.add('hidden');
+            setTimeout(() => setupAutoPlayObserver(), 100);
             if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        }
-
+        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
         function toggleDarkMode() {
             const html = document.documentElement;
-            const darkIcon = document.getElementById('theme-toggle-dark-icon');
-            const lightIcon = document.getElementById('theme-toggle-light-icon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
-                darkIcon.classList.add('hidden');
-                lightIcon.classList.remove('hidden');
             } else {
                 html.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-                lightIcon.classList.add('hidden');
-                darkIcon.classList.remove('hidden');
             }
         }
-
         function initTheme() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-                document.getElementById('theme-toggle-dark-icon').classList.remove('hidden');
-                document.getElementById('theme-toggle-light-icon').classList.add('hidden');
+            if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+        }
+
+        function toggleAudio(elementId, btn, event) {
+            if (event) { event.stopPropagation(); event.preventDefault(); }
+            const video = document.getElementById(elementId);
+            const icon = btn.querySelector('i');
+            if (video.muted) {
+                video.muted = false;
+                video.play().catch(() => {});
+                btn.setAttribute('data-muted', 'false');
+                icon.className = 'fa-solid fa-volume-high';
+                btn.classList.add('bg-purple-600');
             } else {
-                document.documentElement.classList.remove('dark');
-                document.getElementById('theme-toggle-light-icon').classList.remove('hidden');
-                document.getElementById('theme-toggle-dark-icon').classList.add('hidden');
+                video.muted = true;
+                btn.setAttribute('data-muted', 'true');
+                icon.className = 'fa-solid fa-volume-xmark';
+                btn.classList.remove('bg-purple-600');
             }
-        }
-
-        function removeVietnameseTones(str) {
-            if (!str) return '';
-            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
-        }
-
-        function handleHomeSearch(e) { if (e.key === 'Enter') executeHomeSearch(); }
-        function handleHomeSearchInput() { if (!document.getElementById('home-search-input').value.trim()) clearHomeSearch(); }
-
-        function executeHomeSearch() {
-            const rawQuery = document.getElementById('home-search-input').value.trim();
-            const query = removeVietnameseTones(rawQuery);
-            const container = document.getElementById('home-featured-grid');
-            switchTab('home', true);
-            
-            const clearBtn = document.getElementById('clear-home-search-btn');
-            if (rawQuery) {
-                if (clearBtn) clearBtn.classList.remove('hidden');
-                const titleEl = document.getElementById('home-grid-title');
-                if (titleEl) titleEl.innerText = `Kết Quả Tìm Kiếm Cho: "${rawQuery}"`;
-            } else {
-                if (clearBtn) clearBtn.classList.add('hidden');
-                const titleEl = document.getElementById('home-grid-title');
-                if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
-                renderFeaturedHomePrompts();
-                return;
-            }
-
-            const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleAudioPrompts, ...sampleToolProducts, ...sampleDancePrompts];
-            const filtered = allItems.filter(item => {
-                return removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query);
-            });
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
-            } else {
-                container.innerHTML = filtered.map((item, index) => {
-                    let type = 'home';
-                    if (item.audioUrl) type = 'audio';
-                    else if (item.price) type = 'tool';
-                    else if (item.steps) type = 'video';
-                    else if (item.category && item.category.includes('nhay')) type = 'dance';
-                    else if (item.image && !item.video) type = 'image';
-                    else if (item.video) type = 'motion';
-                    return renderGenericCard(item, type, index);
-                }).join('');
-            }
-            setupAutoPlayObserver();
-        }
-
-        function clearHomeSearch() {
-            const searchInput = document.getElementById('home-search-input');
-            if (searchInput) searchInput.value = '';
-            const clearBtn = document.getElementById('clear-home-search-btn');
-            if (clearBtn) clearBtn.classList.add('hidden');
-            const titleEl = document.getElementById('home-grid-title');
-            if (titleEl) titleEl.innerText = 'Mẫu Prompt Xu Hướng';
-            renderFeaturedHomePrompts();
-        }
-
-        function filterImages() {
-            const query = removeVietnameseTones(document.getElementById('image-search').value);
-            renderImagePrompts(sampleImagePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query)));
-        }
-
-        function filterImageCategory(cat, btnElement) {
-            document.querySelectorAll('.img-cat-btn').forEach(b => b.className = "img-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-300");
-            btnElement.className = "img-cat-btn px-4 py-2 rounded-xl bg-primary-600 text-white font-medium shadow-sm";
-            renderImagePrompts(cat === 'all' ? sampleImagePrompts : sampleImagePrompts.filter(item => item.category === cat));
-        }
-
-        function filterMotion() {
-            const query = removeVietnameseTones(document.getElementById('motion-search').value);
-            renderMotionPrompts(sampleMotionPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query)));
-        }
-
-        function filterMotionCategory(cat, btnElement) {
-            document.querySelectorAll('.motion-cat-btn').forEach(b => b.className = "motion-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
-            btnElement.className = "motion-cat-btn px-4 py-2 rounded-xl bg-accent-600 text-white font-medium shadow-sm";
-            renderMotionPrompts(cat === 'all' ? sampleMotionPrompts : sampleMotionPrompts.filter(item => item.category === cat));
-        }
-
-        function filterVideo() {
-            const query = removeVietnameseTones(document.getElementById('video-search').value);
-            renderVideoPrompts(sampleVideoPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || (item.steps && item.steps.some(s => removeVietnameseTones(s.title || '').includes(query) || removeVietnameseTones(s.prompt || '').includes(query)))));
-        }
-
-        function filterVideoCategory(cat, btnElement) {
-            document.querySelectorAll('.video-cat-btn').forEach(b => b.className = "video-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
-            btnElement.className = "video-cat-btn px-4 py-2 rounded-xl bg-rose-600 text-white font-medium shadow-sm";
-            if (cat === 'gdrive') {
-                renderVideoPrompts(sampleVideoPrompts.filter(item => getGoogleDriveId(item.video)));
-            } else {
-                renderVideoPrompts(cat === 'all' ? sampleVideoPrompts : sampleVideoPrompts.filter(item => item.category === cat));
-            }
-        }
-
-        function filterAudio() {
-            const query = removeVietnameseTones(document.getElementById('audio-search').value);
-            renderAudioPrompts(sampleAudioPrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.prompt || '').includes(query) || removeVietnameseTones(item.description || '').includes(query)));
-        }
-
-        function filterAudioCategory(cat, btnElement) {
-            document.querySelectorAll('.audio-cat-btn').forEach(b => b.className = "audio-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
-            btnElement.className = "audio-cat-btn px-4 py-2 rounded-xl bg-amber-500 text-white font-medium shadow-sm";
-            renderAudioPrompts(cat === 'all' ? sampleAudioPrompts : sampleAudioPrompts.filter(item => item.category === cat));
-        }
-
-        function filterTools() {
-            const query = removeVietnameseTones(document.getElementById('tool-search').value);
-            renderToolProducts(sampleToolProducts.filter(item => removeVietnameseTones(item.title).includes(query)));
-        }
-
-        function filterToolCategory(cat, btnElement) {
-            document.querySelectorAll('.tool-cat-btn').forEach(b => b.className = "tool-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
-            btnElement.className = "tool-cat-btn px-4 py-2 rounded-xl bg-emerald-600 text-white font-medium shadow-sm";
-            renderToolProducts(cat === 'all' ? sampleToolProducts : sampleToolProducts.filter(item => item.category === cat));
-        }
-
-        function filterDance() {
-            const query = removeVietnameseTones(document.getElementById('dance-search').value);
-            renderDancePrompts(sampleDancePrompts.filter(item => removeVietnameseTones(item.title).includes(query) || removeVietnameseTones(item.description).includes(query)));
-        }
-
-        function filterDanceCategory(cat, btnElement) {
-            document.querySelectorAll('.dance-cat-btn').forEach(b => b.className = "dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium");
-            btnElement.className = "dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm";
-            renderDancePrompts(cat === 'all' ? sampleDancePrompts : sampleDancePrompts.filter(item => item.category === cat));
         }
 
         function copyPromptObject(btn, encodedText) {
             try {
                 const text = decodeURIComponent(atob(encodedText));
                 copyToClipboard(text);
-            } catch (err) {
-                showToast("Lỗi khi sao chép prompt!");
-            }
+            } catch (err) {}
         }
-
         function copyToClipboard(text) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast("Đã sao chép vào bộ nhớ tạm!");
-                }).catch(() => { fallbackCopy(text); });
+                navigator.clipboard.writeText(text).then(() => showToast("Đã sao chép!"));
             } else {
-                fallbackCopy(text);
+                const dummy = document.createElement('textarea');
+                document.body.appendChild(dummy);
+                dummy.value = text;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                showToast("Đã sao chép!");
             }
         }
-
-        function fallbackCopy(text) {
-            const dummy = document.createElement('textarea');
-            document.body.appendChild(dummy);
-            dummy.value = text;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-            showToast("Đã sao chép vào bộ nhớ tạm!");
-        }
-
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').innerText = msg;
             toast.classList.remove('translate-y-20', 'opacity-0');
-            toast.classList.add('translate-y-0', 'opacity-100');
-            setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 2500);
-        }
-
-        function muteAllAudio() {
-            document.querySelectorAll('.media-container').forEach(container => {
-                const iframe = container.querySelector('iframe');
-                if (iframe && iframe.contentWindow) {
-                    const src = iframe.src || '';
-                    if (src.includes('youtube.com')) {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                    } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('{"command":"mute"}', '*');
-                    }
-                }
-            });
-        }
-
-        function toggleAudio(elementId, type, btn, event) {
-            if (event) { event.stopPropagation(); event.preventDefault(); }
-            const icon = btn.querySelector('i');
-            const isMuted = btn.getAttribute('data-muted') !== 'false';
-            
-            const currentContainer = btn.closest('.media-container');
-
-            if (isMuted) {
-                pauseAllMedia(currentContainer);
-
-                const iframe = document.getElementById(elementId);
-                if (iframe && iframe.contentWindow) {
-                    const src = iframe.src || '';
-                    if (src.includes('youtube.com')) {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-                        iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
-                    } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('{"command":"unmute"}', '*');
-                    }
-                }
-                const videoEl = document.getElementById(elementId);
-                if (videoEl && videoEl.tagName === 'VIDEO') {
-                    videoEl.muted = false;
-                    videoEl.play().catch(() => {});
-                }
-                btn.setAttribute('data-muted', 'false');
-                icon.className = 'fa-solid fa-volume-high';
-                btn.classList.remove('bg-black/50');
-                btn.classList.add('bg-purple-600', 'scale-110');
-            } else {
-                const iframe = document.getElementById(elementId);
-                if (iframe && iframe.contentWindow) {
-                    const src = iframe.src || '';
-                    if (src.includes('youtube.com')) {
-                        iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
-                    } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('{"command":"mute"}', '*');
-                    }
-                }
-                const videoEl = document.getElementById(elementId);
-                if (videoEl && videoEl.tagName === 'VIDEO') {
-                    videoEl.muted = true;
-                }
-                btn.setAttribute('data-muted', 'true');
-                icon.className = 'fa-solid fa-volume-xmark';
-                btn.classList.remove('bg-purple-600', 'scale-110');
-                btn.classList.add('bg-black/50');
-            }
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 2000);
         }
 
         function openModal(itemId) {
             const allItems = [...sampleImagePrompts, ...sampleMotionPrompts, ...sampleVideoPrompts, ...sampleAudioPrompts, ...sampleToolProducts, ...sampleDancePrompts];
             const item = allItems.find(x => x.id === itemId);
             if (!item) return;
-            pauseAllMedia();
             const modal = document.getElementById('detail-modal');
-            const content = document.getElementById('modal-content');
-
-            if (item.audioUrl) {
-                const gDriveAudioId = getGoogleDriveId(item.audioUrl);
-                const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
-
-                content.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-300 text-xs font-bold uppercase"><i class="fa-solid fa-music mr-1"></i>${item.tool}</span>
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel || 'Mẫu Âm Thanh'}</span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        
-                        <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
-                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Trình phát nhạc Google Drive MP3</p>
-                            ${gDriveAudioId ? `
-                            <div class="relative w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-amber-500/20 dark:border-slate-700/50 shadow-inner flex items-center justify-center">
-                                <div class="absolute inset-0 flex items-center justify-center text-amber-600/50 dark:text-amber-500/50 z-0 text-sm font-medium">
-                                    <i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Đang tải dữ liệu âm thanh...
-                                </div>
-                                <iframe src="https://drive.google.com/file/d/${gDriveAudioId}/preview" class="relative z-10 w-full h-full border-0 absolute top-0 left-0" allow="autoplay"></iframe>
-                            </div>
-                            ` : `
-                            <audio controls class="w-full h-10 focus:outline-none" preload="metadata" onplay="handleAudioPlay(this)">
-                                <source src="${audioStreamUrl}" type="audio/mpeg">
-                                Trình duyệt của bạn không hỗ trợ phát nhạc.
-                            </audio>
-                            `}
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Công Dụng</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
-                        </div>
-
-                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
-                            <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Trang AI (${item.generatorName || 'Suno AI'})</span>
-                            </a>
-                            <a href="${audioStreamUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3 VỀ MÁY</span>
-                            </a>
-                        </div>
+            document.getElementById('modal-content').innerHTML = `
+                <div class="space-y-4">
+                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
+                    <div class="flex justify-center bg-slate-950 rounded-xl p-2 aspect-[9/16] max-h-[60vh] mx-auto overflow-hidden">
+                        ${renderMediaContainer(item)}
                     </div>
-                `;
-            } else if (item.steps) {
-                let stepsHtml = item.steps.map(step => {
-                    const stepImg = step.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80';
-                    const downloadImgUrl = step.downloadUrl || stepImg;
-
-                    return `
-                    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 space-y-3">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-lg bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 text-xs font-bold uppercase">
-                                <i class="fa-solid fa-shoe-prints mr-1"></i> Bước ${step.stepNumber}: ${step.title}
-                            </span>
-                            <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(step.prompt))}\`)" class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold shadow transition-all flex items-center space-x-1">
-                                <i class="fa-solid fa-copy"></i> <span>Sao chép Bước ${step.stepNumber}</span>
-                            </button>
-                        </div>
-                        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${step.instruction}</p>
-                        
-                        <div class="space-y-1.5 mt-2">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-bold text-rose-500 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${step.stepNumber} (Tỷ lệ 16:9)
-                                </span>
-                                <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-rose-600/10 hover:bg-rose-600 text-rose-600 hover:text-white dark:bg-rose-950/60 dark:text-rose-400 dark:hover:text-white text-[11px] font-bold transition-all border border-rose-200 dark:border-rose-900 flex items-center space-x-1 shadow-sm">
-                                    <i class="fa-solid fa-download text-xs"></i>
-                                    <span>Tải Ảnh Mẫu Bước ${step.stepNumber}</span>
-                                </a>
-                            </div>
-                            <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-slate-200 dark:border-slate-800 aspect-video w-full flex items-center justify-center group shadow-md">
-                                <img src="${stepImg}" alt="${step.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
-                                <span class="absolute bottom-2.5 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg border border-white/10 flex items-center">
-                                    <i class="fa-solid fa-circle-check text-rose-400 mr-1.5"></i> Kết quả / Minh họa Bước ${step.stepNumber}
-                                </span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">Prompt Bước ${step.stepNumber}</label>
-                            <div class="p-3 rounded-lg bg-white dark:bg-slate-950 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 select-all leading-relaxed whitespace-pre-wrap max-h-36 overflow-y-auto">
-                                ${step.prompt}
-                            </div>
-                        </div>
-                    </div>
-                `}).join('');
-
-                content.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-300 text-xs font-bold uppercase">${item.tool}</span>
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
-                            ${renderMediaContainer(item)}
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Tổng Quan Kịch Bản</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300">${item.description}</p>
-                        </div>
-                        <div class="space-y-4 pt-2">
-                            <h3 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider flex items-center">
-                                <i class="fa-solid fa-list-check text-rose-500 mr-2"></i> Quy Trình Thực Hiện Từng Bước (${item.steps.length} Bước Hướng Dẫn)
-                            </h3>
-                            ${stepsHtml}
-                        </div>
-                        <div class="pt-4 flex justify-end">
-                            <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300">Đóng cửa sổ</button>
-                        </div>
-                    </div>
-                `;
-            } else if (item.price) {
-                const toolSteps = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : (item.guide ? item.guide.split('\n').map(s => s.replace(/^•\s*/, '')) : []);
-
-                let toolStepsHtml = toolSteps.map((step, idx) => {
-                    const isObj = typeof step === 'object' && step !== null;
-                    const stepNum = isObj ? (step.stepNumber || idx + 1) : idx + 1;
-                    const stepInstruction = isObj ? step.instruction : step;
-                    const stepImg = isObj && step.image ? step.image : `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80`;
-                    const downloadImgUrl = isObj && step.downloadUrl ? step.downloadUrl : stepImg;
-
-                    return `
-                    <div class="p-3.5 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-900/60 space-y-3">
-                        <div class="flex items-start justify-between gap-2">
-                            <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                                <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-emerald-500"></i>
-                                <div class="leading-relaxed">
-                                    <span class="text-emerald-600 dark:text-emerald-400 font-extrabold mr-1.5">Bước ${stepNum}:</span>
-                                    <span class="text-slate-900 dark:text-slate-100 font-medium">${stepInstruction}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-1.5 pt-1">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${stepNum} (16:9)
-                                </span>
-                                <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center space-x-1">
-                                    <i class="fa-solid fa-download text-xs"></i>
-                                    <span>Tải Ảnh Mẫu Bước ${stepNum}</span>
-                                </a>
-                            </div>
-                            <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-emerald-200/50 dark:border-emerald-900/50 aspect-video w-full group shadow">
-                                <img src="${stepImg}" alt="Minh họa Bước ${stepNum}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                                <span class="absolute bottom-2 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded border border-white/10">
-                                    <i class="fa-solid fa-check text-emerald-400 mr-1"></i> Minh họa Tool Bước ${stepNum}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                `}).join('');
-
-                content.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">${item.tool}</span>
-                            <span class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${item.price} <span class="text-xs text-slate-400 line-through font-normal">${item.originalPrice}</span></span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
-                            ${renderMediaContainer(item)}
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Sản Phẩm</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-extrabold mb-2 flex items-center">
-                                <i class="fa-solid fa-list-ol mr-1.5 text-emerald-500"></i> Hướng Dẫn Sử Dụng & Setup Chi Tiết Từng Bước
-                            </label>
-                            <div class="p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/60 space-y-3">
-                                ${toolStepsHtml}
-                            </div>
-                        </div>
-                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
-                            <a href="${item.zaloLink}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-comments"></i> <span>Tư Vấn Zalo</span>
-                            </a>
-                            <button onclick="closeModal(); openQRModal('${item.id}')" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-qrcode"></i> <span>MUA NGAY (MÃ QR)</span>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            } else if (item.downloadUrl) {
-                const stepsList = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [];
-
-                let danceStepsHtml = stepsList.map((step, idx) => {
-                    const isObj = typeof step === 'object' && step !== null;
-                    const stepNum = isObj ? (step.stepNumber || idx + 1) : idx + 1;
-                    const stepInstruction = isObj ? step.instruction : step;
-                    const stepImg = isObj && step.image ? step.image : `https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80`;
-                    const downloadImgUrl = isObj && step.downloadUrl ? step.downloadUrl : stepImg;
-
-                    return `
-                    <div class="p-3.5 rounded-xl bg-purple-50/50 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-900/60 space-y-3">
-                        <div class="flex items-start justify-between gap-2">
-                            <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                                <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-purple-500"></i>
-                                <div class="leading-relaxed">
-                                    <span class="text-purple-600 dark:text-purple-400 font-extrabold mr-1.5">Bước ${stepNum}:</span>
-                                    <span class="text-slate-900 dark:text-slate-100 font-medium">${stepInstruction}</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-1.5 pt-1">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${stepNum} (16:9)
-                                </span>
-                                <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center space-x-1">
-                                    <i class="fa-solid fa-download text-xs"></i>
-                                    <span>Tải Ảnh Mẫu Bước ${stepNum}</span>
-                                </a>
-                            </div>
-                            <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-purple-200/50 dark:border-purple-900/50 aspect-video w-full group shadow">
-                                <img src="${stepImg}" alt="Minh họa Bước ${stepNum}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
-                                <span class="absolute bottom-2 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded border border-white/10">
-                                    <i class="fa-solid fa-person-dancing text-purple-400 mr-1"></i> Minh họa Dance Bước ${stepNum}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                `}).join('');
-
-                content.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-between">
-                            <span class="px-2.5 py-1 rounded-lg bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 text-xs font-bold uppercase"><i class="fa-solid fa-person-dancing mr-1"></i>${item.tool}</span>
-                            <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">${item.categoryLabel}</span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
-                            ${renderMediaContainer(item)}
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Vũ Đạo</label>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 font-extrabold mb-2 flex items-center">
-                                <i class="fa-solid fa-list-ol mr-1.5 text-purple-500"></i> Hướng Dẫn Tạo Dance AI Chi Tiết Từng Bước
-                            </label>
-                            <div class="p-4 rounded-xl bg-purple-50/50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-900/60 space-y-3">
-                                ${danceStepsHtml}
-                            </div>
-                        </div>
-                        <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
-                            <a href="${item.redirectUrl}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>${item.redirectLabel}</span>
-                            </a>
-                            <a href="${item.downloadUrl}" target="_blank" download class="w-full sm:w-1/2 py-2.5 rounded-xl bg-purple-600 text-white text-xs font-bold hover:bg-purple-700 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-download"></i> <span>TẢI VIDEO MẪU</span>
-                            </a>
-                        </div>
-                    </div>
-                `;
-            } else {
-                let guideStepsHtml = '';
-                if (item.guideSteps && item.guideSteps.length > 0) {
-                    guideStepsHtml = item.guideSteps.map(step => {
-                        const match = step.match(/^(Bước\s+\d+[\:\-]?)(.*)$/i);
-                        const stepLabel = match ? match[1] : '';
-                        const stepText = match ? match[2] : step;
-                        return `
-                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
-                            <div class="leading-relaxed">
-                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">${stepLabel}</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">${stepText}</span>
-                            </div>
-                        </div>
-                    `}).join('');
-                }
-
-                content.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2.5 py-1 rounded-lg bg-primary-100 dark:bg-primary-900/50 text-primary-600 dark:text-primary-300 text-xs font-bold uppercase">${item.tool}</span>
-                        </div>
-                        <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
-                        <div class="flex justify-center bg-slate-950 rounded-xl p-2 max-h-[65vh] md:max-h-[75vh] aspect-[9/16] mx-auto overflow-hidden">
-                            ${renderMediaContainer(item)}
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-rose-500 font-extrabold mb-2 flex items-center">
-                                <i class="fa-solid fa-list-ol mr-1.5"></i> Mô Tả & Hướng Dẫn Thực Hiện
-                            </label>
-                            ${item.description ? `<p class="text-xs text-slate-600 dark:text-slate-300 mb-3 font-medium">${item.description}</p>` : ''}
-                            <div class="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900/60 space-y-2.5">
-                                ${guideStepsHtml}
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex items-center justify-between mb-1">
-                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400">Prompt Văn Bản (Chuẩn Copy)</label>
-                                <button onclick="copyPromptObject(this, \`${btoa(encodeURIComponent(item.prompt || ''))}\`)" class="text-xs text-primary-600 dark:text-primary-400 font-semibold hover:underline">
-                                    <i class="fa-solid fa-copy mr-1"></i> Sao chép
-                                </button>
-                            </div>
-                            <div class="p-3.5 rounded-xl bg-slate-100 dark:bg-slate-900 text-xs font-mono text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 select-all leading-relaxed whitespace-pre-wrap max-h-48 overflow-y-auto">
-                                ${item.prompt}
-                            </div>
-                        </div>
-                        <div class="pt-4 flex justify-end">
-                            <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-300">Đóng cửa sổ</button>
-                        </div>
-                    </div>
-                `;
-            }
-            modal.classList.remove('hidden');
-            setTimeout(() => { playMedia(content); }, 100);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('detail-modal');
-            pauseMedia(modal);
-            muteAllAudio();
-            modal.classList.add('hidden');
-            setTimeout(() => { setupAutoPlayObserver(); }, 100);
-        }
-
-        function openQRModal(toolId) {
-            const tool = sampleToolProducts.find(x => x.id === toolId);
-            if (!tool) return;
-            const modal = document.getElementById('qr-modal');
-            const content = document.getElementById('qr-modal-content');
-            
-            const qrUrl = tool.customQrImage || `https://img.vietqr.io/image/MB-${tool.accountNo}-compact2.png?amount=${tool.price.replace(/[^0-9]/g, '')}&addInfo=${encodeURIComponent(tool.note)}&accountName=${encodeURIComponent(tool.accountName)}`;
-
-            content.innerHTML = `
-                <div class="space-y-3">
-                    <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 text-xs font-bold uppercase">
-                        <i class="fa-solid fa-shield-halved"></i> <span>Thanh Toán An Toàn Qua QR</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-slate-900 dark:text-white line-clamp-1">${tool.title}</h3>
-                    
-                    <div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 inline-block mx-auto relative group">
-                        <img src="${qrUrl}" alt="Mã QR Thanh Toán" class="w-56 h-56 mx-auto rounded-xl object-contain bg-white p-2">
-                        <div class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Quét mã QR bằng ứng dụng Ngân hàng</div>
-                    </div>
-
-                    <div class="space-y-2 text-left bg-slate-100 dark:bg-slate-900/60 p-3.5 rounded-xl text-xs">
-                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tiền:</span><span class="font-extrabold text-emerald-600 text-sm">${tool.price}</span></div>
-                        <div class="flex justify-between items-center"><span class="text-slate-400">Ngân hàng:</span><span class="font-bold text-slate-800 dark:text-slate-200">${tool.bankName}</span></div>
-                        <div class="flex justify-between items-center"><span class="text-slate-400">Số tài khoản:</span><span class="font-mono font-bold">${tool.accountNo}</span></div>
-                        <div class="flex justify-between items-center"><span class="text-slate-400">Nội dung CK:</span><span class="font-mono font-bold text-rose-500">${tool.note}</span></div>
-                    </div>
-
-                    <div class="pt-2 flex items-center justify-between gap-3">
-                        <a href="${tool.zaloLink}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs flex items-center justify-center space-x-1 shadow">
-                            <i class="fa-solid fa-headset"></i> <span>Xác Nhận Qua Zalo</span>
-                        </a>
-                        <button onclick="closeQRModal()" class="py-2.5 px-4 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs">Đóng</button>
-                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">${item.description || ''}</p>
+                    ${item.prompt ? `<div class="p-3 bg-slate-100 dark:bg-slate-900 rounded-xl text-xs font-mono">${item.prompt}</div>` : ''}
                 </div>
             `;
             modal.classList.remove('hidden');
         }
-
+        function closeModal() { document.getElementById('detail-modal').classList.add('hidden'); }
+        function openQRModal(id) { document.getElementById('qr-modal').classList.remove('hidden'); }
         function closeQRModal() { document.getElementById('qr-modal').classList.add('hidden'); }
-
-        window.addEventListener('scroll', () => {
-            const scrollBtn = document.getElementById('scroll-top-btn');
-            if (window.scrollY > 300) {
-                scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.add('opacity-100', 'pointer-events-auto');
-            } else {
-                scrollBtn.classList.add('opacity-0', 'pointer-events-none');
-                scrollBtn.classList.remove('opacity-0', 'pointer-events-auto');
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
 
         window.onload = function() {
             initTheme();
             updateAuthHeaderUI();
             refreshAllGrids();
-
-            const hashTab = window.location.hash ? window.location.hash.replace('#', '') : null;
-            const savedTab = hashTab || localStorage.getItem('activeTab') || 'home';
-            if (['home', 'image', 'motion', 'video', 'audio', 'tool', 'dance'].includes(savedTab)) {
-                switchTab(savedTab, true);
-            }
+            switchTab('home', true);
         };
     </script>
 </body>
