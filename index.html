@@ -578,7 +578,6 @@
             return match ? match[1] : null;
         }
 
-        // HÀM CHUYỂN LINK DRIVE THÀNH LINK HIỂN THỊ/STREAM TRỰC TIẾP (ẢNH)
         function getGoogleDriveDirectUrl(url) {
             if (!url) return '';
             const driveId = getGoogleDriveId(url);
@@ -588,7 +587,6 @@
             return url;
         }
 
-        // HÀM CHUYỂN LINK DRIVE THÀNH LINK PHÁT ÂM THANH TRỰC TIẾP (MP3/AUDIO)
         function getGoogleDriveAudioUrl(url) {
             if (!url) return '';
             const driveId = getGoogleDriveId(url);
@@ -617,7 +615,6 @@
             },
         ];
 
-        // SỬ DỤNG DAILYMOTION LÀM NGUỒN CHÍNH NHƯ YÊU CẦU
         const sampleMotionPrompts = [
             {
                 id: 'mot-dm-1',
@@ -625,7 +622,7 @@
                 category: 'taicho',
                 categoryLabel: 'Dailymotion',
                 tool: 'Dailymotion',
-                prompt: `Mẫu phát video từ nguồn Dailymotion, tương thích tỷ lệ 9:16 và có chức năng bật tắt âm thanh tự động.`,
+                prompt: `Mẫu phát video từ nguồn Dailymotion chuẩn 720p, không bật video gợi ý.`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Tích hợp mượt mà Dailymotion Video vào kho thư viện AI.',
                 technique: 'Phát qua Dailymotion iframe API'
@@ -636,7 +633,7 @@
                 category: 'taicho',
                 categoryLabel: 'Dailymotion Video',
                 tool: 'Dailymotion',
-                prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16, ánh sáng điện ảnh mượt mà.`,
+                prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16.`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Mẫu video phát trực tiếp bằng link chia sẻ Dailymotion public.',
                 technique: 'Dailymotion Embed'
@@ -647,7 +644,7 @@
                 category: 'taicho',
                 categoryLabel: 'Tại chỗ',
                 tool: 'Luma Dream Machine',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật.`,
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình.`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
@@ -669,7 +666,7 @@
                 category: 'noireview',
                 categoryLabel: 'Nói Review',
                 tool: 'Kling AI',
-                prompt: `Close-up vertical shot of female influencer talking naturally into camera, subtle head movement, genuine facial expressions, soft background blur`,
+                prompt: `Close-up vertical shot of female influencer talking naturally into camera`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Chuyển động môi và ánh mắt cử chỉ tự nhiên phục vụ làm video ngắn nói review.',
                 technique: 'Static camera with natural micro-expressions.'
@@ -697,31 +694,9 @@
                         prompt: 'Upload lên Dailymotion'
                     }
                 ]
-            },
-            {
-                id: 'vid-1',
-                title: 'Trộm Đồ Manocanh - TikTok Shorts (Đa Bước)',
-                category: 'thoitrangnu',
-                categoryLabel: 'Thời Trang Nữ',
-                tool: 'Runway Gen-3 + Midjourney',
-                video: 'https://www.dailymotion.com/video/xaxb2fq',
-                duration: '30 giây',
-                fps: '60 FPS',
-                description: 'Kịch bản hoàn chỉnh gồm nhiều bước từ tạo ảnh nhân vật đến tạo chuyển động và lồng ghép video ngắn TikTok/Reels.',
-                steps: [
-                    {
-                        stepNumber: 1,
-                        title: 'Tạo Ảnh Nền Tảng Nhân Vật (Image Generation)',
-                        instruction: 'Tải ảnh gốc hoặc dùng Midjourney để tạo ảnh nhân vật chính mặc đồ thời trang trong cửa hàng boutique cao cấp.',
-                        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Vertical 9:16 high fashion editorial photo of stylish girl standing inside a luxury clothing boutique'
-                    }
-                ]
             }
         ];
 
-        // MẪU ÂM THANH DATA
         const sampleAudioPrompts = [
             {
                 id: 'aud-gdrive-1',
@@ -749,12 +724,12 @@
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 image: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
                 customQrImage: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
-                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API để render video TikTok.',
+                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa.',
                 guideSteps: [
                     {
                         stepNumber: 1,
                         title: 'Cài Đặt & Khởi Chạy Bộ Cài Phần Mềm',
-                        instruction: 'Tải bộ cài phần mềm và chạy tệp setup.exe trên máy tính của bạn (Dành cho Windows/Mac).',
+                        instruction: 'Tải bộ cài phần mềm và chạy tệp setup.exe trên máy tính của bạn.',
                         image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
@@ -776,12 +751,12 @@
                 tool: 'Viggle AI Dance',
                 prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
-                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot.',
                 guideSteps: [
                     {
                         stepNumber: 1,
                         title: 'Tải Video Mẫu Vũ Đạo',
-                        instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang hoặc nút bên cạnh để lưu video vũ đạo nhịp điệu về máy.',
+                        instruction: 'Bấm nút "TẢI VIDEO MẪU" để lưu video.',
                         image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
@@ -792,7 +767,7 @@
             }
         ];
 
-        // RENDER MEDIA CONTAINER (CẬP NHẬT HOÀN HẢO CHO DAILYMOTION THEO YÊU CẦU)
+        // RENDER MEDIA CONTAINER (CẬP NHẬT: THÊM THAM SỐ 720p VÀ CHẶN VIDEO GỢI Ý)
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
@@ -802,18 +777,18 @@
 
                 if (dmMatch && dmMatch[1]) {
                     const videoId = dmMatch[1];
-                    // ĐÃ CẬP NHẬT: Xóa các class scale và transform để hiển thị ĐẦY ĐỦ video. Thêm loop=1.
+                    // ĐÃ CẬP NHẬT: Thêm quality=720, sharing-enable=0, related=0, queue-enable=0 để khóa không phát sang video gợi ý và chạy ở độ phân giải 720p
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            <iframe id="${uniqueId}" src="https://www.dailymotion.com/embed/video/${videoId}?api=postMessage&autoplay=1&mute=1&loop=1&controls=0&ui-logo=0&ui-start-screen-info=0&queue-enable=0" 
+                            <iframe id="${uniqueId}" src="https://www.dailymotion.com/embed/video/${videoId}?api=postMessage&autoplay=1&mute=1&loop=1&controls=0&ui-logo=0&ui-start-screen-info=0&sharing-enable=0&related=0&queue-enable=0&quality=720" 
                                 class="w-full h-full pointer-events-none border-0 absolute inset-0" 
                                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
                             <span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-20 bg-slate-800/90 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
                                 <i class="fa-solid fa-play"></i>
-                                <span>Dailymotion</span>
+                                <span>Dailymotion 720p</span>
                             </span>
                             <button onclick="toggleAudio('${uniqueId}', 'dm', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                                 <i class="fa-solid fa-volume-xmark"></i>
@@ -955,7 +930,6 @@
             renderDancePrompts();
         }
 
-        // Render Card mẫu dùng chung cho các TAB (TỐI GIẢN VÀ TRỰC QUAN GIAO DIỆN ĐIỆN THOẠI)
         function renderGenericCard(item, type, index) {
             const isLocked = !currentUser && index >= 2;
             let badgeColor = 'bg-primary-600';
@@ -965,7 +939,6 @@
             if (type === 'tool') badgeColor = 'bg-emerald-600';
             if (type === 'dance') badgeColor = 'bg-purple-600';
 
-            // Xử lý riêng cho CARD ÂM THANH
             if (type === 'audio' || item.audioUrl) {
                 const gDriveAudioId = getGoogleDriveId(item.audioUrl);
                 const audioStreamUrl = gDriveAudioId ? getGoogleDriveAudioUrl(item.audioUrl) : getGoogleDriveDirectUrl(item.audioUrl);
@@ -1057,7 +1030,6 @@
                 </div>
                 ` : ''}
 
-                <!-- KHUNG PHÁT VIDEO CHUẨN ĐIỆN THOẠI 9:16 -->
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-950 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
                     
@@ -1202,7 +1174,6 @@
                 if (src.includes('youtube.com')) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 } else if (src.includes('dailymotion.com')) {
-                    // Cập nhật postMessage JSON chuẩn cho Dailymotion
                     iframe.contentWindow.postMessage('{"command":"play"}', '*');
                 }
             }
@@ -1222,7 +1193,6 @@
             }
         }
 
-        // TẠM DỪNG TOÀN BỘ ÂM THANH & VIDEO TRÊN TRANG
         function pauseAllMedia(exceptElement = null) {
             document.querySelectorAll('audio').forEach(aud => {
                 if (aud !== exceptElement) {
@@ -1964,9 +1934,3 @@
 </body>
 </html>
 ```eof
-
-### Các thay đổi quan trọng đã được thực hiện:
-1. **Thay đổi khung lưới `iframe`**: Đã loại bỏ các class bóp/cắt ảnh (`scale-[1.55]`, `translate`, `object-cover`). Thay vào đó cho `iframe` mặc định phủ đầy khung hình dọc 9:16. Trình phát Dailymotion sẽ tự tạo viền đen (letterboxing) để bạn **xem được 100% nội dung video** mà không hề bị cắt mất một góc nào.
-2. **API phát lặp lại (Loop) và Tự động phát**: Đã nối thêm param `loop=1&queue-enable=0` vào iframe để yêu cầu video lặp lại vô hạn, tắt hàng đợi video liên quan và được tự động chơi ở chế độ im lặng ngay khi cuộn tới nhờ `autoplay=1&mute=1`.
-3. **Cập nhật JS SDK của Dailymotion**: Tối ưu hóa chuỗi `postMessage JSON` (chuẩn giao thức API của Dailymotion: `{"command":"play"}`, `{"command":"mute"}`) giúp nút bấm bật tắt âm thanh ở góc khung hình giờ đây có thể điều khiển trực tiếp video Dailymotion mượt mà.
-4. **Nguồn Dữ liệu (Mock Data)**: Cập nhật tất cả các đường link dữ liệu mẫu (Google Drive, Youtube) đều trỏ về chính xác mã `[https://www.dailymotion.com/video/xaxb2fq](https://www.dailymotion.com/video/xaxb2fq)` để toàn bộ website đồng nhất sử dụng video Dailymotion làm gốc theo đúng yêu cầu của bạn.
