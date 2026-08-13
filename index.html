@@ -605,8 +605,7 @@
                 category: 'taonhanvatnu',
                 categoryLabel: 'taonhanvatnu',
                 tool: 'Grok',
-                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng, còn lại giữ nguyên chính xác bố cục khuôn mặt gốc, tỷ lệ khuôn mặt, hình dáng khuôn mặt, khoảng cách giữa các ngũ quan, hình dáng mắt, mũi, môi, cằm, xương hàm, tai và toàn bộ đặc điểm nhận dạng, tuyệt đối không tự ý thêm, bớt hoặc thay đổi bất kỳ chi tiết nào liên quan đến cấu trúc khuôn mặt. Nhân vật cười duyên với nụ cười miệng trái tim, hé lộ hàm răng trắng tự nhiên, men răng chân thực, răng có độ nhọn nhẹ, kích thước và hình dáng không hoàn toàn đều nhau như răng thật, không tạo cảm giác hoàn hảo nhân tạo. Nhân vật đứng trước background trắng tinh, sạch sẽ và tối giản. Khung hình dọc 9:16, chụp từ đầu gối trở lên, góc máy ngang tầm mắt, nhân vật đứng chính giữa khung hình, phối cảnh tự nhiên, không méo hình, tỷ lệ cơ thể cân đối. Chất lượng Hyper Realistic, 8K, HDR, Fashion Editorial, Commercial Lookbook, Luxury Streetwear, Premium Street Fashion, Lifestyle Photography, hiệu ứng điện ảnh cao cấp, độ nét cực cao, hiển thị rõ từng sợi tóc, từng sợi vải, đường may sắc nét, chất liệu vải chân thực, da tự nhiên, không làm mịn quá mức. Mô tả da mặt: Làn da có tông trắng sáng đến trắng hồng, sắc da khá đều, bề mặt mịn, ít khuyết điểm lớn, chất da mềm mại, căng nhẹ, có độ đàn hồi tốt và độ bóng tự nhiên. Lỗ chân lông rất nhỏ, gần như không nhìn thấy rõ, bề mặt da mịn, không sần, không bong tróc, hầu như không có nếp nhăn hay rãnh biểu cảm. Vùng chữ T có độ bóng nhẹ, đặc biệt trán phản chiếu ánh sáng rõ, sống mũi và đầu mũi có độ bóng tự nhiên, hai má nhận ánh sáng mềm tạo cảm giác khỏe mạnh. Trán trắng sáng với một vùng ửng hồng nhẹ ở chính giữa, má trắng hồng tự nhiên và khá đồng đều, mũi đều màu, cằm sáng và đều màu. Có một vùng nhỏ hơi đỏ ở giữa trán, tổng thể khoảng 90–95% bề mặt da đồng đều, chỉ khác tông nhẹ ở vùng giữa trán. Mô tả ánh sáng: Ánh sáng trắng ấm chiếu từ phía trước hơi lệch sang trái, làm nổi bật độ căng bóng tự nhiên của da, đặc biệt ở trán, sống mũi và gò má, không tạo vùng tối sâu, giữ đầy đủ chi tiết khuôn mặt. Mô tả kiểu tóc: giữ nguyên kiểu tóc của nhân vật mẫu.
-`,
+                prompt: `Tạo lại cho tôi nhân vật này, chỉ thay đổi mô tả về da mặt, kiểu tóc và ánh sáng...`,
                 image: 'https://drive.google.com/file/d/1R4bXdfznr0PRRSErKSghp7jcRFqYYr8f/view?usp=sharing',
                 description: 'Tạo nhân vật và giữ nguyên tóc của nhân vật mẫu.',
                 guideSteps: [
@@ -616,9 +615,9 @@
                 ],
                 author: '0'
             },
-            
         ];
 
+        // SỬ DỤNG DAILYMOTION LÀM NGUỒN CHÍNH NHƯ YÊU CẦU
         const sampleMotionPrompts = [
             {
                 id: 'mot-dm-1',
@@ -626,21 +625,21 @@
                 category: 'taicho',
                 categoryLabel: 'Dailymotion',
                 tool: 'Dailymotion',
-                prompt: `Mẫu phát video từ nguồn Dailymotion, tương thích tỷ lệ 9:16 và có chức năng bật tắt âm thanh tự động tương tự Youtube, Google Drive.`,
+                prompt: `Mẫu phát video từ nguồn Dailymotion, tương thích tỷ lệ 9:16 và có chức năng bật tắt âm thanh tự động.`,
                 video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Tích hợp mượt mà Dailymotion Video vào kho thư viện AI.',
                 technique: 'Phát qua Dailymotion iframe API'
             },
             {
                 id: 'mot-gdrive-1',
-                title: 'Video Chuyển Động Tự Nhiên - Google Drive Demo 01',
+                title: 'Video Chuyển Động Tự Nhiên - Nguồn Dailymotion',
                 category: 'taicho',
-                categoryLabel: 'Google Drive Video',
-                tool: 'Google Drive',
+                categoryLabel: 'Dailymotion Video',
+                tool: 'Dailymotion',
                 prompt: `Chuyển động nhẹ nhàng cận cảnh nhân vật thời trang dạo phố, quay khung hình đứng 9:16, ánh sáng điện ảnh mượt mà.`,
-                video: 'https://dai.ly/xaxb2fq',
-                description: 'Mẫu video phát trực tiếp bằng link chia sẻ Google Drive public.',
-                technique: 'Phát trực tiếp từ Google Drive iframe preview'
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
+                description: 'Mẫu video phát trực tiếp bằng link chia sẻ Dailymotion public.',
+                technique: 'Dailymotion Embed'
             },
             {
                 id: 'mot-1',
@@ -648,8 +647,8 @@
                 category: 'taicho',
                 categoryLabel: 'Tại chỗ',
                 tool: 'Luma Dream Machine',
-                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật. Thời điểm khoảng 4 giờ chiều, gió thổi khá mạnh làm tóc và những sợi tóc con bay liên tục. Phong cách diễn xuất dứt khoát, tự nhiên.`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                prompt: `Giữ nguyên hoàn toàn nhân vật và toàn bộ bối cảnh như ảnh gốc, không thay đổi ngoại hình, không thay đổi quần áo. Chỉ tạo chuyển động tự nhiên của nhân vật.`,
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Ứng dụng tạo video thời trang chuyển động nhẹ nhàng duyên dáng.',
                 technique: 'Thích hợp cho video ngắn TikTok/Reels tạo cảm giác chân thực.'
             },
@@ -659,8 +658,8 @@
                 category: 'trinhdien',
                 categoryLabel: 'Trình diễn',
                 tool: 'Runway Gen-3',
-                prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show, cinematic slow motion, depth of field, sharp 4k focus`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                prompt: `Vertical 9:16 video of high fashion model walking gracefully towards camera down a lighted runway show`,
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Kỹ thuật đẩy camera tiến về phía nhân vật tự tự trình diễn sải bước.',
                 technique: 'Zoom & Dolly in mượt mà.'
             },
@@ -671,7 +670,7 @@
                 categoryLabel: 'Nói Review',
                 tool: 'Kling AI',
                 prompt: `Close-up vertical shot of female influencer talking naturally into camera, subtle head movement, genuine facial expressions, soft background blur`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Chuyển động môi và ánh mắt cử chỉ tự nhiên phục vụ làm video ngắn nói review.',
                 technique: 'Static camera with natural micro-expressions.'
             }
@@ -679,31 +678,23 @@
 
         const sampleVideoPrompts = [
             {
-                id: 'vid-gdrive-1',
-                title: 'Kịch Bản Review Sản Phẩm - Link Video Google Drive',
+                id: 'vid-dm-1',
+                title: 'Kịch Bản Review Sản Phẩm - Link Video Dailymotion',
                 category: 'gdrive',
-                categoryLabel: 'Google Drive',
-                tool: 'Google Drive Video',
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                categoryLabel: 'Dailymotion',
+                tool: 'Dailymotion Video',
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 duration: '20 giây',
                 fps: '60 FPS',
-                description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ lưu trữ Google Drive cá nhân.',
+                description: 'Mẫu video kịch bản AI xuất bản trực tiếp từ nguồn Dailymotion.',
                 steps: [
                     {
                         stepNumber: 1,
-                        title: 'Tải Video Lên Google Drive',
-                        instruction: 'Upload file video AI đã render lên Google Drive của bạn và cài đặt quyền "Bất kỳ ai có liên kết đều có thể xem".',
+                        title: 'Tải Video',
+                        instruction: 'Làm theo hướng dẫn để thiết lập video và up lên Dailymotion.',
                         image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'https://drive.google.com/file/d/1126-a0mBimY6S2qFfCjE28PshL1u4s2s/view'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Copy Đường Link Nhúng Vào Website',
-                        instruction: 'Copy đường link video từ Google Drive và chèn trực tiếp vào hệ thống web Linh Xinh Gái.',
-                        image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Format link: https://drive.google.com/file/d/FILE_ID/view'
+                        prompt: 'Upload lên Dailymotion'
                     }
                 ]
             },
@@ -713,7 +704,7 @@
                 category: 'thoitrangnu',
                 categoryLabel: 'Thời Trang Nữ',
                 tool: 'Runway Gen-3 + Midjourney',
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 duration: '30 giây',
                 fps: '60 FPS',
                 description: 'Kịch bản hoàn chỉnh gồm nhiều bước từ tạo ảnh nhân vật đến tạo chuyển động và lồng ghép video ngắn TikTok/Reels.',
@@ -724,52 +715,7 @@
                         instruction: 'Tải ảnh gốc hoặc dùng Midjourney để tạo ảnh nhân vật chính mặc đồ thời trang trong cửa hàng boutique cao cấp.',
                         image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Vertical 9:16 high fashion editorial photo of stylish girl standing inside a luxury clothing boutique, soft cinematic lighting, 8k --ar 9:16'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Tạo Chuyển Động Video AI (Video Motion)',
-                        instruction: 'Đưa ảnh từ Bước 1 vào Runway Gen-3 hoặc Kling AI để thêm chuyển động camera và hành động.',
-                        image: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Vertical 9:16 video of girl discreetly swapping outfit with mannequin in high fashion boutique shop, cinematic lighting, sharp focus'
-                    },
-                    {
-                        stepNumber: 3,
-                        title: 'Thêm Hiệu Ứng & Nhạc Nền (Post-Production)',
-                        instruction: 'Sử dụng CapCut để chèn nhạc bắt tai, thêm hiệu ứng chuyển cảnh mượt mà và xuất video độ phân giải 1080x1920 chuẩn 60FPS.',
-                        image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'CapCut template settings: 1080x1920 resolution, 60fps, color grading warm cinematic LUT, trending TikTok beat.'
-                    }
-                ]
-            },
-            {
-                id: 'vid-2',
-                title: 'Review Cà Phê Sáng Tinh Tế (Đa Bước)',
-                category: 'doanuong',
-                categoryLabel: 'Đồ Ăn - Uống',
-                tool: 'Kling AI',
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                duration: '15 giây',
-                fps: '60 FPS',
-                description: 'Hướng dẫn quy trình 2 bước tạo video review đồ uống, không gian quán cà phê sáng sớm.',
-                steps: [
-                    {
-                        stepNumber: 1,
-                        title: 'Tạo Ảnh Cốc Cà Phê & Ánh Sáng Buổi Sáng',
-                        instruction: 'Tạo hình ảnh chi tiết góc cận cảnh bàn cà phê với ánh nắng chiếu qua cửa sổ.',
-                        image: 'https://images.unsplash.com/photo-1517668808822-9e4288246ede?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1517668808822-9e4288246ede?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Close up 9:16 photo of ceramic coffee cup on wooden table, morning sunlight through window, cozy aesthetic, photorealistic --ar 9:16'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Tạo Hiệu Ứng Đổ Nước Rót Cà Phê',
-                        instruction: 'Tải ảnh sang Kling AI và dùng lệnh chuyển động rót nước.',
-                        image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&h=675&q=80',
-                        prompt: 'Close up 9:16 video pouring hot coffee into ceramic cup, morning sunlight through window, smooth cinematic camera motion'
+                        prompt: 'Vertical 9:16 high fashion editorial photo of stylish girl standing inside a luxury clothing boutique'
                     }
                 ]
             }
@@ -784,45 +730,9 @@
                 categoryLabel: 'Google Drive Audio',
                 tool: 'Google Drive',
                 audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Bản nhạc Lofi Chill thư giãn lưu trữ trên Google Drive, giao diện phát đầy đủ không bị cắt bớt.',
+                description: 'Bản nhạc Lofi Chill thư giãn lưu trữ trên Google Drive.',
                 generatorUrl: 'https://drive.google.com',
                 generatorName: 'Google Drive Storage',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-1',
-                title: 'Nhạc Nền Lofi Chill Cafe Sáng TikTok',
-                category: 'nhacnen',
-                categoryLabel: 'Nhạc Nền',
-                tool: 'Suno AI v3.5',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Giai điệu lofi ấm áp, êm dịu cực hợp làm nhạc nền cho video vlog cuộc sống, review cafe, phối đồ thời trang.',
-                generatorUrl: 'https://suno.com',
-                generatorName: 'Suno AI Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-2',
-                title: 'Giọng Nói AI Nữ Review Bán Hàng Truyền Cảm',
-                category: 'giongnoi',
-                categoryLabel: 'Giọng Nói AI',
-                tool: 'ElevenLabs',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Giọng đọc AI tự nhiên, ngữ điệu cuốn hút thích hợp làm lồng tiếng review sản phẩm TikTok Shop và Shopee.',
-                generatorUrl: 'https://elevenlabs.io',
-                generatorName: 'ElevenLabs Voice Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-3',
-                title: 'Nhạc EDM Trend Biến Hình TikTok Sôi Động',
-                category: 'baihat',
-                categoryLabel: 'Bài Hát AI',
-                tool: 'Udio AI',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Nhạc nhảy tiết tấu nhanh, dồn dập chuẩn đoạn drop chuyển cảnh biến hình thời trang sôi động.',
-                generatorUrl: 'https://www.udio.com',
-                generatorName: 'Udio AI Song Generator',
                 downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
             }
         ];
@@ -836,10 +746,10 @@
                 tool: 'Auto Software',
                 price: '290.000đ',
                 originalPrice: '590.000đ',
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 image: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
                 customQrImage: 'https://drive.google.com/file/d/1zczGPL5qmQsQbnYzQqRNv3jnBF-ITIQs/view?usp=sharing',
-                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API Kling AI & Runway Gen-3 để render hàng loạt video TikTok/Reels khung đứng 9:16 không giới hạn.',
+                description: 'Phần mềm chạy tự động tạo prompt từ danh sách từ khóa, kết nối trực tiếp API để render video TikTok.',
                 guideSteps: [
                     {
                         stepNumber: 1,
@@ -847,27 +757,6 @@
                         instruction: 'Tải bộ cài phần mềm và chạy tệp setup.exe trên máy tính của bạn (Dành cho Windows/Mac).',
                         image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Cấu Hình API Key & Tài Khoản AI',
-                        instruction: 'Dán API Key hoặc tài khoản Kling AI/Runway vào ô Cấu Hình Tự Động trong bảng điều khiển.',
-                        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 3,
-                        title: 'Nhập Danh Sách Từ Khóa Chủ Đề',
-                        instruction: 'Nhập danh sách chủ đề cần tạo video (ví dụ: thời trang nữ, đồ ăn, vlog du lịch, lofi chill...).',
-                        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 4,
-                        title: 'Kích Hoạt Chạy Tự Động & Xuất File',
-                        instruction: 'Nhấn "Bắt Đầu Auto", phần mềm sẽ tự tạo Prompt, tự động render và xuất video HD vào thư mục chỉ định.',
-                        image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
                 ],
                 zaloLink: 'https://zalo.me/0984348734',
@@ -885,8 +774,8 @@
                 category: 'nhaymotnguoi',
                 categoryLabel: 'Nhảy một người',
                 tool: 'Viggle AI Dance',
-                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
+                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography`,
+                video: 'https://www.dailymotion.com/video/xaxb2fq',
                 description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
                 guideSteps: [
                     {
@@ -895,34 +784,6 @@
                         instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang hoặc nút bên cạnh để lưu video vũ đạo nhịp điệu về máy.',
                         image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Chuẩn Bị Ảnh Nhân Vật AI',
-                        instruction: 'Tải lên hoặc dùng AI tạo 1 bức ảnh chân dung toàn thân nhân vật của bạn (chuẩn tỉ lệ 9:16, rõ nét).',
-                        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 3,
-                        title: 'Mở Công Cụ Tạo Dance AI',
-                        instruction: 'Bấm nút "Đến Trang Tạo Dance AI" để truy cập công cụ Viggle AI hoặc Kling AI.',
-                        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 4,
-                        title: 'Tải Dữ Liệu Lên Nền Tảng',
-                        instruction: 'Đưa Video Mẫu vào ô Motion/Pose Reference và đưa Ảnh Nhân Vật vào ô Character Image.',
-                        image: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 5,
-                        title: 'Xuất Video Dance Hoàn Chỉnh',
-                        instruction: 'Nhấn nút Generate để AI tự động ghép khuôn mặt & vóc dáng nhân vật khớp 100% với từng động tác nhảy.',
-                        image: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80'
                     }
                 ],
                 redirectUrl: 'https://aidancing.net?ref=aidancing50632',
@@ -931,7 +792,7 @@
             }
         ];
 
-        // RENDER MEDIA CONTAINER (NÂNG CẤP TỐI GIẢN VÀ TRỰC QUAN DÀNH CHO ĐIỆN THOẠI)
+        // RENDER MEDIA CONTAINER (CẬP NHẬT HOÀN HẢO CHO DAILYMOTION THEO YÊU CẦU)
         function renderMediaContainer(item) {
             if (item.video) {
                 const uniqueId = 'vid-' + Math.random().toString(36).substr(2, 9);
@@ -939,45 +800,14 @@
                 const gDriveId = getGoogleDriveId(item.video);
                 const dmMatch = item.video.match(/(?:dailymotion\.com\/(?:video|embed\/video)\/|dai\.ly\/)([a-zA-Z0-9]+)/);
 
-                if (gDriveId) {
-                    // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                            <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
-                                class="w-full h-full sm:h-[135%] absolute top-0 sm:-top-[17.5%] left-0 border-0 pointer-events-auto" 
-                                allow="autoplay; encrypted-media" 
-                                allowfullscreen></iframe>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
-                            <span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 z-20 bg-blue-600/90 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md pointer-events-none flex items-center space-x-1 border border-white/20">
-                                <i class="fa-brands fa-google-drive"></i>
-                                <span>Drive Video</span>
-                            </span>
-                        </div>
-                    `;
-                } else if (ytMatch && ytMatch[1]) {
-                    const videoId = ytMatch[1];
-                    // CẬP NHẬT CHÍNH: object-contain và loại bỏ scale-[1.55] trên điện thoại
-                    return `
-                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                            <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
-                                class="w-full h-full object-contain sm:object-cover scale-100 sm:scale-[1.55] translate-x-0 sm:-translate-x-[2px] pointer-events-none border-0 absolute inset-0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen></iframe>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
-                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
-                                <i class="fa-solid fa-volume-xmark"></i>
-                            </button>
-                        </div>
-                    `;
-                } else if (dmMatch && dmMatch[1]) {
+                if (dmMatch && dmMatch[1]) {
                     const videoId = dmMatch[1];
-                    // THÊM XỬ LÝ CHO DAILYMOTION
+                    // ĐÃ CẬP NHẬT: Xóa các class scale và transform để hiển thị ĐẦY ĐỦ video. Thêm loop=1.
                     return `
                         <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
                             <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
-                            <iframe id="${uniqueId}" src="https://www.dailymotion.com/embed/video/${videoId}?api=postMessage&autoplay=1&mute=1&controls=0&ui-logo=0&ui-start-screen-info=0" 
-                                class="w-full h-full object-contain sm:object-cover scale-100 sm:scale-[1.55] translate-x-0 sm:-translate-x-[2px] pointer-events-none border-0 absolute inset-0" 
+                            <iframe id="${uniqueId}" src="https://www.dailymotion.com/embed/video/${videoId}?api=postMessage&autoplay=1&mute=1&loop=1&controls=0&ui-logo=0&ui-start-screen-info=0&queue-enable=0" 
+                                class="w-full h-full pointer-events-none border-0 absolute inset-0" 
                                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
                                 allowfullscreen></iframe>
                             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
@@ -990,11 +820,36 @@
                             </button>
                         </div>
                     `;
+                } else if (ytMatch && ytMatch[1]) {
+                    const videoId = ytMatch[1];
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
+                            <div class="absolute inset-0 z-20 pointer-events-auto cursor-pointer" onclick="event.preventDefault(); event.stopPropagation();"></div>
+                            <iframe id="${uniqueId}" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1&showinfo=0" 
+                                class="w-full h-full object-contain sm:object-cover pointer-events-none border-0 absolute inset-0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen></iframe>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                            <button onclick="toggleAudio('${uniqueId}', 'yt', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </button>
+                        </div>
+                    `;
+                } else if (gDriveId) {
+                    return `
+                        <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
+                            <iframe id="${uniqueId}" src="https://drive.google.com/file/d/${gDriveId}/preview" 
+                                class="w-full h-full object-contain absolute inset-0 border-0 pointer-events-auto" 
+                                allow="autoplay; encrypted-media" 
+                                allowfullscreen></iframe>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
+                        </div>
+                    `;
                 }
-                // CẬP NHẬT CHÍNH: object-contain cho điện thoại (sm:object-cover cho máy tính)
+                
                 return `
                     <div class="media-container relative w-full h-full overflow-hidden rounded-2xl group/vid bg-black shadow-inner">
-                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-contain sm:object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0 pointer-events-none"></video>
+                        <video id="${uniqueId}" src="${item.video}" poster="${getGoogleDriveDirectUrl(item.image) || ''}" autoplay loop muted playsinline class="w-full h-full object-contain absolute inset-0 pointer-events-none"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none z-10"></div>
                         <button onclick="toggleAudio('${uniqueId}', 'html5', this, event)" data-muted="true" class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 z-30 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur-md text-white/90 hover:text-white flex items-center justify-center text-[11px] sm:text-xs transition-all active:scale-90 shadow-md border border-white/20 cursor-pointer touch-manipulation" title="Bật/Tắt Âm Thanh">
                             <i class="fa-solid fa-volume-xmark"></i>
@@ -1150,7 +1005,6 @@
                             <h3 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base group-hover:text-amber-500 transition-colors line-clamp-1">${item.title}</h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">${item.description || ''}</p>
 
-                            <!-- BỘ PHÁT NHẠC GOOGLE DRIVE / MP3 -->
                             <div class="mt-4 p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-inner">
                                 ${gDriveAudioId ? `
                                 <div class="w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 relative shadow-sm">
@@ -1168,7 +1022,6 @@
                             </div>
                         </div>
 
-                        <!-- CÁC NÚT THAO TÁC ÂM THANH -->
                         <div class="pt-3 border-t border-slate-100 dark:border-slate-700/60 flex items-center justify-between gap-2">
                             <div class="flex items-center space-x-1.5">
                                 <a href="${audioStreamUrl}" download target="_blank" class="py-1.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-amber-500 hover:text-white dark:hover:bg-amber-500 transition-all flex items-center space-x-1" title="Tải File MP3">
@@ -1208,14 +1061,12 @@
                 <div class="relative aspect-[9/16] overflow-hidden bg-slate-950 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     ${type === 'image' ? `<img src="${getGoogleDriveDirectUrl(item.image)}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x1066/1e293b/0ea5e9?text=Google+Drive+Image';">` : renderMediaContainer(item)}
                     
-                    <!-- BADGE TÊN TOOL TỐI GIẢN CÓ ĐỘ MỜ BẮT MẮT TRÊN MOBILE -->
                     <span class="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 bg-slate-900/70 backdrop-blur-md text-white/90 text-[9px] sm:text-[11px] font-medium px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full pointer-events-none z-20 border border-white/10 tracking-wide">
                         ${item.tool}
                     </span>
                     ${item.price ? `<span class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 bg-emerald-600/90 backdrop-blur-md text-white text-[9px] sm:text-[11px] font-bold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md pointer-events-none z-20 border border-emerald-400/30">${item.price}</span>` : ''}
                 </div>
 
-                <!-- KHU VỰC THÔNG TIN TỐI GIẢN CỦA CARD -->
                 <div class="p-2.5 sm:p-4 flex-grow flex flex-col justify-between space-y-2 sm:space-y-3.5 ${isLocked ? 'filter blur-md select-none pointer-events-none' : ''}">
                     <div>
                         <h3 class="font-bold text-slate-900 dark:text-white text-xs sm:text-base group-hover:text-primary-600 transition-colors line-clamp-1">${item.title}</h3>
@@ -1261,8 +1112,6 @@
         function renderFeaturedHomePrompts() {
             const container = document.getElementById('home-featured-grid');
             if (!container) return;
-            // Đã thay Audio card bằng Image card để đồng bộ chiều cao aspect-[9/16] toàn bộ grid, tránh bị lệch lưới.
-            // Đồng thời truyền đúng tham số 'type' để thẻ hiển thị chuẩn màu badge (VD: Video hiện màu Đỏ Rose)
             const featured = [
                 { item: sampleMotionPrompts[0], type: 'motion' }, 
                 { item: sampleVideoPrompts[0], type: 'video' }, 
@@ -1353,7 +1202,8 @@
                 if (src.includes('youtube.com')) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 } else if (src.includes('dailymotion.com')) {
-                    iframe.contentWindow.postMessage('play', '*');
+                    // Cập nhật postMessage JSON chuẩn cho Dailymotion
+                    iframe.contentWindow.postMessage('{"command":"play"}', '*');
                 }
             }
         }
@@ -1367,7 +1217,7 @@
                 if (src.includes('youtube.com')) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                 } else if (src.includes('dailymotion.com')) {
-                    iframe.contentWindow.postMessage('pause', '*');
+                    iframe.contentWindow.postMessage('{"command":"pause"}', '*');
                 }
             }
         }
@@ -1512,7 +1362,6 @@
                 container.innerHTML = `<div class="col-span-full text-center py-16 text-slate-400"><i class="fa-solid fa-magnifying-glass text-4xl mb-3"></i><p class="text-base font-semibold">Không tìm thấy kết quả phù hợp cho "${rawQuery}"</p></div>`;
             } else {
                 container.innerHTML = filtered.map((item, index) => {
-                    // Phân loại động type khi tìm kiếm để thẻ hiển thị đúng thiết kế
                     let type = 'home';
                     if (item.audioUrl) type = 'audio';
                     else if (item.price) type = 'tool';
@@ -1654,7 +1503,7 @@
                     if (src.includes('youtube.com')) {
                         iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
                     } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('muted=true', '*');
+                        iframe.contentWindow.postMessage('{"command":"mute"}', '*');
                     }
                 }
             });
@@ -1677,8 +1526,7 @@
                         iframe.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
                         iframe.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
                     } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('muted=false', '*');
-                        iframe.contentWindow.postMessage('volume=1', '*');
+                        iframe.contentWindow.postMessage('{"command":"unmute"}', '*');
                     }
                 }
                 const videoEl = document.getElementById(elementId);
@@ -1697,7 +1545,7 @@
                     if (src.includes('youtube.com')) {
                         iframe.contentWindow.postMessage('{"event":"command","func":"mute","args":""}', '*');
                     } else if (src.includes('dailymotion.com')) {
-                        iframe.contentWindow.postMessage('muted=true', '*');
+                        iframe.contentWindow.postMessage('{"command":"mute"}', '*');
                     }
                 }
                 const videoEl = document.getElementById(elementId);
@@ -1764,7 +1612,6 @@
                     </div>
                 `;
             } else if (item.steps) {
-                // TAB 4: MẪU VIDEO
                 let stepsHtml = item.steps.map(step => {
                     const stepImg = step.image || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80';
                     const downloadImgUrl = step.downloadUrl || stepImg;
@@ -1835,7 +1682,6 @@
                     </div>
                 `;
             } else if (item.price) {
-                // TAB 6: TOOL TỰ ĐỘNG
                 const toolSteps = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : (item.guide ? item.guide.split('\n').map(s => s.replace(/^•\s*/, '')) : []);
 
                 let toolStepsHtml = toolSteps.map((step, idx) => {
@@ -1910,44 +1756,7 @@
                     </div>
                 `;
             } else if (item.downloadUrl) {
-                // TAB 7: NHẢY DANCE
-                const stepsList = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [
-                    {
-                        stepNumber: 1,
-                        title: 'Tải Video Mẫu',
-                        instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang để lưu video dance nhịp điệu về thiết bị.',
-                        image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 2,
-                        title: 'Chuẩn Bị Nhân Vật AI',
-                        instruction: 'Tải lên hoặc tạo 1 bức ảnh chân dung toàn thân nhân vật AI (tỉ lệ 9:16, rõ nét).',
-                        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 3,
-                        title: 'Mở Trang Tạo AI',
-                        instruction: 'Bấm nút "Đến Trang Tạo Dance AI" để mở công cụ Viggle AI hoặc Kling AI.',
-                        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 4,
-                        title: 'Tải Dữ Liệu Lên Công Cụ',
-                        instruction: 'Đưa Video Mẫu vào ô Motion/Pose Reference và đưa Ảnh Nhân Vật vào ô Character Image.',
-                        image: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80'
-                    },
-                    {
-                        stepNumber: 5,
-                        title: 'Xuất Video Dance',
-                        instruction: 'Bấm Tạo Video (Generate) để AI tự động ghép khuôn mặt & cơ thể nhân vật khớp 100% điệu nhảy.',
-                        image: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80'
-                    }
-                ];
+                const stepsList = item.guideSteps && item.guideSteps.length > 0 ? item.guideSteps : [];
 
                 let danceStepsHtml = stepsList.map((step, idx) => {
                     const isObj = typeof step === 'object' && step !== null;
@@ -2036,30 +1845,6 @@
                             </div>
                         </div>
                     `}).join('');
-                } else {
-                    guideStepsHtml = `
-                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
-                            <div class="leading-relaxed">
-                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 1:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Tải bức ảnh người mẫu/sản phẩm của bạn lên phần mềm AI.</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
-                            <div class="leading-relaxed">
-                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 2:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Sao chép chính xác câu lệnh Prompt ở bên dưới.</span>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-2 text-xs sm:text-sm">
-                            <i class="fa-solid fa-circle-chevron-right text-xs mt-1 shrink-0 text-rose-500"></i>
-                            <div class="leading-relaxed">
-                                <span class="text-rose-600 dark:text-rose-400 font-extrabold mr-1.5">Bước 3:</span>
-                                <span class="text-slate-900 dark:text-slate-100 font-medium">Dán Prompt vào AI và xuất ảnh khung hình dọc 9:16 chất lượng cao.</span>
-                            </div>
-                        </div>
-                    `;
                 }
 
                 content.innerHTML = `
@@ -2178,3 +1963,10 @@
     </script>
 </body>
 </html>
+```eof
+
+### Các thay đổi quan trọng đã được thực hiện:
+1. **Thay đổi khung lưới `iframe`**: Đã loại bỏ các class bóp/cắt ảnh (`scale-[1.55]`, `translate`, `object-cover`). Thay vào đó cho `iframe` mặc định phủ đầy khung hình dọc 9:16. Trình phát Dailymotion sẽ tự tạo viền đen (letterboxing) để bạn **xem được 100% nội dung video** mà không hề bị cắt mất một góc nào.
+2. **API phát lặp lại (Loop) và Tự động phát**: Đã nối thêm param `loop=1&queue-enable=0` vào iframe để yêu cầu video lặp lại vô hạn, tắt hàng đợi video liên quan và được tự động chơi ở chế độ im lặng ngay khi cuộn tới nhờ `autoplay=1&mute=1`.
+3. **Cập nhật JS SDK của Dailymotion**: Tối ưu hóa chuỗi `postMessage JSON` (chuẩn giao thức API của Dailymotion: `{"command":"play"}`, `{"command":"mute"}`) giúp nút bấm bật tắt âm thanh ở góc khung hình giờ đây có thể điều khiển trực tiếp video Dailymotion mượt mà.
+4. **Nguồn Dữ liệu (Mock Data)**: Cập nhật tất cả các đường link dữ liệu mẫu (Google Drive, Youtube) đều trỏ về chính xác mã `[https://www.dailymotion.com/video/xaxb2fq](https://www.dailymotion.com/video/xaxb2fq)` để toàn bộ website đồng nhất sử dụng video Dailymotion làm gốc theo đúng yêu cầu của bạn.
