@@ -1769,8 +1769,8 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                 title: 'Tạo video nhảy 2 người',
                 category: 'nhay2nguoi',
                 categoryLabel: 'nhay2nguoi',
-                tool: 'Viggle AI Dance',
-                prompt: `Hướng dẫn tạo video nhảy 2 người theo mideo mẫu`,
+                tool: '',
+                prompt: `Hướng dẫn tạo video nhảy 2 người theo Video mẫu`,
                 video: 'https://www.youtube.com/shorts/43K74JJbGvY?feature=share',
                 description: 'Tạo video nhảy 2 người theo video mẫu.',
                 guideSteps: [
@@ -1778,35 +1778,35 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         stepNumber: 1,
                         title: 'Tải hơn 400 Video Mẫu nhảy 2 người',
                         instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang để lưu video mẫu về máy.',
-                        image: '',
-                        downloadUrl: ''
+                        image: 'https://drive.google.com/file/d/1opUb-pfndH4Y-RwzXeCpYWKN_boh70Hx/view?usp=sharing',
+                        downloadUrl: 'https://drive.google.com/drive/folders/13-v9X_klBdcZfLs5ir6z-dxU_ZyApU2b?usp=drive_link'
                     },
                     {
                         stepNumber: 2,
                         title: 'Chuẩn Bị Ảnh Nhân Vật AI',
-                        instruction: 'Chuẩn bị 1 ảnh mẫu có 2 người đứng gần nhau (chuẩn tỉ lệ 9:16, rõ nét).',
-                        image: '',
-                        downloadUrl: ''
+                        instruction: 'Chuẩn bị 1 ảnh mẫu có 2 nhân vật đứng gần nhau (chuẩn tỉ lệ 9:16, rõ nét).',
+                        image: 'https://drive.google.com/file/d/1C7Q4zg3808spCmyZVgQUchvHpXDtHi8p/view?usp=sharing',
+                        downloadUrl: 'https://drive.google.com/file/d/1Wn0tZeHp_kkzq08m9osuGMF07fLZe-K8/view?usp=sharing'
                     },
                     {
                         stepNumber: 3,
                         title: 'Mở Công Cụ Tạo Dance AI',
-                        instruction: 'Bấm nút "Đến Trang Tạo Dance AI" để truy cập công cụ Viggle AI hoặc Kling AI.',
-                        image: '',
+                        instruction: 'Bấm nút "Đến Trang Tạo Dance AI" để truy cập công cụ tạo video.',
+                        image: 'https://drive.google.com/file/d/1yOW7YTouMkUvlUu2qsvwWh74k1Zg4-lo/view?usp=sharing',
                         downloadUrl: ''
                     },
                     {
                         stepNumber: 4,
                         title: 'Tải Dữ Liệu Lên Nền Tảng',
-                        instruction: 'Đưa Video Mẫu vào ô Motion/Pose Reference và đưa Ảnh Nhân Vật vào ô Character Image.',
-                        image: '',
+                        instruction: 'Upload ảnh mẫu và video mẫu lên .',
+                        image: 'https://drive.google.com/file/d/11Tvvcb_eCREr3XWiTco3Agw9_aXe01N-/view?usp=sharing',
                         downloadUrl: ''
                     },
                     {
                         stepNumber: 5,
                         title: 'Xuất Video Dance Hoàn Chỉnh',
-                        instruction: 'Nhấn nút Generate để AI tự động ghép khuôn mặt & vóc dáng nhân vật khớp 100% với từng động tác nhảy.',
-                        image: '',
+                        instruction: 'Chọn khung hình và nhấn Tạo để chờ kết quả.',
+                        image: 'https://drive.google.com/file/d/1CrUQfCxAkEbeL2Emum4xg8w3fNVT_kCs/view?usp=sharing',
                         downloadUrl: ''
                     }
                 ],
@@ -2627,7 +2627,7 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <div class="space-y-1.5 mt-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-rose-500 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${step.stepNumber} (Tỷ lệ 16:9)
+                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${step.stepNumber} ()
                                 </span>
                                 <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-rose-600/10 hover:bg-rose-600 text-rose-600 hover:text-white dark:bg-rose-950/60 dark:text-rose-400 dark:hover:text-white text-[11px] font-bold transition-all border border-rose-200 dark:border-rose-900 flex items-center space-x-1 shadow-sm">
                                     <i class="fa-solid fa-download text-xs"></i>
@@ -2814,17 +2814,17 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <div class="space-y-1.5 pt-1">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> Ảnh minh họa Bước ${stepNum} (16:9)
+                                    <i class="fa-solid fa-image mr-1"></i> Ảnh Hướng Dẫn Bước ${stepNum} ()
                                 </span>
                                 <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center space-x-1">
                                     <i class="fa-solid fa-download text-xs"></i>
-                                    <span>Tải Ảnh Mẫu Bước ${stepNum}</span>
+                                    <span>Tải Mẫu</span>
                                 </a>
                             </div>
                             <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-purple-200/50 dark:border-purple-900/50 aspect-video w-full group shadow">
                                 <img src="${stepImg}" alt="Minh họa Bước ${stepNum}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                                 <span class="absolute bottom-2 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded border border-white/10">
-                                    <i class="fa-solid fa-person-dancing text-purple-400 mr-1"></i> Minh họa Dance Bước ${stepNum}
+                                    <i class="fa-solid fa-person-dancing text-purple-400 mr-1"></i> Hướng Dẫn
                                 </span>
                             </div>
                         </div>
