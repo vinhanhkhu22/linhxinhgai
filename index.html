@@ -1577,16 +1577,16 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                 steps: [
                     {
                         stepNumber: 1,
-                        title: 'Sao chép Prompt để tạo hình ảnh',
-                        instruction: 'Upload ảnh người mẫu của bận lên công cụ AI như Grok... Dán prompt để tạo ảnh',
+                        title: 'Tạo ảnh người mẫu mặc đồ cũ',
+                        instruction: 'Upload ảnh người mẫu của bạn lên công cụ AI như Grok... Dán prompt để tạo ảnh',
                         image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=675&q=80',
                         prompt: 'mẫu prompt'
                     },
                     {
                         stepNumber: 2,
-                        title: 'Sao chép Prompt để tạo hình ảnh',
-                        instruction: 'Upload ảnh người mẫu của bận lên công cụ AI như Grok... Dán prompt để tạo ảnh',
+                        title: 'Tạo ảnh người mẫu mặc đồ muốn bán',
+                        instruction: 'Upload ảnh người mẫu của bạn lên công cụ AI như Grok... Dán prompt để tạo ảnh',
                         image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&h=675&q=80',
                         downloadUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&h=675&q=80',
                         prompt: 'mẫu prompt'
@@ -1601,52 +1601,17 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
         const sampleAudioPrompts = [
             {
                 id: 'aud-gdrive-1',
-                title: 'Nhạc Nền Lofi Chill - Link Google Drive MP3',
+                title: 'Bản nhạc Demo',
                 category: 'nhacnen',
-                categoryLabel: 'Google Drive Audio',
-                tool: 'Google Drive',
+                categoryLabel: '',
+                tool: 'Âm thanh mẫu',
                 audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Bản nhạc Lofi Chill thư giãn lưu trữ trên Google Drive, giao diện phát đầy đủ không bị cắt bớt.',
-                generatorUrl: 'https://drive.google.com',
-                generatorName: 'Google Drive Storage',
+                description: 'Bản nhạc demo .',
+                generatorUrl: '',
+                generatorName: '',
                 downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
             },
-            {
-                id: 'aud-1',
-                title: 'Nhạc Nền Lofi Chill Cafe Sáng TikTok',
-                category: 'nhacnen',
-                categoryLabel: 'Nhạc Nền',
-                tool: 'Suno AI v3.5',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Giai điệu lofi ấm áp, êm dịu cực hợp làm nhạc nền cho video vlog cuộc sống, review cafe, phối đồ thời trang.',
-                generatorUrl: 'https://suno.com',
-                generatorName: 'Suno AI Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-2',
-                title: 'Giọng Nói AI Nữ Review Bán Hàng Truyền Cảm',
-                category: 'giongnoi',
-                categoryLabel: 'Giọng Nói AI',
-                tool: 'ElevenLabs',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Giọng đọc AI tự nhiên, ngữ điệu cuốn hút thích hợp làm lồng tiếng review sản phẩm TikTok Shop và Shopee.',
-                generatorUrl: 'https://elevenlabs.io',
-                generatorName: 'ElevenLabs Voice Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            },
-            {
-                id: 'aud-3',
-                title: 'Nhạc EDM Trend Biến Hình TikTok Sôi Động',
-                category: 'baihat',
-                categoryLabel: 'Bài Hát AI',
-                tool: 'Udio AI',
-                audioUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing',
-                description: 'Nhạc nhảy tiết tấu nhanh, dồn dập chuẩn đoạn drop chuyển cảnh biến hình thời trang sôi động.',
-                generatorUrl: 'https://www.udio.com',
-                generatorName: 'Udio AI Song Generator',
-                downloadUrl: 'https://drive.google.com/file/d/1vxyZmbM_B6_J8RMb9tWreW3xozc_eTX2/view?usp=sharing'
-            }
+          
         ];
 
         const sampleToolProducts = [
@@ -2512,7 +2477,7 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">${item.title}</h2>
                         
                         <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center space-y-3">
-                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Trình phát nhạc Google Drive MP3</p>
+                            <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider"><i class="fa-solid fa-headphones mr-1"></i> Trình phát nhạc</p>
                             ${gDriveAudioId ? `
                             <div class="relative w-full h-[220px] sm:h-[150px] rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-amber-500/20 dark:border-slate-700/50 shadow-inner flex items-center justify-center">
                                 <div class="absolute inset-0 flex items-center justify-center text-amber-600/50 dark:text-amber-500/50 z-0 text-sm font-medium">
@@ -2529,16 +2494,16 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả & Công Dụng</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả</label>
                             <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
                         </div>
 
                         <div class="pt-4 flex flex-col sm:flex-row items-center gap-3">
                             <a href="${item.generatorUrl || 'https://suno.com'}" target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-700 text-white text-xs font-semibold hover:bg-slate-900 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Trang AI (${item.generatorName || 'Suno AI'})</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Đến Trang AI</span>
                             </a>
                             <a href="${audioStreamUrl}" download target="_blank" class="w-full sm:w-1/2 py-2.5 rounded-xl bg-amber-500 text-white text-xs font-bold hover:bg-amber-600 transition-colors flex items-center justify-center space-x-1.5 shadow">
-                                <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3 VỀ MÁY</span>
+                                <i class="fa-solid fa-download"></i> <span>TẢI FILE MP3</span>
                             </a>
                         </div>
                     </div>
