@@ -434,7 +434,8 @@
 
             <div class="flex flex-wrap gap-2 text-sm">
                 <button onclick="filterDanceCategory('all', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-purple-600 text-white font-medium shadow-sm">Tất cả</button>
-                <button onclick="filterDanceCategory('nhaymotnguoi', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy một người</button>
+                <button onclick="filterDanceCategory('nhay1nguoi', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy 1 người</button>
+				<button onclick="filterDanceCategory('nhay2nguoi', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy 2 người</button>
                 <button onclick="filterDanceCategory('nhaynhom', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy nhóm</button>
                 <button onclick="filterDanceCategory('nhaybienhinh', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nhảy biến hình</button>
                 <button onclick="filterDanceCategory('dancervip', this)" class="dance-cat-btn px-4 py-2 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Dancer VIP</button>
@@ -1765,53 +1766,53 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
         const sampleDancePrompts = [
             {
                 id: 'dance-1',
-                title: 'K-Pop Hit Trend Dance Cover (9:16)',
-                category: 'nhaymotnguoi',
-                categoryLabel: 'Nhảy một người',
+                title: 'Tạo video nhảy 2 người',
+                category: 'nhay2nguoi',
+                categoryLabel: 'nhay2nguoi',
                 tool: 'Viggle AI Dance',
-                prompt: `Full body vertical 9:16 video of idol girl performing energetic K-Pop choreography, stage spot lighting, sharp motion capture, hyper-realistic, 60fps`,
-                video: 'https://drive.google.com/file/d/1Lv8PYIwMLgCio2Q82pKi5vP3ah3XEr5K/view?usp=sharing',
-                description: 'Mẫu vũ đạo K-Pop sôi động khung đứng 9:16 cực hot trên Reels & TikTok.',
+                prompt: `Hướng dẫn tạo video nhảy 2 người theo mideo mẫu`,
+                video: 'https://www.youtube.com/shorts/43K74JJbGvY?feature=share',
+                description: 'Tạo video nhảy 2 người theo video mẫu.',
                 guideSteps: [
                     {
                         stepNumber: 1,
-                        title: 'Tải Video Mẫu Vũ Đạo',
-                        instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang hoặc nút bên cạnh để lưu video vũ đạo nhịp điệu về máy.',
-                        image: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1547153760-18fc86324498?auto=format&fit=crop&w=1200&h=675&q=80'
+                        title: 'Tải hơn 400 Video Mẫu nhảy 2 người',
+                        instruction: 'Bấm nút "TẢI VIDEO MẪU" ở cuối trang để lưu video mẫu về máy.',
+                        image: '',
+                        downloadUrl: ''
                     },
                     {
                         stepNumber: 2,
                         title: 'Chuẩn Bị Ảnh Nhân Vật AI',
-                        instruction: 'Tải lên hoặc dùng AI tạo 1 bức ảnh chân dung toàn thân nhân vật của bạn (chuẩn tỉ lệ 9:16, rõ nét).',
-                        image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&h=675&q=80'
+                        instruction: 'Chuẩn bị 1 ảnh mẫu có 2 người đứng gần nhau (chuẩn tỉ lệ 9:16, rõ nét).',
+                        image: '',
+                        downloadUrl: ''
                     },
                     {
                         stepNumber: 3,
                         title: 'Mở Công Cụ Tạo Dance AI',
                         instruction: 'Bấm nút "Đến Trang Tạo Dance AI" để truy cập công cụ Viggle AI hoặc Kling AI.',
-                        image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&h=675&q=80'
+                        image: '',
+                        downloadUrl: ''
                     },
                     {
                         stepNumber: 4,
                         title: 'Tải Dữ Liệu Lên Nền Tảng',
                         instruction: 'Đưa Video Mẫu vào ô Motion/Pose Reference và đưa Ảnh Nhân Vật vào ô Character Image.',
-                        image: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?auto=format&fit=crop&w=1200&h=675&q=80'
+                        image: '',
+                        downloadUrl: ''
                     },
                     {
                         stepNumber: 5,
                         title: 'Xuất Video Dance Hoàn Chỉnh',
                         instruction: 'Nhấn nút Generate để AI tự động ghép khuôn mặt & vóc dáng nhân vật khớp 100% với từng động tác nhảy.',
-                        image: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80',
-                        downloadUrl: 'https://images.unsplash.com/photo-1535525153412-5a42439e210d?auto=format&fit=crop&w=1200&h=675&q=80'
+                        image: '',
+                        downloadUrl: ''
                     }
                 ],
                 redirectUrl: 'https://aidancing.net?ref=aidancing50632',
                 redirectLabel: 'Đến Trang Tạo Dance AI',
-                downloadUrl: 'https://www.youtube.com/shorts/W-YVtgZt6BA'
+                downloadUrl: 'https://drive.google.com/drive/folders/13-v9X_klBdcZfLs5ir6z-dxU_ZyApU2b?usp=sharing'
             }
         ];
 
