@@ -2628,7 +2628,7 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <div class="space-y-1.5 mt-2">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-rose-500 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i> 
+                                    
                                 </span>
                                 <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-rose-600/10 hover:bg-rose-600 text-rose-600 hover:text-white dark:bg-rose-950/60 dark:text-rose-400 dark:hover:text-white text-[11px] font-bold transition-all border border-rose-200 dark:border-rose-900 flex items-center space-x-1 shadow-sm">
                                     <i class="fa-solid fa-download text-xs"></i>
@@ -2639,7 +2639,7 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                                 <img src="${stepImg}" alt="${step.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
                                 <span class="absolute bottom-2.5 left-3 bg-black/60 backdrop-blur-md text-white text-[10px] font-semibold px-2.5 py-1 rounded-lg border border-white/10 flex items-center">
-                                    <i class="fa-solid fa-circle-check text-rose-400 mr-1.5"></i>
+                                    
                                 </span>
                             </div>
                         </div>
@@ -2704,14 +2704,17 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <div class="space-y-1.5 pt-1">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i>
+                                    
                                 </span>
                                 <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center space-x-1">
                                     <i class="fa-solid fa-download text-xs"></i>
                                     <span>Tải Mẫu Bước ${stepNum}</span>
                                 </a>
                             </div>
-                            
+                            <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-emerald-200/50 dark:border-emerald-900/50 aspect-video w-full group shadow">
+                                <img src="${stepImg}" alt="Minh họa Bước ${stepNum}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <span class="absolute bottom-2 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded border border-white/10">
+                                    
                                 </span>
                             </div>
                         </div>
@@ -2729,7 +2732,8 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
-                            
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Sản Phẩm</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-extrabold mb-2 flex items-center">
@@ -2811,14 +2815,17 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                         <div class="space-y-1.5 pt-1">
                             <div class="flex items-center justify-between">
                                 <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider flex items-center">
-                                    <i class="fa-solid fa-image mr-1"></i>
+                                    
                                 </span>
                                 <a href="${downloadImgUrl}" download target="_blank" class="px-2.5 py-1 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-[11px] font-bold transition-all shadow-sm flex items-center space-x-1">
                                     <i class="fa-solid fa-download text-xs"></i>
                                     <span>Tải Mẫu</span>
                                 </a>
                             </div>
-                            
+                            <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-purple-200/50 dark:border-purple-900/50 aspect-video w-full group shadow">
+                                <img src="${stepImg}" alt="Minh họa Bước ${stepNum}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                                <span class="absolute bottom-2 left-2.5 bg-black/60 backdrop-blur-md text-white text-[10px] font-medium px-2 py-0.5 rounded border border-white/10">
+                                    
                                 </span>
                             </div>
                         </div>
@@ -2836,7 +2843,8 @@ Chất tóc thẳng tự nhiên, sợi tóc mảnh đến trung bình, mật đ�
                             ${renderMediaContainer(item)}
                         </div>
                         <div>
-                            
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Mô Tả Vũ Đạo</label>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${item.description}</p>
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 font-extrabold mb-2 flex items-center">
